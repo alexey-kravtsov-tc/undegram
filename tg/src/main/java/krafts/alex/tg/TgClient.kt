@@ -1,10 +1,12 @@
 package krafts.alex.tg
 
+import android.content.Context
 import android.util.Log
+import krafts.alex.tg.entity.Message
 import org.drinkless.td.libcore.telegram.Client
 import org.drinkless.td.libcore.telegram.TdApi
 
-class TgClient {
+class TgClient(context: Context) {
 
     var client = createClient()
     var authorizationState: TdApi.AuthorizationState? = null
@@ -87,18 +89,19 @@ class TgClient {
         Log.i("print", msg)
     }
 
-    private val messages = ArrayList<TdApi.Message>()
+    private val messages = TgDataBase.getInstance(context).messages()
 
     private fun createClient(): Client = Client.create(Client.ResultHandler {
         Log.e("--------result handled", it.toString())
         when (it) {
             is TdApi.UpdateAuthorizationState ->
                 onAuthorizationStateUpdated(it.authorizationState)
-            is TdApi.UpdateNewMessage -> messages.add(it.message)
+            is TdApi.UpdateNewMessage ->
+                messages.insert(Message.fromTg(it.message))
             is TdApi.UpdateMessageContent -> {
-                val before = messages
-                        .find { msg -> msg.id == it.messageId}
-                        ?.content?.text()
+                val origin = messages.getById(it.messageId)
+
+                val before = origin.text
                 val after = it.newContent.text()
 
                 Log.e("~~~~~~~edited", "from $before to $after")
@@ -106,8 +109,8 @@ class TgClient {
             }
             is TdApi.UpdateDeleteMessages -> {
                 if (it.isPermanent) {
-                    for (item in it.messageIds) {
-                        Log.e("======removed", messages.find { it.id == item }?.content?.text())
+                    for (id in it.messageIds) {
+                        Log.e("======removed", messages.getById(id).text)
                     }
                 }
             }
@@ -117,7 +120,7 @@ class TgClient {
         Log.e(this.toString(), it.localizedMessage)
     }, null)
 
-    private fun TdApi.MessageContent.text() : String {
+    private fun TdApi.MessageContent.text(): String {
         if (this is TdApi.MessageText) {
             return this.text.text
         }

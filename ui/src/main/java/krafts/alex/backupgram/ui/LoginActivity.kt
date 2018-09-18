@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        val client = TgClient()
+        val client = TgClient(applicationContext)
 
         button_send_phone.setOnClickListener {
             client.sendPhone(phone.text.toString())
