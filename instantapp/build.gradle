@@ -1,0 +1,10 @@
+apply plugin: 'com.android.instantapp'
+
+dependencies {
+    implementation project(':ui')
+    implementation project(':base')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}

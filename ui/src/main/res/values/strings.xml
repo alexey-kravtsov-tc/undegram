@@ -1,0 +1,17 @@
+<resources>
+    
+    <!-- Strings related to login -->
+    <string name="prompt_phone">Your phone</string>
+    <string name="send_phone">Find</string>
+    <string name="prompt_code">Code from sms</string>
+    <string name="send_code">Enter</string>
+    <string name="prompt_password">Password</string>
+    <string name="send_password">Enter</string>
+
+
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+</resources>
