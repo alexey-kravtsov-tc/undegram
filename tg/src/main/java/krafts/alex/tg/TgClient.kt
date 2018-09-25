@@ -79,12 +79,6 @@ class TgClient(context: Context) {
         sendClient(TdApi.CheckAuthenticationPassword(password))
     }
 
-
-    private fun promptString(msg: String): String? {
-        Log.d("prompt", msg)
-        TODO("action needed")
-    }
-
     private fun print(msg: String) {
         Log.i("print", msg)
     }
@@ -110,7 +104,9 @@ class TgClient(context: Context) {
             is TdApi.UpdateDeleteMessages -> {
                 if (it.isPermanent) {
                     for (id in it.messageIds) {
-                        Log.e("======removed", messages.getById(id).text)
+                        val message = messages.getById(id)
+                        Log.e("======removed", message.text)
+                        messages.markDeleted(id)
                     }
                 }
             }

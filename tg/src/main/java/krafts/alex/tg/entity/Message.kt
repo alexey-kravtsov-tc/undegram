@@ -11,7 +11,8 @@ data class Message(
         val chatId: Long,
         var text: String,
         val date: Int,
-        var editDate: Int
+        var editDate: Int,
+        var deleted: Boolean
 ) {
 
     companion object {
@@ -22,7 +23,8 @@ data class Message(
                 chatId = msg.chatId,
                 text = msg.content.getText(),
                 date = msg.date,
-                editDate = msg.editDate
+                editDate = msg.editDate,
+                deleted = false
         )
 
         private fun TdApi.MessageContent.getText() : String {

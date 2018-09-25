@@ -32,6 +32,9 @@ dependencies {
 
     implementation "android.arch.persistence.room:runtime:$room_version"
     kapt "android.arch.persistence.room:compiler:$room_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    implementation "android.arch.lifecycle:livedata:$room_version"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

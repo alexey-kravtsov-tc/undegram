@@ -7,7 +7,7 @@ import android.content.Context
 import krafts.alex.tg.dao.MessagesDao
 import krafts.alex.tg.entity.Message
 
-@Database(entities = [Message::class], version = 1, exportSchema = false)
+@Database(entities = [Message::class], version = 2, exportSchema = false)
 abstract class TgDataBase: RoomDatabase() {
 
     abstract fun messages(): MessagesDao
