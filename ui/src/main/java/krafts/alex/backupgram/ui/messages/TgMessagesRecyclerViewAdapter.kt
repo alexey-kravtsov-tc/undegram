@@ -51,7 +51,7 @@ class TgMessagesRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
 
-        holder.mIdView.text = item.user?.let { it.firstName + " " + it.lastName }
+        holder.name.text = item.user?.let { it.firstName + " " + it.lastName }
 
         item.user?.photoBig?.let {
             if (it.downloaded)
@@ -62,9 +62,9 @@ class TgMessagesRecyclerViewAdapter(
                     .into(holder.avatar)
         }
 
-        holder.mContentView.text = item.text
+        holder.message.text = item.text
 
-        with(holder.mView) {
+        with(holder.view) {
             tag = item
             setOnClickListener(mOnClickListener)
         }
@@ -72,13 +72,13 @@ class TgMessagesRecyclerViewAdapter(
 
     override fun getItemCount(): Int = mValues.size
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView = mView.item_number
-        val mContentView: TextView = mView.content
-        val avatar: ImageView = mView.avatar
+    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val name: TextView = view.name
+        val message: TextView = view.message
+        val avatar: ImageView = view.avatar
 
         override fun toString(): String {
-            return super.toString() + " '" + mContentView.text + "'"
+            return super.toString() + " '" + message.text + "'"
         }
     }
 }
