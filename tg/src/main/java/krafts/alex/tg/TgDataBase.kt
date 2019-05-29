@@ -5,12 +5,16 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import krafts.alex.tg.dao.MessagesDao
+import krafts.alex.tg.dao.UsersDao
 import krafts.alex.tg.entity.Message
+import krafts.alex.tg.entity.User
 
-@Database(entities = [Message::class], version = 2, exportSchema = false)
-abstract class TgDataBase: RoomDatabase() {
+@Database(entities = [Message::class, User::class], version = 3, exportSchema = false)
+abstract class TgDataBase : RoomDatabase() {
 
     abstract fun messages(): MessagesDao
+
+    abstract fun users(): UsersDao
 
     companion object {
         /**
@@ -28,9 +32,10 @@ abstract class TgDataBase: RoomDatabase() {
         fun getInstance(context: Context): TgDataBase {
             if (sInstance == null) {
                 sInstance = Room
-                        .databaseBuilder(context.applicationContext, TgDataBase::class.java, "data")
-                        .fallbackToDestructiveMigration()
-                        .build()
+                    .databaseBuilder(context.applicationContext, TgDataBase::class.java, "data")
+                    .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
+                    .build()
             }
             return sInstance!!
         }

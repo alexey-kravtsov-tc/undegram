@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import krafts.alex.backupgram.ui.R
-
 import krafts.alex.tg.entity.Message
 import krafts.alex.tg.repo.MessagesRepository
 
@@ -35,10 +34,12 @@ class MessagesFragment : Fragment() {
 
         val adapt = TgMessagesRecyclerViewAdapter(emptyList(), listener) //TODO: listadapter paging
 
+
         MessagesRepository(context!!).getAllRemoved().observe(this, Observer {
             it?.let { adapt.setAll(it) }
         }
         )
+
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {

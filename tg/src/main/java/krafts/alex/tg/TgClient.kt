@@ -2,7 +2,9 @@ package krafts.alex.tg
 
 import android.content.Context
 import android.util.Log
-import krafts.alex.tg.entity.Message
+import krafts.alex.tg.entity.User
+import krafts.alex.tg.repo.MessagesRepository
+import krafts.alex.tg.repo.UsersRepository
 import org.drinkless.td.libcore.telegram.Client
 import org.drinkless.td.libcore.telegram.TdApi
 
@@ -83,17 +85,19 @@ class TgClient(context: Context) {
         Log.i("print", msg)
     }
 
-    private val messages = TgDataBase.getInstance(context).messages()
+    private val messages = MessagesRepository(context)
+    private val users = UsersRepository(context)
 
     private fun createClient(): Client = Client.create(Client.ResultHandler {
-        Log.e("--------result handled", it.toString())
+        //Log.e("--------result handled", it.toString())
+
         when (it) {
             is TdApi.UpdateAuthorizationState ->
                 onAuthorizationStateUpdated(it.authorizationState)
             is TdApi.UpdateNewMessage ->
-                messages.insert(Message.fromTg(it.message))
+                messages.add(it.message)
             is TdApi.UpdateMessageContent -> {
-                val origin = messages.getById(it.messageId)
+                val origin = messages.get(it.messageId)
 
                 val before = origin.text
                 val after = it.newContent.text()
@@ -104,17 +108,28 @@ class TgClient(context: Context) {
             is TdApi.UpdateDeleteMessages -> {
                 if (it.isPermanent) {
                     for (id in it.messageIds) {
-                        val message = messages.getById(id)
+                        val message = messages.get(id)
                         Log.e("======removed", message.text)
-                        messages.markDeleted(id)
+                        messages.delete(id)
                     }
                 }
             }
+            is TdApi.UpdateUser -> {
+                val user = User.fromTg(it.user)
+                users.add(user)
+                if (user.photoBig?.downloaded == false)
+                    sendClient(TdApi.DownloadFile(user.photoBig.fileId, 32))
+
+            }
+            is TdApi.UpdateFile ->
+                users.updateImage(it.file)
+
 
         }
     }, Client.ExceptionHandler {
         Log.e(this.toString(), it.localizedMessage)
     }, null)
+
 
     private fun TdApi.MessageContent.text(): String {
         if (this is TdApi.MessageText) {

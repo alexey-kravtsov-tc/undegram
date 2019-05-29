@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
-import android.arch.persistence.room.Update
 import krafts.alex.tg.entity.Message
 
 @Dao
@@ -19,7 +18,7 @@ interface MessagesDao {
     @Query("SELECT * from message ORDER BY id DESC LIMIT 25")
     fun getAll(): LiveData<List<Message>>
 
-    @Query("SELECT * from message where deleted ORDER BY id DESC LIMIT 25")
+    @Query("SELECT * from message where deleted ORDER BY date DESC")
     fun getAllDeleted(): LiveData<List<Message>>
 
     @Query("UPDATE message SET deleted = :deleted where id = :id")

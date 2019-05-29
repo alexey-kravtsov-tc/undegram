@@ -21,7 +21,7 @@ import krafts.alex.tg.entity.Message
 class MainActivity : AppCompatActivity(), MessagesFragment.OnListFragmentInteractionListener {
 
     override fun onListFragmentInteraction(item: Message?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     /**
