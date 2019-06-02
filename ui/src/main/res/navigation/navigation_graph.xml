@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/messages_destination">
+    <activity
+        android:id="@+id/main_destination"
+        android:name="krafts.alex.backupgram.ui.MainActivity"
+        android:label="MainActivity" />
+    <fragment
+        android:id="@+id/login_destination"
+        android:name="krafts.alex.backupgram.ui.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_messages"
+            app:destination="@id/messages_destination"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/messages_destination"
+        android:name="krafts.alex.backupgram.ui.messages.MessagesFragment"
+        android:label="MessagesFragment" />
+</navigation>

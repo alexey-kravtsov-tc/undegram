@@ -34,4 +34,6 @@ dependencies {
 
     implementation 'com.squareup.picasso:picasso:2.71828'
     compile project(path: ':tg')
+    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
+    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
 }
