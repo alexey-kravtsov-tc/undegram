@@ -20,7 +20,7 @@ class MessagesFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_messages_list, container, false)
 
-        val adapt = TgMessagesRecyclerViewAdapter(emptyList()) //TODO: listadapter paging
+        val adapt = MessagesAdapter(emptyList()) //TODO: listadapter paging
 
 
         BackApp.messages.getAllRemoved().observe(this, Observer {

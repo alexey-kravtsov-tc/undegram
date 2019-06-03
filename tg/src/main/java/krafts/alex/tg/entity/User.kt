@@ -14,6 +14,10 @@ data class User(
     @Embedded val photoBig: File?
 ) {
 
+    override fun toString(): String {
+        return "$firstName $lastName"
+    }
+
     companion object {
 
         fun fromTg(usr: TdApi.User) = User(

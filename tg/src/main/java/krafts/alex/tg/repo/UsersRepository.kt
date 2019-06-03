@@ -13,9 +13,7 @@ class UsersRepository(context: Context) {
     fun add(user: User) = users.insert(user)
 
     fun add(user: TdApi.User) = users.insert(
-        User.fromTg(
-            user
-        )
+        User.fromTg(user)
     )
 
     fun get(id: Int) = users.getById(id)
@@ -28,3 +26,4 @@ class UsersRepository(context: Context) {
         }
     }
 }
+

@@ -15,9 +15,9 @@ import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.tg.entity.Message
 import java.io.File
 
-class TgMessagesRecyclerViewAdapter(
+class MessagesAdapter(
     private var mValues: List<Message>
-) : RecyclerView.Adapter<TgMessagesRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
 
     private val mOnClickListener: View.OnClickListener
 

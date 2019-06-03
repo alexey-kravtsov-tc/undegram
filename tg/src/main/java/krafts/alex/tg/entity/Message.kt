@@ -7,27 +7,29 @@ import org.drinkless.td.libcore.telegram.TdApi
 
 @Entity
 data class Message @JvmOverloads constructor(
-        @PrimaryKey val id: Long,
-        val senderId: Int,
-        val chatId: Long,
-        var text: String,
-        val date: Int,
-        var editDate: Int,
-        var deleted: Boolean,
-        @Ignore var user: User? = null
+    @PrimaryKey val id: Long,
+    val senderId: Int,
+    val chatId: Long,
+    var text: String,
+    val date: Int,
+    var editDate: Int,
+    var deleted: Boolean,
+    @Ignore var user: User? = null,
+    @Ignore var chat: Chat? = null
 ) {
 
     companion object {
 
         fun fromTg(msg: TdApi.Message) = Message(
-                id = msg.id,
-                senderId = msg.senderUserId,
-                chatId = msg.chatId,
-                text = msg.content.getText(),
-                date = msg.date,
-                editDate = msg.editDate,
-                deleted = false,
-                user = null
+            id = msg.id,
+            senderId = msg.senderUserId,
+            chatId = msg.chatId,
+            text = msg.content.getText(),
+            date = msg.date,
+            editDate = msg.editDate,
+            deleted = false,
+            user = null,
+            chat = null
         )
 
         private fun TdApi.MessageContent.getText(): String {
@@ -36,6 +38,5 @@ data class Message @JvmOverloads constructor(
             }
             return this.toString()
         }
-
     }
 }

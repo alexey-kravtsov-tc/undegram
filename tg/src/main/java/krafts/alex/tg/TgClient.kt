@@ -2,7 +2,9 @@ package krafts.alex.tg
 
 import android.content.Context
 import android.util.Log
+import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.User
+import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.MessagesRepository
 import krafts.alex.tg.repo.UsersRepository
 import org.drinkless.td.libcore.telegram.Client
@@ -87,6 +89,7 @@ class TgClient(context: Context) {
 
     private val messages = MessagesRepository(context)
     private val users = UsersRepository(context)
+    private val chats = ChatRepository(context)
 
     private fun createClient(): Client = Client.create(Client.ResultHandler {
         //Log.e("--------result handled", it.toString())
@@ -121,10 +124,16 @@ class TgClient(context: Context) {
                     sendClient(TdApi.DownloadFile(user.photoBig.fileId, 32))
 
             }
-            is TdApi.UpdateFile ->
+            is TdApi.UpdateNewChat -> {
+                val chat = Chat.fromTg(it.chat)
+                chats.add(chat)
+                if (chat.photoBig?.downloaded == false)
+                    sendClient(TdApi.DownloadFile(chat.photoBig.fileId, 32))
+            }
+            is TdApi.UpdateFile -> {
                 users.updateImage(it.file)
-
-
+                chats.updateImage(it.file)
+            }
         }
     }, Client.ExceptionHandler {
         Log.e(this.toString(), it.localizedMessage)
