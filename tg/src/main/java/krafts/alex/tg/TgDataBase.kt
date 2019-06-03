@@ -12,8 +12,14 @@ import krafts.alex.tg.entity.Message
 import krafts.alex.tg.entity.User
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.migration.Migration
+import krafts.alex.tg.dao.SessionsDao
+import krafts.alex.tg.entity.Session
 
-@Database(entities = [Message::class, User::class, Chat::class], version = 4, exportSchema = false)
+@Database(
+    entities = [Message::class, User::class, Chat::class, Session::class],
+    version = 5,
+    exportSchema = false
+)
 abstract class TgDataBase : RoomDatabase() {
 
     abstract fun messages(): MessagesDao
@@ -21,6 +27,8 @@ abstract class TgDataBase : RoomDatabase() {
     abstract fun users(): UsersDao
 
     abstract fun chats(): ChatDao
+
+    abstract fun sessions(): SessionsDao
 
     companion object {
         /**
@@ -36,6 +44,14 @@ abstract class TgDataBase : RoomDatabase() {
             }
         }
 
+        private val session_migration: Migration = object : Migration(4, 5) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `Session` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `start` INTEGER NOT NULL, `expires` INTEGER NOT NULL)"
+                )
+            }
+        }
+
         /**
          * Gets the singleton instance of TgDataBase.
          *
@@ -47,7 +63,7 @@ abstract class TgDataBase : RoomDatabase() {
             if (sInstance == null) {
                 sInstance = Room
                     .databaseBuilder(context.applicationContext, TgDataBase::class.java, "data")
-                    .addMigrations(chat_migration)
+                    .addMigrations(chat_migration, session_migration)
                     .allowMainThreadQueries()
                     .build()
             }

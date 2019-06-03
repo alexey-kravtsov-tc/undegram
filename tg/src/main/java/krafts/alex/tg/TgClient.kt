@@ -6,9 +6,11 @@ import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.User
 import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.MessagesRepository
+import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.UsersRepository
 import org.drinkless.td.libcore.telegram.Client
 import org.drinkless.td.libcore.telegram.TdApi
+import java.util.concurrent.TimeUnit
 
 class TgClient(context: Context) {
 
@@ -94,6 +96,7 @@ class TgClient(context: Context) {
     private val messages = MessagesRepository(context)
     private val users = UsersRepository(context)
     private val chats = ChatRepository(context)
+    private val sessions = SessionRepository(context)
 
     private fun createClient(): Client = Client.create(Client.ResultHandler {
         //Log.e("--------result handled", it.toString())
@@ -134,6 +137,15 @@ class TgClient(context: Context) {
                 if (chat.photoBig?.downloaded == false)
                     sendClient(TdApi.DownloadFile(chat.photoBig.fileId, 32))
             }
+
+            is TdApi.UpdateUserStatus -> {
+                if (it.status is TdApi.UserStatusOnline) {
+                    sessions.updateSession(it)
+                } else {
+                    sessions.endSession(it.userId)
+                }
+            }
+
             is TdApi.UpdateFile -> {
                 users.updateImage(it.file)
                 chats.updateImage(it.file)
