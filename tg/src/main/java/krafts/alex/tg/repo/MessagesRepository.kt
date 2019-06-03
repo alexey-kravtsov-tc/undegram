@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
 import android.content.Context
 import krafts.alex.tg.TgDataBase
-import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.Message
 import org.drinkless.td.libcore.telegram.TdApi
 
@@ -19,7 +18,7 @@ class MessagesRepository(context: Context) {
     fun getAll() = msgs.getAll()
 
     fun getAllRemoved(): LiveData<List<Message>> {
-        return Transformations.map(msgs.getAllDeleted()) { msg ->
+        return Transformations.map(msgs.getAllDeletedPerChat()) { msg ->
             msg.forEach {
                 it.user = users.get(it.senderId)
                 it.chat = chats.get(it)

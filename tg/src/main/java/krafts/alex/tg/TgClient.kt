@@ -83,6 +83,10 @@ class TgClient(context: Context) {
         sendClient(TdApi.CheckAuthenticationPassword(password))
     }
 
+    fun getChatInfo(chatId: Long) {
+        sendClient(TdApi.GetChat(chatId))
+    }
+
     private fun print(msg: String) {
         Log.i("print", msg)
     }

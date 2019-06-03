@@ -1,27 +1,38 @@
 package krafts.alex.backupgram.ui.messages
 
-import android.graphics.Color
-import android.opengl.Visibility
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import com.squareup.picasso.Picasso
-
-import kotlinx.android.synthetic.main.item_message.view.*
+import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.tg.entity.Message
 import java.io.File
 
-class MessagesAdapter(
-    private var values: List<Message>
+class ChatAdapter(
+    private var mValues: List<Message>
 ) : RecyclerView.Adapter<MessageViewHolder>() {
 
+    private val mOnClickListener: View.OnClickListener
+
+    init {
+        mOnClickListener = View.OnClickListener { v ->
+            val item = v.tag as Message
+            val action =
+                MessagesFragmentDirections.actionDialogDetails(
+                    item.chatId
+                )
+            Navigation.findNavController(v).navigate(action)
+        }
+    }
+
     fun setAll(items: List<Message>) {
-        values = items
+        mValues = items
         notifyDataSetChanged()
     }
 
@@ -32,14 +43,19 @@ class MessagesAdapter(
     }
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
-        val item = values[position]
+        val item = mValues[position]
 
-        holder.name.text = item.user?.let { it.firstName + " " + it.lastName }
 
-        item.user?.photoBig?.let {
+        if (item.chat == null) {
+            BackApp.client.getChatInfo(item.chatId)
+        }
+
+        holder.name.text = item?.chat?.title ?:
+            item.user?.let { it.firstName + " " + it.lastName }
+
+        (item?.chat?.photoBig ?: item.user?.photoBig)?.let {
             if (it.downloaded)
-                Picasso
-                    .get()
+                Picasso.get()
                     .load(File(it.localPath))
                     .transform(CircleTransform())
                     .into(holder.avatar)
@@ -47,25 +63,12 @@ class MessagesAdapter(
 
         holder.message.text = item.text
 
-        if (position != 0 && item.senderId == values[position - 1].senderId) {
-            holder.name.visibility = View.GONE
-            holder.avatar.setColorFilter(Color.WHITE)
-        }
         with(holder.view) {
             tag = item
+            setOnClickListener(mOnClickListener)
         }
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = mValues.size
+
 }
-
-class MessageViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-    val name: TextView = view.name
-    val message: TextView = view.message
-    val avatar: ImageView = view.avatar
-
-    override fun toString(): String {
-        return super.toString() + " '" + message.text + "'"
-    }
-}
-
