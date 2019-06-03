@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import com.squareup.picasso.Picasso
-
-import krafts.alex.backupgram.ui.messages.MessagesFragment.OnListFragmentInteractionListener
 
 import kotlinx.android.synthetic.main.item_message.view.*
 import krafts.alex.backupgram.ui.R
@@ -16,14 +15,8 @@ import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.tg.entity.Message
 import java.io.File
 
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
- * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
- */
 class TgMessagesRecyclerViewAdapter(
-    private var mValues: List<Message>,
-    private val mListener: OnListFragmentInteractionListener?
+    private var mValues: List<Message>
 ) : RecyclerView.Adapter<TgMessagesRecyclerViewAdapter.ViewHolder>() {
 
     private val mOnClickListener: View.OnClickListener
@@ -31,9 +24,8 @@ class TgMessagesRecyclerViewAdapter(
     init {
         mOnClickListener = View.OnClickListener { v ->
             val item = v.tag as Message
-            // Notify the active callbacks interface (the activity, if the fragment is attached to
-            // one) that an item has been selected.
-            mListener?.onListFragmentInteraction(item)
+            val action = MessagesFragmentDirections.actionDialogDetails(item.chatId)
+            Navigation.findNavController(v).navigate(action)
         }
     }
 

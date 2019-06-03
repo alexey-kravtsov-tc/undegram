@@ -19,5 +19,17 @@
     <fragment
         android:id="@+id/messages_destination"
         android:name="krafts.alex.backupgram.ui.messages.MessagesFragment"
-        android:label="MessagesFragment" />
+        android:label="MessagesFragment" >
+        <action
+            android:id="@+id/action_dialog_details"
+            app:destination="@id/dialog_details_destination" />
+    </fragment>
+    <fragment
+        android:id="@+id/dialog_details_destination"
+        android:name="krafts.alex.backupgram.ui.DialogDetailsFragment"
+        android:label="DialogDetailsFragment" >
+        <argument
+            android:name="chatId"
+            app:argType="long" />
+    </fragment>
 </navigation>
