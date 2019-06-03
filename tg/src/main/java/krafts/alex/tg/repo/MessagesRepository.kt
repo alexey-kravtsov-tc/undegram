@@ -22,9 +22,17 @@ class MessagesRepository(context: Context) {
         return Transformations.map(msgs.getAllDeleted()) { msg ->
             msg.forEach {
                 it.user = users.get(it.senderId)
-                it.chat = if (it.senderId.toLong() == it.chatId) {
-                    it.user?.let { usr -> Chat.fromUser(usr) } ?: chats.get(it.chatId)
-                } else chats.get(it.chatId)
+                it.chat = chats.get(it)
+            }
+            return@map msg
+        }
+    }
+
+    fun getRemovedForChat(chatId: Long): LiveData<List<Message>> {
+        return Transformations.map(msgs.getAllDeletedForChat(chatId)) { msg ->
+            msg.forEach {
+                it.user = users.get(it.senderId)
+                it.chat = chats.get(it)
             }
             return@map msg
         }

@@ -12,10 +12,10 @@ interface ChatDao {
     fun insert(chat: Chat)
 
     @Query("SELECT * from chat where id = :id LIMIT 1")
-    fun getById(id: Long): Chat
+    fun getById(id: Long): Chat?
 
     @Query("SELECT * from chat")
-    fun getList(): List<Chat>
+    fun getList(): List<Chat?>?
 
     @Query("UPDATE chat SET localPath = :path, downloaded = :downloaded where id = :chatId")
     fun updatePhoto(chatId: Long, path: String, downloaded: Boolean = true)

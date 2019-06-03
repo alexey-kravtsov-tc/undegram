@@ -21,6 +21,9 @@ interface MessagesDao {
     @Query("SELECT * from message where deleted ORDER BY date DESC")
     fun getAllDeleted(): LiveData<List<Message>>
 
+    @Query("SELECT * from message where deleted AND chatId = :chatId ORDER BY date DESC")
+    fun getAllDeletedForChat(chatId: Long): LiveData<List<Message>>
+
     @Query("UPDATE message SET deleted = :deleted where id = :id")
     fun markDeleted(id: Long, deleted: Boolean = true)
 
