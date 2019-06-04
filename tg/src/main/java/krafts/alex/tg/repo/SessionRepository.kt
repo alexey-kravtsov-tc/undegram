@@ -29,7 +29,9 @@ class SessionRepository(context: Context) {
 
     fun endSession(userId: Int) {
         sessions.getLastByUserId(userId)?.let {
-            sessions.update(it.id, now())
+            if (it.expires > now()) {
+                sessions.update(it.id, now())
+            }
         }
     }
 
