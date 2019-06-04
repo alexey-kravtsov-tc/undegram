@@ -1,15 +1,27 @@
 package krafts.alex.backupgram.ui
 
 import android.arch.lifecycle.Observer
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.util.Range
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.DefaultValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlinx.android.synthetic.main.fragment_dialog_details.*
 import krafts.alex.backupgram.ui.messages.MessagesAdapter
+import java.lang.StringBuilder
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.concurrent.TimeUnit
 
 class DialogDetailsFragment : Fragment() {
 
@@ -17,6 +29,7 @@ class DialogDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.fragment_dialog_details, container, false)
     }
 
@@ -25,18 +38,92 @@ class DialogDetailsFragment : Fragment() {
 
         val adapt = MessagesAdapter(emptyList()) //TODO: listadapter paging
 
+        chart.apply {
+            setPinchZoom(true)
+            isDragEnabled = true
+            isScaleXEnabled = true
+            isScaleYEnabled = false
+            description.isEnabled = false
+
+
+            axisLeft.apply {
+                legend.isEnabled = false
+                valueFormatter = DefaultValueFormatter(1)
+                setDrawGridLines(false)
+                axisMaximum = 1F
+                axisMinimum = 0.1F
+                isEnabled = false
+
+            }
+            axisRight.apply {
+                isEnabled = false
+            }
+
+            xAxis.apply {
+                valueFormatter = MinuteDataFormatter()
+                position = XAxis.XAxisPosition.BOTTOM
+                setDrawGridLines(false)
+
+            }
+
+        }
+
+
         arguments?.let {
             val args = DialogDetailsFragmentArgs.fromBundle(it)
             textView.text = BackApp.chats.get(args.chatId)?.title
             BackApp.messages.getRemovedForChat(args.chatId).observe(this, Observer {
                 it?.let { adapt.setAll(it) }
             })
+            BackApp.sessions.getSessionsForUser(args.chatId.toInt()).observe(this, Observer {
+
+                val values = ArrayList<Entry>()
+
+                it?.forEach {
+                    values.add(Entry(it.start.toMinutes().toFloat(), 0F))
+                    for (x in it.start.toMinutes()+1 until it.expires.toMinutes()) {
+                        values.add(Entry(x.toFloat(), 1F))
+                    }
+                    values.add(Entry(it.expires.toMinutes().toFloat(), 0F))
+                }
+
+                val set = LineDataSet(values, "online")
+                set.apply {
+                    color = Color.GREEN
+                    fillColor = Color.GREEN
+                    fillAlpha = 65
+                    setDrawValues(false)
+                    setDrawCircles(false)
+                    setDrawFilled(true)
+                }
+                val data = LineData(set)
+
+                chart.data = data
+
+                chart.invalidate()
+
+                val builder = StringBuilder()
+                it?.forEach {
+                    builder.appendln("${it.start.display()} - ${it.expires.display()}")
+                }
+                sessions.text = builder.toString()
+            })
         }
 
-        // Set the adapter
         with(list) {
             layoutManager = LinearLayoutManager(context)
             adapter = adapt
         }
+    }
+
+    private fun Int.toMinutes() = this.toLong()
+
+    private fun Int.display() = SimpleDateFormat("HH:mm:ss").format(Date(this.toLong() * 1000))
+}
+
+class MinuteDataFormatter : ValueFormatter() {
+    override fun getFormattedValue(value: Float): String {
+        val date = Date(TimeUnit.SECONDS.toMillis(value.toLong()))
+        return SimpleDateFormat("HH:mm").format(date)
     }
 }

@@ -15,6 +15,20 @@
         android:text="some shit happened"
         />
 
+    <TextView
+        android:id="@+id/sessions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="some shit happened"
+        android:visibility="gone"
+        />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+         />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"

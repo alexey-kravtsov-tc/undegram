@@ -4,6 +4,7 @@ import android.app.Application
 import krafts.alex.tg.TgClient
 import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.MessagesRepository
+import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.UsersRepository
 
 class BackApp : Application() {
@@ -13,6 +14,7 @@ class BackApp : Application() {
         messages = MessagesRepository(applicationContext)
         users = UsersRepository(applicationContext)
         chats = ChatRepository(applicationContext)
+        sessions = SessionRepository(applicationContext)
         super.onCreate()
     }
 
@@ -22,6 +24,7 @@ class BackApp : Application() {
         lateinit var messages: MessagesRepository
         lateinit var users: UsersRepository
         lateinit var chats: ChatRepository
+        lateinit var sessions: SessionRepository
 
     }
 }

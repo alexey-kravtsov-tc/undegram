@@ -32,4 +32,6 @@ class SessionRepository(context: Context) {
             sessions.update(it.id, now())
         }
     }
+
+    fun getSessionsForUser(userId: Int) = sessions.getByUserId(userId)
 }

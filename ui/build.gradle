@@ -35,7 +35,9 @@ dependencies {
     implementation "android.arch.lifecycle:livedata:1.1.1"
 
     implementation 'com.squareup.picasso:picasso:2.71828'
-    compile project(path: ':tg')
+    implementation project(path: ':tg')
     implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
     implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
