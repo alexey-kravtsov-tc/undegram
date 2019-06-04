@@ -1,11 +1,10 @@
 package org.drinkless.td.libcore.telegram;
 
-import android.support.annotation.Nullable;
-import android.support.annotation.IntDef;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
 /**
  * This class contains as static nested classes all other TDLib interface
  * type-classes and function-classes.
@@ -38,8 +37,10 @@ public class TdApi {
             AcceptTermsOfService.CONSTRUCTOR,
             AddChatMember.CONSTRUCTOR,
             AddChatMembers.CONSTRUCTOR,
+            AddCustomServerLanguagePack.CONSTRUCTOR,
             AddFavoriteSticker.CONSTRUCTOR,
             AddLocalMessage.CONSTRUCTOR,
+            AddLogMessage.CONSTRUCTOR,
             AddNetworkStatistics.CONSTRUCTOR,
             AddProxy.CONSTRUCTOR,
             AddRecentSticker.CONSTRUCTOR,
@@ -68,6 +69,7 @@ public class TdApi {
             CheckEmailAddressVerificationCode.CONSTRUCTOR,
             CheckPhoneNumberConfirmationCode.CONSTRUCTOR,
             CheckPhoneNumberVerificationCode.CONSTRUCTOR,
+            CheckRecoveryEmailAddressCode.CONSTRUCTOR,
             CleanFileName.CONSTRUCTOR,
             ClearAllDraftMessages.CONSTRUCTOR,
             ClearImportedContacts.CONSTRUCTOR,
@@ -124,6 +126,7 @@ public class TdApi {
             GetActiveLiveLocationMessages.CONSTRUCTOR,
             GetActiveSessions.CONSTRUCTOR,
             GetAllPassportElements.CONSTRUCTOR,
+            GetApplicationConfig.CONSTRUCTOR,
             GetArchivedStickerSets.CONSTRUCTOR,
             GetAttachedStickerSets.CONSTRUCTOR,
             GetAuthorizationState.CONSTRUCTOR,
@@ -138,16 +141,21 @@ public class TdApi {
             GetChatMember.CONSTRUCTOR,
             GetChatMessageByDate.CONSTRUCTOR,
             GetChatMessageCount.CONSTRUCTOR,
+            GetChatNotificationSettingsExceptions.CONSTRUCTOR,
             GetChatPinnedMessage.CONSTRUCTOR,
             GetChatReportSpamState.CONSTRUCTOR,
+            GetChatStatisticsUrl.CONSTRUCTOR,
             GetChats.CONSTRUCTOR,
             GetConnectedWebsites.CONSTRUCTOR,
             GetContacts.CONSTRUCTOR,
             GetCountryCode.CONSTRUCTOR,
             GetCreatedPublicChats.CONSTRUCTOR,
+            GetCurrentState.CONSTRUCTOR,
+            GetDatabaseStatistics.CONSTRUCTOR,
             GetDeepLinkInfo.CONSTRUCTOR,
             GetFavoriteStickers.CONSTRUCTOR,
             GetFile.CONSTRUCTOR,
+            GetFileDownloadedPrefixSize.CONSTRUCTOR,
             GetFileExtension.CONSTRUCTOR,
             GetFileMimeType.CONSTRUCTOR,
             GetGameHighScores.CONSTRUCTOR,
@@ -157,16 +165,26 @@ public class TdApi {
             GetInlineQueryResults.CONSTRUCTOR,
             GetInstalledStickerSets.CONSTRUCTOR,
             GetInviteText.CONSTRUCTOR,
+            GetJsonString.CONSTRUCTOR,
+            GetJsonValue.CONSTRUCTOR,
+            GetLanguagePackInfo.CONSTRUCTOR,
             GetLanguagePackString.CONSTRUCTOR,
             GetLanguagePackStrings.CONSTRUCTOR,
             GetLocalizationTargetInfo.CONSTRUCTOR,
+            GetLogStream.CONSTRUCTOR,
+            GetLogTagVerbosityLevel.CONSTRUCTOR,
+            GetLogTags.CONSTRUCTOR,
+            GetLogVerbosityLevel.CONSTRUCTOR,
             GetMapThumbnailFile.CONSTRUCTOR,
             GetMe.CONSTRUCTOR,
             GetMessage.CONSTRUCTOR,
+            GetMessageLink.CONSTRUCTOR,
+            GetMessageLocally.CONSTRUCTOR,
             GetMessages.CONSTRUCTOR,
             GetNetworkStatistics.CONSTRUCTOR,
             GetOption.CONSTRUCTOR,
             GetPassportAuthorizationForm.CONSTRUCTOR,
+            GetPassportAuthorizationFormAvailableElements.CONSTRUCTOR,
             GetPassportElement.CONSTRUCTOR,
             GetPasswordState.CONSTRUCTOR,
             GetPaymentForm.CONSTRUCTOR,
@@ -175,6 +193,7 @@ public class TdApi {
             GetProxies.CONSTRUCTOR,
             GetProxyLink.CONSTRUCTOR,
             GetPublicMessageLink.CONSTRUCTOR,
+            GetPushReceiverId.CONSTRUCTOR,
             GetRecentInlineBots.CONSTRUCTOR,
             GetRecentStickers.CONSTRUCTOR,
             GetRecentlyVisitedTMeUrls.CONSTRUCTOR,
@@ -214,15 +233,18 @@ public class TdApi {
             OpenMessageContent.CONSTRUCTOR,
             OptimizeStorage.CONSTRUCTOR,
             ParseTextEntities.CONSTRUCTOR,
-            PinSupergroupMessage.CONSTRUCTOR,
+            PinChatMessage.CONSTRUCTOR,
             PingProxy.CONSTRUCTOR,
-            ProcessDcUpdate.CONSTRUCTOR,
+            ProcessPushNotification.CONSTRUCTOR,
             ReadAllChatMentions.CONSTRUCTOR,
+            ReadFilePart.CONSTRUCTOR,
             RecoverAuthenticationPassword.CONSTRUCTOR,
             RecoverPassword.CONSTRUCTOR,
             RegisterDevice.CONSTRUCTOR,
             RemoveContacts.CONSTRUCTOR,
             RemoveFavoriteSticker.CONSTRUCTOR,
+            RemoveNotification.CONSTRUCTOR,
+            RemoveNotificationGroup.CONSTRUCTOR,
             RemoveProxy.CONSTRUCTOR,
             RemoveRecentHashtag.CONSTRUCTOR,
             RemoveRecentSticker.CONSTRUCTOR,
@@ -240,8 +262,10 @@ public class TdApi {
             ResendEmailAddressVerificationCode.CONSTRUCTOR,
             ResendPhoneNumberConfirmationCode.CONSTRUCTOR,
             ResendPhoneNumberVerificationCode.CONSTRUCTOR,
+            ResendRecoveryEmailAddressCode.CONSTRUCTOR,
             ResetAllNotificationSettings.CONSTRUCTOR,
             ResetNetworkStatistics.CONSTRUCTOR,
+            SaveApplicationLogEvent.CONSTRUCTOR,
             SearchCallMessages.CONSTRUCTOR,
             SearchChatMembers.CONSTRUCTOR,
             SearchChatMessages.CONSTRUCTOR,
@@ -290,6 +314,9 @@ public class TdApi {
             SetFileGenerationProgress.CONSTRUCTOR,
             SetGameScore.CONSTRUCTOR,
             SetInlineGameScore.CONSTRUCTOR,
+            SetLogStream.CONSTRUCTOR,
+            SetLogTagVerbosityLevel.CONSTRUCTOR,
+            SetLogVerbosityLevel.CONSTRUCTOR,
             SetName.CONSTRUCTOR,
             SetNetworkType.CONSTRUCTOR,
             SetOption.CONSTRUCTOR,
@@ -297,6 +324,7 @@ public class TdApi {
             SetPassportElementErrors.CONSTRUCTOR,
             SetPassword.CONSTRUCTOR,
             SetPinnedChats.CONSTRUCTOR,
+            SetPollAnswer.CONSTRUCTOR,
             SetProfilePhoto.CONSTRUCTOR,
             SetRecoveryEmailAddress.CONSTRUCTOR,
             SetScopeNotificationSettings.CONSTRUCTOR,
@@ -307,6 +335,8 @@ public class TdApi {
             SetTdlibParameters.CONSTRUCTOR,
             SetUserPrivacySettingRules.CONSTRUCTOR,
             SetUsername.CONSTRUCTOR,
+            StopPoll.CONSTRUCTOR,
+            SynchronizeLanguagePack.CONSTRUCTOR,
             TerminateAllOtherSessions.CONSTRUCTOR,
             TerminateSession.CONSTRUCTOR,
             TestCallBytes.CONSTRUCTOR,
@@ -329,13 +359,14 @@ public class TdApi {
             ToggleSupergroupIsAllHistoryAvailable.CONSTRUCTOR,
             ToggleSupergroupSignMessages.CONSTRUCTOR,
             UnblockUser.CONSTRUCTOR,
-            UnpinSupergroupMessage.CONSTRUCTOR,
+            UnpinChatMessage.CONSTRUCTOR,
             UpgradeBasicGroupChatToSupergroupChat.CONSTRUCTOR,
             UploadFile.CONSTRUCTOR,
             UploadStickerFile.CONSTRUCTOR,
             ValidateOrderInfo.CONSTRUCTOR,
             ViewMessages.CONSTRUCTOR,
-            ViewTrendingStickerSets.CONSTRUCTOR
+            ViewTrendingStickerSets.CONSTRUCTOR,
+            WriteGeneratedFilePart.CONSTRUCTOR
         })
         public @interface Constructors {}
 
@@ -361,13 +392,13 @@ public class TdApi {
         public int days;
 
         /**
-         * Default constructor.
+         * Contains information about the period of inactivity after which the current user's account will automatically be deleted.
          */
         public AccountTtl() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about the period of inactivity after which the current user's account will automatically be deleted.
          *
          * @param days Number of days of inactivity before the account will be flagged for deletion; should range from 30-366 days.
          */
@@ -419,13 +450,13 @@ public class TdApi {
         public String postalCode;
 
         /**
-         * Default constructor.
+         * Describes an address.
          */
         public Address() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes an address.
          *
          * @param countryCode A two-letter ISO 3166-1 alpha-2 country code.
          * @param state State, if applicable.
@@ -491,13 +522,13 @@ public class TdApi {
         public File animation;
 
         /**
-         * Default constructor.
+         * Describes an animation file. The animation must be encoded in GIF or MPEG4 format.
          */
         public Animation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes an animation file. The animation must be encoded in GIF or MPEG4 format.
          *
          * @param duration Duration of the animation, in seconds; as defined by the sender.
          * @param width Width of the animation.
@@ -541,13 +572,13 @@ public class TdApi {
         public Animation[] animations;
 
         /**
-         * Default constructor.
+         * Represents a list of animations.
          */
         public Animations() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a list of animations.
          *
          * @param animations List of animations.
          */
@@ -603,13 +634,13 @@ public class TdApi {
         public File audio;
 
         /**
-         * Default constructor.
+         * Describes an audio file. Audio is usually in MP3 format.
          */
         public Audio() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes an audio file. Audio is usually in MP3 format.
          *
          * @param duration Duration of the audio, in seconds; as defined by the sender.
          * @param title Title of the audio; as defined by the sender.
@@ -665,13 +696,13 @@ public class TdApi {
         public int timeout;
 
         /**
-         * Default constructor.
+         * Information about the authentication code that was sent.
          */
         public AuthenticationCodeInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Information about the authentication code that was sent.
          *
          * @param phoneNumber A phone number that is being authenticated.
          * @param type Describes the way the code was sent to the user.
@@ -731,13 +762,13 @@ public class TdApi {
         public int length;
 
         /**
-         * Default constructor.
+         * An authentication code is delivered via a private Telegram message, which can be viewed in another client.
          */
         public AuthenticationCodeTypeTelegramMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An authentication code is delivered via a private Telegram message, which can be viewed in another client.
          *
          * @param length Length of the code.
          */
@@ -769,13 +800,13 @@ public class TdApi {
         public int length;
 
         /**
-         * Default constructor.
+         * An authentication code is delivered via an SMS message to the specified phone number.
          */
         public AuthenticationCodeTypeSms() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An authentication code is delivered via an SMS message to the specified phone number.
          *
          * @param length Length of the code.
          */
@@ -807,13 +838,13 @@ public class TdApi {
         public int length;
 
         /**
-         * Default constructor.
+         * An authentication code is delivered via a phone call to the specified phone number.
          */
         public AuthenticationCodeTypeCall() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An authentication code is delivered via a phone call to the specified phone number.
          *
          * @param length Length of the code.
          */
@@ -845,13 +876,13 @@ public class TdApi {
         public String pattern;
 
         /**
-         * Default constructor.
+         * An authentication code is delivered by an immediately cancelled call to the specified phone number. The number from which the call was made is the code.
          */
         public AuthenticationCodeTypeFlashCall() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An authentication code is delivered by an immediately cancelled call to the specified phone number. The number from which the call was made is the code.
          *
          * @param pattern Pattern of the phone number from which the call will be made.
          */
@@ -906,7 +937,7 @@ public class TdApi {
     public static class AuthorizationStateWaitTdlibParameters extends AuthorizationState {
 
         /**
-         * Default constructor.
+         * TDLib needs TdlibParameters for initialization.
          */
         public AuthorizationStateWaitTdlibParameters() {
         }
@@ -935,13 +966,13 @@ public class TdApi {
         public boolean isEncrypted;
 
         /**
-         * Default constructor.
+         * TDLib needs an encryption key to decrypt the local database.
          */
         public AuthorizationStateWaitEncryptionKey() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * TDLib needs an encryption key to decrypt the local database.
          *
          * @param isEncrypted True, if the database is currently encrypted.
          */
@@ -969,7 +1000,7 @@ public class TdApi {
     public static class AuthorizationStateWaitPhoneNumber extends AuthorizationState {
 
         /**
-         * Default constructor.
+         * TDLib needs the user's phone number to authorize.
          */
         public AuthorizationStateWaitPhoneNumber() {
         }
@@ -1006,13 +1037,13 @@ public class TdApi {
         public AuthenticationCodeInfo codeInfo;
 
         /**
-         * Default constructor.
+         * TDLib needs the user's authentication code to finalize authorization.
          */
         public AuthorizationStateWaitCode() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * TDLib needs the user's authentication code to finalize authorization.
          *
          * @param isRegistered True, if the user is already registered.
          * @param termsOfService Telegram terms of service, which should be accepted before user can continue registration; may be null.
@@ -1043,7 +1074,7 @@ public class TdApi {
      */
     public static class AuthorizationStateWaitPassword extends AuthorizationState {
         /**
-         * Hint for the password; can be empty.
+         * Hint for the password; may be empty.
          */
         public String passwordHint;
         /**
@@ -1056,15 +1087,15 @@ public class TdApi {
         public String recoveryEmailAddressPattern;
 
         /**
-         * Default constructor.
+         * The user has been authorized, but needs to enter a password to start using the application.
          */
         public AuthorizationStateWaitPassword() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user has been authorized, but needs to enter a password to start using the application.
          *
-         * @param passwordHint Hint for the password; can be empty.
+         * @param passwordHint Hint for the password; may be empty.
          * @param hasRecoveryEmailAddress True if a recovery email address has been set up.
          * @param recoveryEmailAddressPattern Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent.
          */
@@ -1094,7 +1125,7 @@ public class TdApi {
     public static class AuthorizationStateReady extends AuthorizationState {
 
         /**
-         * Default constructor.
+         * The user has been successfully authorized. TDLib is now ready to answer queries.
          */
         public AuthorizationStateReady() {
         }
@@ -1119,7 +1150,7 @@ public class TdApi {
     public static class AuthorizationStateLoggingOut extends AuthorizationState {
 
         /**
-         * Default constructor.
+         * The user is currently logging out.
          */
         public AuthorizationStateLoggingOut() {
         }
@@ -1144,7 +1175,7 @@ public class TdApi {
     public static class AuthorizationStateClosing extends AuthorizationState {
 
         /**
-         * Default constructor.
+         * TDLib is closing, all subsequent queries will be answered with the error 500. Note that closing TDLib can take a while. All resources will be freed only after authorizationStateClosed has been received.
          */
         public AuthorizationStateClosing() {
         }
@@ -1169,7 +1200,7 @@ public class TdApi {
     public static class AuthorizationStateClosed extends AuthorizationState {
 
         /**
-         * Default constructor.
+         * TDLib client is in its final state. All databases are closed and all resources are released. No other updates will be received after this. All queries will be responded to with error code 500. To continue working, one should create a new instance of the TDLib client.
          */
         public AuthorizationStateClosed() {
         }
@@ -1218,13 +1249,13 @@ public class TdApi {
         public int upgradedToSupergroupId;
 
         /**
-         * Default constructor.
+         * Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users).
          */
         public BasicGroup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users).
          *
          * @param id Group identifier.
          * @param memberCount Number of members in the group.
@@ -1274,13 +1305,13 @@ public class TdApi {
         public String inviteLink;
 
         /**
-         * Default constructor.
+         * Contains full information about a basic group.
          */
         public BasicGroupFullInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains full information about a basic group.
          *
          * @param creatorUserId User identifier of the creator of the group; 0 if unknown.
          * @param members Group members.
@@ -1320,13 +1351,13 @@ public class TdApi {
         public String description;
 
         /**
-         * Default constructor.
+         * Represents commands supported by a bot.
          */
         public BotCommand() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents commands supported by a bot.
          *
          * @param command Text of the bot command.
          * @param description Description of the bot command.
@@ -1364,13 +1395,13 @@ public class TdApi {
         public BotCommand[] commands;
 
         /**
-         * Default constructor.
+         * Provides information about a bot and its supported commands.
          */
         public BotInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Provides information about a bot and its supported commands.
          *
          * @param description Long description shown on the user info page.
          * @param commands A list of commands supported by the bot.
@@ -1416,13 +1447,13 @@ public class TdApi {
         public CallState state;
 
         /**
-         * Default constructor.
+         * Describes a call.
          */
         public Call() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a call.
          *
          * @param id Call identifier, not persistent.
          * @param userId Peer user identifier.
@@ -1476,13 +1507,13 @@ public class TdApi {
         public byte[] peerTag;
 
         /**
-         * Default constructor.
+         * Describes the address of UDP reflectors.
          */
         public CallConnection() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes the address of UDP reflectors.
          *
          * @param id Reflector identifier.
          * @param ip IPv4 reflector address.
@@ -1541,7 +1572,7 @@ public class TdApi {
     public static class CallDiscardReasonEmpty extends CallDiscardReason {
 
         /**
-         * Default constructor.
+         * The call wasn't discarded, or the reason is unknown.
          */
         public CallDiscardReasonEmpty() {
         }
@@ -1566,7 +1597,7 @@ public class TdApi {
     public static class CallDiscardReasonMissed extends CallDiscardReason {
 
         /**
-         * Default constructor.
+         * The call was ended before the conversation started. It was cancelled by the caller or missed by the other party.
          */
         public CallDiscardReasonMissed() {
         }
@@ -1591,7 +1622,7 @@ public class TdApi {
     public static class CallDiscardReasonDeclined extends CallDiscardReason {
 
         /**
-         * Default constructor.
+         * The call was ended before the conversation started. It was declined by the other party.
          */
         public CallDiscardReasonDeclined() {
         }
@@ -1616,7 +1647,7 @@ public class TdApi {
     public static class CallDiscardReasonDisconnected extends CallDiscardReason {
 
         /**
-         * Default constructor.
+         * The call was ended during the conversation because the users were disconnected.
          */
         public CallDiscardReasonDisconnected() {
         }
@@ -1641,7 +1672,7 @@ public class TdApi {
     public static class CallDiscardReasonHungUp extends CallDiscardReason {
 
         /**
-         * Default constructor.
+         * The call was ended because one of the parties hung up.
          */
         public CallDiscardReasonHungUp() {
         }
@@ -1670,13 +1701,13 @@ public class TdApi {
         public int id;
 
         /**
-         * Default constructor.
+         * Contains the call identifier.
          */
         public CallId() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains the call identifier.
          *
          * @param id Call identifier.
          */
@@ -1720,13 +1751,13 @@ public class TdApi {
         public int maxLayer;
 
         /**
-         * Default constructor.
+         * Specifies the supported call protocols.
          */
         public CallProtocol() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Specifies the supported call protocols.
          *
          * @param udpP2p True, if UDP peer-to-peer connections are supported.
          * @param udpReflector True, if connection through UDP reflectors is supported.
@@ -1792,13 +1823,13 @@ public class TdApi {
         public boolean isReceived;
 
         /**
-         * Default constructor.
+         * The call is pending, waiting to be accepted by a user.
          */
         public CallStatePending() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The call is pending, waiting to be accepted by a user.
          *
          * @param isCreated True, if the call has already been created by the server.
          * @param isReceived True, if the call has already been received by the other party.
@@ -1828,7 +1859,7 @@ public class TdApi {
     public static class CallStateExchangingKeys extends CallState {
 
         /**
-         * Default constructor.
+         * The call has been answered and encryption keys are being exchanged.
          */
         public CallStateExchangingKeys() {
         }
@@ -1871,34 +1902,40 @@ public class TdApi {
          * Encryption key emojis fingerprint.
          */
         public String[] emojis;
+        /**
+         * True, if peer-to-peer connection is allowed by users privacy settings.
+         */
+        public boolean allowP2p;
 
         /**
-         * Default constructor.
+         * The call is ready to use.
          */
         public CallStateReady() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The call is ready to use.
          *
          * @param protocol Call protocols supported by the peer.
          * @param connections Available UDP reflectors.
          * @param config A JSON-encoded call config.
          * @param encryptionKey Call encryption key.
          * @param emojis Encryption key emojis fingerprint.
+         * @param allowP2p True, if peer-to-peer connection is allowed by users privacy settings.
          */
-        public CallStateReady(CallProtocol protocol, CallConnection[] connections, String config, byte[] encryptionKey, String[] emojis) {
+        public CallStateReady(CallProtocol protocol, CallConnection[] connections, String config, byte[] encryptionKey, String[] emojis, boolean allowP2p) {
             this.protocol = protocol;
             this.connections = connections;
             this.config = config;
             this.encryptionKey = encryptionKey;
             this.emojis = emojis;
+            this.allowP2p = allowP2p;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1518705438;
+        public static final int CONSTRUCTOR = 1848397705;
 
         /**
          * @return this.CONSTRUCTOR
@@ -1915,7 +1952,7 @@ public class TdApi {
     public static class CallStateHangingUp extends CallState {
 
         /**
-         * Default constructor.
+         * The call is hanging up after discardCall has been called.
          */
         public CallStateHangingUp() {
         }
@@ -1952,13 +1989,13 @@ public class TdApi {
         public boolean needDebugInformation;
 
         /**
-         * Default constructor.
+         * The call has ended successfully.
          */
         public CallStateDiscarded() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The call has ended successfully.
          *
          * @param reason The reason, why the call has ended.
          * @param needRating True, if the call rating should be sent to the server.
@@ -1994,13 +2031,13 @@ public class TdApi {
         public Error error;
 
         /**
-         * Default constructor.
+         * The call has ended with an error.
          */
         public CallStateError() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The call has ended with an error.
          *
          * @param error Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout.
          */
@@ -2040,13 +2077,13 @@ public class TdApi {
         public String url;
 
         /**
-         * Default constructor.
+         * Contains a bot's answer to a callback query.
          */
         public CallbackQueryAnswer() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a bot's answer to a callback query.
          *
          * @param text Text of the answer.
          * @param showAlert True, if an alert should be shown to the user instead of a toast notification.
@@ -2102,13 +2139,13 @@ public class TdApi {
         public byte[] data;
 
         /**
-         * Default constructor.
+         * The payload from a general callback button.
          */
         public CallbackQueryPayloadData() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The payload from a general callback button.
          *
          * @param data Data that was attached to the callback button.
          */
@@ -2140,13 +2177,13 @@ public class TdApi {
         public String gameShortName;
 
         /**
-         * Default constructor.
+         * The payload from a game callback button.
          */
         public CallbackQueryPayloadGame() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The payload from a game callback button.
          *
          * @param gameShortName A short name of the game that was attached to the callback button.
          */
@@ -2209,6 +2246,14 @@ public class TdApi {
          */
         public boolean isSponsored;
         /**
+         * True, if the chat messages can be deleted only for the current user while other users will continue to see the messages.
+         */
+        public boolean canBeDeletedOnlyForSelf;
+        /**
+         * True, if the chat messages can be deleted for all users.
+         */
+        public boolean canBeDeletedForAllUsers;
+        /**
          * True, if the chat can be reported to Telegram moderators through reportChat.
          */
         public boolean canBeReported;
@@ -2237,6 +2282,10 @@ public class TdApi {
          */
         public ChatNotificationSettings notificationSettings;
         /**
+         * Identifier of the pinned message in the chat; 0 if none.
+         */
+        public long pinnedMessageId;
+        /**
          * Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat.
          */
         public long replyMarkupMessageId;
@@ -2250,13 +2299,13 @@ public class TdApi {
         public String clientData;
 
         /**
-         * Default constructor.
+         * A chat. (Can be a private chat, basic group, supergroup, or secret chat.)
          */
         public Chat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A chat. (Can be a private chat, basic group, supergroup, or secret chat.)
          *
          * @param id Chat unique identifier.
          * @param type Type of the chat.
@@ -2267,6 +2316,8 @@ public class TdApi {
          * @param isPinned True, if the chat is pinned.
          * @param isMarkedAsUnread True, if the chat is marked as unread.
          * @param isSponsored True, if the chat is sponsored by the user's MTProxy server.
+         * @param canBeDeletedOnlyForSelf True, if the chat messages can be deleted only for the current user while other users will continue to see the messages.
+         * @param canBeDeletedForAllUsers True, if the chat messages can be deleted for all users.
          * @param canBeReported True, if the chat can be reported to Telegram moderators through reportChat.
          * @param defaultDisableNotification Default value of the disableNotification parameter, used when a message is sent to the chat.
          * @param unreadCount Number of unread messages in the chat.
@@ -2274,11 +2325,12 @@ public class TdApi {
          * @param lastReadOutboxMessageId Identifier of the last read outgoing message.
          * @param unreadMentionCount Number of unread messages with a mention/reply in the chat.
          * @param notificationSettings Notification settings for this chat.
+         * @param pinnedMessageId Identifier of the pinned message in the chat; 0 if none.
          * @param replyMarkupMessageId Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat.
          * @param draftMessage A draft of a message in the chat; may be null.
          * @param clientData Contains client-specific data associated with the chat. (For example, the chat position or local chat notification settings can be stored here.) Persistent if a message database is used.
          */
-        public Chat(long id, ChatType type, String title, ChatPhoto photo, Message lastMessage, long order, boolean isPinned, boolean isMarkedAsUnread, boolean isSponsored, boolean canBeReported, boolean defaultDisableNotification, int unreadCount, long lastReadInboxMessageId, long lastReadOutboxMessageId, int unreadMentionCount, ChatNotificationSettings notificationSettings, long replyMarkupMessageId, DraftMessage draftMessage, String clientData) {
+        public Chat(long id, ChatType type, String title, ChatPhoto photo, Message lastMessage, long order, boolean isPinned, boolean isMarkedAsUnread, boolean isSponsored, boolean canBeDeletedOnlyForSelf, boolean canBeDeletedForAllUsers, boolean canBeReported, boolean defaultDisableNotification, int unreadCount, long lastReadInboxMessageId, long lastReadOutboxMessageId, int unreadMentionCount, ChatNotificationSettings notificationSettings, long pinnedMessageId, long replyMarkupMessageId, DraftMessage draftMessage, String clientData) {
             this.id = id;
             this.type = type;
             this.title = title;
@@ -2288,6 +2340,8 @@ public class TdApi {
             this.isPinned = isPinned;
             this.isMarkedAsUnread = isMarkedAsUnread;
             this.isSponsored = isSponsored;
+            this.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf;
+            this.canBeDeletedForAllUsers = canBeDeletedForAllUsers;
             this.canBeReported = canBeReported;
             this.defaultDisableNotification = defaultDisableNotification;
             this.unreadCount = unreadCount;
@@ -2295,6 +2349,7 @@ public class TdApi {
             this.lastReadOutboxMessageId = lastReadOutboxMessageId;
             this.unreadMentionCount = unreadMentionCount;
             this.notificationSettings = notificationSettings;
+            this.pinnedMessageId = pinnedMessageId;
             this.replyMarkupMessageId = replyMarkupMessageId;
             this.draftMessage = draftMessage;
             this.clientData = clientData;
@@ -2303,7 +2358,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -4728182;
+        public static final int CONSTRUCTOR = 697768263;
 
         /**
          * @return this.CONSTRUCTOR
@@ -2351,7 +2406,7 @@ public class TdApi {
     public static class ChatActionTyping extends ChatAction {
 
         /**
-         * Default constructor.
+         * The user is typing a message.
          */
         public ChatActionTyping() {
         }
@@ -2376,7 +2431,7 @@ public class TdApi {
     public static class ChatActionRecordingVideo extends ChatAction {
 
         /**
-         * Default constructor.
+         * The user is recording a video.
          */
         public ChatActionRecordingVideo() {
         }
@@ -2405,13 +2460,13 @@ public class TdApi {
         public int progress;
 
         /**
-         * Default constructor.
+         * The user is uploading a video.
          */
         public ChatActionUploadingVideo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user is uploading a video.
          *
          * @param progress Upload progress, as a percentage.
          */
@@ -2439,7 +2494,7 @@ public class TdApi {
     public static class ChatActionRecordingVoiceNote extends ChatAction {
 
         /**
-         * Default constructor.
+         * The user is recording a voice note.
          */
         public ChatActionRecordingVoiceNote() {
         }
@@ -2468,13 +2523,13 @@ public class TdApi {
         public int progress;
 
         /**
-         * Default constructor.
+         * The user is uploading a voice note.
          */
         public ChatActionUploadingVoiceNote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user is uploading a voice note.
          *
          * @param progress Upload progress, as a percentage.
          */
@@ -2506,13 +2561,13 @@ public class TdApi {
         public int progress;
 
         /**
-         * Default constructor.
+         * The user is uploading a photo.
          */
         public ChatActionUploadingPhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user is uploading a photo.
          *
          * @param progress Upload progress, as a percentage.
          */
@@ -2544,13 +2599,13 @@ public class TdApi {
         public int progress;
 
         /**
-         * Default constructor.
+         * The user is uploading a document.
          */
         public ChatActionUploadingDocument() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user is uploading a document.
          *
          * @param progress Upload progress, as a percentage.
          */
@@ -2578,7 +2633,7 @@ public class TdApi {
     public static class ChatActionChoosingLocation extends ChatAction {
 
         /**
-         * Default constructor.
+         * The user is picking a location or venue to send.
          */
         public ChatActionChoosingLocation() {
         }
@@ -2603,7 +2658,7 @@ public class TdApi {
     public static class ChatActionChoosingContact extends ChatAction {
 
         /**
-         * Default constructor.
+         * The user is picking a contact to send.
          */
         public ChatActionChoosingContact() {
         }
@@ -2628,7 +2683,7 @@ public class TdApi {
     public static class ChatActionStartPlayingGame extends ChatAction {
 
         /**
-         * Default constructor.
+         * The user has started to play a game.
          */
         public ChatActionStartPlayingGame() {
         }
@@ -2653,7 +2708,7 @@ public class TdApi {
     public static class ChatActionRecordingVideoNote extends ChatAction {
 
         /**
-         * Default constructor.
+         * The user is recording a video note.
          */
         public ChatActionRecordingVideoNote() {
         }
@@ -2682,13 +2737,13 @@ public class TdApi {
         public int progress;
 
         /**
-         * Default constructor.
+         * The user is uploading a video note.
          */
         public ChatActionUploadingVideoNote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user is uploading a video note.
          *
          * @param progress Upload progress, as a percentage.
          */
@@ -2716,7 +2771,7 @@ public class TdApi {
     public static class ChatActionCancel extends ChatAction {
 
         /**
-         * Default constructor.
+         * The user has cancelled the previous action.
          */
         public ChatActionCancel() {
         }
@@ -2757,13 +2812,13 @@ public class TdApi {
         public ChatEventAction action;
 
         /**
-         * Default constructor.
+         * Represents a chat event.
          */
         public ChatEvent() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a chat event.
          *
          * @param id Chat event identifier.
          * @param date Point in time (Unix timestamp) when the event happened.
@@ -2840,13 +2895,13 @@ public class TdApi {
         public Message newMessage;
 
         /**
-         * Default constructor.
+         * A message was edited.
          */
         public ChatEventMessageEdited() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message was edited.
          *
          * @param oldMessage The original message before the edit.
          * @param newMessage The message after it was edited.
@@ -2880,13 +2935,13 @@ public class TdApi {
         public Message message;
 
         /**
-         * Default constructor.
+         * A message was deleted.
          */
         public ChatEventMessageDeleted() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message was deleted.
          *
          * @param message Deleted message.
          */
@@ -2918,13 +2973,13 @@ public class TdApi {
         public Message message;
 
         /**
-         * Default constructor.
+         * A message was pinned.
          */
         public ChatEventMessagePinned() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message was pinned.
          *
          * @param message Pinned message.
          */
@@ -2952,7 +3007,7 @@ public class TdApi {
     public static class ChatEventMessageUnpinned extends ChatEventAction {
 
         /**
-         * Default constructor.
+         * A message was unpinned.
          */
         public ChatEventMessageUnpinned() {
         }
@@ -2977,7 +3032,7 @@ public class TdApi {
     public static class ChatEventMemberJoined extends ChatEventAction {
 
         /**
-         * Default constructor.
+         * A new member joined the chat.
          */
         public ChatEventMemberJoined() {
         }
@@ -3002,7 +3057,7 @@ public class TdApi {
     public static class ChatEventMemberLeft extends ChatEventAction {
 
         /**
-         * Default constructor.
+         * A member left the chat.
          */
         public ChatEventMemberLeft() {
         }
@@ -3035,13 +3090,13 @@ public class TdApi {
         public ChatMemberStatus status;
 
         /**
-         * Default constructor.
+         * A new chat member was invited.
          */
         public ChatEventMemberInvited() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new chat member was invited.
          *
          * @param userId New member user identifier.
          * @param status New member status.
@@ -3083,13 +3138,13 @@ public class TdApi {
         public ChatMemberStatus newStatus;
 
         /**
-         * Default constructor.
+         * A chat member has gained/lost administrator status, or the list of their administrator privileges has changed.
          */
         public ChatEventMemberPromoted() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A chat member has gained/lost administrator status, or the list of their administrator privileges has changed.
          *
          * @param userId Chat member user identifier.
          * @param oldStatus Previous status of the chat member.
@@ -3133,13 +3188,13 @@ public class TdApi {
         public ChatMemberStatus newStatus;
 
         /**
-         * Default constructor.
+         * A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed.
          */
         public ChatEventMemberRestricted() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed.
          *
          * @param userId Chat member user identifier.
          * @param oldStatus Previous status of the chat member.
@@ -3179,13 +3234,13 @@ public class TdApi {
         public String newTitle;
 
         /**
-         * Default constructor.
+         * The chat title was changed.
          */
         public ChatEventTitleChanged() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The chat title was changed.
          *
          * @param oldTitle Previous chat title.
          * @param newTitle New chat title.
@@ -3223,13 +3278,13 @@ public class TdApi {
         public String newDescription;
 
         /**
-         * Default constructor.
+         * The chat description was changed.
          */
         public ChatEventDescriptionChanged() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The chat description was changed.
          *
          * @param oldDescription Previous chat description.
          * @param newDescription New chat description.
@@ -3267,13 +3322,13 @@ public class TdApi {
         public String newUsername;
 
         /**
-         * Default constructor.
+         * The chat username was changed.
          */
         public ChatEventUsernameChanged() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The chat username was changed.
          *
          * @param oldUsername Previous chat username.
          * @param newUsername New chat username.
@@ -3311,13 +3366,13 @@ public class TdApi {
         @Nullable public ChatPhoto newPhoto;
 
         /**
-         * Default constructor.
+         * The chat photo was changed.
          */
         public ChatEventPhotoChanged() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The chat photo was changed.
          *
          * @param oldPhoto Previous chat photo value; may be null.
          * @param newPhoto New chat photo value; may be null.
@@ -3351,13 +3406,13 @@ public class TdApi {
         public boolean anyoneCanInvite;
 
         /**
-         * Default constructor.
+         * The anyoneCanInvite setting of a supergroup chat was toggled.
          */
         public ChatEventInvitesToggled() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The anyoneCanInvite setting of a supergroup chat was toggled.
          *
          * @param anyoneCanInvite New value of anyoneCanInvite.
          */
@@ -3389,13 +3444,13 @@ public class TdApi {
         public boolean signMessages;
 
         /**
-         * Default constructor.
+         * The signMessages setting of a channel was toggled.
          */
         public ChatEventSignMessagesToggled() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The signMessages setting of a channel was toggled.
          *
          * @param signMessages New value of signMessages.
          */
@@ -3431,13 +3486,13 @@ public class TdApi {
         public long newStickerSetId;
 
         /**
-         * Default constructor.
+         * The supergroup sticker set was changed.
          */
         public ChatEventStickerSetChanged() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The supergroup sticker set was changed.
          *
          * @param oldStickerSetId Previous identifier of the chat sticker set; 0 if none.
          * @param newStickerSetId New identifier of the chat sticker set; 0 if none.
@@ -3471,13 +3526,13 @@ public class TdApi {
         public boolean isAllHistoryAvailable;
 
         /**
-         * Default constructor.
+         * The isAllHistoryAvailable setting of a supergroup was toggled.
          */
         public ChatEventIsAllHistoryAvailableToggled() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The isAllHistoryAvailable setting of a supergroup was toggled.
          *
          * @param isAllHistoryAvailable New value of isAllHistoryAvailable.
          */
@@ -3545,13 +3600,13 @@ public class TdApi {
         public boolean settingChanges;
 
         /**
-         * Default constructor.
+         * Represents a set of filters used to obtain a chat event log.
          */
         public ChatEventLogFilters() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a set of filters used to obtain a chat event log.
          *
          * @param messageEdits True, if message edits should be returned.
          * @param messageDeletions True, if message deletions should be returned.
@@ -3601,13 +3656,13 @@ public class TdApi {
         public ChatEvent[] events;
 
         /**
-         * Default constructor.
+         * Contains a list of chat events.
          */
         public ChatEvents() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of chat events.
          *
          * @param events List of events.
          */
@@ -3639,13 +3694,13 @@ public class TdApi {
         public String inviteLink;
 
         /**
-         * Default constructor.
+         * Contains a chat invite link.
          */
         public ChatInviteLink() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a chat invite link.
          *
          * @param inviteLink Chat invite link.
          */
@@ -3701,13 +3756,13 @@ public class TdApi {
         public boolean isPublic;
 
         /**
-         * Default constructor.
+         * Contains information about a chat invite link.
          */
         public ChatInviteLinkInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about a chat invite link.
          *
          * @param chatId Chat identifier of the invite link; 0 if the user is not a member of this chat.
          * @param type Contains information about the type of the chat.
@@ -3767,13 +3822,13 @@ public class TdApi {
         @Nullable public BotInfo botInfo;
 
         /**
-         * Default constructor.
+         * A user with information about joining/leaving a chat.
          */
         public ChatMember() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A user with information about joining/leaving a chat.
          *
          * @param userId User identifier of the chat member.
          * @param inviterUserId Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown.
@@ -3837,13 +3892,13 @@ public class TdApi {
         public boolean isMember;
 
         /**
-         * Default constructor.
+         * The user is the creator of a chat and has all the administrator privileges.
          */
         public ChatMemberStatusCreator() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user is the creator of a chat and has all the administrator privileges.
          *
          * @param isMember True, if the user is a member of the chat.
          */
@@ -3898,7 +3953,7 @@ public class TdApi {
          */
         public boolean canRestrictMembers;
         /**
-         * True, if the administrator can pin messages; applicable to supergroups only.
+         * True, if the administrator can pin messages; applicable to groups only.
          */
         public boolean canPinMessages;
         /**
@@ -3907,13 +3962,13 @@ public class TdApi {
         public boolean canPromoteMembers;
 
         /**
-         * Default constructor.
+         * The user is a member of a chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, and ban unprivileged members. In supergroups and channels, there are more detailed options for administrator privileges.
          */
         public ChatMemberStatusAdministrator() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user is a member of a chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, and ban unprivileged members. In supergroups and channels, there are more detailed options for administrator privileges.
          *
          * @param canBeEdited True, if the current user can edit the administrator privileges for the called user.
          * @param canChangeInfo True, if the administrator can change the chat title, photo, and other settings.
@@ -3922,7 +3977,7 @@ public class TdApi {
          * @param canDeleteMessages True, if the administrator can delete messages of other users.
          * @param canInviteUsers True, if the administrator can invite new users to the chat.
          * @param canRestrictMembers True, if the administrator can restrict, ban, or unban chat members.
-         * @param canPinMessages True, if the administrator can pin messages; applicable to supergroups only.
+         * @param canPinMessages True, if the administrator can pin messages; applicable to groups only.
          * @param canPromoteMembers True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that were directly or indirectly promoted by him.
          */
         public ChatMemberStatusAdministrator(boolean canBeEdited, boolean canChangeInfo, boolean canPostMessages, boolean canEditMessages, boolean canDeleteMessages, boolean canInviteUsers, boolean canRestrictMembers, boolean canPinMessages, boolean canPromoteMembers) {
@@ -3957,7 +4012,7 @@ public class TdApi {
     public static class ChatMemberStatusMember extends ChatMemberStatus {
 
         /**
-         * Default constructor.
+         * The user is a member of a chat, without any additional privileges or restrictions.
          */
         public ChatMemberStatusMember() {
         }
@@ -4006,13 +4061,13 @@ public class TdApi {
         public boolean canAddWebPagePreviews;
 
         /**
-         * Default constructor.
+         * The user is under certain restrictions in the chat. Not supported in basic groups and channels.
          */
         public ChatMemberStatusRestricted() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user is under certain restrictions in the chat. Not supported in basic groups and channels.
          *
          * @param isMember True, if the user is a member of the chat.
          * @param restrictedUntilDate Point in time (Unix timestamp) when restrictions will be lifted from the user; 0 if never. If the user is restricted for more than 366 days or for less than 30 seconds from the current time, the user is considered to be restricted forever.
@@ -4050,7 +4105,7 @@ public class TdApi {
     public static class ChatMemberStatusLeft extends ChatMemberStatus {
 
         /**
-         * Default constructor.
+         * The user is not a chat member.
          */
         public ChatMemberStatusLeft() {
         }
@@ -4079,13 +4134,13 @@ public class TdApi {
         public int bannedUntilDate;
 
         /**
-         * Default constructor.
+         * The user was banned (and hence is not a member of the chat). Implies the user can't return to the chat or view messages.
          */
         public ChatMemberStatusBanned() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user was banned (and hence is not a member of the chat). Implies the user can't return to the chat or view messages.
          *
          * @param bannedUntilDate Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever.
          */
@@ -4121,13 +4176,13 @@ public class TdApi {
         public ChatMember[] members;
 
         /**
-         * Default constructor.
+         * Contains a list of chat members.
          */
         public ChatMembers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of chat members.
          *
          * @param totalCount Approximate total count of chat members found.
          * @param members A list of chat members.
@@ -4180,7 +4235,7 @@ public class TdApi {
     public static class ChatMembersFilterAdministrators extends ChatMembersFilter {
 
         /**
-         * Default constructor.
+         * Returns the creator and administrators.
          */
         public ChatMembersFilterAdministrators() {
         }
@@ -4205,7 +4260,7 @@ public class TdApi {
     public static class ChatMembersFilterMembers extends ChatMembersFilter {
 
         /**
-         * Default constructor.
+         * Returns all chat members, including restricted chat members.
          */
         public ChatMembersFilterMembers() {
         }
@@ -4230,7 +4285,7 @@ public class TdApi {
     public static class ChatMembersFilterRestricted extends ChatMembersFilter {
 
         /**
-         * Default constructor.
+         * Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup.
          */
         public ChatMembersFilterRestricted() {
         }
@@ -4255,7 +4310,7 @@ public class TdApi {
     public static class ChatMembersFilterBanned extends ChatMembersFilter {
 
         /**
-         * Default constructor.
+         * Returns users banned from the chat; can be used only by administrators in a supergroup or in a channel.
          */
         public ChatMembersFilterBanned() {
         }
@@ -4280,7 +4335,7 @@ public class TdApi {
     public static class ChatMembersFilterBots extends ChatMembersFilter {
 
         /**
-         * Default constructor.
+         * Returns bot members of the chat.
          */
         public ChatMembersFilterBots() {
         }
@@ -4327,15 +4382,31 @@ public class TdApi {
          * True, if message content should be displayed in notifications.
          */
         public boolean showPreview;
+        /**
+         * If true, disablePinnedMessageNotifications is ignored and the value for the relevant type of chat is used instead.
+         */
+        public boolean useDefaultDisablePinnedMessageNotifications;
+        /**
+         * If true, notifications for incoming pinned messages will be created as for an ordinary unread message.
+         */
+        public boolean disablePinnedMessageNotifications;
+        /**
+         * If true, disableMentionNotifications is ignored and the value for the relevant type of chat is used instead.
+         */
+        public boolean useDefaultDisableMentionNotifications;
+        /**
+         * If true, notifications for messages with mentions will be created as for an ordinary unread message.
+         */
+        public boolean disableMentionNotifications;
 
         /**
-         * Default constructor.
+         * Contains information about notification settings for a chat.
          */
         public ChatNotificationSettings() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about notification settings for a chat.
          *
          * @param useDefaultMuteFor If true, muteFor is ignored and the value for the relevant type of chat is used instead.
          * @param muteFor Time left before notifications will be unmuted, in seconds.
@@ -4343,20 +4414,28 @@ public class TdApi {
          * @param sound The name of an audio file to be used for notification sounds; only applies to iOS applications.
          * @param useDefaultShowPreview If true, showPreview is ignored and the value for the relevant type of chat is used instead.
          * @param showPreview True, if message content should be displayed in notifications.
+         * @param useDefaultDisablePinnedMessageNotifications If true, disablePinnedMessageNotifications is ignored and the value for the relevant type of chat is used instead.
+         * @param disablePinnedMessageNotifications If true, notifications for incoming pinned messages will be created as for an ordinary unread message.
+         * @param useDefaultDisableMentionNotifications If true, disableMentionNotifications is ignored and the value for the relevant type of chat is used instead.
+         * @param disableMentionNotifications If true, notifications for messages with mentions will be created as for an ordinary unread message.
          */
-        public ChatNotificationSettings(boolean useDefaultMuteFor, int muteFor, boolean useDefaultSound, String sound, boolean useDefaultShowPreview, boolean showPreview) {
+        public ChatNotificationSettings(boolean useDefaultMuteFor, int muteFor, boolean useDefaultSound, String sound, boolean useDefaultShowPreview, boolean showPreview, boolean useDefaultDisablePinnedMessageNotifications, boolean disablePinnedMessageNotifications, boolean useDefaultDisableMentionNotifications, boolean disableMentionNotifications) {
             this.useDefaultMuteFor = useDefaultMuteFor;
             this.muteFor = muteFor;
             this.useDefaultSound = useDefaultSound;
             this.sound = sound;
             this.useDefaultShowPreview = useDefaultShowPreview;
             this.showPreview = showPreview;
+            this.useDefaultDisablePinnedMessageNotifications = useDefaultDisablePinnedMessageNotifications;
+            this.disablePinnedMessageNotifications = disablePinnedMessageNotifications;
+            this.useDefaultDisableMentionNotifications = useDefaultDisableMentionNotifications;
+            this.disableMentionNotifications = disableMentionNotifications;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1949924445;
+        public static final int CONSTRUCTOR = 1503183218;
 
         /**
          * @return this.CONSTRUCTOR
@@ -4381,13 +4460,13 @@ public class TdApi {
         public File big;
 
         /**
-         * Default constructor.
+         * Describes the photo of a chat.
          */
         public ChatPhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes the photo of a chat.
          *
          * @param small A small (160x160) chat photo.
          * @param big A big (640x640) chat photo.
@@ -4421,6 +4500,7 @@ public class TdApi {
             ChatReportReasonSpam.CONSTRUCTOR,
             ChatReportReasonViolence.CONSTRUCTOR,
             ChatReportReasonPornography.CONSTRUCTOR,
+            ChatReportReasonChildAbuse.CONSTRUCTOR,
             ChatReportReasonCopyright.CONSTRUCTOR,
             ChatReportReasonCustom.CONSTRUCTOR
         })
@@ -4440,7 +4520,7 @@ public class TdApi {
     public static class ChatReportReasonSpam extends ChatReportReason {
 
         /**
-         * Default constructor.
+         * The chat contains spam messages.
          */
         public ChatReportReasonSpam() {
         }
@@ -4465,7 +4545,7 @@ public class TdApi {
     public static class ChatReportReasonViolence extends ChatReportReason {
 
         /**
-         * Default constructor.
+         * The chat promotes violence.
          */
         public ChatReportReasonViolence() {
         }
@@ -4490,7 +4570,7 @@ public class TdApi {
     public static class ChatReportReasonPornography extends ChatReportReason {
 
         /**
-         * Default constructor.
+         * The chat contains pornographic messages.
          */
         public ChatReportReasonPornography() {
         }
@@ -4510,12 +4590,37 @@ public class TdApi {
     }
 
     /**
+     * The chat has child abuse related content.
+     */
+    public static class ChatReportReasonChildAbuse extends ChatReportReason {
+
+        /**
+         * The chat has child abuse related content.
+         */
+        public ChatReportReasonChildAbuse() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1070686531;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * The chat contains copyrighted content.
      */
     public static class ChatReportReasonCopyright extends ChatReportReason {
 
         /**
-         * Default constructor.
+         * The chat contains copyrighted content.
          */
         public ChatReportReasonCopyright() {
         }
@@ -4544,13 +4649,13 @@ public class TdApi {
         public String text;
 
         /**
-         * Default constructor.
+         * A custom reason provided by the user.
          */
         public ChatReportReasonCustom() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A custom reason provided by the user.
          *
          * @param text Report text.
          */
@@ -4582,13 +4687,13 @@ public class TdApi {
         public boolean canReportSpam;
 
         /**
-         * Default constructor.
+         * Contains information about the availability of the &quot;Report spam&quot; action for a chat.
          */
         public ChatReportSpamState() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about the availability of the &quot;Report spam&quot; action for a chat.
          *
          * @param canReportSpam True, if a prompt with the &quot;Report spam&quot; action should be shown to the user.
          */
@@ -4642,13 +4747,13 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * An ordinary chat with a user.
          */
         public ChatTypePrivate() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An ordinary chat with a user.
          *
          * @param userId User identifier.
          */
@@ -4680,13 +4785,13 @@ public class TdApi {
         public int basicGroupId;
 
         /**
-         * Default constructor.
+         * A basic group (i.e., a chat with 0-200 other users).
          */
         public ChatTypeBasicGroup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A basic group (i.e., a chat with 0-200 other users).
          *
          * @param basicGroupId Basic group identifier.
          */
@@ -4709,7 +4814,7 @@ public class TdApi {
     }
 
     /**
-     * A supergroup (i.e. a chat with up to GetOption(&quot;supergroupMaxSize&quot;) other users), or channel (with unlimited members).
+     * A supergroup (i.e. a chat with up to GetOption(&quot;supergroup_max_size&quot;) other users), or channel (with unlimited members).
      */
     public static class ChatTypeSupergroup extends ChatType {
         /**
@@ -4722,13 +4827,13 @@ public class TdApi {
         public boolean isChannel;
 
         /**
-         * Default constructor.
+         * A supergroup (i.e. a chat with up to GetOption(&quot;supergroup_max_size&quot;) other users), or channel (with unlimited members).
          */
         public ChatTypeSupergroup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A supergroup (i.e. a chat with up to GetOption(&quot;supergroup_max_size&quot;) other users), or channel (with unlimited members).
          *
          * @param supergroupId Supergroup or channel identifier.
          * @param isChannel True, if the supergroup is a channel.
@@ -4766,13 +4871,13 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * A secret chat with a user.
          */
         public ChatTypeSecret() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A secret chat with a user.
          *
          * @param secretChatId Secret chat identifier.
          * @param userId User identifier of the secret chat peer.
@@ -4806,13 +4911,13 @@ public class TdApi {
         public long[] chatIds;
 
         /**
-         * Default constructor.
+         * Represents a list of chats.
          */
         public Chats() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a list of chats.
          *
          * @param chatIds List of chat identifiers.
          */
@@ -4863,7 +4968,7 @@ public class TdApi {
     public static class CheckChatUsernameResultOk extends CheckChatUsernameResult {
 
         /**
-         * Default constructor.
+         * The username can be set.
          */
         public CheckChatUsernameResultOk() {
         }
@@ -4888,7 +4993,7 @@ public class TdApi {
     public static class CheckChatUsernameResultUsernameInvalid extends CheckChatUsernameResult {
 
         /**
-         * Default constructor.
+         * The username is invalid.
          */
         public CheckChatUsernameResultUsernameInvalid() {
         }
@@ -4913,7 +5018,7 @@ public class TdApi {
     public static class CheckChatUsernameResultUsernameOccupied extends CheckChatUsernameResult {
 
         /**
-         * Default constructor.
+         * The username is occupied.
          */
         public CheckChatUsernameResultUsernameOccupied() {
         }
@@ -4938,7 +5043,7 @@ public class TdApi {
     public static class CheckChatUsernameResultPublicChatsTooMuch extends CheckChatUsernameResult {
 
         /**
-         * Default constructor.
+         * The user has too much public chats, one of them should be made private first.
          */
         public CheckChatUsernameResultPublicChatsTooMuch() {
         }
@@ -4963,7 +5068,7 @@ public class TdApi {
     public static class CheckChatUsernameResultPublicGroupsUnavailable extends CheckChatUsernameResult {
 
         /**
-         * Default constructor.
+         * The user can't be a member of a public supergroup.
          */
         public CheckChatUsernameResultPublicGroupsUnavailable() {
         }
@@ -5024,13 +5129,13 @@ public class TdApi {
         public String location;
 
         /**
-         * Default constructor.
+         * Contains information about one website the current user is logged in with Telegram.
          */
         public ConnectedWebsite() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about one website the current user is logged in with Telegram.
          *
          * @param id Website identifier.
          * @param domainName The domain name of the website.
@@ -5078,13 +5183,13 @@ public class TdApi {
         public ConnectedWebsite[] websites;
 
         /**
-         * Default constructor.
+         * Contains a list of websites the current user is logged in with Telegram.
          */
         public ConnectedWebsites() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of websites the current user is logged in with Telegram.
          *
          * @param websites List of connected websites.
          */
@@ -5135,7 +5240,7 @@ public class TdApi {
     public static class ConnectionStateWaitingForNetwork extends ConnectionState {
 
         /**
-         * Default constructor.
+         * Currently waiting for the network to become available. Use SetNetworkType to change the available network type.
          */
         public ConnectionStateWaitingForNetwork() {
         }
@@ -5160,7 +5265,7 @@ public class TdApi {
     public static class ConnectionStateConnectingToProxy extends ConnectionState {
 
         /**
-         * Default constructor.
+         * Currently establishing a connection with a proxy server.
          */
         public ConnectionStateConnectingToProxy() {
         }
@@ -5185,7 +5290,7 @@ public class TdApi {
     public static class ConnectionStateConnecting extends ConnectionState {
 
         /**
-         * Default constructor.
+         * Currently establishing a connection to the Telegram servers.
          */
         public ConnectionStateConnecting() {
         }
@@ -5210,7 +5315,7 @@ public class TdApi {
     public static class ConnectionStateUpdating extends ConnectionState {
 
         /**
-         * Default constructor.
+         * Downloading data received while the client was offline.
          */
         public ConnectionStateUpdating() {
         }
@@ -5235,7 +5340,7 @@ public class TdApi {
     public static class ConnectionStateReady extends ConnectionState {
 
         /**
-         * Default constructor.
+         * There is a working connection to the Telegram servers.
          */
         public ConnectionStateReady() {
         }
@@ -5280,13 +5385,13 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * Describes a user contact.
          */
         public Contact() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a user contact.
          *
          * @param phoneNumber Phone number of the user.
          * @param firstName First name of the user; 1-255 characters in length.
@@ -5326,13 +5431,13 @@ public class TdApi {
         public int count;
 
         /**
-         * Default constructor.
+         * Contains a counter.
          */
         public Count() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a counter.
          *
          * @param count Count.
          */
@@ -5364,13 +5469,13 @@ public class TdApi {
         public String result;
 
         /**
-         * Default constructor.
+         * Contains the result of a custom request.
          */
         public CustomRequestResult() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains the result of a custom request.
          *
          * @param result A JSON-serialized result.
          */
@@ -5382,6 +5487,44 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = -2009960452;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Contains database statistics.
+     */
+    public static class DatabaseStatistics extends Object {
+        /**
+         * Database statistics in an unspecified human-readable format.
+         */
+        public String statistics;
+
+        /**
+         * Contains database statistics.
+         */
+        public DatabaseStatistics() {
+        }
+
+        /**
+         * Contains database statistics.
+         *
+         * @param statistics Database statistics in an unspecified human-readable format.
+         */
+        public DatabaseStatistics(String statistics) {
+            this.statistics = statistics;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1123912880;
 
         /**
          * @return this.CONSTRUCTOR
@@ -5410,13 +5553,13 @@ public class TdApi {
         public int year;
 
         /**
-         * Default constructor.
+         * Represents a date according to the Gregorian calendar.
          */
         public Date() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a date according to the Gregorian calendar.
          *
          * @param day Day of the month, 1-31.
          * @param month Month, 1-12.
@@ -5456,13 +5599,13 @@ public class TdApi {
         public int date;
 
         /**
-         * Default constructor.
+         * File with the date it was uploaded.
          */
         public DatedFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * File with the date it was uploaded.
          *
          * @param file The file.
          * @param date Point in time (Unix timestamp) when the file was uploaded.
@@ -5500,13 +5643,13 @@ public class TdApi {
         public boolean needUpdateApplication;
 
         /**
-         * Default constructor.
+         * Contains information about a tg:// deep link.
          */
         public DeepLinkInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about a tg:// deep link.
          *
          * @param text Text to be shown to the user.
          * @param needUpdateApplication True, if user should be asked to update the application.
@@ -5532,12 +5675,12 @@ public class TdApi {
 
     /**
      * This class is an abstract base class.
-     * Represents a data needed to subscribe for push notifications. To use specific push notification service, you must specify the correct application platform and upload valid server authentication data at https://my.telegram.org.
+     * Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, you must specify the correct application platform and upload valid server authentication data at https://my.telegram.org.
      */
     public abstract static class DeviceToken extends Object {
         @Retention(RetentionPolicy.SOURCE)
         @IntDef({
-            DeviceTokenGoogleCloudMessaging.CONSTRUCTOR,
+            DeviceTokenFirebaseCloudMessaging.CONSTRUCTOR,
             DeviceTokenApplePush.CONSTRUCTOR,
             DeviceTokenApplePushVoIP.CONSTRUCTOR,
             DeviceTokenWindowsPush.CONSTRUCTOR,
@@ -5560,33 +5703,39 @@ public class TdApi {
     }
 
     /**
-     * A token for Google Cloud Messaging.
+     * A token for Firebase Cloud Messaging.
      */
-    public static class DeviceTokenGoogleCloudMessaging extends DeviceToken {
+    public static class DeviceTokenFirebaseCloudMessaging extends DeviceToken {
         /**
          * Device registration token; may be empty to de-register a device.
          */
         public String token;
+        /**
+         * True, if push notifications should be additionally encrypted.
+         */
+        public boolean encrypt;
 
         /**
-         * Default constructor.
+         * A token for Firebase Cloud Messaging.
          */
-        public DeviceTokenGoogleCloudMessaging() {
+        public DeviceTokenFirebaseCloudMessaging() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for Firebase Cloud Messaging.
          *
          * @param token Device registration token; may be empty to de-register a device.
+         * @param encrypt True, if push notifications should be additionally encrypted.
          */
-        public DeviceTokenGoogleCloudMessaging(String token) {
+        public DeviceTokenFirebaseCloudMessaging(String token, boolean encrypt) {
             this.token = token;
+            this.encrypt = encrypt;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1092220225;
+        public static final int CONSTRUCTOR = -797881849;
 
         /**
          * @return this.CONSTRUCTOR
@@ -5611,13 +5760,13 @@ public class TdApi {
         public boolean isAppSandbox;
 
         /**
-         * Default constructor.
+         * A token for Apple Push Notification service.
          */
         public DeviceTokenApplePush() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for Apple Push Notification service.
          *
          * @param deviceToken Device token; may be empty to de-register a device.
          * @param isAppSandbox True, if App Sandbox is enabled.
@@ -5653,28 +5802,34 @@ public class TdApi {
          * True, if App Sandbox is enabled.
          */
         public boolean isAppSandbox;
+        /**
+         * True, if push notifications should be additionally encrypted.
+         */
+        public boolean encrypt;
 
         /**
-         * Default constructor.
+         * A token for Apple Push Notification service VoIP notifications.
          */
         public DeviceTokenApplePushVoIP() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for Apple Push Notification service VoIP notifications.
          *
          * @param deviceToken Device token; may be empty to de-register a device.
          * @param isAppSandbox True, if App Sandbox is enabled.
+         * @param encrypt True, if push notifications should be additionally encrypted.
          */
-        public DeviceTokenApplePushVoIP(String deviceToken, boolean isAppSandbox) {
+        public DeviceTokenApplePushVoIP(String deviceToken, boolean isAppSandbox, boolean encrypt) {
             this.deviceToken = deviceToken;
             this.isAppSandbox = isAppSandbox;
+            this.encrypt = encrypt;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -327676505;
+        public static final int CONSTRUCTOR = 804275689;
 
         /**
          * @return this.CONSTRUCTOR
@@ -5695,13 +5850,13 @@ public class TdApi {
         public String accessToken;
 
         /**
-         * Default constructor.
+         * A token for Windows Push Notification Services.
          */
         public DeviceTokenWindowsPush() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for Windows Push Notification Services.
          *
          * @param accessToken The access token that will be used to send notifications; may be empty to de-register a device.
          */
@@ -5733,13 +5888,13 @@ public class TdApi {
         public String channelUri;
 
         /**
-         * Default constructor.
+         * A token for Microsoft Push Notification Service.
          */
         public DeviceTokenMicrosoftPush() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for Microsoft Push Notification Service.
          *
          * @param channelUri Push notification channel URI; may be empty to de-register a device.
          */
@@ -5771,13 +5926,13 @@ public class TdApi {
         public String channelUri;
 
         /**
-         * Default constructor.
+         * A token for Microsoft Push Notification Service VoIP channel.
          */
         public DeviceTokenMicrosoftPushVoIP() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for Microsoft Push Notification Service VoIP channel.
          *
          * @param channelUri Push notification channel URI; may be empty to de-register a device.
          */
@@ -5817,13 +5972,13 @@ public class TdApi {
         public String authBase64url;
 
         /**
-         * Default constructor.
+         * A token for web Push API.
          */
         public DeviceTokenWebPush() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for web Push API.
          *
          * @param endpoint Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device.
          * @param p256dhBase64url Base64url-encoded P-256 elliptic curve Diffie-Hellman public key.
@@ -5859,13 +6014,13 @@ public class TdApi {
         public String endpoint;
 
         /**
-         * Default constructor.
+         * A token for Simple Push API for Firefox OS.
          */
         public DeviceTokenSimplePush() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for Simple Push API for Firefox OS.
          *
          * @param endpoint Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device.
          */
@@ -5897,13 +6052,13 @@ public class TdApi {
         public String token;
 
         /**
-         * Default constructor.
+         * A token for Ubuntu Push Client service.
          */
         public DeviceTokenUbuntuPush() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for Ubuntu Push Client service.
          *
          * @param token Token; may be empty to de-register a device.
          */
@@ -5935,13 +6090,13 @@ public class TdApi {
         public String token;
 
         /**
-         * Default constructor.
+         * A token for BlackBerry Push Service.
          */
         public DeviceTokenBlackBerryPush() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for BlackBerry Push Service.
          *
          * @param token Token; may be empty to de-register a device.
          */
@@ -5973,13 +6128,13 @@ public class TdApi {
         public String regId;
 
         /**
-         * Default constructor.
+         * A token for Tizen Push Service.
          */
         public DeviceTokenTizenPush() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A token for Tizen Push Service.
          *
          * @param regId Push service registration identifier; may be empty to de-register a device.
          */
@@ -6023,13 +6178,13 @@ public class TdApi {
         public File document;
 
         /**
-         * Default constructor.
+         * Describes a document of any type.
          */
         public Document() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a document of any type.
          *
          * @param fileName Original name of the file; as defined by the sender.
          * @param mimeType MIME type of the file; as defined by the sender.
@@ -6071,13 +6226,13 @@ public class TdApi {
         public InputMessageContent inputMessageText;
 
         /**
-         * Default constructor.
+         * Contains information about a message draft.
          */
         public DraftMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about a message draft.
          *
          * @param replyToMessageId Identifier of the message to reply to; 0 if none.
          * @param inputMessageText Content of the message draft; this should always be of type inputMessageText.
@@ -6115,13 +6270,13 @@ public class TdApi {
         public int length;
 
         /**
-         * Default constructor.
+         * Information about the email address authentication code that was sent.
          */
         public EmailAddressAuthenticationCodeInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Information about the email address authentication code that was sent.
          *
          * @param emailAddressPattern Pattern of the email address to which an authentication code was sent.
          * @param length Length of the code; 0 if unknown.
@@ -6163,13 +6318,13 @@ public class TdApi {
         public byte[] secret;
 
         /**
-         * Default constructor.
+         * Contains encrypted Telegram Passport data credentials.
          */
         public EncryptedCredentials() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains encrypted Telegram Passport data credentials.
          *
          * @param data The encrypted credentials.
          * @param hash The decrypted data hash.
@@ -6237,13 +6392,13 @@ public class TdApi {
         public String hash;
 
         /**
-         * Default constructor.
+         * Contains information about an encrypted Telegram Passport element; for bots only.
          */
         public EncryptedPassportElement() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about an encrypted Telegram Passport element; for bots only.
          *
          * @param type Type of Telegram Passport element.
          * @param data Encrypted JSON-encoded data about the user.
@@ -6295,13 +6450,13 @@ public class TdApi {
         public String message;
 
         /**
-         * Default constructor.
+         * An object of this type can be returned on every function call, in case of an error.
          */
         public Error() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An object of this type can be returned on every function call, in case of an error.
          *
          * @param code Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user.
          * @param message Error message; subject to future changes.
@@ -6351,13 +6506,13 @@ public class TdApi {
         public RemoteFile remote;
 
         /**
-         * Default constructor.
+         * Represents a file.
          */
         public File() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a file.
          *
          * @param id Unique file identifier.
          * @param size File size; 0 if unknown.
@@ -6377,6 +6532,44 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = 766337656;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Contains a part of a file.
+     */
+    public static class FilePart extends Object {
+        /**
+         * File bytes.
+         */
+        public byte[] data;
+
+        /**
+         * Contains a part of a file.
+         */
+        public FilePart() {
+        }
+
+        /**
+         * Contains a part of a file.
+         *
+         * @param data File bytes.
+         */
+        public FilePart(byte[] data) {
+            this.data = data;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 911821878;
 
         /**
          * @return this.CONSTRUCTOR
@@ -6427,7 +6620,7 @@ public class TdApi {
     public static class FileTypeNone extends FileType {
 
         /**
-         * Default constructor.
+         * The data is not a file.
          */
         public FileTypeNone() {
         }
@@ -6452,7 +6645,7 @@ public class TdApi {
     public static class FileTypeAnimation extends FileType {
 
         /**
-         * Default constructor.
+         * The file is an animation.
          */
         public FileTypeAnimation() {
         }
@@ -6477,7 +6670,7 @@ public class TdApi {
     public static class FileTypeAudio extends FileType {
 
         /**
-         * Default constructor.
+         * The file is an audio file.
          */
         public FileTypeAudio() {
         }
@@ -6502,7 +6695,7 @@ public class TdApi {
     public static class FileTypeDocument extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a document.
          */
         public FileTypeDocument() {
         }
@@ -6527,7 +6720,7 @@ public class TdApi {
     public static class FileTypePhoto extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a photo.
          */
         public FileTypePhoto() {
         }
@@ -6552,7 +6745,7 @@ public class TdApi {
     public static class FileTypeProfilePhoto extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a profile photo.
          */
         public FileTypeProfilePhoto() {
         }
@@ -6577,7 +6770,7 @@ public class TdApi {
     public static class FileTypeSecret extends FileType {
 
         /**
-         * Default constructor.
+         * The file was sent to a secret chat (the file type is not known to the server).
          */
         public FileTypeSecret() {
         }
@@ -6602,7 +6795,7 @@ public class TdApi {
     public static class FileTypeSecretThumbnail extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a thumbnail of a file from a secret chat.
          */
         public FileTypeSecretThumbnail() {
         }
@@ -6627,7 +6820,7 @@ public class TdApi {
     public static class FileTypeSecure extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a file from Secure storage used for storing Telegram Passport files.
          */
         public FileTypeSecure() {
         }
@@ -6652,7 +6845,7 @@ public class TdApi {
     public static class FileTypeSticker extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a sticker.
          */
         public FileTypeSticker() {
         }
@@ -6677,7 +6870,7 @@ public class TdApi {
     public static class FileTypeThumbnail extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a thumbnail of another file.
          */
         public FileTypeThumbnail() {
         }
@@ -6702,7 +6895,7 @@ public class TdApi {
     public static class FileTypeUnknown extends FileType {
 
         /**
-         * Default constructor.
+         * The file type is not yet known.
          */
         public FileTypeUnknown() {
         }
@@ -6727,7 +6920,7 @@ public class TdApi {
     public static class FileTypeVideo extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a video.
          */
         public FileTypeVideo() {
         }
@@ -6752,7 +6945,7 @@ public class TdApi {
     public static class FileTypeVideoNote extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a video note.
          */
         public FileTypeVideoNote() {
         }
@@ -6777,7 +6970,7 @@ public class TdApi {
     public static class FileTypeVoiceNote extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a voice note.
          */
         public FileTypeVoiceNote() {
         }
@@ -6802,7 +6995,7 @@ public class TdApi {
     public static class FileTypeWallpaper extends FileType {
 
         /**
-         * Default constructor.
+         * The file is a wallpaper.
          */
         public FileTypeWallpaper() {
         }
@@ -6835,13 +7028,13 @@ public class TdApi {
         public TextEntity[] entities;
 
         /**
-         * Default constructor.
+         * A text with some entities.
          */
         public FormattedText() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A text with some entities.
          *
          * @param text The text.
          * @param entities Entities contained in the text.
@@ -6879,13 +7072,13 @@ public class TdApi {
         public long nextFromSearchId;
 
         /**
-         * Default constructor.
+         * Contains a list of messages found by a search.
          */
         public FoundMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of messages found by a search.
          *
          * @param messages List of messages.
          * @param nextFromSearchId Value to pass as fromSearchId to get more results.
@@ -6943,13 +7136,13 @@ public class TdApi {
         @Nullable public Animation animation;
 
         /**
-         * Default constructor.
+         * Describes a game.
          */
         public Game() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a game.
          *
          * @param id Game ID.
          * @param shortName Game short name. To share a game use the URL https://t.me/{botUsername}?game={gameShortName}.
@@ -7001,13 +7194,13 @@ public class TdApi {
         public int score;
 
         /**
-         * Default constructor.
+         * Contains one row of the game high score table.
          */
         public GameHighScore() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains one row of the game high score table.
          *
          * @param position Position in the high score table.
          * @param userId User identifier.
@@ -7043,13 +7236,13 @@ public class TdApi {
         public GameHighScore[] scores;
 
         /**
-         * Default constructor.
+         * Contains a list of game high scores.
          */
         public GameHighScores() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of game high scores.
          *
          * @param scores A list of game high scores.
          */
@@ -7081,13 +7274,13 @@ public class TdApi {
         public String[] hashtags;
 
         /**
-         * Default constructor.
+         * Contains a list of hashtags.
          */
         public Hashtags() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of hashtags.
          *
          * @param hashtags A list of hashtags.
          */
@@ -7099,6 +7292,44 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = 676798885;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Contains an HTTP URL.
+     */
+    public static class HttpUrl extends Object {
+        /**
+         * The URL.
+         */
+        public String url;
+
+        /**
+         * Contains an HTTP URL.
+         */
+        public HttpUrl() {
+        }
+
+        /**
+         * Contains an HTTP URL.
+         *
+         * @param url The URL.
+         */
+        public HttpUrl(String url) {
+            this.url = url;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -2018019930;
 
         /**
          * @return this.CONSTRUCTOR
@@ -7139,13 +7370,13 @@ public class TdApi {
         public DatedFile[] translation;
 
         /**
-         * Default constructor.
+         * An identity document.
          */
         public IdentityDocument() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An identity document.
          *
          * @param number Document number; 1-24 characters.
          * @param expiryDate Document expiry date; may be null.
@@ -7191,13 +7422,13 @@ public class TdApi {
         public int[] importerCount;
 
         /**
-         * Default constructor.
+         * Represents the result of an ImportContacts request.
          */
         public ImportedContacts() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents the result of an ImportContacts request.
          *
          * @param userIds User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user.
          * @param importerCount The number of users that imported the corresponding contact; 0 for already registered users or if unavailable.
@@ -7235,13 +7466,13 @@ public class TdApi {
         public InlineKeyboardButtonType type;
 
         /**
-         * Default constructor.
+         * Represents a single button in an inline keyboard.
          */
         public InlineKeyboardButton() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a single button in an inline keyboard.
          *
          * @param text Text of the button.
          * @param type Type of the button.
@@ -7298,13 +7529,13 @@ public class TdApi {
         public String url;
 
         /**
-         * Default constructor.
+         * A button that opens a specified URL.
          */
         public InlineKeyboardButtonTypeUrl() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A button that opens a specified URL.
          *
          * @param url HTTP or tg:// URL to open.
          */
@@ -7336,13 +7567,13 @@ public class TdApi {
         public byte[] data;
 
         /**
-         * Default constructor.
+         * A button that sends a special callback query to a bot.
          */
         public InlineKeyboardButtonTypeCallback() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A button that sends a special callback query to a bot.
          *
          * @param data Data to be sent to the bot via a callback query.
          */
@@ -7370,7 +7601,7 @@ public class TdApi {
     public static class InlineKeyboardButtonTypeCallbackGame extends InlineKeyboardButtonType {
 
         /**
-         * Default constructor.
+         * A button with a game that sends a special callback query to a bot. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageGame.
          */
         public InlineKeyboardButtonTypeCallbackGame() {
         }
@@ -7403,13 +7634,13 @@ public class TdApi {
         public boolean inCurrentChat;
 
         /**
-         * Default constructor.
+         * A button that forces an inline query to the bot to be inserted in the input field.
          */
         public InlineKeyboardButtonTypeSwitchInline() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A button that forces an inline query to the bot to be inserted in the input field.
          *
          * @param query Inline query to be sent to the bot.
          * @param inCurrentChat True, if the inline query should be sent from the current chat.
@@ -7439,7 +7670,7 @@ public class TdApi {
     public static class InlineKeyboardButtonTypeBuy extends InlineKeyboardButtonType {
 
         /**
-         * Default constructor.
+         * A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageInvoice.
          */
         public InlineKeyboardButtonTypeBuy() {
         }
@@ -7518,13 +7749,13 @@ public class TdApi {
         @Nullable public PhotoSize thumbnail;
 
         /**
-         * Default constructor.
+         * Represents a link to an article or web page.
          */
         public InlineQueryResultArticle() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a link to an article or web page.
          *
          * @param id Unique identifier of the query result.
          * @param url URL of the result, if it exists.
@@ -7574,13 +7805,13 @@ public class TdApi {
         @Nullable public PhotoSize thumbnail;
 
         /**
-         * Default constructor.
+         * Represents a user contact.
          */
         public InlineQueryResultContact() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a user contact.
          *
          * @param id Unique identifier of the query result.
          * @param contact A user contact.
@@ -7628,13 +7859,13 @@ public class TdApi {
         @Nullable public PhotoSize thumbnail;
 
         /**
-         * Default constructor.
+         * Represents a point on the map.
          */
         public InlineQueryResultLocation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a point on the map.
          *
          * @param id Unique identifier of the query result.
          * @param location Location result.
@@ -7680,13 +7911,13 @@ public class TdApi {
         @Nullable public PhotoSize thumbnail;
 
         /**
-         * Default constructor.
+         * Represents information about a venue.
          */
         public InlineQueryResultVenue() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents information about a venue.
          *
          * @param id Unique identifier of the query result.
          * @param venue Venue result.
@@ -7726,13 +7957,13 @@ public class TdApi {
         public Game game;
 
         /**
-         * Default constructor.
+         * Represents information about a game.
          */
         public InlineQueryResultGame() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents information about a game.
          *
          * @param id Unique identifier of the query result.
          * @param game Game result.
@@ -7774,13 +8005,13 @@ public class TdApi {
         public String title;
 
         /**
-         * Default constructor.
+         * Represents an animation file.
          */
         public InlineQueryResultAnimation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents an animation file.
          *
          * @param id Unique identifier of the query result.
          * @param animation Animation file.
@@ -7820,13 +8051,13 @@ public class TdApi {
         public Audio audio;
 
         /**
-         * Default constructor.
+         * Represents an audio file.
          */
         public InlineQueryResultAudio() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents an audio file.
          *
          * @param id Unique identifier of the query result.
          * @param audio Audio file.
@@ -7872,13 +8103,13 @@ public class TdApi {
         public String description;
 
         /**
-         * Default constructor.
+         * Represents a document.
          */
         public InlineQueryResultDocument() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a document.
          *
          * @param id Unique identifier of the query result.
          * @param document Document.
@@ -7928,13 +8159,13 @@ public class TdApi {
         public String description;
 
         /**
-         * Default constructor.
+         * Represents a photo.
          */
         public InlineQueryResultPhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a photo.
          *
          * @param id Unique identifier of the query result.
          * @param photo Photo.
@@ -7976,13 +8207,13 @@ public class TdApi {
         public Sticker sticker;
 
         /**
-         * Default constructor.
+         * Represents a sticker.
          */
         public InlineQueryResultSticker() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a sticker.
          *
          * @param id Unique identifier of the query result.
          * @param sticker Sticker.
@@ -8028,13 +8259,13 @@ public class TdApi {
         public String description;
 
         /**
-         * Default constructor.
+         * Represents a video.
          */
         public InlineQueryResultVideo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a video.
          *
          * @param id Unique identifier of the query result.
          * @param video Video.
@@ -8080,13 +8311,13 @@ public class TdApi {
         public String title;
 
         /**
-         * Default constructor.
+         * Represents a voice note.
          */
         public InlineQueryResultVoiceNote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a voice note.
          *
          * @param id Unique identifier of the query result.
          * @param voiceNote Voice note.
@@ -8138,13 +8369,13 @@ public class TdApi {
         public String switchPmParameter;
 
         /**
-         * Default constructor.
+         * Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query.
          */
         public InlineQueryResults() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query.
          *
          * @param inlineQueryId Unique identifier of the inline query.
          * @param nextOffset The offset for the next request. If empty, there are no more results.
@@ -8206,13 +8437,13 @@ public class TdApi {
         public String savedCredentialsId;
 
         /**
-         * Default constructor.
+         * Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password.
          */
         public InputCredentialsSaved() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password.
          *
          * @param savedCredentialsId Identifier of the saved credentials.
          */
@@ -8248,13 +8479,13 @@ public class TdApi {
         public boolean allowSave;
 
         /**
-         * Default constructor.
+         * Applies if a user enters new credentials on a payment provider website.
          */
         public InputCredentialsNew() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Applies if a user enters new credentials on a payment provider website.
          *
          * @param data Contains JSON-encoded data with a credential identifier from the payment provider.
          * @param allowSave True, if the credential identifier can be saved on the server side.
@@ -8288,13 +8519,13 @@ public class TdApi {
         public String data;
 
         /**
-         * Default constructor.
+         * Applies if a user enters new credentials using Android Pay.
          */
         public InputCredentialsAndroidPay() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Applies if a user enters new credentials using Android Pay.
          *
          * @param data JSON-encoded data with the credential identifier.
          */
@@ -8326,13 +8557,13 @@ public class TdApi {
         public String data;
 
         /**
-         * Default constructor.
+         * Applies if a user enters new credentials using Apple Pay.
          */
         public InputCredentialsApplePay() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Applies if a user enters new credentials using Apple Pay.
          *
          * @param data JSON-encoded data with the credential identifier.
          */
@@ -8386,13 +8617,13 @@ public class TdApi {
         public int id;
 
         /**
-         * Default constructor.
+         * A file defined by its unique ID.
          */
         public InputFileId() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A file defined by its unique ID.
          *
          * @param id Unique file identifier.
          */
@@ -8424,13 +8655,13 @@ public class TdApi {
         public String id;
 
         /**
-         * Default constructor.
+         * A file defined by its remote ID.
          */
         public InputFileRemote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A file defined by its remote ID.
          *
          * @param id Remote file identifier.
          */
@@ -8462,13 +8693,13 @@ public class TdApi {
         public String path;
 
         /**
-         * Default constructor.
+         * A file defined by a local path.
          */
         public InputFileLocal() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A file defined by a local path.
          *
          * @param path Local path to the file.
          */
@@ -8499,7 +8730,7 @@ public class TdApi {
          */
         public String originalPath;
         /**
-         * String specifying the conversion applied to the original file; should be persistent across application restarts.
+         * String specifying the conversion applied to the original file; should be persistent across application restarts. Conversions beginning with '#' are reserved for internal TDLib usage.
          */
         public String conversion;
         /**
@@ -8508,16 +8739,16 @@ public class TdApi {
         public int expectedSize;
 
         /**
-         * Default constructor.
+         * A file generated by the client.
          */
         public InputFileGenerated() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A file generated by the client.
          *
          * @param originalPath Local path to a file from which the file is generated; may be empty if there is no such file.
-         * @param conversion String specifying the conversion applied to the original file; should be persistent across application restarts.
+         * @param conversion String specifying the conversion applied to the original file; should be persistent across application restarts. Conversions beginning with '#' are reserved for internal TDLib usage.
          * @param expectedSize Expected size of the generated file; 0 if unknown.
          */
         public InputFileGenerated(String originalPath, String conversion, int expectedSize) {
@@ -8570,13 +8801,13 @@ public class TdApi {
         public InputFile[] translation;
 
         /**
-         * Default constructor.
+         * An identity document to be saved to Telegram Passport.
          */
         public InputIdentityDocument() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An identity document to be saved to Telegram Passport.
          *
          * @param number Document number; 1-24 characters.
          * @param expiryDate Document expiry date, if available.
@@ -8681,13 +8912,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents a link to an animated GIF.
          */
         public InputInlineQueryResultAnimatedGif() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a link to an animated GIF.
          *
          * @param id Unique identifier of the query result.
          * @param title Title of the query result.
@@ -8767,13 +8998,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents a link to an animated (i.e. without sound) H.264/MPEG-4 AVC video.
          */
         public InputInlineQueryResultAnimatedMpeg4() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a link to an animated (i.e. without sound) H.264/MPEG-4 AVC video.
          *
          * @param id Unique identifier of the query result.
          * @param title Title of the result.
@@ -8857,13 +9088,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents a link to an article or web page.
          */
         public InputInlineQueryResultArticle() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a link to an article or web page.
          *
          * @param id Unique identifier of the query result.
          * @param url URL of the result, if it exists.
@@ -8937,13 +9168,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents a link to an MP3 audio file.
          */
         public InputInlineQueryResultAudio() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a link to an MP3 audio file.
          *
          * @param id Unique identifier of the query result.
          * @param title Title of the audio file.
@@ -9011,13 +9242,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents a user contact.
          */
         public InputInlineQueryResultContact() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a user contact.
          *
          * @param id Unique identifier of the query result.
          * @param contact User contact.
@@ -9097,13 +9328,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents a link to a file.
          */
         public InputInlineQueryResultDocument() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a link to a file.
          *
          * @param id Unique identifier of the query result.
          * @param title Title of the resulting file.
@@ -9161,13 +9392,13 @@ public class TdApi {
         public ReplyMarkup replyMarkup;
 
         /**
-         * Default constructor.
+         * Represents a game.
          */
         public InputInlineQueryResultGame() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a game.
          *
          * @param id Unique identifier of the query result.
          * @param gameShortName Short name of the game.
@@ -9235,13 +9466,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents a point on the map.
          */
         public InputInlineQueryResultLocation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a point on the map.
          *
          * @param id Unique identifier of the query result.
          * @param location Location result.
@@ -9321,13 +9552,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents link to a JPEG image.
          */
         public InputInlineQueryResultPhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents link to a JPEG image.
          *
          * @param id Unique identifier of the query result.
          * @param title Title of the result, if known.
@@ -9399,13 +9630,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents a link to a WEBP sticker.
          */
         public InputInlineQueryResultSticker() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a link to a WEBP sticker.
          *
          * @param id Unique identifier of the query result.
          * @param thumbnailUrl URL of the sticker thumbnail, if it exists.
@@ -9473,13 +9704,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents information about a venue.
          */
         public InputInlineQueryResultVenue() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents information about a venue.
          *
          * @param id Unique identifier of the query result.
          * @param venue Venue result.
@@ -9563,13 +9794,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents a link to a page containing an embedded video player or a video file.
          */
         public InputInlineQueryResultVideo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a link to a page containing an embedded video player or a video file.
          *
          * @param id Unique identifier of the query result.
          * @param title Title of the result.
@@ -9641,13 +9872,13 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Represents a link to an opus-encoded audio file within an OGG container, single channel audio.
          */
         public InputInlineQueryResultVoiceNote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a link to an opus-encoded audio file within an OGG container, single channel audio.
          *
          * @param id Unique identifier of the query result.
          * @param title Title of the voice note.
@@ -9700,6 +9931,7 @@ public class TdApi {
             InputMessageContact.CONSTRUCTOR,
             InputMessageGame.CONSTRUCTOR,
             InputMessageInvoice.CONSTRUCTOR,
+            InputMessagePoll.CONSTRUCTOR,
             InputMessageForwarded.CONSTRUCTOR
         })
         public @interface Constructors {}
@@ -9717,7 +9949,7 @@ public class TdApi {
      */
     public static class InputMessageText extends InputMessageContent {
         /**
-         * Formatted text to be sent; 1-GetOption(&quot;messageTextLengthMax&quot;) characters. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually.
+         * Formatted text to be sent; 1-GetOption(&quot;message_text_length_max&quot;) characters. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually.
          */
         public FormattedText text;
         /**
@@ -9730,15 +9962,15 @@ public class TdApi {
         public boolean clearDraft;
 
         /**
-         * Default constructor.
+         * A text message.
          */
         public InputMessageText() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A text message.
          *
-         * @param text Formatted text to be sent; 1-GetOption(&quot;messageTextLengthMax&quot;) characters. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually.
+         * @param text Formatted text to be sent; 1-GetOption(&quot;message_text_length_max&quot;) characters. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually.
          * @param disableWebPagePreview True, if rich web page previews for URLs in the message text should be disabled.
          * @param clearDraft True, if a chat message draft should be deleted.
          */
@@ -9787,25 +10019,25 @@ public class TdApi {
          */
         public int height;
         /**
-         * Animation caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * Animation caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public FormattedText caption;
 
         /**
-         * Default constructor.
+         * An animation message (GIF-style).
          */
         public InputMessageAnimation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An animation message (GIF-style).
          *
          * @param animation Animation file to be sent.
          * @param thumbnail Animation thumbnail, if available.
          * @param duration Duration of the animation, in seconds.
          * @param width Width of the animation; may be replaced by the server.
          * @param height Height of the animation; may be replaced by the server.
-         * @param caption Animation caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * @param caption Animation caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public InputMessageAnimation(InputFile animation, InputThumbnail thumbnail, int duration, int width, int height, FormattedText caption) {
             this.animation = animation;
@@ -9855,25 +10087,25 @@ public class TdApi {
          */
         public String performer;
         /**
-         * Audio caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * Audio caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public FormattedText caption;
 
         /**
-         * Default constructor.
+         * An audio message.
          */
         public InputMessageAudio() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An audio message.
          *
          * @param audio Audio file to be sent.
          * @param albumCoverThumbnail Thumbnail of the cover for the album, if available.
          * @param duration Duration of the audio, in seconds; may be replaced by the server.
          * @param title Title of the audio; 0-64 characters; may be replaced by the server.
          * @param performer Performer of the audio; 0-64 characters, may be replaced by the server.
-         * @param caption Audio caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * @param caption Audio caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public InputMessageAudio(InputFile audio, InputThumbnail albumCoverThumbnail, int duration, String title, String performer, FormattedText caption) {
             this.audio = audio;
@@ -9911,22 +10143,22 @@ public class TdApi {
          */
         public InputThumbnail thumbnail;
         /**
-         * Document caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * Document caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public FormattedText caption;
 
         /**
-         * Default constructor.
+         * A document message (general file).
          */
         public InputMessageDocument() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A document message (general file).
          *
          * @param document Document to be sent.
          * @param thumbnail Document thumbnail, if available.
-         * @param caption Document caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * @param caption Document caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public InputMessageDocument(InputFile document, InputThumbnail thumbnail, FormattedText caption) {
             this.document = document;
@@ -9973,7 +10205,7 @@ public class TdApi {
          */
         public int height;
         /**
-         * Photo caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * Photo caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public FormattedText caption;
         /**
@@ -9982,20 +10214,20 @@ public class TdApi {
         public int ttl;
 
         /**
-         * Default constructor.
+         * A photo message.
          */
         public InputMessagePhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A photo message.
          *
          * @param photo Photo to send.
          * @param thumbnail Photo thumbnail to be sent, this is sent to the other party in secret chats only.
          * @param addedStickerFileIds File identifiers of the stickers added to the photo, if applicable.
          * @param width Photo width.
          * @param height Photo height.
-         * @param caption Photo caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * @param caption Photo caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          * @param ttl Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats.
          */
         public InputMessagePhoto(InputFile photo, InputThumbnail thumbnail, int[] addedStickerFileIds, int width, int height, FormattedText caption, int ttl) {
@@ -10044,13 +10276,13 @@ public class TdApi {
         public int height;
 
         /**
-         * Default constructor.
+         * A sticker message.
          */
         public InputMessageSticker() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A sticker message.
          *
          * @param sticker Sticker to be sent.
          * @param thumbnail Sticker thumbnail, if available.
@@ -10111,7 +10343,7 @@ public class TdApi {
          */
         public boolean supportsStreaming;
         /**
-         * Video caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * Video caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public FormattedText caption;
         /**
@@ -10120,13 +10352,13 @@ public class TdApi {
         public int ttl;
 
         /**
-         * Default constructor.
+         * A video message.
          */
         public InputMessageVideo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A video message.
          *
          * @param video Video to be sent.
          * @param thumbnail Video thumbnail, if available.
@@ -10135,7 +10367,7 @@ public class TdApi {
          * @param width Video width.
          * @param height Video height.
          * @param supportsStreaming True, if the video should be tried to be streamed.
-         * @param caption Video caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * @param caption Video caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          * @param ttl Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats.
          */
         public InputMessageVideo(InputFile video, InputThumbnail thumbnail, int[] addedStickerFileIds, int duration, int width, int height, boolean supportsStreaming, FormattedText caption, int ttl) {
@@ -10186,13 +10418,13 @@ public class TdApi {
         public int length;
 
         /**
-         * Default constructor.
+         * A video note message.
          */
         public InputMessageVideoNote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A video note message.
          *
          * @param videoNote Video note to be sent.
          * @param thumbnail Video thumbnail, if available.
@@ -10237,23 +10469,23 @@ public class TdApi {
          */
         public byte[] waveform;
         /**
-         * Voice note caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * Voice note caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public FormattedText caption;
 
         /**
-         * Default constructor.
+         * A voice note message.
          */
         public InputMessageVoiceNote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A voice note message.
          *
          * @param voiceNote Voice note to be sent.
          * @param duration Duration of the voice note, in seconds.
          * @param waveform Waveform representation of the voice note, in 5-bit format.
-         * @param caption Voice note caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * @param caption Voice note caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public InputMessageVoiceNote(InputFile voiceNote, int duration, byte[] waveform, FormattedText caption) {
             this.voiceNote = voiceNote;
@@ -10290,13 +10522,13 @@ public class TdApi {
         public int livePeriod;
 
         /**
-         * Default constructor.
+         * A message with a location.
          */
         public InputMessageLocation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with a location.
          *
          * @param location Location to be sent.
          * @param livePeriod Period for which the location can be updated, in seconds; should bebetween 60 and 86400 for a live location and 0 otherwise.
@@ -10330,13 +10562,13 @@ public class TdApi {
         public Venue venue;
 
         /**
-         * Default constructor.
+         * A message with information about a venue.
          */
         public InputMessageVenue() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with information about a venue.
          *
          * @param venue Venue to send.
          */
@@ -10368,13 +10600,13 @@ public class TdApi {
         public Contact contact;
 
         /**
-         * Default constructor.
+         * A message containing a user contact.
          */
         public InputMessageContact() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message containing a user contact.
          *
          * @param contact Contact to send.
          */
@@ -10410,13 +10642,13 @@ public class TdApi {
         public String gameShortName;
 
         /**
-         * Default constructor.
+         * A message with a game; not supported for channels or secret chats.
          */
         public InputMessageGame() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with a game; not supported for channels or secret chats.
          *
          * @param botUserId User identifier of the bot that owns the game.
          * @param gameShortName Short name of the game.
@@ -10490,13 +10722,13 @@ public class TdApi {
         public String startParameter;
 
         /**
-         * Default constructor.
+         * A message with an invoice; can be used only by bots and only in private chats.
          */
         public InputMessageInvoice() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with an invoice; can be used only by bots and only in private chats.
          *
          * @param invoice Invoice.
          * @param title Product title; 1-32 characters.
@@ -10539,6 +10771,50 @@ public class TdApi {
     }
 
     /**
+     * A message with a poll. Polls can't be sent to private or secret chats.
+     */
+    public static class InputMessagePoll extends InputMessageContent {
+        /**
+         * Poll question, 1-255 characters.
+         */
+        public String question;
+        /**
+         * List of poll answer options, 2-10 strings 1-100 characters each.
+         */
+        public String[] options;
+
+        /**
+         * A message with a poll. Polls can't be sent to private or secret chats.
+         */
+        public InputMessagePoll() {
+        }
+
+        /**
+         * A message with a poll. Polls can't be sent to private or secret chats.
+         *
+         * @param question Poll question, 1-255 characters.
+         * @param options List of poll answer options, 2-10 strings 1-100 characters each.
+         */
+        public InputMessagePoll(String question, String[] options) {
+            this.question = question;
+            this.options = options;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1791140518;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * A forwarded message.
      */
     public static class InputMessageForwarded extends InputMessageContent {
@@ -10556,13 +10832,13 @@ public class TdApi {
         public boolean inGameShare;
 
         /**
-         * Default constructor.
+         * A forwarded message.
          */
         public InputMessageForwarded() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A forwarded message.
          *
          * @param fromChatId Identifier for the chat this forwarded message came from.
          * @param messageId Identifier of the message to forward.
@@ -10629,13 +10905,13 @@ public class TdApi {
         public PersonalDetails personalDetails;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's personal details.
          */
         public InputPassportElementPersonalDetails() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's personal details.
          *
          * @param personalDetails Personal details of the user.
          */
@@ -10667,13 +10943,13 @@ public class TdApi {
         public InputIdentityDocument passport;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's passport.
          */
         public InputPassportElementPassport() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's passport.
          *
          * @param passport The passport to be saved.
          */
@@ -10705,13 +10981,13 @@ public class TdApi {
         public InputIdentityDocument driverLicense;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's driver license.
          */
         public InputPassportElementDriverLicense() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's driver license.
          *
          * @param driverLicense The driver license to be saved.
          */
@@ -10743,13 +11019,13 @@ public class TdApi {
         public InputIdentityDocument identityCard;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's identity card.
          */
         public InputPassportElementIdentityCard() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's identity card.
          *
          * @param identityCard The identity card to be saved.
          */
@@ -10781,13 +11057,13 @@ public class TdApi {
         public InputIdentityDocument internalPassport;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's internal passport.
          */
         public InputPassportElementInternalPassport() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's internal passport.
          *
          * @param internalPassport The internal passport to be saved.
          */
@@ -10819,13 +11095,13 @@ public class TdApi {
         public Address address;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's address.
          */
         public InputPassportElementAddress() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's address.
          *
          * @param address The address to be saved.
          */
@@ -10857,13 +11133,13 @@ public class TdApi {
         public InputPersonalDocument utilityBill;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's utility bill.
          */
         public InputPassportElementUtilityBill() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's utility bill.
          *
          * @param utilityBill The utility bill to be saved.
          */
@@ -10895,13 +11171,13 @@ public class TdApi {
         public InputPersonalDocument bankStatement;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's bank statement.
          */
         public InputPassportElementBankStatement() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's bank statement.
          *
          * @param bankStatement The bank statement to be saved.
          */
@@ -10933,13 +11209,13 @@ public class TdApi {
         public InputPersonalDocument rentalAgreement;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's rental agreement.
          */
         public InputPassportElementRentalAgreement() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's rental agreement.
          *
          * @param rentalAgreement The rental agreement to be saved.
          */
@@ -10971,13 +11247,13 @@ public class TdApi {
         public InputPersonalDocument passportRegistration;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's passport registration.
          */
         public InputPassportElementPassportRegistration() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's passport registration.
          *
          * @param passportRegistration The passport registration page to be saved.
          */
@@ -11009,13 +11285,13 @@ public class TdApi {
         public InputPersonalDocument temporaryRegistration;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's temporary registration.
          */
         public InputPassportElementTemporaryRegistration() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's temporary registration.
          *
          * @param temporaryRegistration The temporary registration document to be saved.
          */
@@ -11047,13 +11323,13 @@ public class TdApi {
         public String phoneNumber;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's phone number.
          */
         public InputPassportElementPhoneNumber() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's phone number.
          *
          * @param phoneNumber The phone number to be saved.
          */
@@ -11085,13 +11361,13 @@ public class TdApi {
         public String emailAddress;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element to be saved containing the user's email address.
          */
         public InputPassportElementEmailAddress() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element to be saved containing the user's email address.
          *
          * @param emailAddress The email address to be saved.
          */
@@ -11131,13 +11407,13 @@ public class TdApi {
         public InputPassportElementErrorSource source;
 
         /**
-         * Default constructor.
+         * Contains the description of an error in a Telegram Passport element; for bots only.
          */
         public InputPassportElementError() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains the description of an error in a Telegram Passport element; for bots only.
          *
          * @param type Type of Telegram Passport element that has the error.
          * @param message Error message.
@@ -11200,13 +11476,13 @@ public class TdApi {
         public byte[] elementHash;
 
         /**
-         * Default constructor.
+         * The element contains an error in an unspecified place. The error will be considered resolved when new data is added.
          */
         public InputPassportElementErrorSourceUnspecified() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The element contains an error in an unspecified place. The error will be considered resolved when new data is added.
          *
          * @param elementHash Current hash of the entire element.
          */
@@ -11242,13 +11518,13 @@ public class TdApi {
         public byte[] dataHash;
 
         /**
-         * Default constructor.
+         * A data field contains an error. The error is considered resolved when the field's value changes.
          */
         public InputPassportElementErrorSourceDataField() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A data field contains an error. The error is considered resolved when the field's value changes.
          *
          * @param fieldName Field name.
          * @param dataHash Current data hash.
@@ -11282,13 +11558,13 @@ public class TdApi {
         public byte[] fileHash;
 
         /**
-         * Default constructor.
+         * The front side of the document contains an error. The error is considered resolved when the file with the front side of the document changes.
          */
         public InputPassportElementErrorSourceFrontSide() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The front side of the document contains an error. The error is considered resolved when the file with the front side of the document changes.
          *
          * @param fileHash Current hash of the file containing the front side.
          */
@@ -11320,13 +11596,13 @@ public class TdApi {
         public byte[] fileHash;
 
         /**
-         * Default constructor.
+         * The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes.
          */
         public InputPassportElementErrorSourceReverseSide() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes.
          *
          * @param fileHash Current hash of the file containing the reverse side.
          */
@@ -11358,13 +11634,13 @@ public class TdApi {
         public byte[] fileHash;
 
         /**
-         * Default constructor.
+         * The selfie contains an error. The error is considered resolved when the file with the selfie changes.
          */
         public InputPassportElementErrorSourceSelfie() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The selfie contains an error. The error is considered resolved when the file with the selfie changes.
          *
          * @param fileHash Current hash of the file containing the selfie.
          */
@@ -11396,13 +11672,13 @@ public class TdApi {
         public byte[] fileHash;
 
         /**
-         * Default constructor.
+         * One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes.
          */
         public InputPassportElementErrorSourceTranslationFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes.
          *
          * @param fileHash Current hash of the file containing the translation.
          */
@@ -11434,13 +11710,13 @@ public class TdApi {
         public byte[][] fileHashes;
 
         /**
-         * Default constructor.
+         * The translation of the document contains an error. The error is considered resolved when the list of files changes.
          */
         public InputPassportElementErrorSourceTranslationFiles() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The translation of the document contains an error. The error is considered resolved when the list of files changes.
          *
          * @param fileHashes Current hashes of all files with the translation.
          */
@@ -11472,13 +11748,13 @@ public class TdApi {
         public byte[] fileHash;
 
         /**
-         * Default constructor.
+         * The file contains an error. The error is considered resolved when the file changes.
          */
         public InputPassportElementErrorSourceFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The file contains an error. The error is considered resolved when the file changes.
          *
          * @param fileHash Current hash of the file which has the error.
          */
@@ -11510,13 +11786,13 @@ public class TdApi {
         public byte[][] fileHashes;
 
         /**
-         * Default constructor.
+         * The list of attached files contains an error. The error is considered resolved when the file list changes.
          */
         public InputPassportElementErrorSourceFiles() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The list of attached files contains an error. The error is considered resolved when the file list changes.
          *
          * @param fileHashes Current hashes of all attached files.
          */
@@ -11552,13 +11828,13 @@ public class TdApi {
         public InputFile[] translation;
 
         /**
-         * Default constructor.
+         * A personal document to be saved to Telegram Passport.
          */
         public InputPersonalDocument() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A personal document to be saved to Telegram Passport.
          *
          * @param files List of files containing the pages of the document.
          * @param translation List of files containing a certified English translation of the document.
@@ -11600,13 +11876,13 @@ public class TdApi {
         @Nullable public MaskPosition maskPosition;
 
         /**
-         * Default constructor.
+         * Describes a sticker that should be added to a sticker set.
          */
         public InputSticker() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a sticker that should be added to a sticker set.
          *
          * @param pngSticker PNG image with the sticker; must be up to 512 kB in size and fit in a 512x512 square.
          * @param emojis Emoji corresponding to the sticker.
@@ -11641,26 +11917,26 @@ public class TdApi {
          */
         public InputFile thumbnail;
         /**
-         * Thumbnail width, usually shouldn't exceed 90. Use 0 if unknown.
+         * Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown.
          */
         public int width;
         /**
-         * Thumbnail height, usually shouldn't exceed 90. Use 0 if unknown.
+         * Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown.
          */
         public int height;
 
         /**
-         * Default constructor.
+         * A thumbnail to be sent along with a file; should be in JPEG or WEBP format for stickers, and less than 200 kB in size.
          */
         public InputThumbnail() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A thumbnail to be sent along with a file; should be in JPEG or WEBP format for stickers, and less than 200 kB in size.
          *
          * @param thumbnail Thumbnail file to send. Sending thumbnails by fileId is currently not supported.
-         * @param width Thumbnail width, usually shouldn't exceed 90. Use 0 if unknown.
-         * @param height Thumbnail height, usually shouldn't exceed 90. Use 0 if unknown.
+         * @param width Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown.
+         * @param height Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown.
          */
         public InputThumbnail(InputFile thumbnail, int width, int height) {
             this.thumbnail = thumbnail;
@@ -11728,13 +12004,13 @@ public class TdApi {
         public boolean isFlexible;
 
         /**
-         * Default constructor.
+         * Product invoice.
          */
         public Invoice() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Product invoice.
          *
          * @param currency ISO 4217 currency code.
          * @param priceParts A list of objects used to calculate the total price of the product.
@@ -11775,6 +12051,289 @@ public class TdApi {
     }
 
     /**
+     * Represents one member of a JSON object.
+     */
+    public static class JsonObjectMember extends Object {
+        /**
+         * Member's key.
+         */
+        public String key;
+        /**
+         * Member's value.
+         */
+        public JsonValue value;
+
+        /**
+         * Represents one member of a JSON object.
+         */
+        public JsonObjectMember() {
+        }
+
+        /**
+         * Represents one member of a JSON object.
+         *
+         * @param key Member's key.
+         * @param value Member's value.
+         */
+        public JsonObjectMember(String key, JsonValue value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1803309418;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * This class is an abstract base class.
+     * Represents a JSON value.
+     */
+    public abstract static class JsonValue extends Object {
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef({
+            JsonValueNull.CONSTRUCTOR,
+            JsonValueBoolean.CONSTRUCTOR,
+            JsonValueNumber.CONSTRUCTOR,
+            JsonValueString.CONSTRUCTOR,
+            JsonValueArray.CONSTRUCTOR,
+            JsonValueObject.CONSTRUCTOR
+        })
+        public @interface Constructors {}
+
+        /**
+         * @return identifier uniquely determining type of the object.
+         */
+        @Constructors
+        @Override
+        public abstract int getConstructor();
+    }
+
+    /**
+     * Represents a null JSON value.
+     */
+    public static class JsonValueNull extends JsonValue {
+
+        /**
+         * Represents a null JSON value.
+         */
+        public JsonValueNull() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -92872499;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Represents a boolean JSON value.
+     */
+    public static class JsonValueBoolean extends JsonValue {
+        /**
+         * The value.
+         */
+        public boolean value;
+
+        /**
+         * Represents a boolean JSON value.
+         */
+        public JsonValueBoolean() {
+        }
+
+        /**
+         * Represents a boolean JSON value.
+         *
+         * @param value The value.
+         */
+        public JsonValueBoolean(boolean value) {
+            this.value = value;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -2142186576;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Represents a numeric JSON value.
+     */
+    public static class JsonValueNumber extends JsonValue {
+        /**
+         * The value.
+         */
+        public double value;
+
+        /**
+         * Represents a numeric JSON value.
+         */
+        public JsonValueNumber() {
+        }
+
+        /**
+         * Represents a numeric JSON value.
+         *
+         * @param value The value.
+         */
+        public JsonValueNumber(double value) {
+            this.value = value;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1010822033;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Represents a string JSON value.
+     */
+    public static class JsonValueString extends JsonValue {
+        /**
+         * The value.
+         */
+        public String value;
+
+        /**
+         * Represents a string JSON value.
+         */
+        public JsonValueString() {
+        }
+
+        /**
+         * Represents a string JSON value.
+         *
+         * @param value The value.
+         */
+        public JsonValueString(String value) {
+            this.value = value;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1597947313;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Represents a JSON array.
+     */
+    public static class JsonValueArray extends JsonValue {
+        /**
+         * The list of array elements.
+         */
+        public JsonValue[] values;
+
+        /**
+         * Represents a JSON array.
+         */
+        public JsonValueArray() {
+        }
+
+        /**
+         * Represents a JSON array.
+         *
+         * @param values The list of array elements.
+         */
+        public JsonValueArray(JsonValue[] values) {
+            this.values = values;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -183913546;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Represents a JSON object.
+     */
+    public static class JsonValueObject extends JsonValue {
+        /**
+         * The list of object members.
+         */
+        public JsonObjectMember[] members;
+
+        /**
+         * Represents a JSON object.
+         */
+        public JsonValueObject() {
+        }
+
+        /**
+         * Represents a JSON object.
+         *
+         * @param members The list of object members.
+         */
+        public JsonValueObject(JsonObjectMember[] members) {
+            this.members = members;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 520252026;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Represents a single button in a bot keyboard.
      */
     public static class KeyboardButton extends Object {
@@ -11788,13 +12347,13 @@ public class TdApi {
         public KeyboardButtonType type;
 
         /**
-         * Default constructor.
+         * Represents a single button in a bot keyboard.
          */
         public KeyboardButton() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a single button in a bot keyboard.
          *
          * @param text Text of the button.
          * @param type Type of the button.
@@ -11845,7 +12404,7 @@ public class TdApi {
     public static class KeyboardButtonTypeText extends KeyboardButtonType {
 
         /**
-         * Default constructor.
+         * A simple button, with text that should be sent when the button is pressed.
          */
         public KeyboardButtonTypeText() {
         }
@@ -11870,7 +12429,7 @@ public class TdApi {
     public static class KeyboardButtonTypeRequestPhoneNumber extends KeyboardButtonType {
 
         /**
-         * Default constructor.
+         * A button that sends the user's phone number when pressed; available only in private chats.
          */
         public KeyboardButtonTypeRequestPhoneNumber() {
         }
@@ -11895,7 +12454,7 @@ public class TdApi {
     public static class KeyboardButtonTypeRequestLocation extends KeyboardButtonType {
 
         /**
-         * Default constructor.
+         * A button that sends the user's location when pressed; available only in private chats.
          */
         public KeyboardButtonTypeRequestLocation() {
         }
@@ -11928,13 +12487,13 @@ public class TdApi {
         public long amount;
 
         /**
-         * Default constructor.
+         * Portion of the price of a product (e.g., &quot;delivery cost&quot;, &quot;tax amount&quot;).
          */
         public LabeledPricePart() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Portion of the price of a product (e.g., &quot;delivery cost&quot;, &quot;tax amount&quot;).
          *
          * @param label Label for this portion of the product price.
          * @param amount Currency amount in minimal quantity of the currency.
@@ -11967,6 +12526,10 @@ public class TdApi {
          */
         public String id;
         /**
+         * Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it should be fetched from base language pack. Unsupported in custom language packs.
+         */
+        public String baseLanguagePackId;
+        /**
          * Language name.
          */
         public String name;
@@ -11975,35 +12538,85 @@ public class TdApi {
          */
         public String nativeName;
         /**
+         * A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info.
+         */
+        public String pluralCode;
+        /**
+         * True, if the language pack is official.
+         */
+        public boolean isOfficial;
+        /**
+         * True, if the language pack strings are RTL.
+         */
+        public boolean isRtl;
+        /**
+         * True, if the language pack is a beta language pack.
+         */
+        public boolean isBeta;
+        /**
+         * True, if the language pack is installed by the current user.
+         */
+        public boolean isInstalled;
+        /**
+         * Total number of non-deleted strings from the language pack.
+         */
+        public int totalStringCount;
+        /**
+         * Total number of translated strings from the language pack.
+         */
+        public int translatedStringCount;
+        /**
          * Total number of non-deleted strings from the language pack available locally.
          */
         public int localStringCount;
+        /**
+         * Link to language translation interface; empty for custom local language packs.
+         */
+        public String translationUrl;
 
         /**
-         * Default constructor.
+         * Contains information about a language pack.
          */
         public LanguagePackInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about a language pack.
          *
          * @param id Unique language pack identifier.
+         * @param baseLanguagePackId Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it should be fetched from base language pack. Unsupported in custom language packs.
          * @param name Language name.
          * @param nativeName Name of the language in that language.
+         * @param pluralCode A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info.
+         * @param isOfficial True, if the language pack is official.
+         * @param isRtl True, if the language pack strings are RTL.
+         * @param isBeta True, if the language pack is a beta language pack.
+         * @param isInstalled True, if the language pack is installed by the current user.
+         * @param totalStringCount Total number of non-deleted strings from the language pack.
+         * @param translatedStringCount Total number of translated strings from the language pack.
          * @param localStringCount Total number of non-deleted strings from the language pack available locally.
+         * @param translationUrl Link to language translation interface; empty for custom local language packs.
          */
-        public LanguagePackInfo(String id, String name, String nativeName, int localStringCount) {
+        public LanguagePackInfo(String id, String baseLanguagePackId, String name, String nativeName, String pluralCode, boolean isOfficial, boolean isRtl, boolean isBeta, boolean isInstalled, int totalStringCount, int translatedStringCount, int localStringCount, String translationUrl) {
             this.id = id;
+            this.baseLanguagePackId = baseLanguagePackId;
             this.name = name;
             this.nativeName = nativeName;
+            this.pluralCode = pluralCode;
+            this.isOfficial = isOfficial;
+            this.isRtl = isRtl;
+            this.isBeta = isBeta;
+            this.isInstalled = isInstalled;
+            this.totalStringCount = totalStringCount;
+            this.translatedStringCount = translatedStringCount;
             this.localStringCount = localStringCount;
+            this.translationUrl = translationUrl;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1716484242;
+        public static final int CONSTRUCTOR = 542199642;
 
         /**
          * @return this.CONSTRUCTOR
@@ -12028,13 +12641,13 @@ public class TdApi {
         public LanguagePackStringValue value;
 
         /**
-         * Default constructor.
+         * Represents one language pack string.
          */
         public LanguagePackString() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents one language pack string.
          *
          * @param key String key.
          * @param value String value.
@@ -12089,13 +12702,13 @@ public class TdApi {
         public String value;
 
         /**
-         * Default constructor.
+         * An ordinary language pack string.
          */
         public LanguagePackStringValueOrdinary() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An ordinary language pack string.
          *
          * @param value String value.
          */
@@ -12118,7 +12731,7 @@ public class TdApi {
     }
 
     /**
-     * A language pack string which has different forms based on the number of some object it mentions.
+     * A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info.
      */
     public static class LanguagePackStringValuePluralized extends LanguagePackStringValue {
         /**
@@ -12147,13 +12760,13 @@ public class TdApi {
         public String otherValue;
 
         /**
-         * Default constructor.
+         * A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info.
          */
         public LanguagePackStringValuePluralized() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info.
          *
          * @param zeroValue Value for zero objects.
          * @param oneValue Value for one object.
@@ -12191,7 +12804,7 @@ public class TdApi {
     public static class LanguagePackStringValueDeleted extends LanguagePackStringValue {
 
         /**
-         * Default constructor.
+         * A deleted language pack string, the value should be taken from the built-in english language pack.
          */
         public LanguagePackStringValueDeleted() {
         }
@@ -12220,13 +12833,13 @@ public class TdApi {
         public LanguagePackString[] strings;
 
         /**
-         * Default constructor.
+         * Contains a list of language pack strings.
          */
         public LanguagePackStrings() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of language pack strings.
          *
          * @param strings A list of language pack strings.
          */
@@ -12250,7 +12863,7 @@ public class TdApi {
 
     /**
      * This class is an abstract base class.
-     * Represents the relationship between user A and user B. For incoming_link, user A is the current user; for outgoing_link, user B is the current user.
+     * Represents the relationship between user A and user B. For incomingLink, user A is the current user; for outgoingLink, user B is the current user.
      */
     public abstract static class LinkState extends Object {
         @Retention(RetentionPolicy.SOURCE)
@@ -12275,7 +12888,7 @@ public class TdApi {
     public static class LinkStateNone extends LinkState {
 
         /**
-         * Default constructor.
+         * The phone number of user A is not known to user B.
          */
         public LinkStateNone() {
         }
@@ -12295,12 +12908,12 @@ public class TdApi {
     }
 
     /**
-     * The phone number of user A is known but that number has not been saved to the contacts list of user B.
+     * The phone number of user A is known but that number has not been saved to the contact list of user B.
      */
     public static class LinkStateKnowsPhoneNumber extends LinkState {
 
         /**
-         * Default constructor.
+         * The phone number of user A is known but that number has not been saved to the contact list of user B.
          */
         public LinkStateKnowsPhoneNumber() {
         }
@@ -12320,12 +12933,12 @@ public class TdApi {
     }
 
     /**
-     * The phone number of user A has been saved to the contacts list of user B.
+     * The phone number of user A has been saved to the contact list of user B.
      */
     public static class LinkStateIsContact extends LinkState {
 
         /**
-         * Default constructor.
+         * The phone number of user A has been saved to the contact list of user B.
          */
         public LinkStateIsContact() {
         }
@@ -12369,7 +12982,11 @@ public class TdApi {
          */
         public boolean isDownloadingCompleted;
         /**
-         * If isDownloadingCompleted is false, then only some prefix of the file is ready to be read. downloadedPrefixSize is the size of that prefix.
+         * Download will be started from this offset. downloadedPrefixSize is calculated from this offset.
+         */
+        public int downloadOffset;
+        /**
+         * If isDownloadingCompleted is false, then only some prefix of the file starting from downloadOffset is ready to be read. downloadedPrefixSize is the size of that prefix.
          */
         public int downloadedPrefixSize;
         /**
@@ -12378,28 +12995,30 @@ public class TdApi {
         public int downloadedSize;
 
         /**
-         * Default constructor.
+         * Represents a local file.
          */
         public LocalFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a local file.
          *
          * @param path Local path to the locally available file part; may be empty.
          * @param canBeDownloaded True, if it is possible to try to download or generate the file.
          * @param canBeDeleted True, if the file can be deleted.
          * @param isDownloadingActive True, if the file is currently being downloaded (or a local copy is being generated by some other means).
          * @param isDownloadingCompleted True, if the local copy is fully available.
-         * @param downloadedPrefixSize If isDownloadingCompleted is false, then only some prefix of the file is ready to be read. downloadedPrefixSize is the size of that prefix.
+         * @param downloadOffset Download will be started from this offset. downloadedPrefixSize is calculated from this offset.
+         * @param downloadedPrefixSize If isDownloadingCompleted is false, then only some prefix of the file starting from downloadOffset is ready to be read. downloadedPrefixSize is the size of that prefix.
          * @param downloadedSize Total downloaded file bytes. Should be used only for calculating download progress. The actual file size may be bigger, and some parts of it may contain garbage.
          */
-        public LocalFile(String path, boolean canBeDownloaded, boolean canBeDeleted, boolean isDownloadingActive, boolean isDownloadingCompleted, int downloadedPrefixSize, int downloadedSize) {
+        public LocalFile(String path, boolean canBeDownloaded, boolean canBeDeleted, boolean isDownloadingActive, boolean isDownloadingCompleted, int downloadOffset, int downloadedPrefixSize, int downloadedSize) {
             this.path = path;
             this.canBeDownloaded = canBeDownloaded;
             this.canBeDeleted = canBeDeleted;
             this.isDownloadingActive = isDownloadingActive;
             this.isDownloadingCompleted = isDownloadingCompleted;
+            this.downloadOffset = downloadOffset;
             this.downloadedPrefixSize = downloadedPrefixSize;
             this.downloadedSize = downloadedSize;
         }
@@ -12407,7 +13026,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 847939462;
+        public static final int CONSTRUCTOR = -1166400317;
 
         /**
          * @return this.CONSTRUCTOR
@@ -12428,13 +13047,13 @@ public class TdApi {
         public LanguagePackInfo[] languagePacks;
 
         /**
-         * Default constructor.
+         * Contains information about the current localization target.
          */
         public LocalizationTargetInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about the current localization target.
          *
          * @param languagePacks List of available language packs for this application.
          */
@@ -12470,13 +13089,13 @@ public class TdApi {
         public double longitude;
 
         /**
-         * Default constructor.
+         * Describes a location on planet Earth.
          */
         public Location() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a location on planet Earth.
          *
          * @param latitude Latitude of the location in degrees; as defined by the sender.
          * @param longitude Longitude of the location, in degrees; as defined by the sender.
@@ -12490,6 +13109,197 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = 749028016;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * This class is an abstract base class.
+     * Describes a stream to which TDLib internal log is written.
+     */
+    public abstract static class LogStream extends Object {
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef({
+            LogStreamDefault.CONSTRUCTOR,
+            LogStreamFile.CONSTRUCTOR,
+            LogStreamEmpty.CONSTRUCTOR
+        })
+        public @interface Constructors {}
+
+        /**
+         * @return identifier uniquely determining type of the object.
+         */
+        @Constructors
+        @Override
+        public abstract int getConstructor();
+    }
+
+    /**
+     * The log is written to stderr or an OS specific log.
+     */
+    public static class LogStreamDefault extends LogStream {
+
+        /**
+         * The log is written to stderr or an OS specific log.
+         */
+        public LogStreamDefault() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1390581436;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * The log is written to a file.
+     */
+    public static class LogStreamFile extends LogStream {
+        /**
+         * Path to the file to where the internal TDLib log will be written.
+         */
+        public String path;
+        /**
+         * Maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated.
+         */
+        public long maxFileSize;
+
+        /**
+         * The log is written to a file.
+         */
+        public LogStreamFile() {
+        }
+
+        /**
+         * The log is written to a file.
+         *
+         * @param path Path to the file to where the internal TDLib log will be written.
+         * @param maxFileSize Maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated.
+         */
+        public LogStreamFile(String path, long maxFileSize) {
+            this.path = path;
+            this.maxFileSize = maxFileSize;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1880085930;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * The log is written nowhere.
+     */
+    public static class LogStreamEmpty extends LogStream {
+
+        /**
+         * The log is written nowhere.
+         */
+        public LogStreamEmpty() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -499912244;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Contains a list of available TDLib internal log tags.
+     */
+    public static class LogTags extends Object {
+        /**
+         * List of log tags.
+         */
+        public String[] tags;
+
+        /**
+         * Contains a list of available TDLib internal log tags.
+         */
+        public LogTags() {
+        }
+
+        /**
+         * Contains a list of available TDLib internal log tags.
+         *
+         * @param tags List of log tags.
+         */
+        public LogTags(String[] tags) {
+            this.tags = tags;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1604930601;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Contains a TDLib internal log verbosity level.
+     */
+    public static class LogVerbosityLevel extends Object {
+        /**
+         * Log verbosity level.
+         */
+        public int verbosityLevel;
+
+        /**
+         * Contains a TDLib internal log verbosity level.
+         */
+        public LogVerbosityLevel() {
+        }
+
+        /**
+         * Contains a TDLib internal log verbosity level.
+         *
+         * @param verbosityLevel Log verbosity level.
+         */
+        public LogVerbosityLevel(int verbosityLevel) {
+            this.verbosityLevel = verbosityLevel;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1734624234;
 
         /**
          * @return this.CONSTRUCTOR
@@ -12528,7 +13338,7 @@ public class TdApi {
     public static class MaskPointForehead extends MaskPoint {
 
         /**
-         * Default constructor.
+         * A mask should be placed relatively to the forehead.
          */
         public MaskPointForehead() {
         }
@@ -12553,7 +13363,7 @@ public class TdApi {
     public static class MaskPointEyes extends MaskPoint {
 
         /**
-         * Default constructor.
+         * A mask should be placed relatively to the eyes.
          */
         public MaskPointEyes() {
         }
@@ -12578,7 +13388,7 @@ public class TdApi {
     public static class MaskPointMouth extends MaskPoint {
 
         /**
-         * Default constructor.
+         * A mask should be placed relatively to the mouth.
          */
         public MaskPointMouth() {
         }
@@ -12603,7 +13413,7 @@ public class TdApi {
     public static class MaskPointChin extends MaskPoint {
 
         /**
-         * Default constructor.
+         * A mask should be placed relatively to the chin.
          */
         public MaskPointChin() {
         }
@@ -12644,13 +13454,13 @@ public class TdApi {
         public double scale;
 
         /**
-         * Default constructor.
+         * Position on a photo where a mask should be placed.
          */
         public MaskPosition() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Position on a photo where a mask should be placed.
          *
          * @param point Part of the face, relative to which the mask should be placed.
          * @param xShift Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. (For example, -1.0 will place the mask just to the left of the default mask position.)
@@ -12703,7 +13513,7 @@ public class TdApi {
          */
         public boolean isOutgoing;
         /**
-         * True, if the message can be edited.
+         * True, if the message can be edited. For live location and poll messages this fields shows, whether editMessageLiveLocation or stopPoll can be used with this message by the client.
          */
         public boolean canBeEdited;
         /**
@@ -12776,20 +13586,20 @@ public class TdApi {
         @Nullable public ReplyMarkup replyMarkup;
 
         /**
-         * Default constructor.
+         * Describes a message.
          */
         public Message() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a message.
          *
          * @param id Message identifier, unique for the chat to which the message belongs.
          * @param senderUserId Identifier of the user who sent the message; 0 if unknown. It is unknown for channel posts.
          * @param chatId Chat identifier.
          * @param sendingState Information about the sending state of the message; may be null.
          * @param isOutgoing True, if the message is outgoing.
-         * @param canBeEdited True, if the message can be edited.
+         * @param canBeEdited True, if the message can be edited. For live location and poll messages this fields shows, whether editMessageLiveLocation or stopPoll can be used with this message by the client.
          * @param canBeForwarded True, if the message can be forwarded.
          * @param canBeDeletedOnlyForSelf True, if the message can be deleted only for the current user while other users will continue to see it.
          * @param canBeDeletedForAllUsers True, if the message can be deleted for all users.
@@ -12837,7 +13647,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -675737627;
+        public static final int CONSTRUCTOR = -1804824068;
 
         /**
          * @return this.CONSTRUCTOR
@@ -12870,6 +13680,7 @@ public class TdApi {
             MessageVenue.CONSTRUCTOR,
             MessageContact.CONSTRUCTOR,
             MessageGame.CONSTRUCTOR,
+            MessagePoll.CONSTRUCTOR,
             MessageInvoice.CONSTRUCTOR,
             MessageCall.CONSTRUCTOR,
             MessageBasicGroupChatCreate.CONSTRUCTOR,
@@ -12919,13 +13730,13 @@ public class TdApi {
         @Nullable public WebPage webPage;
 
         /**
-         * Default constructor.
+         * A text message.
          */
         public MessageText() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A text message.
          *
          * @param text Text of the message.
          * @param webPage A preview of the web page that's mentioned in the text; may be null.
@@ -12967,13 +13778,13 @@ public class TdApi {
         public boolean isSecret;
 
         /**
-         * Default constructor.
+         * An animation message (GIF-style).
          */
         public MessageAnimation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An animation message (GIF-style).
          *
          * @param animation Message content.
          * @param caption Animation caption.
@@ -13013,13 +13824,13 @@ public class TdApi {
         public FormattedText caption;
 
         /**
-         * Default constructor.
+         * An audio message.
          */
         public MessageAudio() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An audio message.
          *
          * @param audio Message content.
          * @param caption Audio caption.
@@ -13057,13 +13868,13 @@ public class TdApi {
         public FormattedText caption;
 
         /**
-         * Default constructor.
+         * A document message (general file).
          */
         public MessageDocument() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A document message (general file).
          *
          * @param document Message content.
          * @param caption Document caption.
@@ -13105,13 +13916,13 @@ public class TdApi {
         public boolean isSecret;
 
         /**
-         * Default constructor.
+         * A photo message.
          */
         public MessagePhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A photo message.
          *
          * @param photo Message content.
          * @param caption Photo caption.
@@ -13143,7 +13954,7 @@ public class TdApi {
     public static class MessageExpiredPhoto extends MessageContent {
 
         /**
-         * Default constructor.
+         * An expired photo message (self-destructed after TTL has elapsed).
          */
         public MessageExpiredPhoto() {
         }
@@ -13172,13 +13983,13 @@ public class TdApi {
         public Sticker sticker;
 
         /**
-         * Default constructor.
+         * A sticker message.
          */
         public MessageSticker() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A sticker message.
          *
          * @param sticker Message content.
          */
@@ -13218,13 +14029,13 @@ public class TdApi {
         public boolean isSecret;
 
         /**
-         * Default constructor.
+         * A video message.
          */
         public MessageVideo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A video message.
          *
          * @param video Message content.
          * @param caption Video caption.
@@ -13256,7 +14067,7 @@ public class TdApi {
     public static class MessageExpiredVideo extends MessageContent {
 
         /**
-         * Default constructor.
+         * An expired video message (self-destructed after TTL has elapsed).
          */
         public MessageExpiredVideo() {
         }
@@ -13293,13 +14104,13 @@ public class TdApi {
         public boolean isSecret;
 
         /**
-         * Default constructor.
+         * A video note message.
          */
         public MessageVideoNote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A video note message.
          *
          * @param videoNote Message content.
          * @param isViewed True, if at least one of the recipients has viewed the video note.
@@ -13343,13 +14154,13 @@ public class TdApi {
         public boolean isListened;
 
         /**
-         * Default constructor.
+         * A voice note message.
          */
         public MessageVoiceNote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A voice note message.
          *
          * @param voiceNote Message content.
          * @param caption Voice note caption.
@@ -13393,13 +14204,13 @@ public class TdApi {
         public int expiresIn;
 
         /**
-         * Default constructor.
+         * A message with a location.
          */
         public MessageLocation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with a location.
          *
          * @param location Message content.
          * @param livePeriod Time relative to the message sent date until which the location can be updated, in seconds.
@@ -13435,13 +14246,13 @@ public class TdApi {
         public Venue venue;
 
         /**
-         * Default constructor.
+         * A message with information about a venue.
          */
         public MessageVenue() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with information about a venue.
          *
          * @param venue Message content.
          */
@@ -13473,13 +14284,13 @@ public class TdApi {
         public Contact contact;
 
         /**
-         * Default constructor.
+         * A message with a user contact.
          */
         public MessageContact() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with a user contact.
          *
          * @param contact Message content.
          */
@@ -13511,13 +14322,13 @@ public class TdApi {
         public Game game;
 
         /**
-         * Default constructor.
+         * A message with a game.
          */
         public MessageGame() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with a game.
          *
          * @param game Game.
          */
@@ -13529,6 +14340,44 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = -69441162;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A message with a poll.
+     */
+    public static class MessagePoll extends MessageContent {
+        /**
+         * Poll.
+         */
+        public Poll poll;
+
+        /**
+         * A message with a poll.
+         */
+        public MessagePoll() {
+        }
+
+        /**
+         * A message with a poll.
+         *
+         * @param poll Poll.
+         */
+        public MessagePoll(Poll poll) {
+            this.poll = poll;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -662130099;
 
         /**
          * @return this.CONSTRUCTOR
@@ -13581,13 +14430,13 @@ public class TdApi {
         public long receiptMessageId;
 
         /**
-         * Default constructor.
+         * A message with an invoice from a bot.
          */
         public MessageInvoice() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with an invoice from a bot.
          *
          * @param title Product title.
          * @param description Product description.
@@ -13639,13 +14488,13 @@ public class TdApi {
         public int duration;
 
         /**
-         * Default constructor.
+         * A message with information about an ended call.
          */
         public MessageCall() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with information about an ended call.
          *
          * @param discardReason Reason why the call was discarded.
          * @param duration Call duration, in seconds.
@@ -13683,13 +14532,13 @@ public class TdApi {
         public int[] memberUserIds;
 
         /**
-         * Default constructor.
+         * A newly created basic group.
          */
         public MessageBasicGroupChatCreate() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A newly created basic group.
          *
          * @param title Title of the basic group.
          * @param memberUserIds User identifiers of members in the basic group.
@@ -13723,13 +14572,13 @@ public class TdApi {
         public String title;
 
         /**
-         * Default constructor.
+         * A newly created supergroup or channel.
          */
         public MessageSupergroupChatCreate() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A newly created supergroup or channel.
          *
          * @param title Title of the supergroup or channel.
          */
@@ -13761,13 +14610,13 @@ public class TdApi {
         public String title;
 
         /**
-         * Default constructor.
+         * An updated chat title.
          */
         public MessageChatChangeTitle() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An updated chat title.
          *
          * @param title New chat title.
          */
@@ -13799,13 +14648,13 @@ public class TdApi {
         public Photo photo;
 
         /**
-         * Default constructor.
+         * An updated chat photo.
          */
         public MessageChatChangePhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An updated chat photo.
          *
          * @param photo New chat photo.
          */
@@ -13833,7 +14682,7 @@ public class TdApi {
     public static class MessageChatDeletePhoto extends MessageContent {
 
         /**
-         * Default constructor.
+         * A deleted chat photo.
          */
         public MessageChatDeletePhoto() {
         }
@@ -13862,13 +14711,13 @@ public class TdApi {
         public int[] memberUserIds;
 
         /**
-         * Default constructor.
+         * New chat members were added.
          */
         public MessageChatAddMembers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * New chat members were added.
          *
          * @param memberUserIds User identifiers of the new members.
          */
@@ -13896,7 +14745,7 @@ public class TdApi {
     public static class MessageChatJoinByLink extends MessageContent {
 
         /**
-         * Default constructor.
+         * A new member joined the chat by invite link.
          */
         public MessageChatJoinByLink() {
         }
@@ -13925,13 +14774,13 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * A chat member was deleted.
          */
         public MessageChatDeleteMember() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A chat member was deleted.
          *
          * @param userId User identifier of the deleted chat member.
          */
@@ -13963,13 +14812,13 @@ public class TdApi {
         public int supergroupId;
 
         /**
-         * Default constructor.
+         * A basic group was upgraded to a supergroup and was deactivated as the result.
          */
         public MessageChatUpgradeTo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A basic group was upgraded to a supergroup and was deactivated as the result.
          *
          * @param supergroupId Identifier of the supergroup to which the basic group was upgraded.
          */
@@ -14005,13 +14854,13 @@ public class TdApi {
         public int basicGroupId;
 
         /**
-         * Default constructor.
+         * A supergroup has been created from a basic group.
          */
         public MessageChatUpgradeFrom() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A supergroup has been created from a basic group.
          *
          * @param title Title of the newly created supergroup.
          * @param basicGroupId The identifier of the original basic group.
@@ -14040,20 +14889,20 @@ public class TdApi {
      */
     public static class MessagePinMessage extends MessageContent {
         /**
-         * Identifier of the pinned message, can be an identifier of a deleted message.
+         * Identifier of the pinned message, can be an identifier of a deleted message or 0.
          */
         public long messageId;
 
         /**
-         * Default constructor.
+         * A message has been pinned.
          */
         public MessagePinMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message has been pinned.
          *
-         * @param messageId Identifier of the pinned message, can be an identifier of a deleted message.
+         * @param messageId Identifier of the pinned message, can be an identifier of a deleted message or 0.
          */
         public MessagePinMessage(long messageId) {
             this.messageId = messageId;
@@ -14079,7 +14928,7 @@ public class TdApi {
     public static class MessageScreenshotTaken extends MessageContent {
 
         /**
-         * Default constructor.
+         * A screenshot of a message in the chat has been taken.
          */
         public MessageScreenshotTaken() {
         }
@@ -14108,13 +14957,13 @@ public class TdApi {
         public int ttl;
 
         /**
-         * Default constructor.
+         * The TTL (Time To Live) setting messages in a secret chat has been changed.
          */
         public MessageChatSetTtl() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The TTL (Time To Live) setting messages in a secret chat has been changed.
          *
          * @param ttl New TTL.
          */
@@ -14146,13 +14995,13 @@ public class TdApi {
         public String text;
 
         /**
-         * Default constructor.
+         * A non-standard action has happened in the chat.
          */
         public MessageCustomServiceAction() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A non-standard action has happened in the chat.
          *
          * @param text Message text to be shown in the chat.
          */
@@ -14183,7 +15032,7 @@ public class TdApi {
          */
         public long gameMessageId;
         /**
-         * Identifier of the game, may be different from the games presented in the message with the game.
+         * Identifier of the game; may be different from the games presented in the message with the game.
          */
         public long gameId;
         /**
@@ -14192,16 +15041,16 @@ public class TdApi {
         public int score;
 
         /**
-         * Default constructor.
+         * A new high score was achieved in a game.
          */
         public MessageGameScore() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new high score was achieved in a game.
          *
          * @param gameMessageId Identifier of the message with the game, can be an identifier of a deleted message.
-         * @param gameId Identifier of the game, may be different from the games presented in the message with the game.
+         * @param gameId Identifier of the game; may be different from the games presented in the message with the game.
          * @param score New score.
          */
         public MessageGameScore(long gameMessageId, long gameId, int score) {
@@ -14242,13 +15091,13 @@ public class TdApi {
         public long totalAmount;
 
         /**
-         * Default constructor.
+         * A payment has been completed.
          */
         public MessagePaymentSuccessful() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A payment has been completed.
          *
          * @param invoiceMessageId Identifier of the message with the corresponding invoice; can be an identifier of a deleted message.
          * @param currency Currency for the price of the product.
@@ -14312,13 +15161,13 @@ public class TdApi {
         public String providerPaymentChargeId;
 
         /**
-         * Default constructor.
+         * A payment has been completed; for bots only.
          */
         public MessagePaymentSuccessfulBot() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A payment has been completed; for bots only.
          *
          * @param invoiceMessageId Identifier of the message with the corresponding invoice; can be an identifier of a deleted message.
          * @param currency Currency for price of the product.
@@ -14360,7 +15209,7 @@ public class TdApi {
     public static class MessageContactRegistered extends MessageContent {
 
         /**
-         * Default constructor.
+         * A contact has registered with Telegram.
          */
         public MessageContactRegistered() {
         }
@@ -14389,13 +15238,13 @@ public class TdApi {
         public String domainName;
 
         /**
-         * Default constructor.
+         * The current user has connected a website by logging in using Telegram Login Widget on it.
          */
         public MessageWebsiteConnected() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The current user has connected a website by logging in using Telegram Login Widget on it.
          *
          * @param domainName Domain name of the connected website.
          */
@@ -14427,13 +15276,13 @@ public class TdApi {
         public PassportElementType[] types;
 
         /**
-         * Default constructor.
+         * Telegram Passport data has been sent.
          */
         public MessagePassportDataSent() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Telegram Passport data has been sent.
          *
          * @param types List of Telegram Passport element types sent.
          */
@@ -14469,13 +15318,13 @@ public class TdApi {
         public EncryptedCredentials credentials;
 
         /**
-         * Default constructor.
+         * Telegram Passport data has been received; for bots only.
          */
         public MessagePassportDataReceived() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Telegram Passport data has been received; for bots only.
          *
          * @param elements List of received Telegram Passport elements.
          * @param credentials Encrypted data credentials.
@@ -14505,7 +15354,7 @@ public class TdApi {
     public static class MessageUnsupported extends MessageContent {
 
         /**
-         * Default constructor.
+         * Message content that is not supported by the client.
          */
         public MessageUnsupported() {
         }
@@ -14525,14 +15374,71 @@ public class TdApi {
     }
 
     /**
-     * This class is an abstract base class.
-     * Contains information about the initial sender of a forwarded message.
+     * Contains information about a forwarded message.
      */
-    public abstract static class MessageForwardInfo extends Object {
+    public static class MessageForwardInfo extends Object {
+        /**
+         * Origin of a forwarded message.
+         */
+        public MessageForwardOrigin origin;
+        /**
+         * Point in time (Unix timestamp) when the message was originally sent.
+         */
+        public int date;
+        /**
+         * For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded last time; 0 if unknown.
+         */
+        public long fromChatId;
+        /**
+         * For messages forwarded to the chat with the current user (saved messages), the identifier of the original message from which the new message was forwarded last time; 0 if unknown.
+         */
+        public long fromMessageId;
+
+        /**
+         * Contains information about a forwarded message.
+         */
+        public MessageForwardInfo() {
+        }
+
+        /**
+         * Contains information about a forwarded message.
+         *
+         * @param origin Origin of a forwarded message.
+         * @param date Point in time (Unix timestamp) when the message was originally sent.
+         * @param fromChatId For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded last time; 0 if unknown.
+         * @param fromMessageId For messages forwarded to the chat with the current user (saved messages), the identifier of the original message from which the new message was forwarded last time; 0 if unknown.
+         */
+        public MessageForwardInfo(MessageForwardOrigin origin, int date, long fromChatId, long fromMessageId) {
+            this.origin = origin;
+            this.date = date;
+            this.fromChatId = fromChatId;
+            this.fromMessageId = fromMessageId;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1622371186;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * This class is an abstract base class.
+     * Contains information about the origin of a forwarded message.
+     */
+    public abstract static class MessageForwardOrigin extends Object {
         @Retention(RetentionPolicy.SOURCE)
         @IntDef({
-            MessageForwardedFromUser.CONSTRUCTOR,
-            MessageForwardedPost.CONSTRUCTOR
+            MessageForwardOriginUser.CONSTRUCTOR,
+            MessageForwardOriginHiddenUser.CONSTRUCTOR,
+            MessageForwardOriginChannel.CONSTRUCTOR
         })
         public @interface Constructors {}
 
@@ -14547,49 +15453,69 @@ public class TdApi {
     /**
      * The message was originally written by a known user.
      */
-    public static class MessageForwardedFromUser extends MessageForwardInfo {
+    public static class MessageForwardOriginUser extends MessageForwardOrigin {
         /**
-         * Identifier of the user that originally sent this message.
+         * Identifier of the user that originally sent the message.
          */
         public int senderUserId;
-        /**
-         * Point in time (Unix timestamp) when the message was originally sent.
-         */
-        public int date;
-        /**
-         * For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded; 0 if unknown.
-         */
-        public long forwardedFromChatId;
-        /**
-         * For messages forwarded to the chat with the current user (saved messages) the identifier of the original message from which the new message was forwarded; 0 if unknown.
-         */
-        public long forwardedFromMessageId;
 
         /**
-         * Default constructor.
+         * The message was originally written by a known user.
          */
-        public MessageForwardedFromUser() {
+        public MessageForwardOriginUser() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The message was originally written by a known user.
          *
-         * @param senderUserId Identifier of the user that originally sent this message.
-         * @param date Point in time (Unix timestamp) when the message was originally sent.
-         * @param forwardedFromChatId For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded; 0 if unknown.
-         * @param forwardedFromMessageId For messages forwarded to the chat with the current user (saved messages) the identifier of the original message from which the new message was forwarded; 0 if unknown.
+         * @param senderUserId Identifier of the user that originally sent the message.
          */
-        public MessageForwardedFromUser(int senderUserId, int date, long forwardedFromChatId, long forwardedFromMessageId) {
+        public MessageForwardOriginUser(int senderUserId) {
             this.senderUserId = senderUserId;
-            this.date = date;
-            this.forwardedFromChatId = forwardedFromChatId;
-            this.forwardedFromMessageId = forwardedFromMessageId;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1004332765;
+        public static final int CONSTRUCTOR = 2781520;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * The message was originally written by a user, which is hidden by his privacy settings.
+     */
+    public static class MessageForwardOriginHiddenUser extends MessageForwardOrigin {
+        /**
+         * Name of the sender.
+         */
+        public String senderName;
+
+        /**
+         * The message was originally written by a user, which is hidden by his privacy settings.
+         */
+        public MessageForwardOriginHiddenUser() {
+        }
+
+        /**
+         * The message was originally written by a user, which is hidden by his privacy settings.
+         *
+         * @param senderName Name of the sender.
+         */
+        public MessageForwardOriginHiddenUser(String senderName) {
+            this.senderName = senderName;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -271257885;
 
         /**
          * @return this.CONSTRUCTOR
@@ -14603,61 +15529,43 @@ public class TdApi {
     /**
      * The message was originally a post in a channel.
      */
-    public static class MessageForwardedPost extends MessageForwardInfo {
+    public static class MessageForwardOriginChannel extends MessageForwardOrigin {
         /**
-         * Identifier of the chat from which the message was forwarded.
+         * Identifier of the chat from which the message was originally forwarded.
          */
         public long chatId;
         /**
-         * Post author signature.
-         */
-        public String authorSignature;
-        /**
-         * Point in time (Unix timestamp) when the message was originally sent.
-         */
-        public int date;
-        /**
-         * Message identifier of the original message from which the new message was forwarded; 0 if unknown.
+         * Message identifier of the original message; 0 if unknown.
          */
         public long messageId;
         /**
-         * For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded; 0 if unknown.
+         * Original post author signature.
          */
-        public long forwardedFromChatId;
-        /**
-         * For messages forwarded to the chat with the current user (saved messages), the identifier of the original message from which the new message was forwarded; 0 if unknown.
-         */
-        public long forwardedFromMessageId;
+        public String authorSignature;
 
         /**
-         * Default constructor.
+         * The message was originally a post in a channel.
          */
-        public MessageForwardedPost() {
+        public MessageForwardOriginChannel() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The message was originally a post in a channel.
          *
-         * @param chatId Identifier of the chat from which the message was forwarded.
-         * @param authorSignature Post author signature.
-         * @param date Point in time (Unix timestamp) when the message was originally sent.
-         * @param messageId Message identifier of the original message from which the new message was forwarded; 0 if unknown.
-         * @param forwardedFromChatId For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded; 0 if unknown.
-         * @param forwardedFromMessageId For messages forwarded to the chat with the current user (saved messages), the identifier of the original message from which the new message was forwarded; 0 if unknown.
+         * @param chatId Identifier of the chat from which the message was originally forwarded.
+         * @param messageId Message identifier of the original message; 0 if unknown.
+         * @param authorSignature Original post author signature.
          */
-        public MessageForwardedPost(long chatId, String authorSignature, int date, long messageId, long forwardedFromChatId, long forwardedFromMessageId) {
+        public MessageForwardOriginChannel(long chatId, long messageId, String authorSignature) {
             this.chatId = chatId;
-            this.authorSignature = authorSignature;
-            this.date = date;
             this.messageId = messageId;
-            this.forwardedFromChatId = forwardedFromChatId;
-            this.forwardedFromMessageId = forwardedFromMessageId;
+            this.authorSignature = authorSignature;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -244050875;
+        public static final int CONSTRUCTOR = 1490730723;
 
         /**
          * @return this.CONSTRUCTOR
@@ -14694,7 +15602,7 @@ public class TdApi {
     public static class MessageSendingStatePending extends MessageSendingState {
 
         /**
-         * Default constructor.
+         * The message is being sent now, but has not yet been delivered to the server.
          */
         public MessageSendingStatePending() {
         }
@@ -14719,7 +15627,7 @@ public class TdApi {
     public static class MessageSendingStateFailed extends MessageSendingState {
 
         /**
-         * Default constructor.
+         * The message failed to be sent.
          */
         public MessageSendingStateFailed() {
         }
@@ -14752,13 +15660,13 @@ public class TdApi {
         public Message[] messages;
 
         /**
-         * Default constructor.
+         * Contains a list of messages.
          */
         public Messages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of messages.
          *
          * @param totalCount Approximate total count of messages found.
          * @param messages List of messages; messages may be null.
@@ -14796,13 +15704,13 @@ public class TdApi {
         public NetworkStatisticsEntry[] entries;
 
         /**
-         * Default constructor.
+         * A full list of available network statistic entries.
          */
         public NetworkStatistics() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A full list of available network statistic entries.
          *
          * @param sinceDate Point in time (Unix timestamp) when the app began collecting statistics.
          * @param entries Network statistics entries.
@@ -14868,13 +15776,13 @@ public class TdApi {
         public long receivedBytes;
 
         /**
-         * Default constructor.
+         * Contains information about the total amount of data that was used to send and receive files.
          */
         public NetworkStatisticsEntryFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about the total amount of data that was used to send and receive files.
          *
          * @param fileType Type of the file the data is part of.
          * @param networkType Type of the network the data was sent through. Call setNetworkType to maintain the actual network type.
@@ -14924,13 +15832,13 @@ public class TdApi {
         public double duration;
 
         /**
-         * Default constructor.
+         * Contains information about the total amount of data that was used for calls.
          */
         public NetworkStatisticsEntryCall() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about the total amount of data that was used for calls.
          *
          * @param networkType Type of the network the data was sent through. Call setNetworkType to maintain the actual network type.
          * @param sentBytes Total number of bytes sent.
@@ -14987,7 +15895,7 @@ public class TdApi {
     public static class NetworkTypeNone extends NetworkType {
 
         /**
-         * Default constructor.
+         * The network is not available.
          */
         public NetworkTypeNone() {
         }
@@ -15012,7 +15920,7 @@ public class TdApi {
     public static class NetworkTypeMobile extends NetworkType {
 
         /**
-         * Default constructor.
+         * A mobile network.
          */
         public NetworkTypeMobile() {
         }
@@ -15037,7 +15945,7 @@ public class TdApi {
     public static class NetworkTypeMobileRoaming extends NetworkType {
 
         /**
-         * Default constructor.
+         * A mobile roaming network.
          */
         public NetworkTypeMobileRoaming() {
         }
@@ -15062,7 +15970,7 @@ public class TdApi {
     public static class NetworkTypeWiFi extends NetworkType {
 
         /**
-         * Default constructor.
+         * A Wi-Fi network.
          */
         public NetworkTypeWiFi() {
         }
@@ -15087,7 +15995,7 @@ public class TdApi {
     public static class NetworkTypeOther extends NetworkType {
 
         /**
-         * Default constructor.
+         * A different network type (e.g., Ethernet network).
          */
         public NetworkTypeOther() {
         }
@@ -15107,6 +16015,240 @@ public class TdApi {
     }
 
     /**
+     * Contains information about a notification.
+     */
+    public static class Notification extends Object {
+        /**
+         * Unique persistent identifier of this notification.
+         */
+        public int id;
+        /**
+         * Notification date.
+         */
+        public int date;
+        /**
+         * Notification type.
+         */
+        public NotificationType type;
+
+        /**
+         * Contains information about a notification.
+         */
+        public Notification() {
+        }
+
+        /**
+         * Contains information about a notification.
+         *
+         * @param id Unique persistent identifier of this notification.
+         * @param date Notification date.
+         * @param type Notification type.
+         */
+        public Notification(int id, int date, NotificationType type) {
+            this.id = id;
+            this.date = date;
+            this.type = type;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 926876603;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Describes a group of notifications.
+     */
+    public static class NotificationGroup extends Object {
+        /**
+         * Unique persistent auto-incremented from 1 identifier of the notification group.
+         */
+        public int id;
+        /**
+         * Type of the group.
+         */
+        public NotificationGroupType type;
+        /**
+         * Identifier of a chat to which all notifications in the group belong.
+         */
+        public long chatId;
+        /**
+         * Total number of active notifications in the group.
+         */
+        public int totalCount;
+        /**
+         * The list of active notifications.
+         */
+        public Notification[] notifications;
+
+        /**
+         * Describes a group of notifications.
+         */
+        public NotificationGroup() {
+        }
+
+        /**
+         * Describes a group of notifications.
+         *
+         * @param id Unique persistent auto-incremented from 1 identifier of the notification group.
+         * @param type Type of the group.
+         * @param chatId Identifier of a chat to which all notifications in the group belong.
+         * @param totalCount Total number of active notifications in the group.
+         * @param notifications The list of active notifications.
+         */
+        public NotificationGroup(int id, NotificationGroupType type, long chatId, int totalCount, Notification[] notifications) {
+            this.id = id;
+            this.type = type;
+            this.chatId = chatId;
+            this.totalCount = totalCount;
+            this.notifications = notifications;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 780691541;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * This class is an abstract base class.
+     * Describes type of notifications in the group.
+     */
+    public abstract static class NotificationGroupType extends Object {
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef({
+            NotificationGroupTypeMessages.CONSTRUCTOR,
+            NotificationGroupTypeMentions.CONSTRUCTOR,
+            NotificationGroupTypeSecretChat.CONSTRUCTOR,
+            NotificationGroupTypeCalls.CONSTRUCTOR
+        })
+        public @interface Constructors {}
+
+        /**
+         * @return identifier uniquely determining type of the object.
+         */
+        @Constructors
+        @Override
+        public abstract int getConstructor();
+    }
+
+    /**
+     * A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages.
+     */
+    public static class NotificationGroupTypeMessages extends NotificationGroupType {
+
+        /**
+         * A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages.
+         */
+        public NotificationGroupTypeMessages() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1702481123;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message.
+     */
+    public static class NotificationGroupTypeMentions extends NotificationGroupType {
+
+        /**
+         * A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message.
+         */
+        public NotificationGroupTypeMentions() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -2050324051;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A group containing a notification of type notificationTypeNewSecretChat.
+     */
+    public static class NotificationGroupTypeSecretChat extends NotificationGroupType {
+
+        /**
+         * A group containing a notification of type notificationTypeNewSecretChat.
+         */
+        public NotificationGroupTypeSecretChat() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1390759476;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A group containing notifications of type notificationTypeNewCall.
+     */
+    public static class NotificationGroupTypeCalls extends NotificationGroupType {
+
+        /**
+         * A group containing notifications of type notificationTypeNewCall.
+         */
+        public NotificationGroupTypeCalls() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1379123538;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * This class is an abstract base class.
      * Describes the types of chats to which notification settings are applied.
      */
@@ -15114,7 +16256,8 @@ public class TdApi {
         @Retention(RetentionPolicy.SOURCE)
         @IntDef({
             NotificationSettingsScopePrivateChats.CONSTRUCTOR,
-            NotificationSettingsScopeGroupChats.CONSTRUCTOR
+            NotificationSettingsScopeGroupChats.CONSTRUCTOR,
+            NotificationSettingsScopeChannelChats.CONSTRUCTOR
         })
         public @interface Constructors {}
 
@@ -15132,7 +16275,7 @@ public class TdApi {
     public static class NotificationSettingsScopePrivateChats extends NotificationSettingsScope {
 
         /**
-         * Default constructor.
+         * Notification settings applied to all private and secret chats when the corresponding chat setting has a default value.
          */
         public NotificationSettingsScopePrivateChats() {
         }
@@ -15152,12 +16295,12 @@ public class TdApi {
     }
 
     /**
-     * Notification settings applied to all basic groups, supergroups and channels when the corresponding chat setting has a default value.
+     * Notification settings applied to all basic groups and supergroups when the corresponding chat setting has a default value.
      */
     public static class NotificationSettingsScopeGroupChats extends NotificationSettingsScope {
 
         /**
-         * Default constructor.
+         * Notification settings applied to all basic groups and supergroups when the corresponding chat setting has a default value.
          */
         public NotificationSettingsScopeGroupChats() {
         }
@@ -15177,12 +16320,210 @@ public class TdApi {
     }
 
     /**
+     * Notification settings applied to all channels when the corresponding chat setting has a default value.
+     */
+    public static class NotificationSettingsScopeChannelChats extends NotificationSettingsScope {
+
+        /**
+         * Notification settings applied to all channels when the corresponding chat setting has a default value.
+         */
+        public NotificationSettingsScopeChannelChats() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 548013448;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * This class is an abstract base class.
+     * Contains detailed information about a notification.
+     */
+    public abstract static class NotificationType extends Object {
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef({
+            NotificationTypeNewMessage.CONSTRUCTOR,
+            NotificationTypeNewSecretChat.CONSTRUCTOR,
+            NotificationTypeNewCall.CONSTRUCTOR,
+            NotificationTypeNewPushMessage.CONSTRUCTOR
+        })
+        public @interface Constructors {}
+
+        /**
+         * @return identifier uniquely determining type of the object.
+         */
+        @Constructors
+        @Override
+        public abstract int getConstructor();
+    }
+
+    /**
+     * New message was received.
+     */
+    public static class NotificationTypeNewMessage extends NotificationType {
+        /**
+         * The message.
+         */
+        public Message message;
+
+        /**
+         * New message was received.
+         */
+        public NotificationTypeNewMessage() {
+        }
+
+        /**
+         * New message was received.
+         *
+         * @param message The message.
+         */
+        public NotificationTypeNewMessage(Message message) {
+            this.message = message;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1885935159;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * New secret chat was created.
+     */
+    public static class NotificationTypeNewSecretChat extends NotificationType {
+
+        /**
+         * New secret chat was created.
+         */
+        public NotificationTypeNewSecretChat() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1198638768;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * New call was received.
+     */
+    public static class NotificationTypeNewCall extends NotificationType {
+        /**
+         * Call identifier.
+         */
+        public int callId;
+
+        /**
+         * New call was received.
+         */
+        public NotificationTypeNewCall() {
+        }
+
+        /**
+         * New call was received.
+         *
+         * @param callId Call identifier.
+         */
+        public NotificationTypeNewCall(int callId) {
+            this.callId = callId;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1712734585;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * New message was received through a push notification.
+     */
+    public static class NotificationTypeNewPushMessage extends NotificationType {
+        /**
+         * The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages and as replyToMessageId.
+         */
+        public long messageId;
+        /**
+         * Sender of the message. Corresponding user may be inaccessible.
+         */
+        public int senderUserId;
+        /**
+         * Push message content.
+         */
+        public PushMessageContent content;
+
+        /**
+         * New message was received through a push notification.
+         */
+        public NotificationTypeNewPushMessage() {
+        }
+
+        /**
+         * New message was received through a push notification.
+         *
+         * @param messageId The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages and as replyToMessageId.
+         * @param senderUserId Sender of the message. Corresponding user may be inaccessible.
+         * @param content Push message content.
+         */
+        public NotificationTypeNewPushMessage(long messageId, int senderUserId, PushMessageContent content) {
+            this.messageId = messageId;
+            this.senderUserId = senderUserId;
+            this.content = content;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1167232404;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * An object of this type is returned on a successful function call for certain functions.
      */
     public static class Ok extends Object {
 
         /**
-         * Default constructor.
+         * An object of this type is returned on a successful function call for certain functions.
          */
         public Ok() {
         }
@@ -15224,7 +16565,7 @@ public class TdApi {
     }
 
     /**
-     * Boolean option.
+     * Represents a boolean option.
      */
     public static class OptionValueBoolean extends OptionValue {
         /**
@@ -15233,13 +16574,13 @@ public class TdApi {
         public boolean value;
 
         /**
-         * Default constructor.
+         * Represents a boolean option.
          */
         public OptionValueBoolean() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a boolean option.
          *
          * @param value The value of the option.
          */
@@ -15262,12 +16603,12 @@ public class TdApi {
     }
 
     /**
-     * An unknown option or an option which has a default value.
+     * Represents an unknown option or an option which has a default value.
      */
     public static class OptionValueEmpty extends OptionValue {
 
         /**
-         * Default constructor.
+         * Represents an unknown option or an option which has a default value.
          */
         public OptionValueEmpty() {
         }
@@ -15287,7 +16628,7 @@ public class TdApi {
     }
 
     /**
-     * An integer option.
+     * Represents an integer option.
      */
     public static class OptionValueInteger extends OptionValue {
         /**
@@ -15296,13 +16637,13 @@ public class TdApi {
         public int value;
 
         /**
-         * Default constructor.
+         * Represents an integer option.
          */
         public OptionValueInteger() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents an integer option.
          *
          * @param value The value of the option.
          */
@@ -15325,7 +16666,7 @@ public class TdApi {
     }
 
     /**
-     * A string option.
+     * Represents a string option.
      */
     public static class OptionValueString extends OptionValue {
         /**
@@ -15334,13 +16675,13 @@ public class TdApi {
         public String value;
 
         /**
-         * Default constructor.
+         * Represents a string option.
          */
         public OptionValueString() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a string option.
          *
          * @param value The value of the option.
          */
@@ -15384,13 +16725,13 @@ public class TdApi {
         @Nullable public Address shippingAddress;
 
         /**
-         * Default constructor.
+         * Order information.
          */
         public OrderInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Order information.
          *
          * @param name Name of the user.
          * @param phoneNumber Phone number of the user.
@@ -15430,6 +16771,7 @@ public class TdApi {
             PageBlockAuthorDate.CONSTRUCTOR,
             PageBlockHeader.CONSTRUCTOR,
             PageBlockSubheader.CONSTRUCTOR,
+            PageBlockKicker.CONSTRUCTOR,
             PageBlockParagraph.CONSTRUCTOR,
             PageBlockPreformatted.CONSTRUCTOR,
             PageBlockFooter.CONSTRUCTOR,
@@ -15447,7 +16789,11 @@ public class TdApi {
             PageBlockEmbeddedPost.CONSTRUCTOR,
             PageBlockCollage.CONSTRUCTOR,
             PageBlockSlideshow.CONSTRUCTOR,
-            PageBlockChatLink.CONSTRUCTOR
+            PageBlockChatLink.CONSTRUCTOR,
+            PageBlockTable.CONSTRUCTOR,
+            PageBlockDetails.CONSTRUCTOR,
+            PageBlockRelatedArticles.CONSTRUCTOR,
+            PageBlockMap.CONSTRUCTOR
         })
         public @interface Constructors {}
 
@@ -15469,13 +16815,13 @@ public class TdApi {
         public RichText title;
 
         /**
-         * Default constructor.
+         * The title of a page.
          */
         public PageBlockTitle() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The title of a page.
          *
          * @param title Title.
          */
@@ -15507,13 +16853,13 @@ public class TdApi {
         public RichText subtitle;
 
         /**
-         * Default constructor.
+         * The subtitle of a page.
          */
         public PageBlockSubtitle() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The subtitle of a page.
          *
          * @param subtitle Subtitle.
          */
@@ -15549,13 +16895,13 @@ public class TdApi {
         public int publishDate;
 
         /**
-         * Default constructor.
+         * The author and publishing date of a page.
          */
         public PageBlockAuthorDate() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The author and publishing date of a page.
          *
          * @param author Author.
          * @param publishDate Point in time (Unix timestamp) when the article was published; 0 if unknown.
@@ -15589,13 +16935,13 @@ public class TdApi {
         public RichText header;
 
         /**
-         * Default constructor.
+         * A header.
          */
         public PageBlockHeader() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A header.
          *
          * @param header Header.
          */
@@ -15627,13 +16973,13 @@ public class TdApi {
         public RichText subheader;
 
         /**
-         * Default constructor.
+         * A subheader.
          */
         public PageBlockSubheader() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A subheader.
          *
          * @param subheader Subheader.
          */
@@ -15656,6 +17002,44 @@ public class TdApi {
     }
 
     /**
+     * A kicker.
+     */
+    public static class PageBlockKicker extends PageBlock {
+        /**
+         * Kicker.
+         */
+        public RichText kicker;
+
+        /**
+         * A kicker.
+         */
+        public PageBlockKicker() {
+        }
+
+        /**
+         * A kicker.
+         *
+         * @param kicker Kicker.
+         */
+        public PageBlockKicker(RichText kicker) {
+            this.kicker = kicker;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1361282635;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * A text paragraph.
      */
     public static class PageBlockParagraph extends PageBlock {
@@ -15665,13 +17049,13 @@ public class TdApi {
         public RichText text;
 
         /**
-         * Default constructor.
+         * A text paragraph.
          */
         public PageBlockParagraph() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A text paragraph.
          *
          * @param text Paragraph text.
          */
@@ -15707,13 +17091,13 @@ public class TdApi {
         public String language;
 
         /**
-         * Default constructor.
+         * A preformatted text paragraph.
          */
         public PageBlockPreformatted() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A preformatted text paragraph.
          *
          * @param text Paragraph text.
          * @param language Programming language for which the text should be formatted.
@@ -15747,13 +17131,13 @@ public class TdApi {
         public RichText footer;
 
         /**
-         * Default constructor.
+         * The footer of a page.
          */
         public PageBlockFooter() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The footer of a page.
          *
          * @param footer Footer.
          */
@@ -15781,7 +17165,7 @@ public class TdApi {
     public static class PageBlockDivider extends PageBlock {
 
         /**
-         * Default constructor.
+         * An empty block separating a page.
          */
         public PageBlockDivider() {
         }
@@ -15810,13 +17194,13 @@ public class TdApi {
         public String name;
 
         /**
-         * Default constructor.
+         * An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor.
          */
         public PageBlockAnchor() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor.
          *
          * @param name Name of the anchor.
          */
@@ -15839,39 +17223,33 @@ public class TdApi {
     }
 
     /**
-     * A list of texts.
+     * A list of data blocks.
      */
     public static class PageBlockList extends PageBlock {
         /**
-         * Texts.
+         * The items of the list.
          */
-        public RichText[] items;
-        /**
-         * True, if the items should be marked with numbers.
-         */
-        public boolean isOrdered;
+        public PageBlockListItem[] items;
 
         /**
-         * Default constructor.
+         * A list of data blocks.
          */
         public PageBlockList() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A list of data blocks.
          *
-         * @param items Texts.
-         * @param isOrdered True, if the items should be marked with numbers.
+         * @param items The items of the list.
          */
-        public PageBlockList(RichText[] items, boolean isOrdered) {
+        public PageBlockList(PageBlockListItem[] items) {
             this.items = items;
-            this.isOrdered = isOrdered;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -1752631674;
+        public static final int CONSTRUCTOR = -1037074852;
 
         /**
          * @return this.CONSTRUCTOR
@@ -15891,31 +17269,31 @@ public class TdApi {
          */
         public RichText text;
         /**
-         * Quote caption.
+         * Quote credit.
          */
-        public RichText caption;
+        public RichText credit;
 
         /**
-         * Default constructor.
+         * A block quote.
          */
         public PageBlockBlockQuote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A block quote.
          *
          * @param text Quote text.
-         * @param caption Quote caption.
+         * @param credit Quote credit.
          */
-        public PageBlockBlockQuote(RichText text, RichText caption) {
+        public PageBlockBlockQuote(RichText text, RichText credit) {
             this.text = text;
-            this.caption = caption;
+            this.credit = credit;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -37421406;
+        public static final int CONSTRUCTOR = 1657834142;
 
         /**
          * @return this.CONSTRUCTOR
@@ -15935,31 +17313,31 @@ public class TdApi {
          */
         public RichText text;
         /**
-         * Quote caption.
+         * Quote credit.
          */
-        public RichText caption;
+        public RichText credit;
 
         /**
-         * Default constructor.
+         * A pull quote.
          */
         public PageBlockPullQuote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A pull quote.
          *
          * @param text Quote text.
-         * @param caption Quote caption.
+         * @param credit Quote credit.
          */
-        public PageBlockPullQuote(RichText text, RichText caption) {
+        public PageBlockPullQuote(RichText text, RichText credit) {
             this.text = text;
-            this.caption = caption;
+            this.credit = credit;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -1799498665;
+        public static final int CONSTRUCTOR = 490242317;
 
         /**
          * @return this.CONSTRUCTOR
@@ -15981,26 +17359,26 @@ public class TdApi {
         /**
          * Animation caption.
          */
-        public RichText caption;
+        public PageBlockCaption caption;
         /**
          * True, if the animation should be played automatically.
          */
         public boolean needAutoplay;
 
         /**
-         * Default constructor.
+         * An animation.
          */
         public PageBlockAnimation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An animation.
          *
          * @param animation Animation file; may be null.
          * @param caption Animation caption.
          * @param needAutoplay True, if the animation should be played automatically.
          */
-        public PageBlockAnimation(Animation animation, RichText caption, boolean needAutoplay) {
+        public PageBlockAnimation(Animation animation, PageBlockCaption caption, boolean needAutoplay) {
             this.animation = animation;
             this.caption = caption;
             this.needAutoplay = needAutoplay;
@@ -16009,7 +17387,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1639478661;
+        public static final int CONSTRUCTOR = 1355669513;
 
         /**
          * @return this.CONSTRUCTOR
@@ -16031,21 +17409,21 @@ public class TdApi {
         /**
          * Audio file caption.
          */
-        public RichText caption;
+        public PageBlockCaption caption;
 
         /**
-         * Default constructor.
+         * An audio file.
          */
         public PageBlockAudio() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An audio file.
          *
          * @param audio Audio file; may be null.
          * @param caption Audio file caption.
          */
-        public PageBlockAudio(Audio audio, RichText caption) {
+        public PageBlockAudio(Audio audio, PageBlockCaption caption) {
             this.audio = audio;
             this.caption = caption;
         }
@@ -16053,7 +17431,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1898245855;
+        public static final int CONSTRUCTOR = -63371245;
 
         /**
          * @return this.CONSTRUCTOR
@@ -16075,29 +17453,35 @@ public class TdApi {
         /**
          * Photo caption.
          */
-        public RichText caption;
+        public PageBlockCaption caption;
+        /**
+         * URL that needs to be opened when the photo is clicked.
+         */
+        public String url;
 
         /**
-         * Default constructor.
+         * A photo.
          */
         public PageBlockPhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A photo.
          *
          * @param photo Photo file; may be null.
          * @param caption Photo caption.
+         * @param url URL that needs to be opened when the photo is clicked.
          */
-        public PageBlockPhoto(Photo photo, RichText caption) {
+        public PageBlockPhoto(Photo photo, PageBlockCaption caption, String url) {
             this.photo = photo;
             this.caption = caption;
+            this.url = url;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -637181825;
+        public static final int CONSTRUCTOR = 417601156;
 
         /**
          * @return this.CONSTRUCTOR
@@ -16119,7 +17503,7 @@ public class TdApi {
         /**
          * Video caption.
          */
-        public RichText caption;
+        public PageBlockCaption caption;
         /**
          * True, if the video should be played automatically.
          */
@@ -16130,20 +17514,20 @@ public class TdApi {
         public boolean isLooped;
 
         /**
-         * Default constructor.
+         * A video.
          */
         public PageBlockVideo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A video.
          *
          * @param video Video file; may be null.
          * @param caption Video caption.
          * @param needAutoplay True, if the video should be played automatically.
          * @param isLooped True, if the video should be looped.
          */
-        public PageBlockVideo(Video video, RichText caption, boolean needAutoplay, boolean isLooped) {
+        public PageBlockVideo(Video video, PageBlockCaption caption, boolean needAutoplay, boolean isLooped) {
             this.video = video;
             this.caption = caption;
             this.needAutoplay = needAutoplay;
@@ -16153,7 +17537,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1610373002;
+        public static final int CONSTRUCTOR = 510041394;
 
         /**
          * @return this.CONSTRUCTOR
@@ -16174,13 +17558,13 @@ public class TdApi {
         public PageBlock cover;
 
         /**
-         * Default constructor.
+         * A page cover.
          */
         public PageBlockCover() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A page cover.
          *
          * @param cover Cover.
          */
@@ -16219,17 +17603,17 @@ public class TdApi {
          */
         @Nullable public Photo posterPhoto;
         /**
-         * Block width.
+         * Block width, 0 if unknown.
          */
         public int width;
         /**
-         * Block height.
+         * Block height, 0 if unknown.
          */
         public int height;
         /**
          * Block caption.
          */
-        public RichText caption;
+        public PageBlockCaption caption;
         /**
          * True, if the block should be full width.
          */
@@ -16240,24 +17624,24 @@ public class TdApi {
         public boolean allowScrolling;
 
         /**
-         * Default constructor.
+         * An embedded web page.
          */
         public PageBlockEmbedded() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An embedded web page.
          *
          * @param url Web page URL, if available.
          * @param html HTML-markup of the embedded page.
          * @param posterPhoto Poster photo, if available; may be null.
-         * @param width Block width.
-         * @param height Block height.
+         * @param width Block width, 0 if unknown.
+         * @param height Block height, 0 if unknown.
          * @param caption Block caption.
          * @param isFullWidth True, if the block should be full width.
          * @param allowScrolling True, if scrolling should be allowed.
          */
-        public PageBlockEmbedded(String url, String html, Photo posterPhoto, int width, int height, RichText caption, boolean isFullWidth, boolean allowScrolling) {
+        public PageBlockEmbedded(String url, String html, Photo posterPhoto, int width, int height, PageBlockCaption caption, boolean isFullWidth, boolean allowScrolling) {
             this.url = url;
             this.html = html;
             this.posterPhoto = posterPhoto;
@@ -16271,7 +17655,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -211257334;
+        public static final int CONSTRUCTOR = -1942577763;
 
         /**
          * @return this.CONSTRUCTOR
@@ -16309,16 +17693,16 @@ public class TdApi {
         /**
          * Post caption.
          */
-        public RichText caption;
+        public PageBlockCaption caption;
 
         /**
-         * Default constructor.
+         * An embedded post.
          */
         public PageBlockEmbeddedPost() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An embedded post.
          *
          * @param url Web page URL.
          * @param author Post author.
@@ -16327,7 +17711,7 @@ public class TdApi {
          * @param pageBlocks Post content.
          * @param caption Post caption.
          */
-        public PageBlockEmbeddedPost(String url, String author, Photo authorPhoto, int date, PageBlock[] pageBlocks, RichText caption) {
+        public PageBlockEmbeddedPost(String url, String author, Photo authorPhoto, int date, PageBlock[] pageBlocks, PageBlockCaption caption) {
             this.url = url;
             this.author = author;
             this.authorPhoto = authorPhoto;
@@ -16339,7 +17723,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1049948772;
+        public static final int CONSTRUCTOR = 397600949;
 
         /**
          * @return this.CONSTRUCTOR
@@ -16361,21 +17745,21 @@ public class TdApi {
         /**
          * Block caption.
          */
-        public RichText caption;
+        public PageBlockCaption caption;
 
         /**
-         * Default constructor.
+         * A collage.
          */
         public PageBlockCollage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A collage.
          *
          * @param pageBlocks Collage item contents.
          * @param caption Block caption.
          */
-        public PageBlockCollage(PageBlock[] pageBlocks, RichText caption) {
+        public PageBlockCollage(PageBlock[] pageBlocks, PageBlockCaption caption) {
             this.pageBlocks = pageBlocks;
             this.caption = caption;
         }
@@ -16383,7 +17767,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 911142202;
+        public static final int CONSTRUCTOR = 1163760110;
 
         /**
          * @return this.CONSTRUCTOR
@@ -16405,21 +17789,21 @@ public class TdApi {
         /**
          * Block caption.
          */
-        public RichText caption;
+        public PageBlockCaption caption;
 
         /**
-         * Default constructor.
+         * A slideshow.
          */
         public PageBlockSlideshow() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A slideshow.
          *
          * @param pageBlocks Slideshow item contents.
          * @param caption Block caption.
          */
-        public PageBlockSlideshow(PageBlock[] pageBlocks, RichText caption) {
+        public PageBlockSlideshow(PageBlock[] pageBlocks, PageBlockCaption caption) {
             this.pageBlocks = pageBlocks;
             this.caption = caption;
         }
@@ -16427,7 +17811,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 178557514;
+        public static final int CONSTRUCTOR = 539217375;
 
         /**
          * @return this.CONSTRUCTOR
@@ -16456,13 +17840,13 @@ public class TdApi {
         public String username;
 
         /**
-         * Default constructor.
+         * A link to a chat.
          */
         public PageBlockChatLink() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A link to a chat.
          *
          * @param title Chat title.
          * @param photo Chat photo; may be null.
@@ -16489,6 +17873,634 @@ public class TdApi {
     }
 
     /**
+     * A table.
+     */
+    public static class PageBlockTable extends PageBlock {
+        /**
+         * Table caption.
+         */
+        public RichText caption;
+        /**
+         * Table cells.
+         */
+        public PageBlockTableCell[][] cells;
+        /**
+         * True, if the table is bordered.
+         */
+        public boolean isBordered;
+        /**
+         * True, if the table is striped.
+         */
+        public boolean isStriped;
+
+        /**
+         * A table.
+         */
+        public PageBlockTable() {
+        }
+
+        /**
+         * A table.
+         *
+         * @param caption Table caption.
+         * @param cells Table cells.
+         * @param isBordered True, if the table is bordered.
+         * @param isStriped True, if the table is striped.
+         */
+        public PageBlockTable(RichText caption, PageBlockTableCell[][] cells, boolean isBordered, boolean isStriped) {
+            this.caption = caption;
+            this.cells = cells;
+            this.isBordered = isBordered;
+            this.isStriped = isStriped;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -942649288;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A collapsible block.
+     */
+    public static class PageBlockDetails extends PageBlock {
+        /**
+         * Always visible heading for the block.
+         */
+        public RichText header;
+        /**
+         * Block contents.
+         */
+        public PageBlock[] pageBlocks;
+        /**
+         * True, if the block is open by default.
+         */
+        public boolean isOpen;
+
+        /**
+         * A collapsible block.
+         */
+        public PageBlockDetails() {
+        }
+
+        /**
+         * A collapsible block.
+         *
+         * @param header Always visible heading for the block.
+         * @param pageBlocks Block contents.
+         * @param isOpen True, if the block is open by default.
+         */
+        public PageBlockDetails(RichText header, PageBlock[] pageBlocks, boolean isOpen) {
+            this.header = header;
+            this.pageBlocks = pageBlocks;
+            this.isOpen = isOpen;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1599869809;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Related articles.
+     */
+    public static class PageBlockRelatedArticles extends PageBlock {
+        /**
+         * Block header.
+         */
+        public RichText header;
+        /**
+         * List of related articles.
+         */
+        public PageBlockRelatedArticle[] articles;
+
+        /**
+         * Related articles.
+         */
+        public PageBlockRelatedArticles() {
+        }
+
+        /**
+         * Related articles.
+         *
+         * @param header Block header.
+         * @param articles List of related articles.
+         */
+        public PageBlockRelatedArticles(RichText header, PageBlockRelatedArticle[] articles) {
+            this.header = header;
+            this.articles = articles;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1807324374;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A map.
+     */
+    public static class PageBlockMap extends PageBlock {
+        /**
+         * Location of the map center.
+         */
+        public Location location;
+        /**
+         * Map zoom level.
+         */
+        public int zoom;
+        /**
+         * Map width.
+         */
+        public int width;
+        /**
+         * Map height.
+         */
+        public int height;
+        /**
+         * Block caption.
+         */
+        public PageBlockCaption caption;
+
+        /**
+         * A map.
+         */
+        public PageBlockMap() {
+        }
+
+        /**
+         * A map.
+         *
+         * @param location Location of the map center.
+         * @param zoom Map zoom level.
+         * @param width Map width.
+         * @param height Map height.
+         * @param caption Block caption.
+         */
+        public PageBlockMap(Location location, int zoom, int width, int height, PageBlockCaption caption) {
+            this.location = location;
+            this.zoom = zoom;
+            this.width = width;
+            this.height = height;
+            this.caption = caption;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1510961171;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Contains a caption of an instant view web page block, consisting of a text and a trailing credit.
+     */
+    public static class PageBlockCaption extends Object {
+        /**
+         * Content of the caption.
+         */
+        public RichText text;
+        /**
+         * Block credit (like HTML tag &lt;cite&gt;).
+         */
+        public RichText credit;
+
+        /**
+         * Contains a caption of an instant view web page block, consisting of a text and a trailing credit.
+         */
+        public PageBlockCaption() {
+        }
+
+        /**
+         * Contains a caption of an instant view web page block, consisting of a text and a trailing credit.
+         *
+         * @param text Content of the caption.
+         * @param credit Block credit (like HTML tag &lt;cite&gt;).
+         */
+        public PageBlockCaption(RichText text, RichText credit) {
+            this.text = text;
+            this.credit = credit;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1180064650;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * This class is an abstract base class.
+     * Describes a horizontal alignment of a table cell content.
+     */
+    public abstract static class PageBlockHorizontalAlignment extends Object {
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef({
+            PageBlockHorizontalAlignmentLeft.CONSTRUCTOR,
+            PageBlockHorizontalAlignmentCenter.CONSTRUCTOR,
+            PageBlockHorizontalAlignmentRight.CONSTRUCTOR
+        })
+        public @interface Constructors {}
+
+        /**
+         * @return identifier uniquely determining type of the object.
+         */
+        @Constructors
+        @Override
+        public abstract int getConstructor();
+    }
+
+    /**
+     * The content should be left-aligned.
+     */
+    public static class PageBlockHorizontalAlignmentLeft extends PageBlockHorizontalAlignment {
+
+        /**
+         * The content should be left-aligned.
+         */
+        public PageBlockHorizontalAlignmentLeft() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 848701417;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * The content should be center-aligned.
+     */
+    public static class PageBlockHorizontalAlignmentCenter extends PageBlockHorizontalAlignment {
+
+        /**
+         * The content should be center-aligned.
+         */
+        public PageBlockHorizontalAlignmentCenter() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1009203990;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * The content should be right-aligned.
+     */
+    public static class PageBlockHorizontalAlignmentRight extends PageBlockHorizontalAlignment {
+
+        /**
+         * The content should be right-aligned.
+         */
+        public PageBlockHorizontalAlignmentRight() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1371369214;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Describes an item of a list page block.
+     */
+    public static class PageBlockListItem extends Object {
+        /**
+         * Item label.
+         */
+        public String label;
+        /**
+         * Item blocks.
+         */
+        public PageBlock[] pageBlocks;
+
+        /**
+         * Describes an item of a list page block.
+         */
+        public PageBlockListItem() {
+        }
+
+        /**
+         * Describes an item of a list page block.
+         *
+         * @param label Item label.
+         * @param pageBlocks Item blocks.
+         */
+        public PageBlockListItem(String label, PageBlock[] pageBlocks) {
+            this.label = label;
+            this.pageBlocks = pageBlocks;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 323186259;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Contains information about a related article.
+     */
+    public static class PageBlockRelatedArticle extends Object {
+        /**
+         * Related article URL.
+         */
+        public String url;
+        /**
+         * Article title; may be empty.
+         */
+        public String title;
+        /**
+         * Article description; may be empty.
+         */
+        public String description;
+        /**
+         * Article photo; may be null.
+         */
+        @Nullable public Photo photo;
+        /**
+         * Article author; may be empty.
+         */
+        public String author;
+        /**
+         * Point in time (Unix timestamp) when the article was published; 0 if unknown.
+         */
+        public int publishDate;
+
+        /**
+         * Contains information about a related article.
+         */
+        public PageBlockRelatedArticle() {
+        }
+
+        /**
+         * Contains information about a related article.
+         *
+         * @param url Related article URL.
+         * @param title Article title; may be empty.
+         * @param description Article description; may be empty.
+         * @param photo Article photo; may be null.
+         * @param author Article author; may be empty.
+         * @param publishDate Point in time (Unix timestamp) when the article was published; 0 if unknown.
+         */
+        public PageBlockRelatedArticle(String url, String title, String description, Photo photo, String author, int publishDate) {
+            this.url = url;
+            this.title = title;
+            this.description = description;
+            this.photo = photo;
+            this.author = author;
+            this.publishDate = publishDate;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 481199251;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Represents a cell of a table.
+     */
+    public static class PageBlockTableCell extends Object {
+        /**
+         * Cell text.
+         */
+        public RichText text;
+        /**
+         * True, if it is a header cell.
+         */
+        public boolean isHeader;
+        /**
+         * The number of columns the cell should span.
+         */
+        public int colspan;
+        /**
+         * The number of rows the cell should span.
+         */
+        public int rowspan;
+        /**
+         * Horizontal cell content alignment.
+         */
+        public PageBlockHorizontalAlignment align;
+        /**
+         * Vertical cell content alignment.
+         */
+        public PageBlockVerticalAlignment valign;
+
+        /**
+         * Represents a cell of a table.
+         */
+        public PageBlockTableCell() {
+        }
+
+        /**
+         * Represents a cell of a table.
+         *
+         * @param text Cell text.
+         * @param isHeader True, if it is a header cell.
+         * @param colspan The number of columns the cell should span.
+         * @param rowspan The number of rows the cell should span.
+         * @param align Horizontal cell content alignment.
+         * @param valign Vertical cell content alignment.
+         */
+        public PageBlockTableCell(RichText text, boolean isHeader, int colspan, int rowspan, PageBlockHorizontalAlignment align, PageBlockVerticalAlignment valign) {
+            this.text = text;
+            this.isHeader = isHeader;
+            this.colspan = colspan;
+            this.rowspan = rowspan;
+            this.align = align;
+            this.valign = valign;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1417658214;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * This class is an abstract base class.
+     * Describes a Vertical alignment of a table cell content.
+     */
+    public abstract static class PageBlockVerticalAlignment extends Object {
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef({
+            PageBlockVerticalAlignmentTop.CONSTRUCTOR,
+            PageBlockVerticalAlignmentMiddle.CONSTRUCTOR,
+            PageBlockVerticalAlignmentBottom.CONSTRUCTOR
+        })
+        public @interface Constructors {}
+
+        /**
+         * @return identifier uniquely determining type of the object.
+         */
+        @Constructors
+        @Override
+        public abstract int getConstructor();
+    }
+
+    /**
+     * The content should be top-aligned.
+     */
+    public static class PageBlockVerticalAlignmentTop extends PageBlockVerticalAlignment {
+
+        /**
+         * The content should be top-aligned.
+         */
+        public PageBlockVerticalAlignmentTop() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 195500454;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * The content should be middle-aligned.
+     */
+    public static class PageBlockVerticalAlignmentMiddle extends PageBlockVerticalAlignment {
+
+        /**
+         * The content should be middle-aligned.
+         */
+        public PageBlockVerticalAlignmentMiddle() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -2123096587;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * The content should be bottom-aligned.
+     */
+    public static class PageBlockVerticalAlignmentBottom extends PageBlockVerticalAlignment {
+
+        /**
+         * The content should be bottom-aligned.
+         */
+        public PageBlockVerticalAlignmentBottom() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 2092531158;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Contains information about a Telegram Passport authorization form that was requested.
      */
     public static class PassportAuthorizationForm extends Object {
@@ -16501,45 +18513,33 @@ public class TdApi {
          */
         public PassportRequiredElement[] requiredElements;
         /**
-         * Already available Telegram Passport elements.
-         */
-        public PassportElement[] elements;
-        /**
-         * Errors in the elements that are already available.
-         */
-        public PassportElementError[] errors;
-        /**
-         * URL for the privacy policy of the service; can be empty.
+         * URL for the privacy policy of the service; may be empty.
          */
         public String privacyPolicyUrl;
 
         /**
-         * Default constructor.
+         * Contains information about a Telegram Passport authorization form that was requested.
          */
         public PassportAuthorizationForm() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about a Telegram Passport authorization form that was requested.
          *
          * @param id Unique identifier of the authorization form.
          * @param requiredElements Information about the Telegram Passport elements that need to be provided to complete the form.
-         * @param elements Already available Telegram Passport elements.
-         * @param errors Errors in the elements that are already available.
-         * @param privacyPolicyUrl URL for the privacy policy of the service; can be empty.
+         * @param privacyPolicyUrl URL for the privacy policy of the service; may be empty.
          */
-        public PassportAuthorizationForm(int id, PassportRequiredElement[] requiredElements, PassportElement[] elements, PassportElementError[] errors, String privacyPolicyUrl) {
+        public PassportAuthorizationForm(int id, PassportRequiredElement[] requiredElements, String privacyPolicyUrl) {
             this.id = id;
             this.requiredElements = requiredElements;
-            this.elements = elements;
-            this.errors = errors;
             this.privacyPolicyUrl = privacyPolicyUrl;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -1780995944;
+        public static final int CONSTRUCTOR = -1070673218;
 
         /**
          * @return this.CONSTRUCTOR
@@ -16591,13 +18591,13 @@ public class TdApi {
         public PersonalDetails personalDetails;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's personal details.
          */
         public PassportElementPersonalDetails() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's personal details.
          *
          * @param personalDetails Personal details of the user.
          */
@@ -16629,13 +18629,13 @@ public class TdApi {
         public IdentityDocument passport;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's passport.
          */
         public PassportElementPassport() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's passport.
          *
          * @param passport Passport.
          */
@@ -16667,13 +18667,13 @@ public class TdApi {
         public IdentityDocument driverLicense;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's driver license.
          */
         public PassportElementDriverLicense() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's driver license.
          *
          * @param driverLicense Driver license.
          */
@@ -16705,13 +18705,13 @@ public class TdApi {
         public IdentityDocument identityCard;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's identity card.
          */
         public PassportElementIdentityCard() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's identity card.
          *
          * @param identityCard Identity card.
          */
@@ -16743,13 +18743,13 @@ public class TdApi {
         public IdentityDocument internalPassport;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's internal passport.
          */
         public PassportElementInternalPassport() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's internal passport.
          *
          * @param internalPassport Internal passport.
          */
@@ -16781,13 +18781,13 @@ public class TdApi {
         public Address address;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's address.
          */
         public PassportElementAddress() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's address.
          *
          * @param address Address.
          */
@@ -16819,13 +18819,13 @@ public class TdApi {
         public PersonalDocument utilityBill;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's utility bill.
          */
         public PassportElementUtilityBill() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's utility bill.
          *
          * @param utilityBill Utility bill.
          */
@@ -16857,13 +18857,13 @@ public class TdApi {
         public PersonalDocument bankStatement;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's bank statement.
          */
         public PassportElementBankStatement() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's bank statement.
          *
          * @param bankStatement Bank statement.
          */
@@ -16895,13 +18895,13 @@ public class TdApi {
         public PersonalDocument rentalAgreement;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's rental agreement.
          */
         public PassportElementRentalAgreement() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's rental agreement.
          *
          * @param rentalAgreement Rental agreement.
          */
@@ -16933,13 +18933,13 @@ public class TdApi {
         public PersonalDocument passportRegistration;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's passport registration pages.
          */
         public PassportElementPassportRegistration() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's passport registration pages.
          *
          * @param passportRegistration Passport registration pages.
          */
@@ -16971,13 +18971,13 @@ public class TdApi {
         public PersonalDocument temporaryRegistration;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's temporary registration.
          */
         public PassportElementTemporaryRegistration() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's temporary registration.
          *
          * @param temporaryRegistration Temporary registration.
          */
@@ -17009,13 +19009,13 @@ public class TdApi {
         public String phoneNumber;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's phone number.
          */
         public PassportElementPhoneNumber() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's phone number.
          *
          * @param phoneNumber Phone number.
          */
@@ -17047,13 +19047,13 @@ public class TdApi {
         public String emailAddress;
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's email address.
          */
         public PassportElementEmailAddress() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A Telegram Passport element containing the user's email address.
          *
          * @param emailAddress Email address.
          */
@@ -17093,13 +19093,13 @@ public class TdApi {
         public PassportElementErrorSource source;
 
         /**
-         * Default constructor.
+         * Contains the description of an error in a Telegram Passport element.
          */
         public PassportElementError() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains the description of an error in a Telegram Passport element.
          *
          * @param type Type of the Telegram Passport element which has the error.
          * @param message Error message.
@@ -17158,7 +19158,7 @@ public class TdApi {
     public static class PassportElementErrorSourceUnspecified extends PassportElementErrorSource {
 
         /**
-         * Default constructor.
+         * The element contains an error in an unspecified place. The error will be considered resolved when new data is added.
          */
         public PassportElementErrorSourceUnspecified() {
         }
@@ -17187,13 +19187,13 @@ public class TdApi {
         public String fieldName;
 
         /**
-         * Default constructor.
+         * One of the data fields contains an error. The error will be considered resolved when the value of the field changes.
          */
         public PassportElementErrorSourceDataField() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * One of the data fields contains an error. The error will be considered resolved when the value of the field changes.
          *
          * @param fieldName Field name.
          */
@@ -17221,7 +19221,7 @@ public class TdApi {
     public static class PassportElementErrorSourceFrontSide extends PassportElementErrorSource {
 
         /**
-         * Default constructor.
+         * The front side of the document contains an error. The error will be considered resolved when the file with the front side changes.
          */
         public PassportElementErrorSourceFrontSide() {
         }
@@ -17246,7 +19246,7 @@ public class TdApi {
     public static class PassportElementErrorSourceReverseSide extends PassportElementErrorSource {
 
         /**
-         * Default constructor.
+         * The reverse side of the document contains an error. The error will be considered resolved when the file with the reverse side changes.
          */
         public PassportElementErrorSourceReverseSide() {
         }
@@ -17271,7 +19271,7 @@ public class TdApi {
     public static class PassportElementErrorSourceSelfie extends PassportElementErrorSource {
 
         /**
-         * Default constructor.
+         * The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes.
          */
         public PassportElementErrorSourceSelfie() {
         }
@@ -17294,17 +19294,30 @@ public class TdApi {
      * One of files with the translation of the document contains an error. The error will be considered resolved when the file changes.
      */
     public static class PassportElementErrorSourceTranslationFile extends PassportElementErrorSource {
+        /**
+         * Index of a file with the error.
+         */
+        public int fileIndex;
 
         /**
-         * Default constructor.
+         * One of files with the translation of the document contains an error. The error will be considered resolved when the file changes.
          */
         public PassportElementErrorSourceTranslationFile() {
         }
 
         /**
+         * One of files with the translation of the document contains an error. The error will be considered resolved when the file changes.
+         *
+         * @param fileIndex Index of a file with the error.
+         */
+        public PassportElementErrorSourceTranslationFile(int fileIndex) {
+            this.fileIndex = fileIndex;
+        }
+
+        /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -643919323;
+        public static final int CONSTRUCTOR = -689621228;
 
         /**
          * @return this.CONSTRUCTOR
@@ -17321,7 +19334,7 @@ public class TdApi {
     public static class PassportElementErrorSourceTranslationFiles extends PassportElementErrorSource {
 
         /**
-         * Default constructor.
+         * The translation of the document contains an error. The error will be considered resolved when the list of translation files changes.
          */
         public PassportElementErrorSourceTranslationFiles() {
         }
@@ -17344,17 +19357,30 @@ public class TdApi {
      * The file contains an error. The error will be considered resolved when the file changes.
      */
     public static class PassportElementErrorSourceFile extends PassportElementErrorSource {
+        /**
+         * Index of a file with the error.
+         */
+        public int fileIndex;
 
         /**
-         * Default constructor.
+         * The file contains an error. The error will be considered resolved when the file changes.
          */
         public PassportElementErrorSourceFile() {
         }
 
         /**
+         * The file contains an error. The error will be considered resolved when the file changes.
+         *
+         * @param fileIndex Index of a file with the error.
+         */
+        public PassportElementErrorSourceFile(int fileIndex) {
+            this.fileIndex = fileIndex;
+        }
+
+        /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -226596202;
+        public static final int CONSTRUCTOR = 2020358960;
 
         /**
          * @return this.CONSTRUCTOR
@@ -17371,7 +19397,7 @@ public class TdApi {
     public static class PassportElementErrorSourceFiles extends PassportElementErrorSource {
 
         /**
-         * Default constructor.
+         * The list of attached files contains an error. The error will be considered resolved when the list of files changes.
          */
         public PassportElementErrorSourceFiles() {
         }
@@ -17427,7 +19453,7 @@ public class TdApi {
     public static class PassportElementTypePersonalDetails extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's personal details.
          */
         public PassportElementTypePersonalDetails() {
         }
@@ -17452,7 +19478,7 @@ public class TdApi {
     public static class PassportElementTypePassport extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's passport.
          */
         public PassportElementTypePassport() {
         }
@@ -17477,7 +19503,7 @@ public class TdApi {
     public static class PassportElementTypeDriverLicense extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's driver license.
          */
         public PassportElementTypeDriverLicense() {
         }
@@ -17502,7 +19528,7 @@ public class TdApi {
     public static class PassportElementTypeIdentityCard extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's identity card.
          */
         public PassportElementTypeIdentityCard() {
         }
@@ -17527,7 +19553,7 @@ public class TdApi {
     public static class PassportElementTypeInternalPassport extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's internal passport.
          */
         public PassportElementTypeInternalPassport() {
         }
@@ -17552,7 +19578,7 @@ public class TdApi {
     public static class PassportElementTypeAddress extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's address.
          */
         public PassportElementTypeAddress() {
         }
@@ -17577,7 +19603,7 @@ public class TdApi {
     public static class PassportElementTypeUtilityBill extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's utility bill.
          */
         public PassportElementTypeUtilityBill() {
         }
@@ -17602,7 +19628,7 @@ public class TdApi {
     public static class PassportElementTypeBankStatement extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's bank statement.
          */
         public PassportElementTypeBankStatement() {
         }
@@ -17627,7 +19653,7 @@ public class TdApi {
     public static class PassportElementTypeRentalAgreement extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's rental agreement.
          */
         public PassportElementTypeRentalAgreement() {
         }
@@ -17652,7 +19678,7 @@ public class TdApi {
     public static class PassportElementTypePassportRegistration extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the registration page of the user's passport.
          */
         public PassportElementTypePassportRegistration() {
         }
@@ -17677,7 +19703,7 @@ public class TdApi {
     public static class PassportElementTypeTemporaryRegistration extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's temporary registration.
          */
         public PassportElementTypeTemporaryRegistration() {
         }
@@ -17702,7 +19728,7 @@ public class TdApi {
     public static class PassportElementTypePhoneNumber extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's phone number.
          */
         public PassportElementTypePhoneNumber() {
         }
@@ -17727,7 +19753,7 @@ public class TdApi {
     public static class PassportElementTypeEmailAddress extends PassportElementType {
 
         /**
-         * Default constructor.
+         * A Telegram Passport element containing the user's email address.
          */
         public PassportElementTypeEmailAddress() {
         }
@@ -17756,13 +19782,13 @@ public class TdApi {
         public PassportElement[] elements;
 
         /**
-         * Default constructor.
+         * Contains information about saved Telegram Passport elements.
          */
         public PassportElements() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about saved Telegram Passport elements.
          *
          * @param elements Telegram Passport elements.
          */
@@ -17785,6 +19811,50 @@ public class TdApi {
     }
 
     /**
+     * Contains information about a Telegram Passport elements and corresponding errors.
+     */
+    public static class PassportElementsWithErrors extends Object {
+        /**
+         * Telegram Passport elements.
+         */
+        public PassportElement[] elements;
+        /**
+         * Errors in the elements that are already available.
+         */
+        public PassportElementError[] errors;
+
+        /**
+         * Contains information about a Telegram Passport elements and corresponding errors.
+         */
+        public PassportElementsWithErrors() {
+        }
+
+        /**
+         * Contains information about a Telegram Passport elements and corresponding errors.
+         *
+         * @param elements Telegram Passport elements.
+         * @param errors Errors in the elements that are already available.
+         */
+        public PassportElementsWithErrors(PassportElement[] elements, PassportElementError[] errors) {
+            this.elements = elements;
+            this.errors = errors;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1308923044;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Contains a description of the required Telegram Passport element that was requested by a service.
      */
     public static class PassportRequiredElement extends Object {
@@ -17794,13 +19864,13 @@ public class TdApi {
         public PassportSuitableElement[] suitableElements;
 
         /**
-         * Default constructor.
+         * Contains a description of the required Telegram Passport element that was requested by a service.
          */
         public PassportRequiredElement() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a description of the required Telegram Passport element that was requested by a service.
          *
          * @param suitableElements List of Telegram Passport elements any of which is enough to provide.
          */
@@ -17844,13 +19914,13 @@ public class TdApi {
         public boolean isNativeNameRequired;
 
         /**
-         * Default constructor.
+         * Contains information about a Telegram Passport element that was requested by a service.
          */
         public PassportSuitableElement() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about a Telegram Passport element that was requested by a service.
          *
          * @param type Type of the element.
          * @param isSelfieRequired True, if a selfie is required with the identity document.
@@ -17883,53 +19953,53 @@ public class TdApi {
      */
     public static class PasswordState extends Object {
         /**
-         * True if a 2-step verification password is set.
+         * True, if a 2-step verification password is set.
          */
         public boolean hasPassword;
         /**
-         * Hint for the password; can be empty.
+         * Hint for the password; may be empty.
          */
         public String passwordHint;
         /**
-         * True if a recovery email is set.
+         * True, if a recovery email is set.
          */
         public boolean hasRecoveryEmailAddress;
         /**
-         * True if some Telegram Passport elements were saved.
+         * True, if some Telegram Passport elements were saved.
          */
         public boolean hasPassportData;
         /**
-         * Pattern of the email address to which the confirmation email was sent.
+         * Information about the recovery email address to which the confirmation email was sent; may be null.
          */
-        public String unconfirmedRecoveryEmailAddressPattern;
+        @Nullable public EmailAddressAuthenticationCodeInfo recoveryEmailAddressCodeInfo;
 
         /**
-         * Default constructor.
+         * Represents the current state of 2-step verification.
          */
         public PasswordState() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents the current state of 2-step verification.
          *
-         * @param hasPassword True if a 2-step verification password is set.
-         * @param passwordHint Hint for the password; can be empty.
-         * @param hasRecoveryEmailAddress True if a recovery email is set.
-         * @param hasPassportData True if some Telegram Passport elements were saved.
-         * @param unconfirmedRecoveryEmailAddressPattern Pattern of the email address to which the confirmation email was sent.
+         * @param hasPassword True, if a 2-step verification password is set.
+         * @param passwordHint Hint for the password; may be empty.
+         * @param hasRecoveryEmailAddress True, if a recovery email is set.
+         * @param hasPassportData True, if some Telegram Passport elements were saved.
+         * @param recoveryEmailAddressCodeInfo Information about the recovery email address to which the confirmation email was sent; may be null.
          */
-        public PasswordState(boolean hasPassword, String passwordHint, boolean hasRecoveryEmailAddress, boolean hasPassportData, String unconfirmedRecoveryEmailAddressPattern) {
+        public PasswordState(boolean hasPassword, String passwordHint, boolean hasRecoveryEmailAddress, boolean hasPassportData, EmailAddressAuthenticationCodeInfo recoveryEmailAddressCodeInfo) {
             this.hasPassword = hasPassword;
             this.passwordHint = passwordHint;
             this.hasRecoveryEmailAddress = hasRecoveryEmailAddress;
             this.hasPassportData = hasPassportData;
-            this.unconfirmedRecoveryEmailAddressPattern = unconfirmedRecoveryEmailAddressPattern;
+            this.recoveryEmailAddressCodeInfo = recoveryEmailAddressCodeInfo;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -1209872059;
+        public static final int CONSTRUCTOR = -1154797731;
 
         /**
          * @return this.CONSTRUCTOR
@@ -17974,13 +20044,13 @@ public class TdApi {
         public boolean needPassword;
 
         /**
-         * Default constructor.
+         * Contains information about an invoice payment form.
          */
         public PaymentForm() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about an invoice payment form.
          *
          * @param invoice Full information of the invoice.
          * @param url Payment form URL.
@@ -18044,13 +20114,13 @@ public class TdApi {
         public String credentialsTitle;
 
         /**
-         * Default constructor.
+         * Contains information about a successful payment.
          */
         public PaymentReceipt() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about a successful payment.
          *
          * @param date Point in time (Unix timestamp) when the payment was made.
          * @param paymentsProviderUserId User identifier of the payment provider bot.
@@ -18096,13 +20166,13 @@ public class TdApi {
         public String verificationUrl;
 
         /**
-         * Default constructor.
+         * Contains the result of a payment request.
          */
         public PaymentResult() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains the result of a payment request.
          *
          * @param success True, if the payment request was successful; otherwise the verificationUrl will be not empty.
          * @param verificationUrl URL for additional payment credentials verification.
@@ -18148,13 +20218,13 @@ public class TdApi {
         public boolean needCardholderName;
 
         /**
-         * Default constructor.
+         * Stripe payment provider.
          */
         public PaymentsProviderStripe() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Stripe payment provider.
          *
          * @param publishableKey Stripe API publishable key.
          * @param needCountry True, if the user country must be provided.
@@ -18228,13 +20298,13 @@ public class TdApi {
         public String residenceCountryCode;
 
         /**
-         * Default constructor.
+         * Contains the user's personal details.
          */
         public PersonalDetails() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains the user's personal details.
          *
          * @param firstName First name of the user written in English; 1-255 characters.
          * @param middleName Middle name of the user written in English; 0-255 characters.
@@ -18288,13 +20358,13 @@ public class TdApi {
         public DatedFile[] translation;
 
         /**
-         * Default constructor.
+         * A personal document, containing some information about a user.
          */
         public PersonalDocument() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A personal document, containing some information about a user.
          *
          * @param files List of files containing the pages of the document.
          * @param translation List of files containing a certified English translation of the document.
@@ -18323,10 +20393,6 @@ public class TdApi {
      */
     public static class Photo extends Object {
         /**
-         * Photo identifier; 0 for deleted photos.
-         */
-        public long id;
-        /**
          * True, if stickers were added to the photo.
          */
         public boolean hasStickers;
@@ -18336,20 +20402,18 @@ public class TdApi {
         public PhotoSize[] sizes;
 
         /**
-         * Default constructor.
+         * Describes a photo.
          */
         public Photo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a photo.
          *
-         * @param id Photo identifier; 0 for deleted photos.
          * @param hasStickers True, if stickers were added to the photo.
          * @param sizes Available variants of the photo, in different sizes.
          */
-        public Photo(long id, boolean hasStickers, PhotoSize[] sizes) {
-            this.id = id;
+        public Photo(boolean hasStickers, PhotoSize[] sizes) {
             this.hasStickers = hasStickers;
             this.sizes = sizes;
         }
@@ -18357,7 +20421,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -1949521787;
+        public static final int CONSTRUCTOR = -1740448343;
 
         /**
          * @return this.CONSTRUCTOR
@@ -18390,13 +20454,13 @@ public class TdApi {
         public int height;
 
         /**
-         * Default constructor.
+         * Photo description.
          */
         public PhotoSize() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Photo description.
          *
          * @param type Thumbnail type (see https://core.telegram.org/constructor/photoSize).
          * @param photo Information about the photo file.
@@ -18425,6 +20489,130 @@ public class TdApi {
     }
 
     /**
+     * Describes a poll.
+     */
+    public static class Poll extends Object {
+        /**
+         * Unique poll identifier.
+         */
+        public long id;
+        /**
+         * Poll question, 1-255 characters.
+         */
+        public String question;
+        /**
+         * List of poll answer options.
+         */
+        public PollOption[] options;
+        /**
+         * Total number of voters, participating in the poll.
+         */
+        public int totalVoterCount;
+        /**
+         * True, if the poll is closed.
+         */
+        public boolean isClosed;
+
+        /**
+         * Describes a poll.
+         */
+        public Poll() {
+        }
+
+        /**
+         * Describes a poll.
+         *
+         * @param id Unique poll identifier.
+         * @param question Poll question, 1-255 characters.
+         * @param options List of poll answer options.
+         * @param totalVoterCount Total number of voters, participating in the poll.
+         * @param isClosed True, if the poll is closed.
+         */
+        public Poll(long id, String question, PollOption[] options, int totalVoterCount, boolean isClosed) {
+            this.id = id;
+            this.question = question;
+            this.options = options;
+            this.totalVoterCount = totalVoterCount;
+            this.isClosed = isClosed;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -959396214;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Describes one answer option of a poll.
+     */
+    public static class PollOption extends Object {
+        /**
+         * Option text, 1-100 characters.
+         */
+        public String text;
+        /**
+         * Number of voters for this option, available only for closed or voted polls.
+         */
+        public int voterCount;
+        /**
+         * The percentage of votes for this option, 0-100.
+         */
+        public int votePercentage;
+        /**
+         * True, if the option was chosen by the user.
+         */
+        public boolean isChosen;
+        /**
+         * True, if the option is being chosen by a pending setPollAnswer request.
+         */
+        public boolean isBeingChosen;
+
+        /**
+         * Describes one answer option of a poll.
+         */
+        public PollOption() {
+        }
+
+        /**
+         * Describes one answer option of a poll.
+         *
+         * @param text Option text, 1-100 characters.
+         * @param voterCount Number of voters for this option, available only for closed or voted polls.
+         * @param votePercentage The percentage of votes for this option, 0-100.
+         * @param isChosen True, if the option was chosen by the user.
+         * @param isBeingChosen True, if the option is being chosen by a pending setPollAnswer request.
+         */
+        public PollOption(String text, int voterCount, int votePercentage, boolean isChosen, boolean isBeingChosen) {
+            this.text = text;
+            this.voterCount = voterCount;
+            this.votePercentage = votePercentage;
+            this.isChosen = isChosen;
+            this.isBeingChosen = isBeingChosen;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1473893797;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Describes a user profile photo.
      */
     public static class ProfilePhoto extends Object {
@@ -18442,13 +20630,13 @@ public class TdApi {
         public File big;
 
         /**
-         * Default constructor.
+         * Describes a user profile photo.
          */
         public ProfilePhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a user profile photo.
          *
          * @param id Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of userProfilePhotos.
          * @param small A small (160x160) user profile photo.
@@ -18484,13 +20672,13 @@ public class TdApi {
         public Proxy[] proxies;
 
         /**
-         * Default constructor.
+         * Represents a list of proxy servers.
          */
         public Proxies() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a list of proxy servers.
          *
          * @param proxies List of proxy servers.
          */
@@ -18542,13 +20730,13 @@ public class TdApi {
         public ProxyType type;
 
         /**
-         * Default constructor.
+         * Contains information about a proxy server.
          */
         public Proxy() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about a proxy server.
          *
          * @param id Unique identifier of the proxy.
          * @param server Proxy server IP address.
@@ -18615,13 +20803,13 @@ public class TdApi {
         public String password;
 
         /**
-         * Default constructor.
+         * A SOCKS5 proxy server.
          */
         public ProxyTypeSocks5() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A SOCKS5 proxy server.
          *
          * @param username Username for logging in; may be empty.
          * @param password Password for logging in; may be empty.
@@ -18663,13 +20851,13 @@ public class TdApi {
         public boolean httpOnly;
 
         /**
-         * Default constructor.
+         * A HTTP transparent proxy server.
          */
         public ProxyTypeHttp() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A HTTP transparent proxy server.
          *
          * @param username Username for logging in; may be empty.
          * @param password Password for logging in; may be empty.
@@ -18705,13 +20893,13 @@ public class TdApi {
         public String secret;
 
         /**
-         * Default constructor.
+         * An MTProto proxy server.
          */
         public ProxyTypeMtproto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An MTProto proxy server.
          *
          * @param secret The proxy's secret in hexadecimal encoding.
          */
@@ -18747,13 +20935,13 @@ public class TdApi {
         public String html;
 
         /**
-         * Default constructor.
+         * Contains a public HTTPS link to a message in a public supergroup or channel.
          */
         public PublicMessageLink() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a public HTTPS link to a message in a public supergroup or channel.
          *
          * @param link Message link.
          * @param html HTML-code for embedding the message.
@@ -18778,6 +20966,1179 @@ public class TdApi {
     }
 
     /**
+     * This class is an abstract base class.
+     * Contains content of a push message notification.
+     */
+    public abstract static class PushMessageContent extends Object {
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef({
+            PushMessageContentHidden.CONSTRUCTOR,
+            PushMessageContentAnimation.CONSTRUCTOR,
+            PushMessageContentAudio.CONSTRUCTOR,
+            PushMessageContentContact.CONSTRUCTOR,
+            PushMessageContentContactRegistered.CONSTRUCTOR,
+            PushMessageContentDocument.CONSTRUCTOR,
+            PushMessageContentGame.CONSTRUCTOR,
+            PushMessageContentGameScore.CONSTRUCTOR,
+            PushMessageContentInvoice.CONSTRUCTOR,
+            PushMessageContentLocation.CONSTRUCTOR,
+            PushMessageContentPhoto.CONSTRUCTOR,
+            PushMessageContentPoll.CONSTRUCTOR,
+            PushMessageContentScreenshotTaken.CONSTRUCTOR,
+            PushMessageContentSticker.CONSTRUCTOR,
+            PushMessageContentText.CONSTRUCTOR,
+            PushMessageContentVideo.CONSTRUCTOR,
+            PushMessageContentVideoNote.CONSTRUCTOR,
+            PushMessageContentVoiceNote.CONSTRUCTOR,
+            PushMessageContentBasicGroupChatCreate.CONSTRUCTOR,
+            PushMessageContentChatAddMembers.CONSTRUCTOR,
+            PushMessageContentChatChangePhoto.CONSTRUCTOR,
+            PushMessageContentChatChangeTitle.CONSTRUCTOR,
+            PushMessageContentChatDeleteMember.CONSTRUCTOR,
+            PushMessageContentChatJoinByLink.CONSTRUCTOR,
+            PushMessageContentMessageForwards.CONSTRUCTOR,
+            PushMessageContentMediaAlbum.CONSTRUCTOR
+        })
+        public @interface Constructors {}
+
+        /**
+         * @return identifier uniquely determining type of the object.
+         */
+        @Constructors
+        @Override
+        public abstract int getConstructor();
+    }
+
+    /**
+     * A general message with hidden content.
+     */
+    public static class PushMessageContentHidden extends PushMessageContent {
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A general message with hidden content.
+         */
+        public PushMessageContentHidden() {
+        }
+
+        /**
+         * A general message with hidden content.
+         *
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentHidden(boolean isPinned) {
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -316950436;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * An animation message (GIF-style.)
+     */
+    public static class PushMessageContentAnimation extends PushMessageContent {
+        /**
+         * Message content; may be null.
+         */
+        @Nullable public Animation animation;
+        /**
+         * Animation caption.
+         */
+        public String caption;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * An animation message (GIF-style.)
+         */
+        public PushMessageContentAnimation() {
+        }
+
+        /**
+         * An animation message (GIF-style.)
+         *
+         * @param animation Message content; may be null.
+         * @param caption Animation caption.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentAnimation(Animation animation, String caption, boolean isPinned) {
+            this.animation = animation;
+            this.caption = caption;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1034215396;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * An audio message.
+     */
+    public static class PushMessageContentAudio extends PushMessageContent {
+        /**
+         * Message content; may be null.
+         */
+        @Nullable public Audio audio;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * An audio message.
+         */
+        public PushMessageContentAudio() {
+        }
+
+        /**
+         * An audio message.
+         *
+         * @param audio Message content; may be null.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentAudio(Audio audio, boolean isPinned) {
+            this.audio = audio;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 381581426;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A message with a user contact.
+     */
+    public static class PushMessageContentContact extends PushMessageContent {
+        /**
+         * Contact's name.
+         */
+        public String name;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A message with a user contact.
+         */
+        public PushMessageContentContact() {
+        }
+
+        /**
+         * A message with a user contact.
+         *
+         * @param name Contact's name.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentContact(String name, boolean isPinned) {
+            this.name = name;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -12219820;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A contact has registered with Telegram.
+     */
+    public static class PushMessageContentContactRegistered extends PushMessageContent {
+
+        /**
+         * A contact has registered with Telegram.
+         */
+        public PushMessageContentContactRegistered() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -303962720;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A document message (a general file).
+     */
+    public static class PushMessageContentDocument extends PushMessageContent {
+        /**
+         * Message content; may be null.
+         */
+        @Nullable public Document document;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A document message (a general file).
+         */
+        public PushMessageContentDocument() {
+        }
+
+        /**
+         * A document message (a general file).
+         *
+         * @param document Message content; may be null.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentDocument(Document document, boolean isPinned) {
+            this.document = document;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -458379775;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A message with a game.
+     */
+    public static class PushMessageContentGame extends PushMessageContent {
+        /**
+         * Game title, empty for pinned game message.
+         */
+        public String title;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A message with a game.
+         */
+        public PushMessageContentGame() {
+        }
+
+        /**
+         * A message with a game.
+         *
+         * @param title Game title, empty for pinned game message.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentGame(String title, boolean isPinned) {
+            this.title = title;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -515131109;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A new high score was achieved in a game.
+     */
+    public static class PushMessageContentGameScore extends PushMessageContent {
+        /**
+         * Game title, empty for pinned message.
+         */
+        public String title;
+        /**
+         * New score, 0 for pinned message.
+         */
+        public int score;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A new high score was achieved in a game.
+         */
+        public PushMessageContentGameScore() {
+        }
+
+        /**
+         * A new high score was achieved in a game.
+         *
+         * @param title Game title, empty for pinned message.
+         * @param score New score, 0 for pinned message.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentGameScore(String title, int score, boolean isPinned) {
+            this.title = title;
+            this.score = score;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 901303688;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A message with an invoice from a bot.
+     */
+    public static class PushMessageContentInvoice extends PushMessageContent {
+        /**
+         * Product price.
+         */
+        public String price;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A message with an invoice from a bot.
+         */
+        public PushMessageContentInvoice() {
+        }
+
+        /**
+         * A message with an invoice from a bot.
+         *
+         * @param price Product price.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentInvoice(String price, boolean isPinned) {
+            this.price = price;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1731687492;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A message with a location.
+     */
+    public static class PushMessageContentLocation extends PushMessageContent {
+        /**
+         * True, if the location is live.
+         */
+        public boolean isLive;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A message with a location.
+         */
+        public PushMessageContentLocation() {
+        }
+
+        /**
+         * A message with a location.
+         *
+         * @param isLive True, if the location is live.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentLocation(boolean isLive, boolean isPinned) {
+            this.isLive = isLive;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1288005709;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A photo message.
+     */
+    public static class PushMessageContentPhoto extends PushMessageContent {
+        /**
+         * Message content; may be null.
+         */
+        @Nullable public Photo photo;
+        /**
+         * Photo caption.
+         */
+        public String caption;
+        /**
+         * True, if the photo is secret.
+         */
+        public boolean isSecret;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A photo message.
+         */
+        public PushMessageContentPhoto() {
+        }
+
+        /**
+         * A photo message.
+         *
+         * @param photo Message content; may be null.
+         * @param caption Photo caption.
+         * @param isSecret True, if the photo is secret.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentPhoto(Photo photo, String caption, boolean isSecret, boolean isPinned) {
+            this.photo = photo;
+            this.caption = caption;
+            this.isSecret = isSecret;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 140631122;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A message with a poll.
+     */
+    public static class PushMessageContentPoll extends PushMessageContent {
+        /**
+         * Poll question.
+         */
+        public String question;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A message with a poll.
+         */
+        public PushMessageContentPoll() {
+        }
+
+        /**
+         * A message with a poll.
+         *
+         * @param question Poll question.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentPoll(String question, boolean isPinned) {
+            this.question = question;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1545438580;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A screenshot of a message in the chat has been taken.
+     */
+    public static class PushMessageContentScreenshotTaken extends PushMessageContent {
+
+        /**
+         * A screenshot of a message in the chat has been taken.
+         */
+        public PushMessageContentScreenshotTaken() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 214245369;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A message with a sticker.
+     */
+    public static class PushMessageContentSticker extends PushMessageContent {
+        /**
+         * Message content; may be null.
+         */
+        @Nullable public Sticker sticker;
+        /**
+         * Emoji corresponding to the sticker; may be empty.
+         */
+        public String emoji;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A message with a sticker.
+         */
+        public PushMessageContentSticker() {
+        }
+
+        /**
+         * A message with a sticker.
+         *
+         * @param sticker Message content; may be null.
+         * @param emoji Emoji corresponding to the sticker; may be empty.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentSticker(Sticker sticker, String emoji, boolean isPinned) {
+            this.sticker = sticker;
+            this.emoji = emoji;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1553513939;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A text message.
+     */
+    public static class PushMessageContentText extends PushMessageContent {
+        /**
+         * Message text.
+         */
+        public String text;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A text message.
+         */
+        public PushMessageContentText() {
+        }
+
+        /**
+         * A text message.
+         *
+         * @param text Message text.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentText(String text, boolean isPinned) {
+            this.text = text;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 274587305;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A video message.
+     */
+    public static class PushMessageContentVideo extends PushMessageContent {
+        /**
+         * Message content; may be null.
+         */
+        @Nullable public Video video;
+        /**
+         * Video caption.
+         */
+        public String caption;
+        /**
+         * True, if the video is secret.
+         */
+        public boolean isSecret;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A video message.
+         */
+        public PushMessageContentVideo() {
+        }
+
+        /**
+         * A video message.
+         *
+         * @param video Message content; may be null.
+         * @param caption Video caption.
+         * @param isSecret True, if the video is secret.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentVideo(Video video, String caption, boolean isSecret, boolean isPinned) {
+            this.video = video;
+            this.caption = caption;
+            this.isSecret = isSecret;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 310038831;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A video note message.
+     */
+    public static class PushMessageContentVideoNote extends PushMessageContent {
+        /**
+         * Message content; may be null.
+         */
+        @Nullable public VideoNote videoNote;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A video note message.
+         */
+        public PushMessageContentVideoNote() {
+        }
+
+        /**
+         * A video note message.
+         *
+         * @param videoNote Message content; may be null.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentVideoNote(VideoNote videoNote, boolean isPinned) {
+            this.videoNote = videoNote;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1122764417;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A voice note message.
+     */
+    public static class PushMessageContentVoiceNote extends PushMessageContent {
+        /**
+         * Message content; may be null.
+         */
+        @Nullable public VoiceNote voiceNote;
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        public boolean isPinned;
+
+        /**
+         * A voice note message.
+         */
+        public PushMessageContentVoiceNote() {
+        }
+
+        /**
+         * A voice note message.
+         *
+         * @param voiceNote Message content; may be null.
+         * @param isPinned True, if the message is a pinned message with the specified content.
+         */
+        public PushMessageContentVoiceNote(VoiceNote voiceNote, boolean isPinned) {
+            this.voiceNote = voiceNote;
+            this.isPinned = isPinned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 88910987;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A newly created basic group.
+     */
+    public static class PushMessageContentBasicGroupChatCreate extends PushMessageContent {
+
+        /**
+         * A newly created basic group.
+         */
+        public PushMessageContentBasicGroupChatCreate() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -2114855172;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * New chat members were invited to a group.
+     */
+    public static class PushMessageContentChatAddMembers extends PushMessageContent {
+        /**
+         * Name of the added member.
+         */
+        public String memberName;
+        /**
+         * True, if the current user was added to the group.
+         */
+        public boolean isCurrentUser;
+        /**
+         * True, if the user has returned to the group himself.
+         */
+        public boolean isReturned;
+
+        /**
+         * New chat members were invited to a group.
+         */
+        public PushMessageContentChatAddMembers() {
+        }
+
+        /**
+         * New chat members were invited to a group.
+         *
+         * @param memberName Name of the added member.
+         * @param isCurrentUser True, if the current user was added to the group.
+         * @param isReturned True, if the user has returned to the group himself.
+         */
+        public PushMessageContentChatAddMembers(String memberName, boolean isCurrentUser, boolean isReturned) {
+            this.memberName = memberName;
+            this.isCurrentUser = isCurrentUser;
+            this.isReturned = isReturned;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1087145158;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A chat photo was edited.
+     */
+    public static class PushMessageContentChatChangePhoto extends PushMessageContent {
+
+        /**
+         * A chat photo was edited.
+         */
+        public PushMessageContentChatChangePhoto() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1114222051;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A chat title was edited.
+     */
+    public static class PushMessageContentChatChangeTitle extends PushMessageContent {
+        /**
+         * New chat title.
+         */
+        public String title;
+
+        /**
+         * A chat title was edited.
+         */
+        public PushMessageContentChatChangeTitle() {
+        }
+
+        /**
+         * A chat title was edited.
+         *
+         * @param title New chat title.
+         */
+        public PushMessageContentChatChangeTitle(String title) {
+            this.title = title;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1964902749;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A chat member was deleted.
+     */
+    public static class PushMessageContentChatDeleteMember extends PushMessageContent {
+        /**
+         * Name of the deleted member.
+         */
+        public String memberName;
+        /**
+         * True, if the current user was deleted from the group.
+         */
+        public boolean isCurrentUser;
+        /**
+         * True, if the user has left the group himself.
+         */
+        public boolean isLeft;
+
+        /**
+         * A chat member was deleted.
+         */
+        public PushMessageContentChatDeleteMember() {
+        }
+
+        /**
+         * A chat member was deleted.
+         *
+         * @param memberName Name of the deleted member.
+         * @param isCurrentUser True, if the current user was deleted from the group.
+         * @param isLeft True, if the user has left the group himself.
+         */
+        public PushMessageContentChatDeleteMember(String memberName, boolean isCurrentUser, boolean isLeft) {
+            this.memberName = memberName;
+            this.isCurrentUser = isCurrentUser;
+            this.isLeft = isLeft;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 598714783;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A new member joined the chat by invite link.
+     */
+    public static class PushMessageContentChatJoinByLink extends PushMessageContent {
+
+        /**
+         * A new member joined the chat by invite link.
+         */
+        public PushMessageContentChatJoinByLink() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1553719113;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A forwarded messages.
+     */
+    public static class PushMessageContentMessageForwards extends PushMessageContent {
+        /**
+         * Number of forwarded messages.
+         */
+        public int totalCount;
+
+        /**
+         * A forwarded messages.
+         */
+        public PushMessageContentMessageForwards() {
+        }
+
+        /**
+         * A forwarded messages.
+         *
+         * @param totalCount Number of forwarded messages.
+         */
+        public PushMessageContentMessageForwards(int totalCount) {
+            this.totalCount = totalCount;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1913083876;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A media album.
+     */
+    public static class PushMessageContentMediaAlbum extends PushMessageContent {
+        /**
+         * Number of messages in the album.
+         */
+        public int totalCount;
+        /**
+         * True, if the album has at least one photo.
+         */
+        public boolean hasPhotos;
+        /**
+         * True, if the album has at least one video.
+         */
+        public boolean hasVideos;
+
+        /**
+         * A media album.
+         */
+        public PushMessageContentMediaAlbum() {
+        }
+
+        /**
+         * A media album.
+         *
+         * @param totalCount Number of messages in the album.
+         * @param hasPhotos True, if the album has at least one photo.
+         * @param hasVideos True, if the album has at least one video.
+         */
+        public PushMessageContentMediaAlbum(int totalCount, boolean hasPhotos, boolean hasVideos) {
+            this.totalCount = totalCount;
+            this.hasPhotos = hasPhotos;
+            this.hasVideos = hasVideos;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -874278109;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Contains a globally unique push receiver identifier, which can be used to identify which account has received a push notification.
+     */
+    public static class PushReceiverId extends Object {
+        /**
+         * The globally unique identifier of push notification subscription.
+         */
+        public long id;
+
+        /**
+         * Contains a globally unique push receiver identifier, which can be used to identify which account has received a push notification.
+         */
+        public PushReceiverId() {
+        }
+
+        /**
+         * Contains a globally unique push receiver identifier, which can be used to identify which account has received a push notification.
+         *
+         * @param id The globally unique identifier of push notification subscription.
+         */
+        public PushReceiverId(long id) {
+            this.id = id;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 371056428;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Contains information about the current recovery email address.
      */
     public static class RecoveryEmailAddress extends Object {
@@ -18787,13 +22148,13 @@ public class TdApi {
         public String recoveryEmailAddress;
 
         /**
-         * Default constructor.
+         * Contains information about the current recovery email address.
          */
         public RecoveryEmailAddress() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about the current recovery email address.
          *
          * @param recoveryEmailAddress Recovery email address.
          */
@@ -18837,13 +22198,13 @@ public class TdApi {
         public int uploadedSize;
 
         /**
-         * Default constructor.
+         * Represents a remote file.
          */
         public RemoteFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a remote file.
          *
          * @param id Remote file identifier; may be empty. Can be used across application restarts or even from other devices for the current user. If the ID starts with &quot;http://&quot; or &quot;https://&quot;, it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known. If downloadFile is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the client with the HTTP URL in the originalPath and &quot;#url#&quot; as the conversion string. Clients should generate the file by downloading it to the specified location.
          * @param isUploadingActive True, if the file is currently being uploaded (or a remote copy is being generated by some other means).
@@ -18903,13 +22264,13 @@ public class TdApi {
         public boolean isPersonal;
 
         /**
-         * Default constructor.
+         * Instructs clients to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with messageId == 0 will be sent.
          */
         public ReplyMarkupRemoveKeyboard() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Instructs clients to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with messageId == 0 will be sent.
          *
          * @param isPersonal True, if the keyboard is removed only for the mentioned users or the target user of a reply.
          */
@@ -18941,13 +22302,13 @@ public class TdApi {
         public boolean isPersonal;
 
         /**
-         * Default constructor.
+         * Instructs clients to force a reply to this message.
          */
         public ReplyMarkupForceReply() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Instructs clients to force a reply to this message.
          *
          * @param isPersonal True, if a forced reply must automatically be shown to the current user. For outgoing messages, specify true to show the forced reply only for the mentioned users and for the target user of a reply.
          */
@@ -18991,13 +22352,13 @@ public class TdApi {
         public boolean isPersonal;
 
         /**
-         * Default constructor.
+         * Contains a custom keyboard layout to quickly reply to bots.
          */
         public ReplyMarkupShowKeyboard() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a custom keyboard layout to quickly reply to bots.
          *
          * @param rows A list of rows of bot keyboard buttons.
          * @param resizeKeyboard True, if the client needs to resize the keyboard vertically.
@@ -19035,13 +22396,13 @@ public class TdApi {
         public InlineKeyboardButton[][] rows;
 
         /**
-         * Default constructor.
+         * Contains an inline keyboard layout.
          */
         public ReplyMarkupInlineKeyboard() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains an inline keyboard layout.
          *
          * @param rows A list of rows of inline keyboard buttons.
          */
@@ -19078,6 +22439,12 @@ public class TdApi {
             RichTextFixed.CONSTRUCTOR,
             RichTextUrl.CONSTRUCTOR,
             RichTextEmailAddress.CONSTRUCTOR,
+            RichTextSubscript.CONSTRUCTOR,
+            RichTextSuperscript.CONSTRUCTOR,
+            RichTextMarked.CONSTRUCTOR,
+            RichTextPhoneNumber.CONSTRUCTOR,
+            RichTextIcon.CONSTRUCTOR,
+            RichTextAnchor.CONSTRUCTOR,
             RichTexts.CONSTRUCTOR
         })
         public @interface Constructors {}
@@ -19100,13 +22467,13 @@ public class TdApi {
         public String text;
 
         /**
-         * Default constructor.
+         * A plain text.
          */
         public RichTextPlain() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A plain text.
          *
          * @param text Text.
          */
@@ -19138,13 +22505,13 @@ public class TdApi {
         public RichText text;
 
         /**
-         * Default constructor.
+         * A bold rich text.
          */
         public RichTextBold() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A bold rich text.
          *
          * @param text Text.
          */
@@ -19176,13 +22543,13 @@ public class TdApi {
         public RichText text;
 
         /**
-         * Default constructor.
+         * An italicized rich text.
          */
         public RichTextItalic() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An italicized rich text.
          *
          * @param text Text.
          */
@@ -19214,13 +22581,13 @@ public class TdApi {
         public RichText text;
 
         /**
-         * Default constructor.
+         * An underlined rich text.
          */
         public RichTextUnderline() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An underlined rich text.
          *
          * @param text Text.
          */
@@ -19252,13 +22619,13 @@ public class TdApi {
         public RichText text;
 
         /**
-         * Default constructor.
+         * A strike-through rich text.
          */
         public RichTextStrikethrough() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A strike-through rich text.
          *
          * @param text Text.
          */
@@ -19290,13 +22657,13 @@ public class TdApi {
         public RichText text;
 
         /**
-         * Default constructor.
+         * A fixed-width rich text.
          */
         public RichTextFixed() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A fixed-width rich text.
          *
          * @param text Text.
          */
@@ -19332,13 +22699,13 @@ public class TdApi {
         public String url;
 
         /**
-         * Default constructor.
+         * A rich text URL link.
          */
         public RichTextUrl() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A rich text URL link.
          *
          * @param text Text.
          * @param url URL.
@@ -19376,13 +22743,13 @@ public class TdApi {
         public String emailAddress;
 
         /**
-         * Default constructor.
+         * A rich text email link.
          */
         public RichTextEmailAddress() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A rich text email link.
          *
          * @param text Text.
          * @param emailAddress Email address.
@@ -19407,6 +22774,258 @@ public class TdApi {
     }
 
     /**
+     * A subscript rich text.
+     */
+    public static class RichTextSubscript extends RichText {
+        /**
+         * Text.
+         */
+        public RichText text;
+
+        /**
+         * A subscript rich text.
+         */
+        public RichTextSubscript() {
+        }
+
+        /**
+         * A subscript rich text.
+         *
+         * @param text Text.
+         */
+        public RichTextSubscript(RichText text) {
+            this.text = text;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -868197812;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A superscript rich text.
+     */
+    public static class RichTextSuperscript extends RichText {
+        /**
+         * Text.
+         */
+        public RichText text;
+
+        /**
+         * A superscript rich text.
+         */
+        public RichTextSuperscript() {
+        }
+
+        /**
+         * A superscript rich text.
+         *
+         * @param text Text.
+         */
+        public RichTextSuperscript(RichText text) {
+            this.text = text;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -382241437;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A marked rich text.
+     */
+    public static class RichTextMarked extends RichText {
+        /**
+         * Text.
+         */
+        public RichText text;
+
+        /**
+         * A marked rich text.
+         */
+        public RichTextMarked() {
+        }
+
+        /**
+         * A marked rich text.
+         *
+         * @param text Text.
+         */
+        public RichTextMarked(RichText text) {
+            this.text = text;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1271999614;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A rich text phone number.
+     */
+    public static class RichTextPhoneNumber extends RichText {
+        /**
+         * Text.
+         */
+        public RichText text;
+        /**
+         * Phone number.
+         */
+        public String phoneNumber;
+
+        /**
+         * A rich text phone number.
+         */
+        public RichTextPhoneNumber() {
+        }
+
+        /**
+         * A rich text phone number.
+         *
+         * @param text Text.
+         * @param phoneNumber Phone number.
+         */
+        public RichTextPhoneNumber(RichText text, String phoneNumber) {
+            this.text = text;
+            this.phoneNumber = phoneNumber;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 128521539;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A small image inside the text.
+     */
+    public static class RichTextIcon extends RichText {
+        /**
+         * The image represented as a document. The image can be in GIF, JPEG or PNG format.
+         */
+        public Document document;
+        /**
+         * Width of a bounding box in which the image should be shown, 0 if unknown.
+         */
+        public int width;
+        /**
+         * Height of a bounding box in which the image should be shown, 0 if unknown.
+         */
+        public int height;
+
+        /**
+         * A small image inside the text.
+         */
+        public RichTextIcon() {
+        }
+
+        /**
+         * A small image inside the text.
+         *
+         * @param document The image represented as a document. The image can be in GIF, JPEG or PNG format.
+         * @param width Width of a bounding box in which the image should be shown, 0 if unknown.
+         * @param height Height of a bounding box in which the image should be shown, 0 if unknown.
+         */
+        public RichTextIcon(Document document, int width, int height) {
+            this.document = document;
+            this.width = width;
+            this.height = height;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1480316158;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A rich text anchor.
+     */
+    public static class RichTextAnchor extends RichText {
+        /**
+         * Text.
+         */
+        public RichText text;
+        /**
+         * Anchor name.
+         */
+        public String name;
+
+        /**
+         * A rich text anchor.
+         */
+        public RichTextAnchor() {
+        }
+
+        /**
+         * A rich text anchor.
+         *
+         * @param text Text.
+         * @param name Anchor name.
+         */
+        public RichTextAnchor(RichText text, String name) {
+            this.text = text;
+            this.name = name;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 673137292;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * A concatenation of rich texts.
      */
     public static class RichTexts extends RichText {
@@ -19416,13 +23035,13 @@ public class TdApi {
         public RichText[] texts;
 
         /**
-         * Default constructor.
+         * A concatenation of rich texts.
          */
         public RichTexts() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A concatenation of rich texts.
          *
          * @param texts Texts.
          */
@@ -19458,13 +23077,13 @@ public class TdApi {
         public String title;
 
         /**
-         * Default constructor.
+         * Contains information about saved card credentials.
          */
         public SavedCredentials() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about saved card credentials.
          *
          * @param id Unique identifier of the saved credentials.
          * @param title Title of the saved credentials.
@@ -19504,30 +23123,42 @@ public class TdApi {
          * True, if message content should be displayed in notifications.
          */
         public boolean showPreview;
+        /**
+         * True, if notifications for incoming pinned messages will be created as for an ordinary unread message.
+         */
+        public boolean disablePinnedMessageNotifications;
+        /**
+         * True, if notifications for messages with mentions will be created as for an ordinary unread message.
+         */
+        public boolean disableMentionNotifications;
 
         /**
-         * Default constructor.
+         * Contains information about notification settings for several chats.
          */
         public ScopeNotificationSettings() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about notification settings for several chats.
          *
          * @param muteFor Time left before notifications will be unmuted, in seconds.
          * @param sound The name of an audio file to be used for notification sounds; only applies to iOS applications.
          * @param showPreview True, if message content should be displayed in notifications.
+         * @param disablePinnedMessageNotifications True, if notifications for incoming pinned messages will be created as for an ordinary unread message.
+         * @param disableMentionNotifications True, if notifications for messages with mentions will be created as for an ordinary unread message.
          */
-        public ScopeNotificationSettings(int muteFor, String sound, boolean showPreview) {
+        public ScopeNotificationSettings(int muteFor, String sound, boolean showPreview, boolean disablePinnedMessageNotifications, boolean disableMentionNotifications) {
             this.muteFor = muteFor;
             this.sound = sound;
             this.showPreview = showPreview;
+            this.disablePinnedMessageNotifications = disablePinnedMessageNotifications;
+            this.disableMentionNotifications = disableMentionNotifications;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 607439283;
+        public static final int CONSTRUCTOR = -426103745;
 
         /**
          * @return this.CONSTRUCTOR
@@ -19578,7 +23209,7 @@ public class TdApi {
     public static class SearchMessagesFilterEmpty extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns all found messages, no filter is applied.
          */
         public SearchMessagesFilterEmpty() {
         }
@@ -19603,7 +23234,7 @@ public class TdApi {
     public static class SearchMessagesFilterAnimation extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only animation messages.
          */
         public SearchMessagesFilterAnimation() {
         }
@@ -19628,7 +23259,7 @@ public class TdApi {
     public static class SearchMessagesFilterAudio extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only audio messages.
          */
         public SearchMessagesFilterAudio() {
         }
@@ -19653,7 +23284,7 @@ public class TdApi {
     public static class SearchMessagesFilterDocument extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only document messages.
          */
         public SearchMessagesFilterDocument() {
         }
@@ -19678,7 +23309,7 @@ public class TdApi {
     public static class SearchMessagesFilterPhoto extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only photo messages.
          */
         public SearchMessagesFilterPhoto() {
         }
@@ -19703,7 +23334,7 @@ public class TdApi {
     public static class SearchMessagesFilterVideo extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only video messages.
          */
         public SearchMessagesFilterVideo() {
         }
@@ -19728,7 +23359,7 @@ public class TdApi {
     public static class SearchMessagesFilterVoiceNote extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only voice note messages.
          */
         public SearchMessagesFilterVoiceNote() {
         }
@@ -19753,7 +23384,7 @@ public class TdApi {
     public static class SearchMessagesFilterPhotoAndVideo extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only photo and video messages.
          */
         public SearchMessagesFilterPhotoAndVideo() {
         }
@@ -19778,7 +23409,7 @@ public class TdApi {
     public static class SearchMessagesFilterUrl extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only messages containing URLs.
          */
         public SearchMessagesFilterUrl() {
         }
@@ -19803,7 +23434,7 @@ public class TdApi {
     public static class SearchMessagesFilterChatPhoto extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only messages containing chat photos.
          */
         public SearchMessagesFilterChatPhoto() {
         }
@@ -19828,7 +23459,7 @@ public class TdApi {
     public static class SearchMessagesFilterCall extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only call messages.
          */
         public SearchMessagesFilterCall() {
         }
@@ -19853,7 +23484,7 @@ public class TdApi {
     public static class SearchMessagesFilterMissedCall extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only incoming call messages with missed/declined discard reasons.
          */
         public SearchMessagesFilterMissedCall() {
         }
@@ -19878,7 +23509,7 @@ public class TdApi {
     public static class SearchMessagesFilterVideoNote extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only video note messages.
          */
         public SearchMessagesFilterVideoNote() {
         }
@@ -19903,7 +23534,7 @@ public class TdApi {
     public static class SearchMessagesFilterVoiceAndVideoNote extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only voice and video note messages.
          */
         public SearchMessagesFilterVoiceAndVideoNote() {
         }
@@ -19928,7 +23559,7 @@ public class TdApi {
     public static class SearchMessagesFilterMention extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only messages with mentions of the current user, or messages that are replies to their messages.
          */
         public SearchMessagesFilterMention() {
         }
@@ -19948,12 +23579,12 @@ public class TdApi {
     }
 
     /**
-     * Returns only messages with unread mentions of the current user or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user.
+     * Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user.
      */
     public static class SearchMessagesFilterUnreadMention extends SearchMessagesFilter {
 
         /**
-         * Default constructor.
+         * Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user.
          */
         public SearchMessagesFilterUnreadMention() {
         }
@@ -19982,13 +23613,13 @@ public class TdApi {
         public double seconds;
 
         /**
-         * Default constructor.
+         * Contains a value representing a number of seconds.
          */
         public Seconds() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a value representing a number of seconds.
          *
          * @param seconds Number of seconds.
          */
@@ -20044,13 +23675,13 @@ public class TdApi {
         public int layer;
 
         /**
-         * Default constructor.
+         * Represents a secret chat.
          */
         public SecretChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a secret chat.
          *
          * @param id Secret chat identifier.
          * @param userId Identifier of the chat partner.
@@ -20111,7 +23742,7 @@ public class TdApi {
     public static class SecretChatStatePending extends SecretChatState {
 
         /**
-         * Default constructor.
+         * The secret chat is not yet created; waiting for the other user to get online.
          */
         public SecretChatStatePending() {
         }
@@ -20136,7 +23767,7 @@ public class TdApi {
     public static class SecretChatStateReady extends SecretChatState {
 
         /**
-         * Default constructor.
+         * The secret chat is ready to use.
          */
         public SecretChatStateReady() {
         }
@@ -20161,7 +23792,7 @@ public class TdApi {
     public static class SecretChatStateClosed extends SecretChatState {
 
         /**
-         * Default constructor.
+         * The secret chat is closed.
          */
         public SecretChatStateClosed() {
         }
@@ -20181,7 +23812,7 @@ public class TdApi {
     }
 
     /**
-     * Contains information about one session in a Telegram application used by the current user.
+     * Contains information about one session in a Telegram application used by the current user. Sessions should be shown to the user in the returned order.
      */
     public static class Session extends Object {
         /**
@@ -20192,6 +23823,10 @@ public class TdApi {
          * True, if this session is the current session.
          */
         public boolean isCurrent;
+        /**
+         * True, if a password is needed to complete authorization of the session.
+         */
+        public boolean isPasswordPending;
         /**
          * Telegram API identifier, as provided by the application.
          */
@@ -20242,16 +23877,17 @@ public class TdApi {
         public String region;
 
         /**
-         * Default constructor.
+         * Contains information about one session in a Telegram application used by the current user. Sessions should be shown to the user in the returned order.
          */
         public Session() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about one session in a Telegram application used by the current user. Sessions should be shown to the user in the returned order.
          *
          * @param id Session identifier.
          * @param isCurrent True, if this session is the current session.
+         * @param isPasswordPending True, if a password is needed to complete authorization of the session.
          * @param apiId Telegram API identifier, as provided by the application.
          * @param applicationName Name of the application, as provided by the application.
          * @param applicationVersion The version of the application, as provided by the application.
@@ -20265,9 +23901,10 @@ public class TdApi {
          * @param country A two-letter country code for the country from which the session was created, based on the IP address.
          * @param region Region code from which the session was created, based on the IP address.
          */
-        public Session(long id, boolean isCurrent, int apiId, String applicationName, String applicationVersion, boolean isOfficialApplication, String deviceModel, String platform, String systemVersion, int logInDate, int lastActiveDate, String ip, String country, String region) {
+        public Session(long id, boolean isCurrent, boolean isPasswordPending, int apiId, String applicationName, String applicationVersion, boolean isOfficialApplication, String deviceModel, String platform, String systemVersion, int logInDate, int lastActiveDate, String ip, String country, String region) {
             this.id = id;
             this.isCurrent = isCurrent;
+            this.isPasswordPending = isPasswordPending;
             this.apiId = apiId;
             this.applicationName = applicationName;
             this.applicationVersion = applicationVersion;
@@ -20285,7 +23922,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1715359000;
+        public static final int CONSTRUCTOR = 1920553176;
 
         /**
          * @return this.CONSTRUCTOR
@@ -20306,13 +23943,13 @@ public class TdApi {
         public Session[] sessions;
 
         /**
-         * Default constructor.
+         * Contains a list of sessions.
          */
         public Sessions() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of sessions.
          *
          * @param sessions List of sessions.
          */
@@ -20352,13 +23989,13 @@ public class TdApi {
         public LabeledPricePart[] priceParts;
 
         /**
-         * Default constructor.
+         * One shipping option.
          */
         public ShippingOption() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * One shipping option.
          *
          * @param id Shipping option identifier.
          * @param title Option title.
@@ -20422,13 +24059,13 @@ public class TdApi {
         public File sticker;
 
         /**
-         * Default constructor.
+         * Describes a sticker.
          */
         public Sticker() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a sticker.
          *
          * @param setId The identifier of the sticker set to which the sticker belongs; 0 if none.
          * @param width Sticker width; as defined by the sender.
@@ -20474,13 +24111,13 @@ public class TdApi {
         public String[] emojis;
 
         /**
-         * Default constructor.
+         * Represents a list of all emoji corresponding to a sticker in a sticker set. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object.
          */
         public StickerEmojis() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a list of all emoji corresponding to a sticker in a sticker set. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object.
          *
          * @param emojis List of emojis.
          */
@@ -20548,13 +24185,13 @@ public class TdApi {
         public StickerEmojis[] emojis;
 
         /**
-         * Default constructor.
+         * Represents a sticker set.
          */
         public StickerSet() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a sticker set.
          *
          * @param id Identifier of the sticker set.
          * @param title Title of the sticker set.
@@ -20640,13 +24277,13 @@ public class TdApi {
         public Sticker[] covers;
 
         /**
-         * Default constructor.
+         * Represents short information about a sticker set.
          */
         public StickerSetInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents short information about a sticker set.
          *
          * @param id Identifier of the sticker set.
          * @param title Title of the sticker set.
@@ -20700,13 +24337,13 @@ public class TdApi {
         public StickerSetInfo[] sets;
 
         /**
-         * Default constructor.
+         * Represents a list of sticker sets.
          */
         public StickerSets() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a list of sticker sets.
          *
          * @param totalCount Approximate total number of sticker sets found.
          * @param sets List of sticker sets.
@@ -20740,13 +24377,13 @@ public class TdApi {
         public Sticker[] stickers;
 
         /**
-         * Default constructor.
+         * Represents a list of stickers.
          */
         public Stickers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a list of stickers.
          *
          * @param stickers List of stickers.
          */
@@ -20786,13 +24423,13 @@ public class TdApi {
         public StorageStatisticsByChat[] byChat;
 
         /**
-         * Default constructor.
+         * Contains the exact storage usage statistics split by chats and file type.
          */
         public StorageStatistics() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains the exact storage usage statistics split by chats and file type.
          *
          * @param size Total size of files.
          * @param count Total number of files.
@@ -20840,13 +24477,13 @@ public class TdApi {
         public StorageStatisticsByFileType[] byFileType;
 
         /**
-         * Default constructor.
+         * Contains the storage usage statistics for a specific chat.
          */
         public StorageStatisticsByChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains the storage usage statistics for a specific chat.
          *
          * @param chatId Chat identifier; 0 if none.
          * @param size Total size of the files in the chat.
@@ -20892,13 +24529,13 @@ public class TdApi {
         public int count;
 
         /**
-         * Default constructor.
+         * Contains the storage usage statistics for a specific file type.
          */
         public StorageStatisticsByFileType() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains the storage usage statistics for a specific file type.
          *
          * @param fileType File type.
          * @param size Total size of the files.
@@ -20940,30 +24577,42 @@ public class TdApi {
          * Size of the database.
          */
         public long databaseSize;
+        /**
+         * Size of the language pack database.
+         */
+        public long languagePackDatabaseSize;
+        /**
+         * Size of the TDLib internal log.
+         */
+        public long logSize;
 
         /**
-         * Default constructor.
+         * Contains approximate storage usage statistics, excluding files of unknown file type.
          */
         public StorageStatisticsFast() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains approximate storage usage statistics, excluding files of unknown file type.
          *
          * @param filesSize Approximate total size of files.
          * @param fileCount Approximate number of files.
          * @param databaseSize Size of the database.
+         * @param languagePackDatabaseSize Size of the language pack database.
+         * @param logSize Size of the TDLib internal log.
          */
-        public StorageStatisticsFast(long filesSize, int fileCount, long databaseSize) {
+        public StorageStatisticsFast(long filesSize, int fileCount, long databaseSize, long languagePackDatabaseSize, long logSize) {
             this.filesSize = filesSize;
             this.fileCount = fileCount;
             this.databaseSize = databaseSize;
+            this.languagePackDatabaseSize = languagePackDatabaseSize;
+            this.logSize = logSize;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -2005401007;
+        public static final int CONSTRUCTOR = -884922271;
 
         /**
          * @return this.CONSTRUCTOR
@@ -21020,13 +24669,13 @@ public class TdApi {
         public String restrictionReason;
 
         /**
-         * Default constructor.
+         * Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers.
          */
         public Supergroup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers.
          *
          * @param id Supergroup or channel identifier.
          * @param username Username of the supergroup or channel; empty for private supergroups or channels.
@@ -21103,6 +24752,10 @@ public class TdApi {
          */
         public boolean canSetStickerSet;
         /**
+         * True, if the channel statistics is available through getChatStatisticsUrl.
+         */
+        public boolean canViewStatistics;
+        /**
          * True, if new chat members will have access to old messages. In public supergroups and both public and private channels, old messages are always available, so this option affects only private supergroups. The value of this field is only available for chat administrators.
          */
         public boolean isAllHistoryAvailable;
@@ -21115,10 +24768,6 @@ public class TdApi {
          */
         public String inviteLink;
         /**
-         * Identifier of the pinned message in the chat; 0 if none.
-         */
-        public long pinnedMessageId;
-        /**
          * Identifier of the basic group from which supergroup was upgraded; 0 if none.
          */
         public int upgradedFromBasicGroupId;
@@ -21128,13 +24777,13 @@ public class TdApi {
         public long upgradedFromMaxMessageId;
 
         /**
-         * Default constructor.
+         * Contains full information about a supergroup or channel.
          */
         public SupergroupFullInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains full information about a supergroup or channel.
          *
          * @param description Supergroup or channel description.
          * @param memberCount Number of members in the supergroup or channel; 0 if unknown.
@@ -21144,14 +24793,14 @@ public class TdApi {
          * @param canGetMembers True, if members of the chat can be retrieved.
          * @param canSetUsername True, if the chat can be made public.
          * @param canSetStickerSet True, if the supergroup sticker set can be changed.
+         * @param canViewStatistics True, if the channel statistics is available through getChatStatisticsUrl.
          * @param isAllHistoryAvailable True, if new chat members will have access to old messages. In public supergroups and both public and private channels, old messages are always available, so this option affects only private supergroups. The value of this field is only available for chat administrators.
          * @param stickerSetId Identifier of the supergroup sticker set; 0 if none.
          * @param inviteLink Invite link for this chat.
-         * @param pinnedMessageId Identifier of the pinned message in the chat; 0 if none.
          * @param upgradedFromBasicGroupId Identifier of the basic group from which supergroup was upgraded; 0 if none.
          * @param upgradedFromMaxMessageId Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none.
          */
-        public SupergroupFullInfo(String description, int memberCount, int administratorCount, int restrictedCount, int bannedCount, boolean canGetMembers, boolean canSetUsername, boolean canSetStickerSet, boolean isAllHistoryAvailable, long stickerSetId, String inviteLink, long pinnedMessageId, int upgradedFromBasicGroupId, long upgradedFromMaxMessageId) {
+        public SupergroupFullInfo(String description, int memberCount, int administratorCount, int restrictedCount, int bannedCount, boolean canGetMembers, boolean canSetUsername, boolean canSetStickerSet, boolean canViewStatistics, boolean isAllHistoryAvailable, long stickerSetId, String inviteLink, int upgradedFromBasicGroupId, long upgradedFromMaxMessageId) {
             this.description = description;
             this.memberCount = memberCount;
             this.administratorCount = administratorCount;
@@ -21160,10 +24809,10 @@ public class TdApi {
             this.canGetMembers = canGetMembers;
             this.canSetUsername = canSetUsername;
             this.canSetStickerSet = canSetStickerSet;
+            this.canViewStatistics = canViewStatistics;
             this.isAllHistoryAvailable = isAllHistoryAvailable;
             this.stickerSetId = stickerSetId;
             this.inviteLink = inviteLink;
-            this.pinnedMessageId = pinnedMessageId;
             this.upgradedFromBasicGroupId = upgradedFromBasicGroupId;
             this.upgradedFromMaxMessageId = upgradedFromMaxMessageId;
         }
@@ -21171,7 +24820,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -1482349223;
+        public static final int CONSTRUCTOR = 1524634784;
 
         /**
          * @return this.CONSTRUCTOR
@@ -21212,7 +24861,7 @@ public class TdApi {
     public static class SupergroupMembersFilterRecent extends SupergroupMembersFilter {
 
         /**
-         * Default constructor.
+         * Returns recently active users in reverse chronological order.
          */
         public SupergroupMembersFilterRecent() {
         }
@@ -21237,7 +24886,7 @@ public class TdApi {
     public static class SupergroupMembersFilterAdministrators extends SupergroupMembersFilter {
 
         /**
-         * Default constructor.
+         * Returns the creator and administrators.
          */
         public SupergroupMembersFilterAdministrators() {
         }
@@ -21266,13 +24915,13 @@ public class TdApi {
         public String query;
 
         /**
-         * Default constructor.
+         * Used to search for supergroup or channel members via a (string) query.
          */
         public SupergroupMembersFilterSearch() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Used to search for supergroup or channel members via a (string) query.
          *
          * @param query Query to search for.
          */
@@ -21304,13 +24953,13 @@ public class TdApi {
         public String query;
 
         /**
-         * Default constructor.
+         * Returns restricted supergroup members; can be used only by administrators.
          */
         public SupergroupMembersFilterRestricted() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Returns restricted supergroup members; can be used only by administrators.
          *
          * @param query Query to search for.
          */
@@ -21342,13 +24991,13 @@ public class TdApi {
         public String query;
 
         /**
-         * Default constructor.
+         * Returns users banned from the supergroup or channel; can be used only by administrators.
          */
         public SupergroupMembersFilterBanned() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Returns users banned from the supergroup or channel; can be used only by administrators.
          *
          * @param query Query to search for.
          */
@@ -21376,7 +25025,7 @@ public class TdApi {
     public static class SupergroupMembersFilterBots extends SupergroupMembersFilter {
 
         /**
-         * Default constructor.
+         * Returns bot members of the supergroup or channel.
          */
         public SupergroupMembersFilterBots() {
         }
@@ -21409,13 +25058,13 @@ public class TdApi {
         public TMeUrlType type;
 
         /**
-         * Default constructor.
+         * Represents a URL linking to an internal Telegram entity.
          */
         public TMeUrl() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a URL linking to an internal Telegram entity.
          *
          * @param url URL.
          * @param type Type of the URL.
@@ -21471,13 +25120,13 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * A URL linking to a user.
          */
         public TMeUrlTypeUser() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A URL linking to a user.
          *
          * @param userId Identifier of the user.
          */
@@ -21509,13 +25158,13 @@ public class TdApi {
         public long supergroupId;
 
         /**
-         * Default constructor.
+         * A URL linking to a public supergroup or channel.
          */
         public TMeUrlTypeSupergroup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A URL linking to a public supergroup or channel.
          *
          * @param supergroupId Identifier of the supergroup or channel.
          */
@@ -21547,13 +25196,13 @@ public class TdApi {
         public ChatInviteLinkInfo info;
 
         /**
-         * Default constructor.
+         * A chat invite link.
          */
         public TMeUrlTypeChatInvite() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A chat invite link.
          *
          * @param info Chat invite link info.
          */
@@ -21585,13 +25234,13 @@ public class TdApi {
         public long stickerSetId;
 
         /**
-         * Default constructor.
+         * A URL linking to a sticker set.
          */
         public TMeUrlTypeStickerSet() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A URL linking to a sticker set.
          *
          * @param stickerSetId Identifier of the sticker set.
          */
@@ -21623,13 +25272,13 @@ public class TdApi {
         public TMeUrl[] urls;
 
         /**
-         * Default constructor.
+         * Contains a list of t.me URLs.
          */
         public TMeUrls() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of t.me URLs.
          *
          * @param urls List of URLs.
          */
@@ -21717,13 +25366,13 @@ public class TdApi {
         public boolean ignoreFileNames;
 
         /**
-         * Default constructor.
+         * Contains parameters for TDLib initialization.
          */
         public TdlibParameters() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains parameters for TDLib initialization.
          *
          * @param useTestDc If set to true, the Telegram test environment will be used instead of the production environment.
          * @param databaseDirectory The path to the directory for the persistent database; if empty, the current working directory will be used.
@@ -21787,13 +25436,13 @@ public class TdApi {
         public int validFor;
 
         /**
-         * Default constructor.
+         * Returns information about the availability of a temporary password, which can be used for payments.
          */
         public TemporaryPasswordState() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Returns information about the availability of a temporary password, which can be used for payments.
          *
          * @param hasPassword True, if a temporary password is available.
          * @param validFor Time left before the temporary password expires, in seconds.
@@ -21835,13 +25484,13 @@ public class TdApi {
         public boolean showPopup;
 
         /**
-         * Default constructor.
+         * Contains Telegram terms of service.
          */
         public TermsOfService() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains Telegram terms of service.
          *
          * @param text Text of the terms of service.
          * @param minUserAge Mininum age of a user to be able to accept the terms; 0 if any.
@@ -21877,13 +25526,13 @@ public class TdApi {
         public byte[] value;
 
         /**
-         * Default constructor.
+         * A simple object containing a sequence of bytes; for testing only.
          */
         public TestBytes() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A simple object containing a sequence of bytes; for testing only.
          *
          * @param value Bytes.
          */
@@ -21915,13 +25564,13 @@ public class TdApi {
         public int value;
 
         /**
-         * Default constructor.
+         * A simple object containing a number; for testing only.
          */
         public TestInt() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A simple object containing a number; for testing only.
          *
          * @param value Number.
          */
@@ -21953,13 +25602,13 @@ public class TdApi {
         public String value;
 
         /**
-         * Default constructor.
+         * A simple object containing a string; for testing only.
          */
         public TestString() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A simple object containing a string; for testing only.
          *
          * @param value String.
          */
@@ -21991,13 +25640,13 @@ public class TdApi {
         public int[] value;
 
         /**
-         * Default constructor.
+         * A simple object containing a vector of numbers; for testing only.
          */
         public TestVectorInt() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A simple object containing a vector of numbers; for testing only.
          *
          * @param value Vector of numbers.
          */
@@ -22029,13 +25678,13 @@ public class TdApi {
         public TestInt[] value;
 
         /**
-         * Default constructor.
+         * A simple object containing a vector of objects that hold a number; for testing only.
          */
         public TestVectorIntObject() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A simple object containing a vector of objects that hold a number; for testing only.
          *
          * @param value Vector of objects.
          */
@@ -22067,13 +25716,13 @@ public class TdApi {
         public String[] value;
 
         /**
-         * Default constructor.
+         * A simple object containing a vector of strings; for testing only.
          */
         public TestVectorString() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A simple object containing a vector of strings; for testing only.
          *
          * @param value Vector of strings.
          */
@@ -22105,13 +25754,13 @@ public class TdApi {
         public TestString[] value;
 
         /**
-         * Default constructor.
+         * A simple object containing a vector of objects that hold a string; for testing only.
          */
         public TestVectorStringObject() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A simple object containing a vector of objects that hold a string; for testing only.
          *
          * @param value Vector of objects.
          */
@@ -22143,13 +25792,13 @@ public class TdApi {
         public String text;
 
         /**
-         * Default constructor.
+         * Contains some text.
          */
         public Text() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains some text.
          *
          * @param text Text.
          */
@@ -22181,13 +25830,13 @@ public class TdApi {
         public TextEntity[] entities;
 
         /**
-         * Default constructor.
+         * Contains a list of text entities.
          */
         public TextEntities() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of text entities.
          *
          * @param entities List of text entities.
          */
@@ -22227,13 +25876,13 @@ public class TdApi {
         public TextEntityType type;
 
         /**
-         * Default constructor.
+         * Represents a part of the text that needs to be formatted in some unusual way.
          */
         public TextEntity() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a part of the text that needs to be formatted in some unusual way.
          *
          * @param offset Offset of the entity in UTF-16 code points.
          * @param length Length of the entity, in UTF-16 code points.
@@ -22297,7 +25946,7 @@ public class TdApi {
     public static class TextEntityTypeMention extends TextEntityType {
 
         /**
-         * Default constructor.
+         * A mention of a user by their username.
          */
         public TextEntityTypeMention() {
         }
@@ -22322,7 +25971,7 @@ public class TdApi {
     public static class TextEntityTypeHashtag extends TextEntityType {
 
         /**
-         * Default constructor.
+         * A hashtag text, beginning with &quot;#&quot;.
          */
         public TextEntityTypeHashtag() {
         }
@@ -22347,7 +25996,7 @@ public class TdApi {
     public static class TextEntityTypeCashtag extends TextEntityType {
 
         /**
-         * Default constructor.
+         * A cashtag text, beginning with &quot;$&quot; and consisting of capital english letters (i.e. &quot;$USD&quot;).
          */
         public TextEntityTypeCashtag() {
         }
@@ -22372,7 +26021,7 @@ public class TdApi {
     public static class TextEntityTypeBotCommand extends TextEntityType {
 
         /**
-         * Default constructor.
+         * A bot command, beginning with &quot;/&quot;. This shouldn't be highlighted if there are no bots in the chat.
          */
         public TextEntityTypeBotCommand() {
         }
@@ -22397,7 +26046,7 @@ public class TdApi {
     public static class TextEntityTypeUrl extends TextEntityType {
 
         /**
-         * Default constructor.
+         * An HTTP URL.
          */
         public TextEntityTypeUrl() {
         }
@@ -22422,7 +26071,7 @@ public class TdApi {
     public static class TextEntityTypeEmailAddress extends TextEntityType {
 
         /**
-         * Default constructor.
+         * An email address.
          */
         public TextEntityTypeEmailAddress() {
         }
@@ -22447,7 +26096,7 @@ public class TdApi {
     public static class TextEntityTypeBold extends TextEntityType {
 
         /**
-         * Default constructor.
+         * A bold text.
          */
         public TextEntityTypeBold() {
         }
@@ -22472,7 +26121,7 @@ public class TdApi {
     public static class TextEntityTypeItalic extends TextEntityType {
 
         /**
-         * Default constructor.
+         * An italic text.
          */
         public TextEntityTypeItalic() {
         }
@@ -22497,7 +26146,7 @@ public class TdApi {
     public static class TextEntityTypeCode extends TextEntityType {
 
         /**
-         * Default constructor.
+         * Text that must be formatted as if inside a code HTML tag.
          */
         public TextEntityTypeCode() {
         }
@@ -22522,7 +26171,7 @@ public class TdApi {
     public static class TextEntityTypePre extends TextEntityType {
 
         /**
-         * Default constructor.
+         * Text that must be formatted as if inside a pre HTML tag.
          */
         public TextEntityTypePre() {
         }
@@ -22551,13 +26200,13 @@ public class TdApi {
         public String language;
 
         /**
-         * Default constructor.
+         * Text that must be formatted as if inside pre, and code HTML tags.
          */
         public TextEntityTypePreCode() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Text that must be formatted as if inside pre, and code HTML tags.
          *
          * @param language Programming language of the code; as defined by the sender.
          */
@@ -22589,13 +26238,13 @@ public class TdApi {
         public String url;
 
         /**
-         * Default constructor.
+         * A text description shown instead of a raw URL.
          */
         public TextEntityTypeTextUrl() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A text description shown instead of a raw URL.
          *
          * @param url HTTP or tg:// URL to be opened when the link is clicked.
          */
@@ -22627,13 +26276,13 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * A text shows instead of a raw mention of the user (e.g., when the user has no username).
          */
         public TextEntityTypeMentionName() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A text shows instead of a raw mention of the user (e.g., when the user has no username).
          *
          * @param userId Identifier of the mentioned user.
          */
@@ -22661,7 +26310,7 @@ public class TdApi {
     public static class TextEntityTypePhoneNumber extends TextEntityType {
 
         /**
-         * Default constructor.
+         * A phone number.
          */
         public TextEntityTypePhoneNumber() {
         }
@@ -22706,7 +26355,7 @@ public class TdApi {
     public static class TextParseModeMarkdown extends TextParseMode {
 
         /**
-         * Default constructor.
+         * The text should be parsed in markdown-style.
          */
         public TextParseModeMarkdown() {
         }
@@ -22731,7 +26380,7 @@ public class TdApi {
     public static class TextParseModeHTML extends TextParseMode {
 
         /**
-         * Default constructor.
+         * The text should be parsed in HTML-style.
          */
         public TextParseModeHTML() {
         }
@@ -22780,7 +26429,7 @@ public class TdApi {
     public static class TopChatCategoryUsers extends TopChatCategory {
 
         /**
-         * Default constructor.
+         * A category containing frequently used private chats with non-bot users.
          */
         public TopChatCategoryUsers() {
         }
@@ -22805,7 +26454,7 @@ public class TdApi {
     public static class TopChatCategoryBots extends TopChatCategory {
 
         /**
-         * Default constructor.
+         * A category containing frequently used private chats with bot users.
          */
         public TopChatCategoryBots() {
         }
@@ -22830,7 +26479,7 @@ public class TdApi {
     public static class TopChatCategoryGroups extends TopChatCategory {
 
         /**
-         * Default constructor.
+         * A category containing frequently used basic groups and supergroups.
          */
         public TopChatCategoryGroups() {
         }
@@ -22855,7 +26504,7 @@ public class TdApi {
     public static class TopChatCategoryChannels extends TopChatCategory {
 
         /**
-         * Default constructor.
+         * A category containing frequently used channels.
          */
         public TopChatCategoryChannels() {
         }
@@ -22880,7 +26529,7 @@ public class TdApi {
     public static class TopChatCategoryInlineBots extends TopChatCategory {
 
         /**
-         * Default constructor.
+         * A category containing frequently used chats with inline bots sorted by their usage in inline mode.
          */
         public TopChatCategoryInlineBots() {
         }
@@ -22905,7 +26554,7 @@ public class TdApi {
     public static class TopChatCategoryCalls extends TopChatCategory {
 
         /**
-         * Default constructor.
+         * A category containing frequently used chats used for calls.
          */
         public TopChatCategoryCalls() {
         }
@@ -22955,8 +26604,14 @@ public class TdApi {
             UpdateChatUnreadMentionCount.CONSTRUCTOR,
             UpdateChatNotificationSettings.CONSTRUCTOR,
             UpdateScopeNotificationSettings.CONSTRUCTOR,
+            UpdateChatPinnedMessage.CONSTRUCTOR,
             UpdateChatReplyMarkup.CONSTRUCTOR,
             UpdateChatDraftMessage.CONSTRUCTOR,
+            UpdateChatOnlineMemberCount.CONSTRUCTOR,
+            UpdateNotification.CONSTRUCTOR,
+            UpdateNotificationGroup.CONSTRUCTOR,
+            UpdateActiveNotifications.CONSTRUCTOR,
+            UpdateHavePendingNotifications.CONSTRUCTOR,
             UpdateDeleteMessages.CONSTRUCTOR,
             UpdateUserChatAction.CONSTRUCTOR,
             UpdateUserStatus.CONSTRUCTOR,
@@ -22991,7 +26646,8 @@ public class TdApi {
             UpdateNewShippingQuery.CONSTRUCTOR,
             UpdateNewPreCheckoutQuery.CONSTRUCTOR,
             UpdateNewCustomEvent.CONSTRUCTOR,
-            UpdateNewCustomQuery.CONSTRUCTOR
+            UpdateNewCustomQuery.CONSTRUCTOR,
+            UpdatePoll.CONSTRUCTOR
         })
         public @interface Constructors {}
 
@@ -23013,13 +26669,13 @@ public class TdApi {
         public AuthorizationState authorizationState;
 
         /**
-         * Default constructor.
+         * The user authorization state has changed.
          */
         public UpdateAuthorizationState() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user authorization state has changed.
          *
          * @param authorizationState New authorization state.
          */
@@ -23049,38 +26705,26 @@ public class TdApi {
          * The new message.
          */
         public Message message;
-        /**
-         * True, if this message must not generate a notification.
-         */
-        public boolean disableNotification;
-        /**
-         * True, if the message contains a mention of the current user.
-         */
-        public boolean containsMention;
 
         /**
-         * Default constructor.
+         * A new message was received; can also be an outgoing message.
          */
         public UpdateNewMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new message was received; can also be an outgoing message.
          *
          * @param message The new message.
-         * @param disableNotification True, if this message must not generate a notification.
-         * @param containsMention True, if the message contains a mention of the current user.
          */
-        public UpdateNewMessage(Message message, boolean disableNotification, boolean containsMention) {
+        public UpdateNewMessage(Message message) {
             this.message = message;
-            this.disableNotification = disableNotification;
-            this.containsMention = containsMention;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 238944219;
+        public static final int CONSTRUCTOR = -563105266;
 
         /**
          * @return this.CONSTRUCTOR
@@ -23092,7 +26736,7 @@ public class TdApi {
     }
 
     /**
-     * A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option &quot;useQuickAck&quot; is set to true. This update may be sent multiple times for the same message.
+     * A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option &quot;use_quick_ack&quot; is set to true. This update may be sent multiple times for the same message.
      */
     public static class UpdateMessageSendAcknowledged extends Update {
         /**
@@ -23105,13 +26749,13 @@ public class TdApi {
         public long messageId;
 
         /**
-         * Default constructor.
+         * A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option &quot;use_quick_ack&quot; is set to true. This update may be sent multiple times for the same message.
          */
         public UpdateMessageSendAcknowledged() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option &quot;use_quick_ack&quot; is set to true. This update may be sent multiple times for the same message.
          *
          * @param chatId The chat identifier of the sent message.
          * @param messageId A temporary message identifier.
@@ -23149,13 +26793,13 @@ public class TdApi {
         public long oldMessageId;
 
         /**
-         * Default constructor.
+         * A message has been successfully sent.
          */
         public UpdateMessageSendSucceeded() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message has been successfully sent.
          *
          * @param message Information about the sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change.
          * @param oldMessageId The previous temporary message identifier.
@@ -23201,13 +26845,13 @@ public class TdApi {
         public String errorMessage;
 
         /**
-         * Default constructor.
+         * A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update.
          */
         public UpdateMessageSendFailed() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update.
          *
          * @param message Contains information about the message that failed to send.
          * @param oldMessageId The previous temporary message identifier.
@@ -23253,13 +26897,13 @@ public class TdApi {
         public MessageContent newContent;
 
         /**
-         * Default constructor.
+         * The message content has changed.
          */
         public UpdateMessageContent() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The message content has changed.
          *
          * @param chatId Chat identifier.
          * @param messageId Message identifier.
@@ -23307,13 +26951,13 @@ public class TdApi {
         @Nullable public ReplyMarkup replyMarkup;
 
         /**
-         * Default constructor.
+         * A message was edited. Changes in the message content will come in a separate updateMessageContent.
          */
         public UpdateMessageEdited() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message was edited. Changes in the message content will come in a separate updateMessageContent.
          *
          * @param chatId Chat identifier.
          * @param messageId Message identifier.
@@ -23359,13 +27003,13 @@ public class TdApi {
         public int views;
 
         /**
-         * Default constructor.
+         * The view count of the message has changed.
          */
         public UpdateMessageViews() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The view count of the message has changed.
          *
          * @param chatId Chat identifier.
          * @param messageId Message identifier.
@@ -23405,13 +27049,13 @@ public class TdApi {
         public long messageId;
 
         /**
-         * Default constructor.
+         * The message content was opened. Updates voice note messages to &quot;listened&quot;, video note messages to &quot;viewed&quot; and starts the TTL timer for self-destructing messages.
          */
         public UpdateMessageContentOpened() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The message content was opened. Updates voice note messages to &quot;listened&quot;, video note messages to &quot;viewed&quot; and starts the TTL timer for self-destructing messages.
          *
          * @param chatId Chat identifier.
          * @param messageId Message identifier.
@@ -23453,13 +27097,13 @@ public class TdApi {
         public int unreadMentionCount;
 
         /**
-         * Default constructor.
+         * A message with an unread mention was read.
          */
         public UpdateMessageMentionRead() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A message with an unread mention was read.
          *
          * @param chatId Chat identifier.
          * @param messageId Message identifier.
@@ -23495,13 +27139,13 @@ public class TdApi {
         public Chat chat;
 
         /**
-         * Default constructor.
+         * A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the client. The chat field changes will be reported through separate updates.
          */
         public UpdateNewChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the client. The chat field changes will be reported through separate updates.
          *
          * @param chat The chat.
          */
@@ -23537,13 +27181,13 @@ public class TdApi {
         public String title;
 
         /**
-         * Default constructor.
+         * The title of a chat was changed.
          */
         public UpdateChatTitle() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The title of a chat was changed.
          *
          * @param chatId Chat identifier.
          * @param title The new chat title.
@@ -23581,13 +27225,13 @@ public class TdApi {
         @Nullable public ChatPhoto photo;
 
         /**
-         * Default constructor.
+         * A chat photo was changed.
          */
         public UpdateChatPhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A chat photo was changed.
          *
          * @param chatId Chat identifier.
          * @param photo The new chat photo; may be null.
@@ -23629,13 +27273,13 @@ public class TdApi {
         public long order;
 
         /**
-         * Default constructor.
+         * The last message of a chat was changed. If lastMessage is null then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case.
          */
         public UpdateChatLastMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The last message of a chat was changed. If lastMessage is null then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case.
          *
          * @param chatId Chat identifier.
          * @param lastMessage The new last message in the chat; may be null.
@@ -23662,7 +27306,7 @@ public class TdApi {
     }
 
     /**
-     * The order of the chat in the chats list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned or updateChatDraftMessage might be sent.
+     * The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned or updateChatDraftMessage might be sent.
      */
     public static class UpdateChatOrder extends Update {
         /**
@@ -23675,13 +27319,13 @@ public class TdApi {
         public long order;
 
         /**
-         * Default constructor.
+         * The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned or updateChatDraftMessage might be sent.
          */
         public UpdateChatOrder() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned or updateChatDraftMessage might be sent.
          *
          * @param chatId Chat identifier.
          * @param order New value of the order.
@@ -23723,13 +27367,13 @@ public class TdApi {
         public long order;
 
         /**
-         * Default constructor.
+         * A chat was pinned or unpinned.
          */
         public UpdateChatIsPinned() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A chat was pinned or unpinned.
          *
          * @param chatId Chat identifier.
          * @param isPinned New value of isPinned.
@@ -23769,13 +27413,13 @@ public class TdApi {
         public boolean isMarkedAsUnread;
 
         /**
-         * Default constructor.
+         * A chat was marked as unread or was read.
          */
         public UpdateChatIsMarkedAsUnread() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A chat was marked as unread or was read.
          *
          * @param chatId Chat identifier.
          * @param isMarkedAsUnread New value of isMarkedAsUnread.
@@ -23817,13 +27461,13 @@ public class TdApi {
         public long order;
 
         /**
-         * Default constructor.
+         * A chat's isSponsored field has changed.
          */
         public UpdateChatIsSponsored() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A chat's isSponsored field has changed.
          *
          * @param chatId Chat identifier.
          * @param isSponsored New value of isSponsored.
@@ -23863,13 +27507,13 @@ public class TdApi {
         public boolean defaultDisableNotification;
 
         /**
-         * Default constructor.
+         * The value of the default disableNotification parameter, used when a message is sent to the chat, was changed.
          */
         public UpdateChatDefaultDisableNotification() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The value of the default disableNotification parameter, used when a message is sent to the chat, was changed.
          *
          * @param chatId Chat identifier.
          * @param defaultDisableNotification The new defaultDisableNotification value.
@@ -23911,13 +27555,13 @@ public class TdApi {
         public int unreadCount;
 
         /**
-         * Default constructor.
+         * Incoming messages were read or number of unread messages has been changed.
          */
         public UpdateChatReadInbox() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Incoming messages were read or number of unread messages has been changed.
          *
          * @param chatId Chat identifier.
          * @param lastReadInboxMessageId Identifier of the last read incoming message.
@@ -23957,13 +27601,13 @@ public class TdApi {
         public long lastReadOutboxMessageId;
 
         /**
-         * Default constructor.
+         * Outgoing messages were read.
          */
         public UpdateChatReadOutbox() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Outgoing messages were read.
          *
          * @param chatId Chat identifier.
          * @param lastReadOutboxMessageId Identifier of last read outgoing message.
@@ -24001,13 +27645,13 @@ public class TdApi {
         public int unreadMentionCount;
 
         /**
-         * Default constructor.
+         * The chat unreadMentionCount has changed.
          */
         public UpdateChatUnreadMentionCount() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The chat unreadMentionCount has changed.
          *
          * @param chatId Chat identifier.
          * @param unreadMentionCount The number of unread mention messages left in the chat.
@@ -24045,13 +27689,13 @@ public class TdApi {
         public ChatNotificationSettings notificationSettings;
 
         /**
-         * Default constructor.
+         * Notification settings for a chat were changed.
          */
         public UpdateChatNotificationSettings() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Notification settings for a chat were changed.
          *
          * @param chatId Chat identifier.
          * @param notificationSettings The new notification settings.
@@ -24089,13 +27733,13 @@ public class TdApi {
         public ScopeNotificationSettings notificationSettings;
 
         /**
-         * Default constructor.
+         * Notification settings for some type of chats were updated.
          */
         public UpdateScopeNotificationSettings() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Notification settings for some type of chats were updated.
          *
          * @param scope Types of chats for which notification settings were updated.
          * @param notificationSettings The new notification settings.
@@ -24120,6 +27764,50 @@ public class TdApi {
     }
 
     /**
+     * The chat pinned message was changed.
+     */
+    public static class UpdateChatPinnedMessage extends Update {
+        /**
+         * Chat identifier.
+         */
+        public long chatId;
+        /**
+         * The new identifier of the pinned message; 0 if there is no pinned message in the chat.
+         */
+        public long pinnedMessageId;
+
+        /**
+         * The chat pinned message was changed.
+         */
+        public UpdateChatPinnedMessage() {
+        }
+
+        /**
+         * The chat pinned message was changed.
+         *
+         * @param chatId Chat identifier.
+         * @param pinnedMessageId The new identifier of the pinned message; 0 if there is no pinned message in the chat.
+         */
+        public UpdateChatPinnedMessage(long chatId, long pinnedMessageId) {
+            this.chatId = chatId;
+            this.pinnedMessageId = pinnedMessageId;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 802160507;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user.
      */
     public static class UpdateChatReplyMarkup extends Update {
@@ -24133,13 +27821,13 @@ public class TdApi {
         public long replyMarkupMessageId;
 
         /**
-         * Default constructor.
+         * The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user.
          */
         public UpdateChatReplyMarkup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user.
          *
          * @param chatId Chat identifier.
          * @param replyMarkupMessageId Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat.
@@ -24181,13 +27869,13 @@ public class TdApi {
         public long order;
 
         /**
-         * Default constructor.
+         * A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied.
          */
         public UpdateChatDraftMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied.
          *
          * @param chatId Chat identifier.
          * @param draftMessage The new draft message; may be null.
@@ -24214,6 +27902,256 @@ public class TdApi {
     }
 
     /**
+     * The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed.
+     */
+    public static class UpdateChatOnlineMemberCount extends Update {
+        /**
+         * Identifier of the chat.
+         */
+        public long chatId;
+        /**
+         * New number of online members in the chat, or 0 if unknown.
+         */
+        public int onlineMemberCount;
+
+        /**
+         * The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed.
+         */
+        public UpdateChatOnlineMemberCount() {
+        }
+
+        /**
+         * The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed.
+         *
+         * @param chatId Identifier of the chat.
+         * @param onlineMemberCount New number of online members in the chat, or 0 if unknown.
+         */
+        public UpdateChatOnlineMemberCount(long chatId, int onlineMemberCount) {
+            this.chatId = chatId;
+            this.onlineMemberCount = onlineMemberCount;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 487369373;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A notification was changed.
+     */
+    public static class UpdateNotification extends Update {
+        /**
+         * Unique notification group identifier.
+         */
+        public int notificationGroupId;
+        /**
+         * Changed notification.
+         */
+        public Notification notification;
+
+        /**
+         * A notification was changed.
+         */
+        public UpdateNotification() {
+        }
+
+        /**
+         * A notification was changed.
+         *
+         * @param notificationGroupId Unique notification group identifier.
+         * @param notification Changed notification.
+         */
+        public UpdateNotification(int notificationGroupId, Notification notification) {
+            this.notificationGroupId = notificationGroupId;
+            this.notification = notification;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1897496876;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A list of active notifications in a notification group has changed.
+     */
+    public static class UpdateNotificationGroup extends Update {
+        /**
+         * Unique notification group identifier.
+         */
+        public int notificationGroupId;
+        /**
+         * New type of the notification group.
+         */
+        public NotificationGroupType type;
+        /**
+         * Identifier of a chat to which all notifications in the group belong.
+         */
+        public long chatId;
+        /**
+         * Chat identifier, which notification settings must be applied to the added notifications.
+         */
+        public long notificationSettingsChatId;
+        /**
+         * True, if the notifications should be shown without sound.
+         */
+        public boolean isSilent;
+        /**
+         * Total number of unread notifications in the group, can be bigger than number of active notifications.
+         */
+        public int totalCount;
+        /**
+         * List of added group notifications, sorted by notification ID.
+         */
+        public Notification[] addedNotifications;
+        /**
+         * Identifiers of removed group notifications, sorted by notification ID.
+         */
+        public int[] removedNotificationIds;
+
+        /**
+         * A list of active notifications in a notification group has changed.
+         */
+        public UpdateNotificationGroup() {
+        }
+
+        /**
+         * A list of active notifications in a notification group has changed.
+         *
+         * @param notificationGroupId Unique notification group identifier.
+         * @param type New type of the notification group.
+         * @param chatId Identifier of a chat to which all notifications in the group belong.
+         * @param notificationSettingsChatId Chat identifier, which notification settings must be applied to the added notifications.
+         * @param isSilent True, if the notifications should be shown without sound.
+         * @param totalCount Total number of unread notifications in the group, can be bigger than number of active notifications.
+         * @param addedNotifications List of added group notifications, sorted by notification ID.
+         * @param removedNotificationIds Identifiers of removed group notifications, sorted by notification ID.
+         */
+        public UpdateNotificationGroup(int notificationGroupId, NotificationGroupType type, long chatId, long notificationSettingsChatId, boolean isSilent, int totalCount, Notification[] addedNotifications, int[] removedNotificationIds) {
+            this.notificationGroupId = notificationGroupId;
+            this.type = type;
+            this.chatId = chatId;
+            this.notificationSettingsChatId = notificationSettingsChatId;
+            this.isSilent = isSilent;
+            this.totalCount = totalCount;
+            this.addedNotifications = addedNotifications;
+            this.removedNotificationIds = removedNotificationIds;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -2049005665;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Contains active notifications that was shown on previous application launches. This update is sent only if a message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update.
+     */
+    public static class UpdateActiveNotifications extends Update {
+        /**
+         * Lists of active notification groups.
+         */
+        public NotificationGroup[] groups;
+
+        /**
+         * Contains active notifications that was shown on previous application launches. This update is sent only if a message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update.
+         */
+        public UpdateActiveNotifications() {
+        }
+
+        /**
+         * Contains active notifications that was shown on previous application launches. This update is sent only if a message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update.
+         *
+         * @param groups Lists of active notification groups.
+         */
+        public UpdateActiveNotifications(NotificationGroup[] groups) {
+            this.groups = groups;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1306672221;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Describes, whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications.
+     */
+    public static class UpdateHavePendingNotifications extends Update {
+        /**
+         * True, if there are some delayed notification updates, which will be sent soon.
+         */
+        public boolean haveDelayedNotifications;
+        /**
+         * True, if there can be some yet unreceived notifications, which are being fetched from the server.
+         */
+        public boolean haveUnreceivedNotifications;
+
+        /**
+         * Describes, whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications.
+         */
+        public UpdateHavePendingNotifications() {
+        }
+
+        /**
+         * Describes, whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications.
+         *
+         * @param haveDelayedNotifications True, if there are some delayed notification updates, which will be sent soon.
+         * @param haveUnreceivedNotifications True, if there can be some yet unreceived notifications, which are being fetched from the server.
+         */
+        public UpdateHavePendingNotifications(boolean haveDelayedNotifications, boolean haveUnreceivedNotifications) {
+            this.haveDelayedNotifications = haveDelayedNotifications;
+            this.haveUnreceivedNotifications = haveUnreceivedNotifications;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 179233243;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Some messages were deleted.
      */
     public static class UpdateDeleteMessages extends Update {
@@ -24226,7 +28164,7 @@ public class TdApi {
          */
         public long[] messageIds;
         /**
-         * True, if the messages are permanently deleted by a user (as opposed to just becoming unaccessible).
+         * True, if the messages are permanently deleted by a user (as opposed to just becoming inaccessible).
          */
         public boolean isPermanent;
         /**
@@ -24235,17 +28173,17 @@ public class TdApi {
         public boolean fromCache;
 
         /**
-         * Default constructor.
+         * Some messages were deleted.
          */
         public UpdateDeleteMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Some messages were deleted.
          *
          * @param chatId Chat identifier.
          * @param messageIds Identifiers of the deleted messages.
-         * @param isPermanent True, if the messages are permanently deleted by a user (as opposed to just becoming unaccessible).
+         * @param isPermanent True, if the messages are permanently deleted by a user (as opposed to just becoming inaccessible).
          * @param fromCache True, if the messages are deleted only from the cache and can possibly be retrieved again in the future.
          */
         public UpdateDeleteMessages(long chatId, long[] messageIds, boolean isPermanent, boolean fromCache) {
@@ -24287,13 +28225,13 @@ public class TdApi {
         public ChatAction action;
 
         /**
-         * Default constructor.
+         * User activity in the chat has changed.
          */
         public UpdateUserChatAction() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * User activity in the chat has changed.
          *
          * @param chatId Chat identifier.
          * @param userId Identifier of a user performing an action.
@@ -24333,13 +28271,13 @@ public class TdApi {
         public UserStatus status;
 
         /**
-         * Default constructor.
+         * The user went online or offline.
          */
         public UpdateUserStatus() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user went online or offline.
          *
          * @param userId User identifier.
          * @param status New status of the user.
@@ -24373,13 +28311,13 @@ public class TdApi {
         public User user;
 
         /**
-         * Default constructor.
+         * Some data of a user has changed. This update is guaranteed to come before the user identifier is returned to the client.
          */
         public UpdateUser() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Some data of a user has changed. This update is guaranteed to come before the user identifier is returned to the client.
          *
          * @param user New data about the user.
          */
@@ -24411,13 +28349,13 @@ public class TdApi {
         public BasicGroup basicGroup;
 
         /**
-         * Default constructor.
+         * Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the client.
          */
         public UpdateBasicGroup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the client.
          *
          * @param basicGroup New data about the group.
          */
@@ -24449,13 +28387,13 @@ public class TdApi {
         public Supergroup supergroup;
 
         /**
-         * Default constructor.
+         * Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the client.
          */
         public UpdateSupergroup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the client.
          *
          * @param supergroup New data about the supergroup.
          */
@@ -24487,13 +28425,13 @@ public class TdApi {
         public SecretChat secretChat;
 
         /**
-         * Default constructor.
+         * Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the client.
          */
         public UpdateSecretChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the client.
          *
          * @param secretChat New data about the secret chat.
          */
@@ -24529,13 +28467,13 @@ public class TdApi {
         public UserFullInfo userFullInfo;
 
         /**
-         * Default constructor.
+         * Some data from userFullInfo has been changed.
          */
         public UpdateUserFullInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Some data from userFullInfo has been changed.
          *
          * @param userId User identifier.
          * @param userFullInfo New full information about the user.
@@ -24573,13 +28511,13 @@ public class TdApi {
         public BasicGroupFullInfo basicGroupFullInfo;
 
         /**
-         * Default constructor.
+         * Some data from basicGroupFullInfo has been changed.
          */
         public UpdateBasicGroupFullInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Some data from basicGroupFullInfo has been changed.
          *
          * @param basicGroupId Identifier of a basic group.
          * @param basicGroupFullInfo New full information about the group.
@@ -24617,13 +28555,13 @@ public class TdApi {
         public SupergroupFullInfo supergroupFullInfo;
 
         /**
-         * Default constructor.
+         * Some data from supergroupFullInfo has been changed.
          */
         public UpdateSupergroupFullInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Some data from supergroupFullInfo has been changed.
          *
          * @param supergroupId Identifier of the supergroup or channel.
          * @param supergroupFullInfo New full information about the supergroup.
@@ -24652,7 +28590,7 @@ public class TdApi {
      */
     public static class UpdateServiceNotification extends Update {
         /**
-         * Notification type. If type begins with &quot;AUTHKEYDROP_&quot;, then two buttons &quot;Cancel&quot; and &quot;Log out&quot; should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method.
+         * Notification type. If type begins with &quot;AUTH_KEY_DROP_&quot;, then two buttons &quot;Cancel&quot; and &quot;Log out&quot; should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method.
          */
         public String type;
         /**
@@ -24661,15 +28599,15 @@ public class TdApi {
         public MessageContent content;
 
         /**
-         * Default constructor.
+         * Service notification from the server. Upon receiving this the client must show a popup with the content of the notification.
          */
         public UpdateServiceNotification() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Service notification from the server. Upon receiving this the client must show a popup with the content of the notification.
          *
-         * @param type Notification type. If type begins with &quot;AUTHKEYDROP_&quot;, then two buttons &quot;Cancel&quot; and &quot;Log out&quot; should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method.
+         * @param type Notification type. If type begins with &quot;AUTH_KEY_DROP_&quot;, then two buttons &quot;Cancel&quot; and &quot;Log out&quot; should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method.
          * @param content Notification content.
          */
         public UpdateServiceNotification(String type, MessageContent content) {
@@ -24701,13 +28639,13 @@ public class TdApi {
         public File file;
 
         /**
-         * Default constructor.
+         * Information about a file was updated.
          */
         public UpdateFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Information about a file was updated.
          *
          * @param file New data about the file.
          */
@@ -24751,13 +28689,13 @@ public class TdApi {
         public String conversion;
 
         /**
-         * Default constructor.
+         * The file generation process needs to be started by the client.
          */
         public UpdateFileGenerationStart() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The file generation process needs to be started by the client.
          *
          * @param generationId Unique identifier for the generation process.
          * @param originalPath The path to a file from which a new file is generated; may be empty.
@@ -24795,13 +28733,13 @@ public class TdApi {
         public long generationId;
 
         /**
-         * Default constructor.
+         * File generation is no longer needed.
          */
         public UpdateFileGenerationStop() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * File generation is no longer needed.
          *
          * @param generationId Unique identifier for the generation process.
          */
@@ -24833,13 +28771,13 @@ public class TdApi {
         public Call call;
 
         /**
-         * Default constructor.
+         * New call was created or information about a call was updated.
          */
         public UpdateCall() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * New call was created or information about a call was updated.
          *
          * @param call New data about a call.
          */
@@ -24875,13 +28813,13 @@ public class TdApi {
         public UserPrivacySettingRules rules;
 
         /**
-         * Default constructor.
+         * Some privacy setting rules have been changed.
          */
         public UpdateUserPrivacySettingRules() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Some privacy setting rules have been changed.
          *
          * @param setting The privacy setting.
          * @param rules New privacy rules.
@@ -24919,13 +28857,13 @@ public class TdApi {
         public int unreadUnmutedCount;
 
         /**
-         * Default constructor.
+         * Number of unread messages has changed. This update is sent only if a message database is used.
          */
         public UpdateUnreadMessageCount() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Number of unread messages has changed. This update is sent only if a message database is used.
          *
          * @param unreadCount Total number of unread messages.
          * @param unreadUnmutedCount Total number of unread messages in unmuted chats.
@@ -24971,13 +28909,13 @@ public class TdApi {
         public int markedAsUnreadUnmutedCount;
 
         /**
-         * Default constructor.
+         * Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if a message database is used.
          */
         public UpdateUnreadChatCount() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if a message database is used.
          *
          * @param unreadCount Total number of unread chats.
          * @param unreadUnmutedCount Total number of unread unmuted chats.
@@ -25019,13 +28957,13 @@ public class TdApi {
         public OptionValue value;
 
         /**
-         * Default constructor.
+         * An option changed its value.
          */
         public UpdateOption() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * An option changed its value.
          *
          * @param name The option name.
          * @param value The new option value.
@@ -25063,13 +29001,13 @@ public class TdApi {
         public long[] stickerSetIds;
 
         /**
-         * Default constructor.
+         * The list of installed sticker sets was updated.
          */
         public UpdateInstalledStickerSets() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The list of installed sticker sets was updated.
          *
          * @param isMasks True, if the list of installed mask sticker sets was updated.
          * @param stickerSetIds The new list of installed ordinary sticker sets.
@@ -25103,13 +29041,13 @@ public class TdApi {
         public StickerSets stickerSets;
 
         /**
-         * Default constructor.
+         * The list of trending sticker sets was updated or some of them were viewed.
          */
         public UpdateTrendingStickerSets() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The list of trending sticker sets was updated or some of them were viewed.
          *
          * @param stickerSets The new list of trending sticker sets.
          */
@@ -25145,13 +29083,13 @@ public class TdApi {
         public int[] stickerIds;
 
         /**
-         * Default constructor.
+         * The list of recently used stickers was updated.
          */
         public UpdateRecentStickers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The list of recently used stickers was updated.
          *
          * @param isAttached True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated.
          * @param stickerIds The new list of file identifiers of recently used stickers.
@@ -25185,13 +29123,13 @@ public class TdApi {
         public int[] stickerIds;
 
         /**
-         * Default constructor.
+         * The list of favorite stickers was updated.
          */
         public UpdateFavoriteStickers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The list of favorite stickers was updated.
          *
          * @param stickerIds The new list of file identifiers of favorite stickers.
          */
@@ -25223,13 +29161,13 @@ public class TdApi {
         public int[] animationIds;
 
         /**
-         * Default constructor.
+         * The list of saved animations was updated.
          */
         public UpdateSavedAnimations() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The list of saved animations was updated.
          *
          * @param animationIds The new list of file identifiers of saved animations.
          */
@@ -25269,13 +29207,13 @@ public class TdApi {
         public LanguagePackString[] strings;
 
         /**
-         * Default constructor.
+         * Some language pack strings have been updated.
          */
         public UpdateLanguagePackStrings() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Some language pack strings have been updated.
          *
          * @param localizationTarget Localization target to which the language pack belongs.
          * @param languagePackId Identifier of the updated language pack.
@@ -25311,13 +29249,13 @@ public class TdApi {
         public ConnectionState state;
 
         /**
-         * Default constructor.
+         * The connection state has changed.
          */
         public UpdateConnectionState() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The connection state has changed.
          *
          * @param state The new connection state.
          */
@@ -25353,13 +29291,13 @@ public class TdApi {
         public TermsOfService termsOfService;
 
         /**
-         * Default constructor.
+         * New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason &quot;Decline ToS update&quot;.
          */
         public UpdateTermsOfService() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason &quot;Decline ToS update&quot;.
          *
          * @param termsOfServiceId Identifier of the terms of service.
          * @param termsOfService The new terms of service.
@@ -25409,13 +29347,13 @@ public class TdApi {
         public String offset;
 
         /**
-         * Default constructor.
+         * A new incoming inline query; for bots only.
          */
         public UpdateNewInlineQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new incoming inline query; for bots only.
          *
          * @param id Unique query identifier.
          * @param senderUserId Identifier of the user who sent the query.
@@ -25471,13 +29409,13 @@ public class TdApi {
         public String inlineMessageId;
 
         /**
-         * Default constructor.
+         * The user has chosen a result of an inline query; for bots only.
          */
         public UpdateNewChosenInlineResult() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user has chosen a result of an inline query; for bots only.
          *
          * @param senderUserId Identifier of the user who sent the query.
          * @param userLocation User location, provided by the client; may be null.
@@ -25537,13 +29475,13 @@ public class TdApi {
         public CallbackQueryPayload payload;
 
         /**
-         * Default constructor.
+         * A new incoming callback query; for bots only.
          */
         public UpdateNewCallbackQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new incoming callback query; for bots only.
          *
          * @param id Unique query identifier.
          * @param senderUserId Identifier of the user who sent the query.
@@ -25601,13 +29539,13 @@ public class TdApi {
         public CallbackQueryPayload payload;
 
         /**
-         * Default constructor.
+         * A new incoming callback query from a message sent via a bot; for bots only.
          */
         public UpdateNewInlineCallbackQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new incoming callback query from a message sent via a bot; for bots only.
          *
          * @param id Unique query identifier.
          * @param senderUserId Identifier of the user who sent the query.
@@ -25659,13 +29597,13 @@ public class TdApi {
         public Address shippingAddress;
 
         /**
-         * Default constructor.
+         * A new incoming shipping query; for bots only. Only for invoices with flexible price.
          */
         public UpdateNewShippingQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new incoming shipping query; for bots only. Only for invoices with flexible price.
          *
          * @param id Unique query identifier.
          * @param senderUserId Identifier of the user who sent the query.
@@ -25727,13 +29665,13 @@ public class TdApi {
         @Nullable public OrderInfo orderInfo;
 
         /**
-         * Default constructor.
+         * A new incoming pre-checkout query; for bots only. Contains full information about a checkout.
          */
         public UpdateNewPreCheckoutQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new incoming pre-checkout query; for bots only. Contains full information about a checkout.
          *
          * @param id Unique query identifier.
          * @param senderUserId Identifier of the user who sent the query.
@@ -25777,13 +29715,13 @@ public class TdApi {
         public String event;
 
         /**
-         * Default constructor.
+         * A new incoming event; for bots only.
          */
         public UpdateNewCustomEvent() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new incoming event; for bots only.
          *
          * @param event A JSON-serialized event.
          */
@@ -25823,13 +29761,13 @@ public class TdApi {
         public int timeout;
 
         /**
-         * Default constructor.
+         * A new incoming query; for bots only.
          */
         public UpdateNewCustomQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A new incoming query; for bots only.
          *
          * @param id The query identifier.
          * @param data JSON-serialized query data.
@@ -25845,6 +29783,82 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = -687670874;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Information about a poll was updated; for bots only.
+     */
+    public static class UpdatePoll extends Update {
+        /**
+         * New data about the poll.
+         */
+        public Poll poll;
+
+        /**
+         * Information about a poll was updated; for bots only.
+         */
+        public UpdatePoll() {
+        }
+
+        /**
+         * Information about a poll was updated; for bots only.
+         *
+         * @param poll New data about the poll.
+         */
+        public UpdatePoll(Poll poll) {
+            this.poll = poll;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1771342902;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Contains a list of updates.
+     */
+    public static class Updates extends Object {
+        /**
+         * List of updates.
+         */
+        public Update[] updates;
+
+        /**
+         * Contains a list of updates.
+         */
+        public Updates() {
+        }
+
+        /**
+         * Contains a list of updates.
+         *
+         * @param updates List of updates.
+         */
+        public Updates(Update[] updates) {
+            this.updates = updates;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 475842347;
 
         /**
          * @return this.CONSTRUCTOR
@@ -25900,6 +29914,10 @@ public class TdApi {
          */
         public boolean isVerified;
         /**
+         * True, if the user is Telegram support account.
+         */
+        public boolean isSupport;
+        /**
          * If non-empty, it contains the reason why access to this user must be restricted. The format of the string is &quot;{type}: {description}&quot;. {type} contains the type of the restriction and at least one of the suffixes &quot;-all&quot;, &quot;-ios&quot;, &quot;-android&quot;, or &quot;-wp&quot;, which describe the platforms on which access should be restricted. (For example, &quot;terms-ios-android&quot;. {description} contains a human-readable description of the restriction, which can be shown to the user.)
          */
         public String restrictionReason;
@@ -25917,13 +29935,13 @@ public class TdApi {
         public String languageCode;
 
         /**
-         * Default constructor.
+         * Represents a user.
          */
         public User() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a user.
          *
          * @param id User identifier.
          * @param firstName First name of the user.
@@ -25935,12 +29953,13 @@ public class TdApi {
          * @param outgoingLink Relationship from the current user to the other user.
          * @param incomingLink Relationship from the other user to the current user.
          * @param isVerified True, if the user is verified.
+         * @param isSupport True, if the user is Telegram support account.
          * @param restrictionReason If non-empty, it contains the reason why access to this user must be restricted. The format of the string is &quot;{type}: {description}&quot;. {type} contains the type of the restriction and at least one of the suffixes &quot;-all&quot;, &quot;-ios&quot;, &quot;-android&quot;, or &quot;-wp&quot;, which describe the platforms on which access should be restricted. (For example, &quot;terms-ios-android&quot;. {description} contains a human-readable description of the restriction, which can be shown to the user.)
          * @param haveAccess If false, the user is inaccessible, and the only information known about the user is inside this class. It can't be passed to any method except GetUser.
          * @param type Type of the user.
          * @param languageCode IETF language tag of the user's language; only available to bots.
          */
-        public User(int id, String firstName, String lastName, String username, String phoneNumber, UserStatus status, ProfilePhoto profilePhoto, LinkState outgoingLink, LinkState incomingLink, boolean isVerified, String restrictionReason, boolean haveAccess, UserType type, String languageCode) {
+        public User(int id, String firstName, String lastName, String username, String phoneNumber, UserStatus status, ProfilePhoto profilePhoto, LinkState outgoingLink, LinkState incomingLink, boolean isVerified, boolean isSupport, String restrictionReason, boolean haveAccess, UserType type, String languageCode) {
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -25951,6 +29970,7 @@ public class TdApi {
             this.outgoingLink = outgoingLink;
             this.incomingLink = incomingLink;
             this.isVerified = isVerified;
+            this.isSupport = isSupport;
             this.restrictionReason = restrictionReason;
             this.haveAccess = haveAccess;
             this.type = type;
@@ -25960,7 +29980,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -732086407;
+        public static final int CONSTRUCTOR = 248614314;
 
         /**
          * @return this.CONSTRUCTOR
@@ -26005,13 +30025,13 @@ public class TdApi {
         @Nullable public BotInfo botInfo;
 
         /**
-         * Default constructor.
+         * Contains full information about a user (except the full list of profile photos).
          */
         public UserFullInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains full information about a user (except the full list of profile photos).
          *
          * @param isBlocked True, if the user is blacklisted by the current user.
          * @param canBeCalled True, if the user can be called.
@@ -26054,7 +30074,8 @@ public class TdApi {
         @IntDef({
             UserPrivacySettingShowStatus.CONSTRUCTOR,
             UserPrivacySettingAllowChatInvites.CONSTRUCTOR,
-            UserPrivacySettingAllowCalls.CONSTRUCTOR
+            UserPrivacySettingAllowCalls.CONSTRUCTOR,
+            UserPrivacySettingAllowPeerToPeerCalls.CONSTRUCTOR
         })
         public @interface Constructors {}
 
@@ -26072,7 +30093,7 @@ public class TdApi {
     public static class UserPrivacySettingShowStatus extends UserPrivacySetting {
 
         /**
-         * Default constructor.
+         * A privacy setting for managing whether the user's online status is visible.
          */
         public UserPrivacySettingShowStatus() {
         }
@@ -26097,7 +30118,7 @@ public class TdApi {
     public static class UserPrivacySettingAllowChatInvites extends UserPrivacySetting {
 
         /**
-         * Default constructor.
+         * A privacy setting for managing whether the user can be invited to chats.
          */
         public UserPrivacySettingAllowChatInvites() {
         }
@@ -26122,7 +30143,7 @@ public class TdApi {
     public static class UserPrivacySettingAllowCalls extends UserPrivacySetting {
 
         /**
-         * Default constructor.
+         * A privacy setting for managing whether the user can be called.
          */
         public UserPrivacySettingAllowCalls() {
         }
@@ -26131,6 +30152,31 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = -906967291;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * A privacy setting for managing whether peer-to-peer connections can be used for calls.
+     */
+    public static class UserPrivacySettingAllowPeerToPeerCalls extends UserPrivacySetting {
+
+        /**
+         * A privacy setting for managing whether peer-to-peer connections can be used for calls.
+         */
+        public UserPrivacySettingAllowPeerToPeerCalls() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 352500032;
 
         /**
          * @return this.CONSTRUCTOR
@@ -26171,7 +30217,7 @@ public class TdApi {
     public static class UserPrivacySettingRuleAllowAll extends UserPrivacySettingRule {
 
         /**
-         * Default constructor.
+         * A rule to allow all users to do something.
          */
         public UserPrivacySettingRuleAllowAll() {
         }
@@ -26196,7 +30242,7 @@ public class TdApi {
     public static class UserPrivacySettingRuleAllowContacts extends UserPrivacySettingRule {
 
         /**
-         * Default constructor.
+         * A rule to allow all of a user's contacts to do something.
          */
         public UserPrivacySettingRuleAllowContacts() {
         }
@@ -26225,13 +30271,13 @@ public class TdApi {
         public int[] userIds;
 
         /**
-         * Default constructor.
+         * A rule to allow certain specified users to do something.
          */
         public UserPrivacySettingRuleAllowUsers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A rule to allow certain specified users to do something.
          *
          * @param userIds The user identifiers.
          */
@@ -26259,7 +30305,7 @@ public class TdApi {
     public static class UserPrivacySettingRuleRestrictAll extends UserPrivacySettingRule {
 
         /**
-         * Default constructor.
+         * A rule to restrict all users from doing something.
          */
         public UserPrivacySettingRuleRestrictAll() {
         }
@@ -26284,7 +30330,7 @@ public class TdApi {
     public static class UserPrivacySettingRuleRestrictContacts extends UserPrivacySettingRule {
 
         /**
-         * Default constructor.
+         * A rule to restrict all contacts of a user from doing something.
          */
         public UserPrivacySettingRuleRestrictContacts() {
         }
@@ -26313,13 +30359,13 @@ public class TdApi {
         public int[] userIds;
 
         /**
-         * Default constructor.
+         * A rule to restrict all specified users from doing something.
          */
         public UserPrivacySettingRuleRestrictUsers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A rule to restrict all specified users from doing something.
          *
          * @param userIds The user identifiers.
          */
@@ -26351,13 +30397,13 @@ public class TdApi {
         public UserPrivacySettingRule[] rules;
 
         /**
-         * Default constructor.
+         * A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches, the action is not allowed.
          */
         public UserPrivacySettingRules() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches, the action is not allowed.
          *
          * @param rules A list of rules.
          */
@@ -26380,6 +30426,56 @@ public class TdApi {
     }
 
     /**
+     * Contains full information about a user profile photo.
+     */
+    public static class UserProfilePhoto extends Object {
+        /**
+         * Unique user profile photo identifier.
+         */
+        public long id;
+        /**
+         * Point in time (Unix timestamp) when the photo has been added.
+         */
+        public int addedDate;
+        /**
+         * Available variants of the user photo, in different sizes.
+         */
+        public PhotoSize[] sizes;
+
+        /**
+         * Contains full information about a user profile photo.
+         */
+        public UserProfilePhoto() {
+        }
+
+        /**
+         * Contains full information about a user profile photo.
+         *
+         * @param id Unique user profile photo identifier.
+         * @param addedDate Point in time (Unix timestamp) when the photo has been added.
+         * @param sizes Available variants of the user photo, in different sizes.
+         */
+        public UserProfilePhoto(long id, int addedDate, PhotoSize[] sizes) {
+            this.id = id;
+            this.addedDate = addedDate;
+            this.sizes = sizes;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1882596466;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Contains part of the list of user photos.
      */
     public static class UserProfilePhotos extends Object {
@@ -26390,21 +30486,21 @@ public class TdApi {
         /**
          * A list of photos.
          */
-        public Photo[] photos;
+        public UserProfilePhoto[] photos;
 
         /**
-         * Default constructor.
+         * Contains part of the list of user photos.
          */
         public UserProfilePhotos() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains part of the list of user photos.
          *
          * @param totalCount Total number of user profile photos.
          * @param photos A list of photos.
          */
-        public UserProfilePhotos(int totalCount, Photo[] photos) {
+        public UserProfilePhotos(int totalCount, UserProfilePhoto[] photos) {
             this.totalCount = totalCount;
             this.photos = photos;
         }
@@ -26412,7 +30508,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1388892074;
+        public static final int CONSTRUCTOR = 1512709690;
 
         /**
          * @return this.CONSTRUCTOR
@@ -26453,7 +30549,7 @@ public class TdApi {
     public static class UserStatusEmpty extends UserStatus {
 
         /**
-         * Default constructor.
+         * The user status was never changed.
          */
         public UserStatusEmpty() {
         }
@@ -26482,13 +30578,13 @@ public class TdApi {
         public int expires;
 
         /**
-         * Default constructor.
+         * The user is online.
          */
         public UserStatusOnline() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user is online.
          *
          * @param expires Point in time (Unix timestamp) when the user's online status will expire.
          */
@@ -26520,13 +30616,13 @@ public class TdApi {
         public int wasOnline;
 
         /**
-         * Default constructor.
+         * The user is offline.
          */
         public UserStatusOffline() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * The user is offline.
          *
          * @param wasOnline Point in time (Unix timestamp) when the user was last online.
          */
@@ -26554,7 +30650,7 @@ public class TdApi {
     public static class UserStatusRecently extends UserStatus {
 
         /**
-         * Default constructor.
+         * The user was online recently.
          */
         public UserStatusRecently() {
         }
@@ -26579,7 +30675,7 @@ public class TdApi {
     public static class UserStatusLastWeek extends UserStatus {
 
         /**
-         * Default constructor.
+         * The user is offline, but was online last week.
          */
         public UserStatusLastWeek() {
         }
@@ -26604,7 +30700,7 @@ public class TdApi {
     public static class UserStatusLastMonth extends UserStatus {
 
         /**
-         * Default constructor.
+         * The user is offline, but was online last month.
          */
         public UserStatusLastMonth() {
         }
@@ -26651,7 +30747,7 @@ public class TdApi {
     public static class UserTypeRegular extends UserType {
 
         /**
-         * Default constructor.
+         * A regular user.
          */
         public UserTypeRegular() {
         }
@@ -26676,7 +30772,7 @@ public class TdApi {
     public static class UserTypeDeleted extends UserType {
 
         /**
-         * Default constructor.
+         * A deleted user or deleted bot. No information on the user besides the userId is available. It is not possible to perform any active actions on this type of user.
          */
         public UserTypeDeleted() {
         }
@@ -26721,13 +30817,13 @@ public class TdApi {
         public boolean needLocation;
 
         /**
-         * Default constructor.
+         * A bot (see https://core.telegram.org/bots).
          */
         public UserTypeBot() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * A bot (see https://core.telegram.org/bots).
          *
          * @param canJoinGroups True, if the bot can be invited to basic group and supergroup chats.
          * @param canReadAllGroupMessages True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages.
@@ -26763,7 +30859,7 @@ public class TdApi {
     public static class UserTypeUnknown extends UserType {
 
         /**
-         * Default constructor.
+         * No information on the user besides the userId is available, yet this user has not been deleted. This object is extremely rare and must be handled like a deleted user. It is not possible to perform any actions on users of this type.
          */
         public UserTypeUnknown() {
         }
@@ -26796,13 +30892,13 @@ public class TdApi {
         public int[] userIds;
 
         /**
-         * Default constructor.
+         * Represents a list of users.
          */
         public Users() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Represents a list of users.
          *
          * @param totalCount Approximate total count of users found.
          * @param userIds A list of user identifiers.
@@ -26840,13 +30936,13 @@ public class TdApi {
         public ShippingOption[] shippingOptions;
 
         /**
-         * Default constructor.
+         * Contains a temporary identifier of validated order information, which is stored for one hour. Also contains the available shipping options.
          */
         public ValidatedOrderInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a temporary identifier of validated order information, which is stored for one hour. Also contains the available shipping options.
          *
          * @param orderInfoId Temporary identifier of the order information.
          * @param shippingOptions Available shipping options.
@@ -26900,13 +30996,13 @@ public class TdApi {
         public String type;
 
         /**
-         * Default constructor.
+         * Describes a venue.
          */
         public Venue() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a venue.
          *
          * @param location Venue location; as defined by the sender.
          * @param title Venue name; as defined by the sender.
@@ -26980,13 +31076,13 @@ public class TdApi {
         public File video;
 
         /**
-         * Default constructor.
+         * Describes a video file.
          */
         public Video() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a video file.
          *
          * @param duration Duration of the video, in seconds; as defined by the sender.
          * @param width Video width; as defined by the sender.
@@ -27046,13 +31142,13 @@ public class TdApi {
         public File video;
 
         /**
-         * Default constructor.
+         * Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format.
          */
         public VideoNote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format.
          *
          * @param duration Duration of the video, in seconds; as defined by the sender.
          * @param length Video width and height; as defined by the sender.
@@ -27102,13 +31198,13 @@ public class TdApi {
         public File voice;
 
         /**
-         * Default constructor.
+         * Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio channel.
          */
         public VoiceNote() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio channel.
          *
          * @param duration Duration of the voice note, in seconds; as defined by the sender.
          * @param waveform A waveform representation of the voice note in 5-bit format.
@@ -27154,13 +31250,13 @@ public class TdApi {
         public int color;
 
         /**
-         * Default constructor.
+         * Contains information about a wallpaper.
          */
         public Wallpaper() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains information about a wallpaper.
          *
          * @param id Unique persistent wallpaper identifier.
          * @param sizes Available variants of the wallpaper in different sizes. These photos can only be downloaded; they can't be sent in a message.
@@ -27196,13 +31292,13 @@ public class TdApi {
         public Wallpaper[] wallpapers;
 
         /**
-         * Default constructor.
+         * Contains a list of wallpapers.
          */
         public Wallpapers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Contains a list of wallpapers.
          *
          * @param wallpapers A list of wallpapers.
          */
@@ -27309,18 +31405,18 @@ public class TdApi {
          */
         @Nullable public VoiceNote voiceNote;
         /**
-         * True, if the web page has an instant view.
+         * Version of instant view, available for the web page (currently can be 1 or 2), 0 if none.
          */
-        public boolean hasInstantView;
+        public int instantViewVersion;
 
         /**
-         * Default constructor.
+         * Describes a web page preview.
          */
         public WebPage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes a web page preview.
          *
          * @param url Original URL of the link.
          * @param displayUrl URL to display.
@@ -27342,9 +31438,9 @@ public class TdApi {
          * @param video Preview of the content as a video, if available; may be null.
          * @param videoNote Preview of the content as a video note, if available; may be null.
          * @param voiceNote Preview of the content as a voice note, if available; may be null.
-         * @param hasInstantView True, if the web page has an instant view.
+         * @param instantViewVersion Version of instant view, available for the web page (currently can be 1 or 2), 0 if none.
          */
-        public WebPage(String url, String displayUrl, String type, String siteName, String title, String description, Photo photo, String embedUrl, String embedType, int embedWidth, int embedHeight, int duration, String author, Animation animation, Audio audio, Document document, Sticker sticker, Video video, VideoNote videoNote, VoiceNote voiceNote, boolean hasInstantView) {
+        public WebPage(String url, String displayUrl, String type, String siteName, String title, String description, Photo photo, String embedUrl, String embedType, int embedWidth, int embedHeight, int duration, String author, Animation animation, Audio audio, Document document, Sticker sticker, Video video, VideoNote videoNote, VoiceNote voiceNote, int instantViewVersion) {
             this.url = url;
             this.displayUrl = displayUrl;
             this.type = type;
@@ -27365,13 +31461,13 @@ public class TdApi {
             this.video = video;
             this.videoNote = videoNote;
             this.voiceNote = voiceNote;
-            this.hasInstantView = hasInstantView;
+            this.instantViewVersion = instantViewVersion;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1465949075;
+        public static final int CONSTRUCTOR = 1092898169;
 
         /**
          * @return this.CONSTRUCTOR
@@ -27391,31 +31487,49 @@ public class TdApi {
          */
         public PageBlock[] pageBlocks;
         /**
+         * Version of the instant view, currently can be 1 or 2.
+         */
+        public int version;
+        /**
+         * Instant view URL; may be different from WebPage.url and must be used for the correct anchors handling.
+         */
+        public String url;
+        /**
+         * True, if the instant view must be shown from right to left.
+         */
+        public boolean isRtl;
+        /**
          * True, if the instant view contains the full page. A network request might be needed to get the full web page instant view.
          */
         public boolean isFull;
 
         /**
-         * Default constructor.
+         * Describes an instant view page for a web page.
          */
         public WebPageInstantView() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Describes an instant view page for a web page.
          *
          * @param pageBlocks Content of the web page.
+         * @param version Version of the instant view, currently can be 1 or 2.
+         * @param url Instant view URL; may be different from WebPage.url and must be used for the correct anchors handling.
+         * @param isRtl True, if the instant view must be shown from right to left.
          * @param isFull True, if the instant view contains the full page. A network request might be needed to get the full web page instant view.
          */
-        public WebPageInstantView(PageBlock[] pageBlocks, boolean isFull) {
+        public WebPageInstantView(PageBlock[] pageBlocks, int version, String url, boolean isRtl, boolean isFull) {
             this.pageBlocks = pageBlocks;
+            this.version = version;
+            this.url = url;
+            this.isRtl = isRtl;
             this.isFull = isFull;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1804324850;
+        public static final int CONSTRUCTOR = 957287214;
 
         /**
          * @return this.CONSTRUCTOR
@@ -27442,13 +31556,17 @@ public class TdApi {
         public CallProtocol protocol;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which accepts an incoming call.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AcceptCall() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which accepts an incoming call.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param callId Call identifier.
          * @param protocol Description of the call protocols supported by the client.
@@ -27484,13 +31602,17 @@ public class TdApi {
         public String termsOfServiceId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which accepts Telegram terms of services.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AcceptTermsOfService() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which accepts Telegram terms of services.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param termsOfServiceId Terms of service identifier.
          */
@@ -27527,22 +31649,26 @@ public class TdApi {
          */
         public int userId;
         /**
-         * The number of earlier messages from the chat to be forwarded to the new member; up to 300. Ignored for supergroups and channels.
+         * The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels.
          */
         public int forwardLimit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds a new member to a chat. Members can't be added to private or secret chats. Members will not be added until the chat state has been synchronized with the server.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AddChatMember() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds a new member to a chat. Members can't be added to private or secret chats. Members will not be added until the chat state has been synchronized with the server.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param userId Identifier of the user.
-         * @param forwardLimit The number of earlier messages from the chat to be forwarded to the new member; up to 300. Ignored for supergroups and channels.
+         * @param forwardLimit The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels.
          */
         public AddChatMember(long chatId, int userId, int forwardLimit) {
             this.chatId = chatId;
@@ -27580,13 +31706,17 @@ public class TdApi {
         public int[] userIds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds multiple new members to a chat. Currently this option is only available for supergroups and channels. This option can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Members will not be added until the chat state has been synchronized with the server.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AddChatMembers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds multiple new members to a chat. Currently this option is only available for supergroups and channels. This option can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Members will not be added until the chat state has been synchronized with the server.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param userIds Identifiers of the users to be added to the chat.
@@ -27611,6 +31741,50 @@ public class TdApi {
     }
 
     /**
+     * Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class AddCustomServerLanguagePack extends Function {
+        /**
+         * Identifier of a language pack to be added; may be different from a name that is used in an &quot;https://t.me/setlanguage/&quot; link.
+         */
+        public String languagePackId;
+
+        /**
+         * Default constructor for a function, which adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public AddCustomServerLanguagePack() {
+        }
+
+        /**
+         * Creates a function, which adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param languagePackId Identifier of a language pack to be added; may be different from a name that is used in an &quot;https://t.me/setlanguage/&quot; link.
+         */
+        public AddCustomServerLanguagePack(String languagePackId) {
+            this.languagePackId = languagePackId;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 4492771;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list.
      *
      * <p> Returns {@link Ok Ok} </p>
@@ -27622,13 +31796,17 @@ public class TdApi {
         public InputFile sticker;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AddFavoriteSticker() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param sticker Sticker file to add.
          */
@@ -27678,13 +31856,17 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public AddLocalMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId Target chat.
          * @param senderUserId Identifier of the user who will be shown as the sender of the message; may be 0 for channel posts.
@@ -27715,6 +31897,56 @@ public class TdApi {
     }
 
     /**
+     * Adds a message to TDLib internal log. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class AddLogMessage extends Function {
+        /**
+         * Minimum verbosity level needed for the message to be logged, 0-1023.
+         */
+        public int verbosityLevel;
+        /**
+         * Text of a message to log.
+         */
+        public String text;
+
+        /**
+         * Default constructor for a function, which adds a message to TDLib internal log. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public AddLogMessage() {
+        }
+
+        /**
+         * Creates a function, which adds a message to TDLib internal log. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param verbosityLevel Minimum verbosity level needed for the message to be logged, 0-1023.
+         * @param text Text of a message to log.
+         */
+        public AddLogMessage(int verbosityLevel, String text) {
+            this.verbosityLevel = verbosityLevel;
+            this.text = text;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1597427692;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Adds the specified data to data usage statistics. Can be called before authorization.
      *
      * <p> Returns {@link Ok Ok} </p>
@@ -27726,13 +31958,17 @@ public class TdApi {
         public NetworkStatisticsEntry entry;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds the specified data to data usage statistics. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AddNetworkStatistics() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds the specified data to data usage statistics. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param entry The network statistics entry with the data to be added to statistics.
          */
@@ -27778,13 +32014,17 @@ public class TdApi {
         public ProxyType type;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds a proxy server for network requests. Can be called before authorization.
+         *
+         * <p> Returns {@link Proxy Proxy} </p>
          */
         public AddProxy() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds a proxy server for network requests. Can be called before authorization.
+         *
+         * <p> Returns {@link Proxy Proxy} </p>
          *
          * @param server Proxy server IP address.
          * @param port Proxy server port.
@@ -27828,13 +32068,17 @@ public class TdApi {
         public InputFile sticker;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list.
+         *
+         * <p> Returns {@link Stickers Stickers} </p>
          */
         public AddRecentSticker() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list.
+         *
+         * <p> Returns {@link Stickers Stickers} </p>
          *
          * @param isAttached Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers.
          * @param sticker Sticker file to add.
@@ -27870,13 +32114,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AddRecentlyFoundChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Identifier of the chat to add.
          */
@@ -27910,13 +32158,17 @@ public class TdApi {
         public InputFile animation;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first. Only non-secret video animations with MIME type &quot;video/mp4&quot; can be added to the list.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AddSavedAnimation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first. Only non-secret video animations with MIME type &quot;video/mp4&quot; can be added to the list.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param animation The animation file to be added. Only animations known to the server (i.e. successfully sent via a message) can be added to the list.
          */
@@ -27958,13 +32210,17 @@ public class TdApi {
         public InputSticker sticker;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds a new sticker to a set; for bots only. Returns the sticker set.
+         *
+         * <p> Returns {@link StickerSet StickerSet} </p>
          */
         public AddStickerToSet() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds a new sticker to a set; for bots only. Returns the sticker set.
+         *
+         * <p> Returns {@link StickerSet StickerSet} </p>
          *
          * @param userId Sticker set owner.
          * @param name Sticker set name.
@@ -28018,13 +32274,17 @@ public class TdApi {
         public int cacheTime;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sets the result of a callback query; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AnswerCallbackQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sets the result of a callback query; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param callbackQueryId Identifier of the callback query.
          * @param text Text of the answer.
@@ -28070,13 +32330,17 @@ public class TdApi {
         public String data;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which answers a custom query; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AnswerCustomQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which answers a custom query; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param customQueryId Identifier of a custom query.
          * @param data JSON-serialized answer to the query.
@@ -28136,13 +32400,17 @@ public class TdApi {
         public String switchPmParameter;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sets the result of an inline query; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AnswerInlineQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sets the result of an inline query; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param inlineQueryId Identifier of the inline query.
          * @param isPersonal True, if the result of the query can be cached for the specified user.
@@ -28192,13 +32460,17 @@ public class TdApi {
         public String errorMessage;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sets the result of a pre-checkout query; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AnswerPreCheckoutQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sets the result of a pre-checkout query; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param preCheckoutQueryId Identifier of the pre-checkout query.
          * @param errorMessage An error message, empty on success.
@@ -28242,13 +32514,17 @@ public class TdApi {
         public String errorMessage;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sets the result of a shipping query; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public AnswerShippingQuery() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sets the result of a shipping query; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param shippingQueryId Identifier of the shipping query.
          * @param shippingOptions Available shipping options.
@@ -28286,13 +32562,17 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds a user to the blacklist.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public BlockUser() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds a user to the blacklist.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param userId User identifier.
          */
@@ -28330,13 +32610,17 @@ public class TdApi {
         public boolean onlyIfPending;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which stops the downloading of a file. If a file has already been downloaded, does nothing.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CancelDownloadFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which stops the downloading of a file. If a file has already been downloaded, does nothing.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param fileId Identifier of a file to stop downloading.
          * @param onlyIfPending Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server.
@@ -28372,13 +32656,17 @@ public class TdApi {
         public int fileId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which stops the uploading of a file. Supported only for files uploaded by using uploadFile. For other files the behavior is undefined.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CancelUploadFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which stops the uploading of a file. Supported only for files uploaded by using uploadFile. For other files the behavior is undefined.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param fileId Identifier of the file to stop uploading.
          */
@@ -28401,7 +32689,7 @@ public class TdApi {
     }
 
     /**
-     * Used to let the server know whether a chat is spam or not. Can be used only if ChatReportSpamState.canReportSpam is true. After this request, ChatReportSpamState.canReportSpam becomes false forever.
+     * Reports to the server whether a chat is a spam chat or not. Can be used only if ChatReportSpamState.canReportSpam is true. After this request, ChatReportSpamState.canReportSpam becomes false forever.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -28416,13 +32704,17 @@ public class TdApi {
         public boolean isSpamChat;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which reports to the server whether a chat is a spam chat or not. Can be used only if ChatReportSpamState.canReportSpam is true. After this request, ChatReportSpamState.canReportSpam becomes false forever.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ChangeChatReportSpamState() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which reports to the server whether a chat is a spam chat or not. Can be used only if ChatReportSpamState.canReportSpam is true. After this request, ChatReportSpamState.canReportSpam becomes false forever.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param isSpamChat If true, the chat will be reported as spam; otherwise it will be marked as not spam.
@@ -28458,13 +32750,17 @@ public class TdApi {
         public Contact[] contacts;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes imported contacts using the list of current user contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts. Query result depends on the result of the previous query, so only one query is possible at the same time.
+         *
+         * <p> Returns {@link ImportedContacts ImportedContacts} </p>
          */
         public ChangeImportedContacts() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes imported contacts using the list of current user contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts. Query result depends on the result of the previous query, so only one query is possible at the same time.
+         *
+         * <p> Returns {@link ImportedContacts ImportedContacts} </p>
          *
          * @param contacts The new list of contacts, contact's vCard are ignored and are not imported.
          */
@@ -28506,13 +32802,17 @@ public class TdApi {
         public boolean isCurrentPhoneNumber;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code.
+         *
+         * <p> Returns {@link AuthenticationCodeInfo AuthenticationCodeInfo} </p>
          */
         public ChangePhoneNumber() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code.
+         *
+         * <p> Returns {@link AuthenticationCodeInfo AuthenticationCodeInfo} </p>
          *
          * @param phoneNumber The new phone number of the user in international format.
          * @param allowFlashCall Pass true if the code can be sent via flash call to the specified phone number.
@@ -28558,13 +32858,17 @@ public class TdApi {
         public boolean isArchived;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which installs/uninstalls or activates/archives a sticker set.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ChangeStickerSet() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which installs/uninstalls or activates/archives a sticker set.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param setId Identifier of the sticker set.
          * @param isInstalled The new value of isInstalled.
@@ -28602,13 +32906,17 @@ public class TdApi {
         public String token;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CheckAuthenticationBotToken() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param token The bot token.
          */
@@ -28641,26 +32949,30 @@ public class TdApi {
          */
         public String code;
         /**
-         * If the user is not yet registered, the first name of the user; 1-255 characters.
+         * If the user is not yet registered, the first name of the user; 1-64 characters. You can also pass an empty string for unregistered user there to check verification code validness. In the latter case PHONENUMBERUNOCCUPIED error will be returned for a valid code.
          */
         public String firstName;
         /**
-         * If the user is not yet registered; the last name of the user; optional; 0-255 characters.
+         * If the user is not yet registered; the last name of the user; optional; 0-64 characters.
          */
         public String lastName;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CheckAuthenticationCode() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param code The verification code received via SMS, Telegram message, phone call, or flash call.
-         * @param firstName If the user is not yet registered, the first name of the user; 1-255 characters.
-         * @param lastName If the user is not yet registered; the last name of the user; optional; 0-255 characters.
+         * @param firstName If the user is not yet registered, the first name of the user; 1-64 characters. You can also pass an empty string for unregistered user there to check verification code validness. In the latter case PHONENUMBERUNOCCUPIED error will be returned for a valid code.
+         * @param lastName If the user is not yet registered; the last name of the user; optional; 0-64 characters.
          */
         public CheckAuthenticationCode(String code, String firstName, String lastName) {
             this.code = code;
@@ -28694,13 +33006,17 @@ public class TdApi {
         public String password;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CheckAuthenticationPassword() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param password The password to check.
          */
@@ -28734,13 +33050,17 @@ public class TdApi {
         public String code;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which checks the authentication code sent to confirm a new phone number of the user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CheckChangePhoneNumberCode() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which checks the authentication code sent to confirm a new phone number of the user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param code Verification code received by SMS, phone call or flash call.
          */
@@ -28774,13 +33094,17 @@ public class TdApi {
         public String inviteLink;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which checks the validity of an invite link for a chat and returns information about the corresponding chat.
+         *
+         * <p> Returns {@link ChatInviteLinkInfo ChatInviteLinkInfo} </p>
          */
         public CheckChatInviteLink() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which checks the validity of an invite link for a chat and returns information about the corresponding chat.
+         *
+         * <p> Returns {@link ChatInviteLinkInfo ChatInviteLinkInfo} </p>
          *
          * @param inviteLink Invite link to be checked; should begin with &quot;https://t.me/joinchat/&quot;, &quot;https://telegram.me/joinchat/&quot;, or &quot;https://telegram.dog/joinchat/&quot;.
          */
@@ -28818,13 +33142,17 @@ public class TdApi {
         public String username;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which checks whether a username can be set for a chat.
+         *
+         * <p> Returns {@link CheckChatUsernameResult CheckChatUsernameResult} </p>
          */
         public CheckChatUsername() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which checks whether a username can be set for a chat.
+         *
+         * <p> Returns {@link CheckChatUsernameResult CheckChatUsernameResult} </p>
          *
          * @param chatId Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if chat is being created.
          * @param username Username to be checked.
@@ -28837,7 +33165,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -2003506154;
+        public static final int CONSTRUCTOR = -119119344;
 
         /**
          * @return this.CONSTRUCTOR
@@ -28860,13 +33188,17 @@ public class TdApi {
         public byte[] encryptionKey;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which checks the database encryption key for correctness. Works only when the current authorization state is authorizationStateWaitEncryptionKey.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CheckDatabaseEncryptionKey() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which checks the database encryption key for correctness. Works only when the current authorization state is authorizationStateWaitEncryptionKey.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param encryptionKey Encryption key to check or set up.
          */
@@ -28900,13 +33232,17 @@ public class TdApi {
         public String code;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which checks the email address verification code for Telegram Passport.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CheckEmailAddressVerificationCode() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which checks the email address verification code for Telegram Passport.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param code Verification code.
          */
@@ -28940,13 +33276,17 @@ public class TdApi {
         public String code;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which checks phone number confirmation code.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CheckPhoneNumberConfirmationCode() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which checks phone number confirmation code.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param code The phone number confirmation code.
          */
@@ -28980,13 +33320,17 @@ public class TdApi {
         public String code;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which checks the phone number verification code for Telegram Passport.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CheckPhoneNumberVerificationCode() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which checks the phone number verification code for Telegram Passport.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param code Verification code.
          */
@@ -29009,6 +33353,50 @@ public class TdApi {
     }
 
     /**
+     * Checks the 2-step verification recovery email address verification code.
+     *
+     * <p> Returns {@link PasswordState PasswordState} </p>
+     */
+    public static class CheckRecoveryEmailAddressCode extends Function {
+        /**
+         * Verification code.
+         */
+        public String code;
+
+        /**
+         * Default constructor for a function, which checks the 2-step verification recovery email address verification code.
+         *
+         * <p> Returns {@link PasswordState PasswordState} </p>
+         */
+        public CheckRecoveryEmailAddressCode() {
+        }
+
+        /**
+         * Creates a function, which checks the 2-step verification recovery email address verification code.
+         *
+         * <p> Returns {@link PasswordState PasswordState} </p>
+         *
+         * @param code Verification code.
+         */
+        public CheckRecoveryEmailAddressCode(String code) {
+            this.code = code;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1997039589;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously.
      *
      * <p> Returns {@link Text Text} </p>
@@ -29020,13 +33408,17 @@ public class TdApi {
         public String fileName;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Text Text} </p>
          */
         public CleanFileName() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Text Text} </p>
          *
          * @param fileName File name or path to the file.
          */
@@ -29060,13 +33452,17 @@ public class TdApi {
         public boolean excludeSecretChats;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which clears draft messages in all chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ClearAllDraftMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which clears draft messages in all chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param excludeSecretChats If true, local draft messages in secret chats will not be cleared.
          */
@@ -29089,14 +33485,16 @@ public class TdApi {
     }
 
     /**
-     * Clears all imported contacts, contacts list remains unchanged.
+     * Clears all imported contacts, contact list remains unchanged.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
     public static class ClearImportedContacts extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which clears all imported contacts, contact list remains unchanged.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ClearImportedContacts() {
         }
@@ -29127,13 +33525,17 @@ public class TdApi {
         public boolean isAttached;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which clears the list of recently used stickers.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ClearRecentStickers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which clears the list of recently used stickers.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param isAttached Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers.
          */
@@ -29163,7 +33565,9 @@ public class TdApi {
     public static class ClearRecentlyFoundChats extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which clears the list of recently found chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ClearRecentlyFoundChats() {
         }
@@ -29190,7 +33594,9 @@ public class TdApi {
     public static class Close extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public Close() {
         }
@@ -29210,7 +33616,7 @@ public class TdApi {
     }
 
     /**
-     * This method should be called if the chat is closed by the user. Many useful activities depend on the chat being opened or closed.
+     * Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -29221,13 +33627,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CloseChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          */
@@ -29261,13 +33671,17 @@ public class TdApi {
         public int secretChatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which closes a secret chat, effectively transfering its state to secretChatStateClosed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public CloseSecretChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which closes a secret chat, effectively transfering its state to secretChatStateClosed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param secretChatId Secret chat identifier.
          */
@@ -29305,13 +33719,17 @@ public class TdApi {
         public boolean force;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns an existing chat corresponding to a known basic group.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public CreateBasicGroupChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns an existing chat corresponding to a known basic group.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          *
          * @param basicGroupId Basic group identifier.
          * @param force If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect.
@@ -29351,13 +33769,17 @@ public class TdApi {
         public CallProtocol protocol;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which creates a new call.
+         *
+         * <p> Returns {@link CallId CallId} </p>
          */
         public CreateCall() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which creates a new call.
+         *
+         * <p> Returns {@link CallId CallId} </p>
          *
          * @param userId Identifier of the user to be called.
          * @param protocol Description of the call protocols supported by the client.
@@ -29392,21 +33814,25 @@ public class TdApi {
          */
         public int[] userIds;
         /**
-         * Title of the new basic group; 1-255 characters.
+         * Title of the new basic group; 1-128 characters.
          */
         public String title;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public CreateNewBasicGroupChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          *
          * @param userIds Identifiers of users to be added to the basic group.
-         * @param title Title of the new basic group; 1-255 characters.
+         * @param title Title of the new basic group; 1-128 characters.
          */
         public CreateNewBasicGroupChat(int[] userIds, String title) {
             this.userIds = userIds;
@@ -29439,13 +33865,17 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which creates a new secret chat. Returns the newly created chat.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public CreateNewSecretChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which creates a new secret chat. Returns the newly created chat.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          *
          * @param userId Identifier of the target user.
          */
@@ -29482,7 +33912,7 @@ public class TdApi {
          */
         public String title;
         /**
-         * Sticker set name. Can contain only English letters, digits and underscores. Must end with *&quot;By_&lt;bot username&gt;&quot;* (*&lt;botUsername&gt;* is case insensitive); 1-64 characters.
+         * Sticker set name. Can contain only English letters, digits and underscores. Must end with *&quot;_by_&lt;bot username&gt;&quot;* (*&lt;botUsername&gt;* is case insensitive); 1-64 characters.
          */
         public String name;
         /**
@@ -29495,17 +33925,21 @@ public class TdApi {
         public InputSticker[] stickers;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which creates a new sticker set; for bots only. Returns the newly created sticker set.
+         *
+         * <p> Returns {@link StickerSet StickerSet} </p>
          */
         public CreateNewStickerSet() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which creates a new sticker set; for bots only. Returns the newly created sticker set.
+         *
+         * <p> Returns {@link StickerSet StickerSet} </p>
          *
          * @param userId Sticker set owner.
          * @param title Sticker set title; 1-64 characters.
-         * @param name Sticker set name. Can contain only English letters, digits and underscores. Must end with *&quot;By_&lt;bot username&gt;&quot;* (*&lt;botUsername&gt;* is case insensitive); 1-64 characters.
+         * @param name Sticker set name. Can contain only English letters, digits and underscores. Must end with *&quot;_by_&lt;bot username&gt;&quot;* (*&lt;botUsername&gt;* is case insensitive); 1-64 characters.
          * @param isMasks True, if stickers are masks.
          * @param stickers List of stickers to be added to the set.
          */
@@ -29538,7 +33972,7 @@ public class TdApi {
      */
     public static class CreateNewSupergroupChat extends Function {
         /**
-         * Title of the new chat; 1-255 characters.
+         * Title of the new chat; 1-128 characters.
          */
         public String title;
         /**
@@ -29551,15 +33985,19 @@ public class TdApi {
         public String description;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public CreateNewSupergroupChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat.
          *
-         * @param title Title of the new chat; 1-255 characters.
+         * <p> Returns {@link Chat Chat} </p>
+         *
+         * @param title Title of the new chat; 1-128 characters.
          * @param isChannel True, if a channel chat should be created.
          * @param description Chat description; 0-255 characters.
          */
@@ -29599,13 +34037,17 @@ public class TdApi {
         public boolean force;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns an existing chat corresponding to a given user.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public CreatePrivateChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns an existing chat corresponding to a given user.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          *
          * @param userId User identifier.
          * @param force If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect.
@@ -29641,13 +34083,17 @@ public class TdApi {
         public int secretChatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns an existing chat corresponding to a known secret chat.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public CreateSecretChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns an existing chat corresponding to a known secret chat.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          *
          * @param secretChatId Secret chat identifier.
          */
@@ -29685,13 +34131,17 @@ public class TdApi {
         public boolean force;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns an existing chat corresponding to a known supergroup or channel.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public CreateSupergroupChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns an existing chat corresponding to a known supergroup or channel.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          *
          * @param supergroupId Supergroup or channel identifier.
          * @param force If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect.
@@ -29731,13 +34181,17 @@ public class TdApi {
         public int validFor;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which creates a new temporary password for processing payments.
+         *
+         * <p> Returns {@link TemporaryPasswordState TemporaryPasswordState} </p>
          */
         public CreateTemporaryPassword() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which creates a new temporary password for processing payments.
+         *
+         * <p> Returns {@link TemporaryPasswordState TemporaryPasswordState} </p>
          *
          * @param password Persistent user password.
          * @param validFor Time during which the temporary password will be valid, in seconds; should be between 60 and 86400.
@@ -29773,13 +34227,17 @@ public class TdApi {
         public String reason;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteAccount() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param reason The reason why the account was deleted; optional.
          */
@@ -29802,7 +34260,7 @@ public class TdApi {
     }
 
     /**
-     * Deletes all messages in the chat only for the user. Cannot be used in channels and public supergroups.
+     * Deletes all messages in the chat. Use Chat.canBeDeletedOnlyForSelf and Chat.canBeDeletedForAllUsers fields to find whether and how the method can be applied to the chat.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -29812,31 +34270,41 @@ public class TdApi {
          */
         public long chatId;
         /**
-         * Pass true if the chat should be removed from the chats list.
+         * Pass true if the chat should be removed from the chat list.
          */
         public boolean removeFromChatList;
+        /**
+         * Pass true to try to delete chat history for all users.
+         */
+        public boolean revoke;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes all messages in the chat. Use Chat.canBeDeletedOnlyForSelf and Chat.canBeDeletedForAllUsers fields to find whether and how the method can be applied to the chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteChatHistory() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which deletes all messages in the chat. Use Chat.canBeDeletedOnlyForSelf and Chat.canBeDeletedForAllUsers fields to find whether and how the method can be applied to the chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
-         * @param removeFromChatList Pass true if the chat should be removed from the chats list.
+         * @param removeFromChatList Pass true if the chat should be removed from the chat list.
+         * @param revoke Pass true to try to delete chat history for all users.
          */
-        public DeleteChatHistory(long chatId, boolean removeFromChatList) {
+        public DeleteChatHistory(long chatId, boolean removeFromChatList, boolean revoke) {
             this.chatId = chatId;
             this.removeFromChatList = removeFromChatList;
+            this.revoke = revoke;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -1384632722;
+        public static final int CONSTRUCTOR = -1472081761;
 
         /**
          * @return this.CONSTRUCTOR
@@ -29863,13 +34331,17 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes all messages sent by the specified user to a chat. Supported only in supergroups; requires canDeleteMessages administrator privileges.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteChatMessagesFromUser() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which deletes all messages sent by the specified user to a chat. Supported only in supergroups; requires canDeleteMessages administrator privileges.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param userId User identifier.
@@ -29909,13 +34381,17 @@ public class TdApi {
         public long messageId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup will be changed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteChatReplyMarkup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup will be changed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param messageId The message identifier of the used keyboard.
@@ -29951,13 +34427,17 @@ public class TdApi {
         public int fileId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes a file from the TDLib file cache.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which deletes a file from the TDLib file cache.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param fileId Identifier of the file to delete.
          */
@@ -29980,7 +34460,7 @@ public class TdApi {
     }
 
     /**
-     * Deletes all information about a language pack in the current localization target. The language pack that is currently in use can't be deleted.
+     * Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -29991,13 +34471,17 @@ public class TdApi {
         public String languagePackId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteLanguagePack() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param languagePackId Identifier of the language pack to delete.
          */
@@ -30034,22 +34518,26 @@ public class TdApi {
          */
         public long[] messageIds;
         /**
-         * Pass true to try to delete outgoing messages for all chat members (may fail if messages are too old). Always true for supergroups, channels and secret chats.
+         * Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats.
          */
         public boolean revoke;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes messages.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which deletes messages.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param messageIds Identifiers of the messages to be deleted.
-         * @param revoke Pass true to try to delete outgoing messages for all chat members (may fail if messages are too old). Always true for supergroups, channels and secret chats.
+         * @param revoke Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats.
          */
         public DeleteMessages(long chatId, long[] messageIds, boolean revoke) {
             this.chatId = chatId;
@@ -30083,13 +34571,17 @@ public class TdApi {
         public PassportElementType type;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes a Telegram Passport element.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeletePassportElement() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which deletes a Telegram Passport element.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param type Element type.
          */
@@ -30123,13 +34615,17 @@ public class TdApi {
         public long profilePhotoId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes a profile photo. If something changes, updateUser will be sent.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteProfilePhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which deletes a profile photo. If something changes, updateUser will be sent.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param profilePhotoId Identifier of the profile photo to delete.
          */
@@ -30159,7 +34655,9 @@ public class TdApi {
     public static class DeleteSavedCredentials extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes saved credentials for all payment provider bots.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteSavedCredentials() {
         }
@@ -30186,7 +34684,9 @@ public class TdApi {
     public static class DeleteSavedOrderInfo extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes saved order info.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteSavedOrderInfo() {
         }
@@ -30217,13 +34717,17 @@ public class TdApi {
         public int supergroupId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which deletes a supergroup or channel along with all messages in the corresponding chat. This will release the supergroup or channel username and remove all members; requires creator privileges in the supergroup or channel. Chats with more than 1000 members can't be deleted using this method.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DeleteSupergroup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which deletes a supergroup or channel along with all messages in the corresponding chat. This will release the supergroup or channel username and remove all members; requires creator privileges in the supergroup or channel. Chats with more than 1000 members can't be deleted using this method.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param supergroupId Identifier of the supergroup or channel.
          */
@@ -30253,7 +34757,9 @@ public class TdApi {
     public static class Destroy extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public Destroy() {
         }
@@ -30280,7 +34786,9 @@ public class TdApi {
     public static class DisableProxy extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which disables the currently enabled proxy. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DisableProxy() {
         }
@@ -30323,13 +34831,17 @@ public class TdApi {
         public long connectionId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which discards a call.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DiscardCall() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which discards a call.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param callId Call identifier.
          * @param isDisconnected True, if the user was disconnected.
@@ -30365,7 +34877,9 @@ public class TdApi {
     public static class DisconnectAllWebsites extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which disconnects all websites from the current user's Telegram account.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DisconnectAllWebsites() {
         }
@@ -30396,13 +34910,17 @@ public class TdApi {
         public long websiteId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which disconnects website from the current user's Telegram account.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public DisconnectWebsite() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which disconnects website from the current user's Telegram account.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param websiteId Website identifier.
          */
@@ -30425,7 +34943,7 @@ public class TdApi {
     }
 
     /**
-     * Asynchronously downloads a file from the cloud. updateFile will be used to notify about the download progress and successful completion of the download. Returns file state just after the download has been started.
+     * Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates.
      *
      * <p> Returns {@link File File} </p>
      */
@@ -30438,28 +34956,50 @@ public class TdApi {
          * Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first.
          */
         public int priority;
+        /**
+         * The starting position from which the file should be downloaded.
+         */
+        public int offset;
+        /**
+         * Number of bytes which should be downloaded starting from the &quot;offset&quot; position before the download will be automatically cancelled; use 0 to download without a limit.
+         */
+        public int limit;
+        /**
+         * If false, this request returns file state just after the download has been started. If true, this request returns file state only after the download has succeeded, has failed, has been cancelled or a new downloadFile request with different offset/limit parameters was sent.
+         */
+        public boolean synchronous;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates.
+         *
+         * <p> Returns {@link File File} </p>
          */
         public DownloadFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates.
+         *
+         * <p> Returns {@link File File} </p>
          *
          * @param fileId Identifier of the file to download.
          * @param priority Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first.
+         * @param offset The starting position from which the file should be downloaded.
+         * @param limit Number of bytes which should be downloaded starting from the &quot;offset&quot; position before the download will be automatically cancelled; use 0 to download without a limit.
+         * @param synchronous If false, this request returns file state just after the download has been started. If true, this request returns file state only after the download has succeeded, has failed, has been cancelled or a new downloadFile request with different offset/limit parameters was sent.
          */
-        public DownloadFile(int fileId, int priority) {
+        public DownloadFile(int fileId, int priority, int offset, int limit, boolean synchronous) {
             this.fileId = fileId;
             this.priority = priority;
+            this.offset = offset;
+            this.limit = limit;
+            this.synchronous = synchronous;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1531851978;
+        public static final int CONSTRUCTOR = -1102026662;
 
         /**
          * @return this.CONSTRUCTOR
@@ -30471,26 +35011,30 @@ public class TdApi {
     }
 
     /**
-     * Edits information about a custom language pack in the current localization target.
+     * Edits information about a custom local language pack in the current localization target. Can be called before authorization.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
     public static class EditCustomLanguagePackInfo extends Function {
         /**
-         * New information about the custom language pack.
+         * New information about the custom local language pack.
          */
         public LanguagePackInfo info;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits information about a custom local language pack in the current localization target. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public EditCustomLanguagePackInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits information about a custom local language pack in the current localization target. Can be called before authorization.
          *
-         * @param info New information about the custom language pack.
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param info New information about the custom local language pack.
          */
         public EditCustomLanguagePackInfo(LanguagePackInfo info) {
             this.info = info;
@@ -30525,22 +35069,26 @@ public class TdApi {
          */
         public ReplyMarkup replyMarkup;
         /**
-         * New message content caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * New message content caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public FormattedText caption;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits the caption of an inline message sent via a bot; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public EditInlineMessageCaption() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits the caption of an inline message sent via a bot; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param inlineMessageId Inline message identifier.
          * @param replyMarkup The new message reply markup.
-         * @param caption New message content caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * @param caption New message content caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public EditInlineMessageCaption(String inlineMessageId, ReplyMarkup replyMarkup, FormattedText caption) {
             this.inlineMessageId = inlineMessageId;
@@ -30582,13 +35130,17 @@ public class TdApi {
         @Nullable public Location location;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits the content of a live location in an inline message sent via a bot; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public EditInlineMessageLiveLocation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits the content of a live location in an inline message sent via a bot; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param inlineMessageId Inline message identifier.
          * @param replyMarkup The new message reply markup.
@@ -30634,13 +35186,17 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public EditInlineMessageMedia() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param inlineMessageId Inline message identifier.
          * @param replyMarkup The new message reply markup; for bots only.
@@ -30682,13 +35238,17 @@ public class TdApi {
         public ReplyMarkup replyMarkup;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits the reply markup of an inline message sent via a bot; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public EditInlineMessageReplyMarkup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits the reply markup of an inline message sent via a bot; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param inlineMessageId Inline message identifier.
          * @param replyMarkup The new message reply markup.
@@ -30732,13 +35292,17 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits the text of an inline text or game message sent via a bot; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public EditInlineMessageText() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits the text of an inline text or game message sent via a bot; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param inlineMessageId Inline message identifier.
          * @param replyMarkup The new message reply markup.
@@ -30783,23 +35347,27 @@ public class TdApi {
          */
         public ReplyMarkup replyMarkup;
         /**
-         * New message content caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * New message content caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public FormattedText caption;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits the message content caption. Returns the edited message after the edit is completed on the server side.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public EditMessageCaption() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits the message content caption. Returns the edited message after the edit is completed on the server side.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId The chat the message belongs to.
          * @param messageId Identifier of the message.
          * @param replyMarkup The new message reply markup; for bots only.
-         * @param caption New message content caption; 0-GetOption(&quot;messageCaptionLengthMax&quot;) characters.
+         * @param caption New message content caption; 0-GetOption(&quot;message_caption_length_max&quot;) characters.
          */
         public EditMessageCaption(long chatId, long messageId, ReplyMarkup replyMarkup, FormattedText caption) {
             this.chatId = chatId;
@@ -30846,13 +35414,17 @@ public class TdApi {
         @Nullable public Location location;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public EditMessageLiveLocation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId The chat the message belongs to.
          * @param messageId Identifier of the message.
@@ -30904,13 +35476,17 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits the content of a message with an animation, an audio, a document, a photo or a video. The media in the message can't be replaced if the message was set to self-destruct. Media can't be replaced by self-destructing media. Media in an album can be edited only to contain a photo or a video. Returns the edited message after the edit is completed on the server side.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public EditMessageMedia() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits the content of a message with an animation, an audio, a document, a photo or a video. The media in the message can't be replaced if the message was set to self-destruct. Media can't be replaced by self-destructing media. Media in an album can be edited only to contain a photo or a video. Returns the edited message after the edit is completed on the server side.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId The chat the message belongs to.
          * @param messageId Identifier of the message.
@@ -30958,13 +35534,17 @@ public class TdApi {
         public ReplyMarkup replyMarkup;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public EditMessageReplyMarkup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId The chat the message belongs to.
          * @param messageId Identifier of the message.
@@ -31014,13 +35594,17 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public EditMessageText() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId The chat the message belongs to.
          * @param messageId Identifier of the message.
@@ -31076,13 +35660,17 @@ public class TdApi {
         public ProxyType type;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which edits an existing proxy server for network requests. Can be called before authorization.
+         *
+         * <p> Returns {@link Proxy Proxy} </p>
          */
         public EditProxy() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which edits an existing proxy server for network requests. Can be called before authorization.
+         *
+         * <p> Returns {@link Proxy Proxy} </p>
          *
          * @param proxyId Proxy identifier.
          * @param server Proxy server IP address.
@@ -31124,13 +35712,17 @@ public class TdApi {
         public int proxyId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public EnableProxy() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param proxyId Proxy identifier.
          */
@@ -31168,13 +35760,17 @@ public class TdApi {
         public Error error;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which finishes the file generation.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public FinishFileGeneration() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which finishes the file generation.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param generationId The identifier of the generation process.
          * @param error If set, means that file generation has failed and should be terminated.
@@ -31230,13 +35826,17 @@ public class TdApi {
         public boolean asAlbum;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in messageIds. If a message can't be forwarded, null will be returned instead of the message.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          */
         public ForwardMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in messageIds. If a message can't be forwarded, null will be returned instead of the message.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          *
          * @param chatId Identifier of the chat to which to forward messages.
          * @param fromChatId Identifier of the chat from which to forward messages.
@@ -31280,13 +35880,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which generates a new invite link for a chat; the previously generated link is revoked. Available for basic groups, supergroups, and channels. In basic groups this can be called only by the group's creator; in supergroups and channels this requires appropriate administrator rights.
+         *
+         * <p> Returns {@link ChatInviteLink ChatInviteLink} </p>
          */
         public GenerateChatInviteLink() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which generates a new invite link for a chat; the previously generated link is revoked. Available for basic groups, supergroups, and channels. In basic groups this can be called only by the group's creator; in supergroups and channels this requires appropriate administrator rights.
+         *
+         * <p> Returns {@link ChatInviteLink ChatInviteLink} </p>
          *
          * @param chatId Chat identifier.
          */
@@ -31316,7 +35920,9 @@ public class TdApi {
     public static class GetAccountTtl extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the period of inactivity after which the account of the current user will automatically be deleted.
+         *
+         * <p> Returns {@link AccountTtl AccountTtl} </p>
          */
         public GetAccountTtl() {
         }
@@ -31343,7 +35949,9 @@ public class TdApi {
     public static class GetActiveLiveLocationMessages extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns all active live locations that should be updated by the client. The list is persistent across application restarts only if the message database is used.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          */
         public GetActiveLiveLocationMessages() {
         }
@@ -31370,7 +35978,9 @@ public class TdApi {
     public static class GetActiveSessions extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns all active sessions of the current user.
+         *
+         * <p> Returns {@link Sessions Sessions} </p>
          */
         public GetActiveSessions() {
         }
@@ -31401,13 +36011,17 @@ public class TdApi {
         public String password;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns all available Telegram Passport elements.
+         *
+         * <p> Returns {@link PassportElements PassportElements} </p>
          */
         public GetAllPassportElements() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns all available Telegram Passport elements.
+         *
+         * <p> Returns {@link PassportElements PassportElements} </p>
          *
          * @param password Password of the current user.
          */
@@ -31419,6 +36033,35 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = -2038945045;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns application config, provided by the server. Can be called before authorization.
+     *
+     * <p> Returns {@link JsonValue JsonValue} </p>
+     */
+    public static class GetApplicationConfig extends Function {
+
+        /**
+         * Default constructor for a function, which returns application config, provided by the server. Can be called before authorization.
+         *
+         * <p> Returns {@link JsonValue JsonValue} </p>
+         */
+        public GetApplicationConfig() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1823144318;
 
         /**
          * @return this.CONSTRUCTOR
@@ -31449,13 +36092,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a list of archived sticker sets.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          */
         public GetArchivedStickerSets() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a list of archived sticker sets.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          *
          * @param isMasks Pass true to return mask stickers sets; pass false to return ordinary sticker sets.
          * @param offsetStickerSetId Identifier of the sticker set from which to return the result.
@@ -31493,13 +36140,17 @@ public class TdApi {
         public int fileId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a list of sticker sets attached to a file. Currently only photos and videos can have attached sticker sets.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          */
         public GetAttachedStickerSets() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a list of sticker sets attached to a file. Currently only photos and videos can have attached sticker sets.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          *
          * @param fileId File identifier.
          */
@@ -31529,7 +36180,9 @@ public class TdApi {
     public static class GetAuthorizationState extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state.
+         *
+         * <p> Returns {@link AuthorizationState AuthorizationState} </p>
          */
         public GetAuthorizationState() {
         }
@@ -31560,13 +36213,17 @@ public class TdApi {
         public int basicGroupId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a basic group by its identifier. This is an offline request if the current user is not a bot.
+         *
+         * <p> Returns {@link BasicGroup BasicGroup} </p>
          */
         public GetBasicGroup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a basic group by its identifier. This is an offline request if the current user is not a bot.
+         *
+         * <p> Returns {@link BasicGroup BasicGroup} </p>
          *
          * @param basicGroupId Basic group identifier.
          */
@@ -31600,13 +36257,17 @@ public class TdApi {
         public int basicGroupId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns full information about a basic group by its identifier.
+         *
+         * <p> Returns {@link BasicGroupFullInfo BasicGroupFullInfo} </p>
          */
         public GetBasicGroupFullInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns full information about a basic group by its identifier.
+         *
+         * <p> Returns {@link BasicGroupFullInfo BasicGroupFullInfo} </p>
          *
          * @param basicGroupId Basic group identifier.
          */
@@ -31644,13 +36305,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns users that were blocked by the current user.
+         *
+         * <p> Returns {@link Users Users} </p>
          */
         public GetBlockedUsers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns users that were blocked by the current user.
+         *
+         * <p> Returns {@link Users Users} </p>
          *
          * @param offset Number of users to skip in the result; must be non-negative.
          * @param limit Maximum number of users to return; up to 100.
@@ -31694,13 +36359,17 @@ public class TdApi {
         public CallbackQueryPayload payload;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires.
+         *
+         * <p> Returns {@link CallbackQueryAnswer CallbackQueryAnswer} </p>
          */
         public GetCallbackQueryAnswer() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires.
+         *
+         * <p> Returns {@link CallbackQueryAnswer CallbackQueryAnswer} </p>
          *
          * @param chatId Identifier of the chat with the message.
          * @param messageId Identifier of the message from which the query originated.
@@ -31738,13 +36407,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a chat by its identifier, this is an offline request if the current user is not a bot.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public GetChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a chat by its identifier, this is an offline request if the current user is not a bot.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          *
          * @param chatId Chat identifier.
          */
@@ -31778,13 +36451,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a list of users who are administrators of the chat.
+         *
+         * <p> Returns {@link Users Users} </p>
          */
         public GetChatAdministrators() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a list of users who are administrators of the chat.
+         *
+         * <p> Returns {@link Users Users} </p>
          *
          * @param chatId Chat identifier.
          */
@@ -31838,13 +36515,17 @@ public class TdApi {
         public int[] userIds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing eventId).
+         *
+         * <p> Returns {@link ChatEvents ChatEvents} </p>
          */
         public GetChatEventLog() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing eventId).
+         *
+         * <p> Returns {@link ChatEvents ChatEvents} </p>
          *
          * @param chatId Chat identifier.
          * @param query Search query by which to filter events.
@@ -31891,11 +36572,11 @@ public class TdApi {
          */
         public long fromMessageId;
         /**
-         * Specify 0 to get results from exactly the fromMessageId or a negative offset to get the specified message and some newer messages.
+         * Specify 0 to get results from exactly the fromMessageId or a negative offset up to 99 to get additionally some newer messages.
          */
         public int offset;
         /**
-         * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached.
+         * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater or equal to -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached.
          */
         public int limit;
         /**
@@ -31904,18 +36585,22 @@ public class TdApi {
         public boolean onlyLocal;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing messageId). For optimal performance the number of returned messages is chosen by the library. This is an offline request if onlyLocal is true.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          */
         public GetChatHistory() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing messageId). For optimal performance the number of returned messages is chosen by the library. This is an offline request if onlyLocal is true.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          *
          * @param chatId Chat identifier.
          * @param fromMessageId Identifier of the message starting from which history must be fetched; use 0 to get results from the last message.
-         * @param offset Specify 0 to get results from exactly the fromMessageId or a negative offset to get the specified message and some newer messages.
-         * @param limit The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached.
+         * @param offset Specify 0 to get results from exactly the fromMessageId or a negative offset up to 99 to get additionally some newer messages.
+         * @param limit The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater or equal to -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached.
          * @param onlyLocal If true, returns only messages that are available locally without sending network requests.
          */
         public GetChatHistory(long chatId, long fromMessageId, int offset, int limit, boolean onlyLocal) {
@@ -31956,13 +36641,17 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a single member of a chat.
+         *
+         * <p> Returns {@link ChatMember ChatMember} </p>
          */
         public GetChatMember() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a single member of a chat.
+         *
+         * <p> Returns {@link ChatMember ChatMember} </p>
          *
          * @param chatId Chat identifier.
          * @param userId User identifier.
@@ -32002,13 +36691,17 @@ public class TdApi {
         public int date;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the last message sent in a chat no later than the specified date.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public GetChatMessageByDate() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the last message sent in a chat no later than the specified date.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId Chat identifier.
          * @param date Point in time (Unix timestamp) relative to which to search for messages.
@@ -32052,13 +36745,17 @@ public class TdApi {
         public boolean returnLocal;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns approximate number of messages of the specified type in the chat.
+         *
+         * <p> Returns {@link Count Count} </p>
          */
         public GetChatMessageCount() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns approximate number of messages of the specified type in the chat.
+         *
+         * <p> Returns {@link Count Count} </p>
          *
          * @param chatId Identifier of the chat in which to count messages.
          * @param filter Filter for message content; searchMessagesFilterEmpty is unsupported in this function.
@@ -32085,6 +36782,56 @@ public class TdApi {
     }
 
     /**
+     * Returns list of chats with non-default notification settings.
+     *
+     * <p> Returns {@link Chats Chats} </p>
+     */
+    public static class GetChatNotificationSettingsExceptions extends Function {
+        /**
+         * If specified, only chats from the specified scope will be returned.
+         */
+        public NotificationSettingsScope scope;
+        /**
+         * If true, also chats with non-default sound will be returned.
+         */
+        public boolean compareSound;
+
+        /**
+         * Default constructor for a function, which returns list of chats with non-default notification settings.
+         *
+         * <p> Returns {@link Chats Chats} </p>
+         */
+        public GetChatNotificationSettingsExceptions() {
+        }
+
+        /**
+         * Creates a function, which returns list of chats with non-default notification settings.
+         *
+         * <p> Returns {@link Chats Chats} </p>
+         *
+         * @param scope If specified, only chats from the specified scope will be returned.
+         * @param compareSound If true, also chats with non-default sound will be returned.
+         */
+        public GetChatNotificationSettingsExceptions(NotificationSettingsScope scope, boolean compareSound) {
+            this.scope = scope;
+            this.compareSound = compareSound;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 201199121;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Returns information about a pinned chat message.
      *
      * <p> Returns {@link Message Message} </p>
@@ -32096,13 +36843,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a pinned chat message.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public GetChatPinnedMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a pinned chat message.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId Identifier of the chat the message belongs to.
          */
@@ -32136,13 +36887,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information on whether the current chat can be reported as spam.
+         *
+         * <p> Returns {@link ChatReportSpamState ChatReportSpamState} </p>
          */
         public GetChatReportSpamState() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information on whether the current chat can be reported as spam.
+         *
+         * <p> Returns {@link ChatReportSpamState ChatReportSpamState} </p>
          *
          * @param chatId Chat identifier.
          */
@@ -32165,7 +36920,63 @@ public class TdApi {
     }
 
     /**
-     * Returns an ordered list of chats. Chats are sorted by the pair (order, chatId) in decreasing order. (For example, to get a list of chats from the beginning, the offsetOrder should be equal to 2^63 - 1). For optimal performance the number of returned chats is chosen by the library.
+     * Returns URL with the chat statistics. Currently this method can be used only for channels.
+     *
+     * <p> Returns {@link HttpUrl HttpUrl} </p>
+     */
+    public static class GetChatStatisticsUrl extends Function {
+        /**
+         * Chat identifier.
+         */
+        public long chatId;
+        /**
+         * Parameters from &quot;tg://statsrefresh?params=******&quot; link.
+         */
+        public String parameters;
+        /**
+         * Pass true if a URL with the dark theme must be returned.
+         */
+        public boolean isDark;
+
+        /**
+         * Default constructor for a function, which returns URL with the chat statistics. Currently this method can be used only for channels.
+         *
+         * <p> Returns {@link HttpUrl HttpUrl} </p>
+         */
+        public GetChatStatisticsUrl() {
+        }
+
+        /**
+         * Creates a function, which returns URL with the chat statistics. Currently this method can be used only for channels.
+         *
+         * <p> Returns {@link HttpUrl HttpUrl} </p>
+         *
+         * @param chatId Chat identifier.
+         * @param parameters Parameters from &quot;tg://statsrefresh?params=******&quot; link.
+         * @param isDark Pass true if a URL with the dark theme must be returned.
+         */
+        public GetChatStatisticsUrl(long chatId, String parameters, boolean isDark) {
+            this.chatId = chatId;
+            this.parameters = parameters;
+            this.isDark = isDark;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1114621183;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns an ordered list of chats. Chats are sorted by the pair (order, chatId) in decreasing order. (For example, to get a list of chats from the beginning, the offsetOrder should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library.
      *
      * <p> Returns {@link Chats Chats} </p>
      */
@@ -32184,13 +36995,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns an ordered list of chats. Chats are sorted by the pair (order, chatId) in decreasing order. (For example, to get a list of chats from the beginning, the offsetOrder should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          */
         public GetChats() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns an ordered list of chats. Chats are sorted by the pair (order, chatId) in decreasing order. (For example, to get a list of chats from the beginning, the offsetOrder should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          *
          * @param offsetOrder Chat order to return chats from.
          * @param offsetChatId Chat identifier to return chats from.
@@ -32224,7 +37039,9 @@ public class TdApi {
     public static class GetConnectedWebsites extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns all website where the current user used Telegram to log in.
+         *
+         * <p> Returns {@link ConnectedWebsites ConnectedWebsites} </p>
          */
         public GetConnectedWebsites() {
         }
@@ -32251,7 +37068,9 @@ public class TdApi {
     public static class GetContacts extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns all user contacts.
+         *
+         * <p> Returns {@link Users Users} </p>
          */
         public GetContacts() {
         }
@@ -32278,7 +37097,9 @@ public class TdApi {
     public static class GetCountryCode extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which uses current user IP to found his country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization.
+         *
+         * <p> Returns {@link Text Text} </p>
          */
         public GetCountryCode() {
         }
@@ -32305,7 +37126,9 @@ public class TdApi {
     public static class GetCreatedPublicChats extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a list of public chats created by the user.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          */
         public GetCreatedPublicChats() {
         }
@@ -32325,7 +37148,65 @@ public class TdApi {
     }
 
     /**
-     * Returns information about a tg:// deep link. Use &quot;tg://needUpdateForSomeFeature&quot; or &quot;tg:someUnsupportedFeature&quot; for testing. Returns a 404 error for unknown links. Can be called before authorization.
+     * Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially usefull if TDLib is run in a separate process. This is an offline method. Can be called before authorization.
+     *
+     * <p> Returns {@link Updates Updates} </p>
+     */
+    public static class GetCurrentState extends Function {
+
+        /**
+         * Default constructor for a function, which returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially usefull if TDLib is run in a separate process. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link Updates Updates} </p>
+         */
+        public GetCurrentState() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1191417719;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns database statistics.
+     *
+     * <p> Returns {@link DatabaseStatistics DatabaseStatistics} </p>
+     */
+    public static class GetDatabaseStatistics extends Function {
+
+        /**
+         * Default constructor for a function, which returns database statistics.
+         *
+         * <p> Returns {@link DatabaseStatistics DatabaseStatistics} </p>
+         */
+        public GetDatabaseStatistics() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1942760263;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns information about a tg:// deep link. Use &quot;tg://need_update_for_some_feature&quot; or &quot;tg:someUnsupportedFeature&quot; for testing. Returns a 404 error for unknown links. Can be called before authorization.
      *
      * <p> Returns {@link DeepLinkInfo DeepLinkInfo} </p>
      */
@@ -32336,13 +37217,17 @@ public class TdApi {
         public String link;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a tg:// deep link. Use &quot;tg://need_update_for_some_feature&quot; or &quot;tg:someUnsupportedFeature&quot; for testing. Returns a 404 error for unknown links. Can be called before authorization.
+         *
+         * <p> Returns {@link DeepLinkInfo DeepLinkInfo} </p>
          */
         public GetDeepLinkInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a tg:// deep link. Use &quot;tg://need_update_for_some_feature&quot; or &quot;tg:someUnsupportedFeature&quot; for testing. Returns a 404 error for unknown links. Can be called before authorization.
+         *
+         * <p> Returns {@link DeepLinkInfo DeepLinkInfo} </p>
          *
          * @param link The link.
          */
@@ -32372,7 +37257,9 @@ public class TdApi {
     public static class GetFavoriteStickers extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns favorite stickers.
+         *
+         * <p> Returns {@link Stickers Stickers} </p>
          */
         public GetFavoriteStickers() {
         }
@@ -32403,13 +37290,17 @@ public class TdApi {
         public int fileId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a file; this is an offline request.
+         *
+         * <p> Returns {@link File File} </p>
          */
         public GetFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a file; this is an offline request.
+         *
+         * <p> Returns {@link File File} </p>
          *
          * @param fileId Identifier of the file to get.
          */
@@ -32432,6 +37323,56 @@ public class TdApi {
     }
 
     /**
+     * Returns file downloaded prefix size from a given offset.
+     *
+     * <p> Returns {@link Count Count} </p>
+     */
+    public static class GetFileDownloadedPrefixSize extends Function {
+        /**
+         * Identifier of the file.
+         */
+        public int fileId;
+        /**
+         * Offset from which downloaded prefix size should be calculated.
+         */
+        public int offset;
+
+        /**
+         * Default constructor for a function, which returns file downloaded prefix size from a given offset.
+         *
+         * <p> Returns {@link Count Count} </p>
+         */
+        public GetFileDownloadedPrefixSize() {
+        }
+
+        /**
+         * Creates a function, which returns file downloaded prefix size from a given offset.
+         *
+         * <p> Returns {@link Count Count} </p>
+         *
+         * @param fileId Identifier of the file.
+         * @param offset Offset from which downloaded prefix size should be calculated.
+         */
+        public GetFileDownloadedPrefixSize(int fileId, int offset) {
+            this.fileId = fileId;
+            this.offset = offset;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1668864864;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously.
      *
      * <p> Returns {@link Text Text} </p>
@@ -32443,13 +37384,17 @@ public class TdApi {
         public String mimeType;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Text Text} </p>
          */
         public GetFileExtension() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Text Text} </p>
          *
          * @param mimeType The MIME type of the file.
          */
@@ -32483,13 +37428,17 @@ public class TdApi {
         public String fileName;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Text Text} </p>
          */
         public GetFileMimeType() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Text Text} </p>
          *
          * @param fileName The name of the file or path to the file.
          */
@@ -32531,13 +37480,17 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only.
+         *
+         * <p> Returns {@link GameHighScores GameHighScores} </p>
          */
         public GetGameHighScores() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only.
+         *
+         * <p> Returns {@link GameHighScores GameHighScores} </p>
          *
          * @param chatId The chat that contains the message with the game.
          * @param messageId Identifier of the message.
@@ -32564,7 +37517,7 @@ public class TdApi {
     }
 
     /**
-     * Returns a list of common chats with a given user. Chats are sorted by their type and creation date.
+     * Returns a list of common group chats with a given user. Chats are sorted by their type and creation date.
      *
      * <p> Returns {@link Chats Chats} </p>
      */
@@ -32583,13 +37536,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a list of common group chats with a given user. Chats are sorted by their type and creation date.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          */
         public GetGroupsInCommon() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a list of common group chats with a given user. Chats are sorted by their type and creation date.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          *
          * @param userId User identifier.
          * @param offsetChatId Chat identifier starting from which to return chats; use 0 for the first request.
@@ -32623,7 +37580,9 @@ public class TdApi {
     public static class GetImportedContactCount extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the total number of imported contacts.
+         *
+         * <p> Returns {@link Count Count} </p>
          */
         public GetImportedContactCount() {
         }
@@ -32658,13 +37617,17 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns game high scores and some part of the high score table in the range of the specified user; for bots only.
+         *
+         * <p> Returns {@link GameHighScores GameHighScores} </p>
          */
         public GetInlineGameHighScores() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns game high scores and some part of the high score table in the range of the specified user; for bots only.
+         *
+         * <p> Returns {@link GameHighScores GameHighScores} </p>
          *
          * @param inlineMessageId Inline message identifier.
          * @param userId User identifier.
@@ -32716,13 +37679,17 @@ public class TdApi {
         public String offset;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires.
+         *
+         * <p> Returns {@link InlineQueryResults InlineQueryResults} </p>
          */
         public GetInlineQueryResults() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires.
+         *
+         * <p> Returns {@link InlineQueryResults InlineQueryResults} </p>
          *
          * @param botUserId The identifier of the target bot.
          * @param chatId Identifier of the chat, where the query was sent.
@@ -32764,13 +37731,17 @@ public class TdApi {
         public boolean isMasks;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a list of installed sticker sets.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          */
         public GetInstalledStickerSets() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a list of installed sticker sets.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          *
          * @param isMasks Pass true to return mask sticker sets; pass false to return ordinary sticker sets.
          */
@@ -32800,7 +37771,9 @@ public class TdApi {
     public static class GetInviteText extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the default text for invitation messages to be used as a placeholder when the current user invites friends to Telegram.
+         *
+         * <p> Returns {@link Text Text} </p>
          */
         public GetInviteText() {
         }
@@ -32809,6 +37782,138 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = 794573512;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Converts a JsonValue object to corresponding JSON-serialized string. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link Text Text} </p>
+     */
+    public static class GetJsonString extends Function {
+        /**
+         * The JsonValue object.
+         */
+        public JsonValue jsonValue;
+
+        /**
+         * Default constructor for a function, which converts a JsonValue object to corresponding JSON-serialized string. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Text Text} </p>
+         */
+        public GetJsonString() {
+        }
+
+        /**
+         * Creates a function, which converts a JsonValue object to corresponding JSON-serialized string. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Text Text} </p>
+         *
+         * @param jsonValue The JsonValue object.
+         */
+        public GetJsonString(JsonValue jsonValue) {
+            this.jsonValue = jsonValue;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 663458849;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Converts a JSON-serialized string to corresponding JsonValue object. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link JsonValue JsonValue} </p>
+     */
+    public static class GetJsonValue extends Function {
+        /**
+         * The JSON-serialized string.
+         */
+        public String json;
+
+        /**
+         * Default constructor for a function, which converts a JSON-serialized string to corresponding JsonValue object. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link JsonValue JsonValue} </p>
+         */
+        public GetJsonValue() {
+        }
+
+        /**
+         * Creates a function, which converts a JSON-serialized string to corresponding JsonValue object. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link JsonValue JsonValue} </p>
+         *
+         * @param json The JSON-serialized string.
+         */
+        public GetJsonValue(String json) {
+            this.json = json;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1829086715;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization.
+     *
+     * <p> Returns {@link LanguagePackInfo LanguagePackInfo} </p>
+     */
+    public static class GetLanguagePackInfo extends Function {
+        /**
+         * Language pack identifier.
+         */
+        public String languagePackId;
+
+        /**
+         * Default constructor for a function, which returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization.
+         *
+         * <p> Returns {@link LanguagePackInfo LanguagePackInfo} </p>
+         */
+        public GetLanguagePackInfo() {
+        }
+
+        /**
+         * Creates a function, which returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization.
+         *
+         * <p> Returns {@link LanguagePackInfo LanguagePackInfo} </p>
+         *
+         * @param languagePackId Language pack identifier.
+         */
+        public GetLanguagePackInfo(String languagePackId) {
+            this.languagePackId = languagePackId;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 2077809320;
 
         /**
          * @return this.CONSTRUCTOR
@@ -32843,13 +37948,17 @@ public class TdApi {
         public String key;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link LanguagePackStringValue LanguagePackStringValue} </p>
          */
         public GetLanguagePackString() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link LanguagePackStringValue LanguagePackStringValue} </p>
          *
          * @param languagePackDatabasePath Path to the language pack database in which strings are stored.
          * @param localizationTarget Localization target to which the language pack belongs.
@@ -32878,7 +37987,7 @@ public class TdApi {
     }
 
     /**
-     * Returns strings from a language pack in the current localization target by their keys.
+     * Returns strings from a language pack in the current localization target by their keys. Can be called before authorization.
      *
      * <p> Returns {@link LanguagePackStrings LanguagePackStrings} </p>
      */
@@ -32893,13 +38002,17 @@ public class TdApi {
         public String[] keys;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns strings from a language pack in the current localization target by their keys. Can be called before authorization.
+         *
+         * <p> Returns {@link LanguagePackStrings LanguagePackStrings} </p>
          */
         public GetLanguagePackStrings() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns strings from a language pack in the current localization target by their keys. Can be called before authorization.
+         *
+         * <p> Returns {@link LanguagePackStrings LanguagePackStrings} </p>
          *
          * @param languagePackId Language pack identifier of the strings to be returned.
          * @param keys Language pack keys of the strings to be returned; leave empty to request all available strings.
@@ -32924,7 +38037,7 @@ public class TdApi {
     }
 
     /**
-     * Returns information about the current localization target. This is an offline request if onlyLocal is true.
+     * Returns information about the current localization target. This is an offline request if onlyLocal is true. Can be called before authorization.
      *
      * <p> Returns {@link LocalizationTargetInfo LocalizationTargetInfo} </p>
      */
@@ -32935,13 +38048,17 @@ public class TdApi {
         public boolean onlyLocal;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about the current localization target. This is an offline request if onlyLocal is true. Can be called before authorization.
+         *
+         * <p> Returns {@link LocalizationTargetInfo LocalizationTargetInfo} </p>
          */
         public GetLocalizationTargetInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about the current localization target. This is an offline request if onlyLocal is true. Can be called before authorization.
+         *
+         * <p> Returns {@link LocalizationTargetInfo LocalizationTargetInfo} </p>
          *
          * @param onlyLocal If true, returns only locally available information without sending network requests.
          */
@@ -32953,6 +38070,137 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = 1849499526;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns information about currently used log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link LogStream LogStream} </p>
+     */
+    public static class GetLogStream extends Function {
+
+        /**
+         * Default constructor for a function, which returns information about currently used log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link LogStream LogStream} </p>
+         */
+        public GetLogStream() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1167608667;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns current verbosity level for a specified TDLib internal log tag. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link LogVerbosityLevel LogVerbosityLevel} </p>
+     */
+    public static class GetLogTagVerbosityLevel extends Function {
+        /**
+         * Logging tag to change verbosity level.
+         */
+        public String tag;
+
+        /**
+         * Default constructor for a function, which returns current verbosity level for a specified TDLib internal log tag. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link LogVerbosityLevel LogVerbosityLevel} </p>
+         */
+        public GetLogTagVerbosityLevel() {
+        }
+
+        /**
+         * Creates a function, which returns current verbosity level for a specified TDLib internal log tag. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link LogVerbosityLevel LogVerbosityLevel} </p>
+         *
+         * @param tag Logging tag to change verbosity level.
+         */
+        public GetLogTagVerbosityLevel(String tag) {
+            this.tag = tag;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 951004547;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns list of available TDLib internal log tags, for example, [&quot;actor&quot;, &quot;binlog&quot;, &quot;connections&quot;, &quot;notifications&quot;, &quot;proxy&quot;]. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link LogTags LogTags} </p>
+     */
+    public static class GetLogTags extends Function {
+
+        /**
+         * Default constructor for a function, which returns list of available TDLib internal log tags, for example, [&quot;actor&quot;, &quot;binlog&quot;, &quot;connections&quot;, &quot;notifications&quot;, &quot;proxy&quot;]. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link LogTags LogTags} </p>
+         */
+        public GetLogTags() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -254449190;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns current verbosity level of the internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link LogVerbosityLevel LogVerbosityLevel} </p>
+     */
+    public static class GetLogVerbosityLevel extends Function {
+
+        /**
+         * Default constructor for a function, which returns current verbosity level of the internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link LogVerbosityLevel LogVerbosityLevel} </p>
+         */
+        public GetLogVerbosityLevel() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 594057956;
 
         /**
          * @return this.CONSTRUCTOR
@@ -32995,13 +38243,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded.
+         *
+         * <p> Returns {@link File File} </p>
          */
         public GetMapThumbnailFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded.
+         *
+         * <p> Returns {@link File File} </p>
          *
          * @param location Location of the map center.
          * @param zoom Map zoom level; 13-20.
@@ -33041,7 +38293,9 @@ public class TdApi {
     public static class GetMe extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the current user.
+         *
+         * <p> Returns {@link User User} </p>
          */
         public GetMe() {
         }
@@ -33076,13 +38330,17 @@ public class TdApi {
         public long messageId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a message.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public GetMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a message.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId Identifier of the chat the message belongs to.
          * @param messageId Identifier of the message to get.
@@ -33096,6 +38354,106 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = -1821196160;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns a private HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels. The link will work only for members of the chat.
+     *
+     * <p> Returns {@link HttpUrl HttpUrl} </p>
+     */
+    public static class GetMessageLink extends Function {
+        /**
+         * Identifier of the chat to which the message belongs.
+         */
+        public long chatId;
+        /**
+         * Identifier of the message.
+         */
+        public long messageId;
+
+        /**
+         * Default constructor for a function, which returns a private HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels. The link will work only for members of the chat.
+         *
+         * <p> Returns {@link HttpUrl HttpUrl} </p>
+         */
+        public GetMessageLink() {
+        }
+
+        /**
+         * Creates a function, which returns a private HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels. The link will work only for members of the chat.
+         *
+         * <p> Returns {@link HttpUrl HttpUrl} </p>
+         *
+         * @param chatId Identifier of the chat to which the message belongs.
+         * @param messageId Identifier of the message.
+         */
+        public GetMessageLink(long chatId, long messageId) {
+            this.chatId = chatId;
+            this.messageId = messageId;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1362732326;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns information about a message, if it is available locally without sending network request. This is an offline request.
+     *
+     * <p> Returns {@link Message Message} </p>
+     */
+    public static class GetMessageLocally extends Function {
+        /**
+         * Identifier of the chat the message belongs to.
+         */
+        public long chatId;
+        /**
+         * Identifier of the message to get.
+         */
+        public long messageId;
+
+        /**
+         * Default constructor for a function, which returns information about a message, if it is available locally without sending network request. This is an offline request.
+         *
+         * <p> Returns {@link Message Message} </p>
+         */
+        public GetMessageLocally() {
+        }
+
+        /**
+         * Creates a function, which returns information about a message, if it is available locally without sending network request. This is an offline request.
+         *
+         * <p> Returns {@link Message Message} </p>
+         *
+         * @param chatId Identifier of the chat the message belongs to.
+         * @param messageId Identifier of the message to get.
+         */
+        public GetMessageLocally(long chatId, long messageId) {
+            this.chatId = chatId;
+            this.messageId = messageId;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -603575444;
 
         /**
          * @return this.CONSTRUCTOR
@@ -33122,13 +38480,17 @@ public class TdApi {
         public long[] messageIds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about messages. If a message is not found, returns null on the corresponding position of the result.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          */
         public GetMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about messages. If a message is not found, returns null on the corresponding position of the result.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          *
          * @param chatId Identifier of the chat the messages belong to.
          * @param messageIds Identifiers of the messages to get.
@@ -33164,13 +38526,17 @@ public class TdApi {
         public boolean onlyCurrent;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns network data usage statistics. Can be called before authorization.
+         *
+         * <p> Returns {@link NetworkStatistics NetworkStatistics} </p>
          */
         public GetNetworkStatistics() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns network data usage statistics. Can be called before authorization.
+         *
+         * <p> Returns {@link NetworkStatistics NetworkStatistics} </p>
          *
          * @param onlyCurrent If true, returns only data for the current library launch.
          */
@@ -33204,13 +38570,17 @@ public class TdApi {
         public String name;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization.
+         *
+         * <p> Returns {@link OptionValue OptionValue} </p>
          */
         public GetOption() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization.
+         *
+         * <p> Returns {@link OptionValue OptionValue} </p>
          *
          * @param name The name of the option.
          */
@@ -33254,38 +38624,86 @@ public class TdApi {
          * Authorization form nonce provided by the service.
          */
         public String nonce;
+
+        /**
+         * Default constructor for a function, which returns a Telegram Passport authorization form for sharing data with a service.
+         *
+         * <p> Returns {@link PassportAuthorizationForm PassportAuthorizationForm} </p>
+         */
+        public GetPassportAuthorizationForm() {
+        }
+
+        /**
+         * Creates a function, which returns a Telegram Passport authorization form for sharing data with a service.
+         *
+         * <p> Returns {@link PassportAuthorizationForm PassportAuthorizationForm} </p>
+         *
+         * @param botUserId User identifier of the service's bot.
+         * @param scope Telegram Passport element types requested by the service.
+         * @param publicKey Service's publicKey.
+         * @param nonce Authorization form nonce provided by the service.
+         */
+        public GetPassportAuthorizationForm(int botUserId, String scope, String publicKey, String nonce) {
+            this.botUserId = botUserId;
+            this.scope = scope;
+            this.publicKey = publicKey;
+            this.nonce = nonce;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1468394095;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form.
+     *
+     * <p> Returns {@link PassportElementsWithErrors PassportElementsWithErrors} </p>
+     */
+    public static class GetPassportAuthorizationFormAvailableElements extends Function {
+        /**
+         * Authorization form identifier.
+         */
+        public int autorizationFormId;
         /**
          * Password of the current user.
          */
         public String password;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form.
+         *
+         * <p> Returns {@link PassportElementsWithErrors PassportElementsWithErrors} </p>
          */
-        public GetPassportAuthorizationForm() {
+        public GetPassportAuthorizationFormAvailableElements() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form.
          *
-         * @param botUserId User identifier of the service's bot.
-         * @param scope Telegram Passport element types requested by the service.
-         * @param publicKey Service's publicKey.
-         * @param nonce Authorization form nonce provided by the service.
+         * <p> Returns {@link PassportElementsWithErrors PassportElementsWithErrors} </p>
+         *
+         * @param autorizationFormId Authorization form identifier.
          * @param password Password of the current user.
          */
-        public GetPassportAuthorizationForm(int botUserId, String scope, String publicKey, String nonce, String password) {
-            this.botUserId = botUserId;
-            this.scope = scope;
-            this.publicKey = publicKey;
-            this.nonce = nonce;
+        public GetPassportAuthorizationFormAvailableElements(int autorizationFormId, String password) {
+            this.autorizationFormId = autorizationFormId;
             this.password = password;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1998294216;
+        public static final int CONSTRUCTOR = 1738134754;
 
         /**
          * @return this.CONSTRUCTOR
@@ -33312,13 +38730,17 @@ public class TdApi {
         public String password;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns one of the available Telegram Passport elements.
+         *
+         * <p> Returns {@link PassportElement PassportElement} </p>
          */
         public GetPassportElement() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns one of the available Telegram Passport elements.
+         *
+         * <p> Returns {@link PassportElement PassportElement} </p>
          *
          * @param type Telegram Passport element type.
          * @param password Password of the current user.
@@ -33350,7 +38772,9 @@ public class TdApi {
     public static class GetPasswordState extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the current state of 2-step verification.
+         *
+         * <p> Returns {@link PasswordState PasswordState} </p>
          */
         public GetPasswordState() {
         }
@@ -33385,13 +38809,17 @@ public class TdApi {
         public long messageId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy.
+         *
+         * <p> Returns {@link PaymentForm PaymentForm} </p>
          */
         public GetPaymentForm() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy.
+         *
+         * <p> Returns {@link PaymentForm PaymentForm} </p>
          *
          * @param chatId Chat identifier of the Invoice message.
          * @param messageId Message identifier.
@@ -33431,13 +38859,17 @@ public class TdApi {
         public long messageId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a successful payment.
+         *
+         * <p> Returns {@link PaymentReceipt PaymentReceipt} </p>
          */
         public GetPaymentReceipt() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a successful payment.
+         *
+         * <p> Returns {@link PaymentReceipt PaymentReceipt} </p>
          *
          * @param chatId Chat identifier of the PaymentSuccessful message.
          * @param messageId Message identifier.
@@ -33473,13 +38905,17 @@ public class TdApi {
         public String countryCode;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns an IETF language tag of the language preferred in the country, which should be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown.
+         *
+         * <p> Returns {@link Text Text} </p>
          */
         public GetPreferredCountryLanguage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns an IETF language tag of the language preferred in the country, which should be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown.
+         *
+         * <p> Returns {@link Text Text} </p>
          *
          * @param countryCode A two-letter ISO 3166-1 alpha-2 country code.
          */
@@ -33509,7 +38945,9 @@ public class TdApi {
     public static class GetProxies extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns list of proxies that are currently set up. Can be called before authorization.
+         *
+         * <p> Returns {@link Proxies Proxies} </p>
          */
         public GetProxies() {
         }
@@ -33540,13 +38978,17 @@ public class TdApi {
         public int proxyId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization.
+         *
+         * <p> Returns {@link Text Text} </p>
          */
         public GetProxyLink() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization.
+         *
+         * <p> Returns {@link Text Text} </p>
          *
          * @param proxyId Proxy identifier.
          */
@@ -33588,13 +39030,17 @@ public class TdApi {
         public boolean forAlbum;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a public HTTPS link to a message. Available only for messages in public supergroups and channels.
+         *
+         * <p> Returns {@link PublicMessageLink PublicMessageLink} </p>
          */
         public GetPublicMessageLink() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a public HTTPS link to a message. Available only for messages in public supergroups and channels.
+         *
+         * <p> Returns {@link PublicMessageLink PublicMessageLink} </p>
          *
          * @param chatId Identifier of the chat to which the message belongs.
          * @param messageId Identifier of the message.
@@ -33621,6 +39067,50 @@ public class TdApi {
     }
 
     /**
+     * Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link PushReceiverId PushReceiverId} </p>
+     */
+    public static class GetPushReceiverId extends Function {
+        /**
+         * JSON-encoded push notification payload.
+         */
+        public String payload;
+
+        /**
+         * Default constructor for a function, which returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link PushReceiverId PushReceiverId} </p>
+         */
+        public GetPushReceiverId() {
+        }
+
+        /**
+         * Creates a function, which returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link PushReceiverId PushReceiverId} </p>
+         *
+         * @param payload JSON-encoded push notification payload.
+         */
+        public GetPushReceiverId(String payload) {
+            this.payload = payload;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -286505294;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Returns up to 20 recently used inline bots in the order of their last usage.
      *
      * <p> Returns {@link Users Users} </p>
@@ -33628,7 +39118,9 @@ public class TdApi {
     public static class GetRecentInlineBots extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns up to 20 recently used inline bots in the order of their last usage.
+         *
+         * <p> Returns {@link Users Users} </p>
          */
         public GetRecentInlineBots() {
         }
@@ -33659,13 +39151,17 @@ public class TdApi {
         public boolean isAttached;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a list of recently used stickers.
+         *
+         * <p> Returns {@link Stickers Stickers} </p>
          */
         public GetRecentStickers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a list of recently used stickers.
+         *
+         * <p> Returns {@link Stickers Stickers} </p>
          *
          * @param isAttached Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers.
          */
@@ -33699,13 +39195,17 @@ public class TdApi {
         public String referrer;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns t.me URLs recently visited by a newly registered user.
+         *
+         * <p> Returns {@link TMeUrls TMeUrls} </p>
          */
         public GetRecentlyVisitedTMeUrls() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns t.me URLs recently visited by a newly registered user.
+         *
+         * <p> Returns {@link TMeUrls TMeUrls} </p>
          *
          * @param referrer Google Play referrer to identify the user.
          */
@@ -33728,7 +39228,7 @@ public class TdApi {
     }
 
     /**
-     * Returns a recovery email address that was previously set up. This method can be used to verify a password provided by the user.
+     * Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user.
      *
      * <p> Returns {@link RecoveryEmailAddress RecoveryEmailAddress} </p>
      */
@@ -33739,13 +39239,17 @@ public class TdApi {
         public String password;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user.
+         *
+         * <p> Returns {@link RecoveryEmailAddress RecoveryEmailAddress} </p>
          */
         public GetRecoveryEmailAddress() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user.
+         *
+         * <p> Returns {@link RecoveryEmailAddress RecoveryEmailAddress} </p>
          *
          * @param password The password for the current user.
          */
@@ -33783,13 +39287,17 @@ public class TdApi {
         public FileType fileType;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message.
+         *
+         * <p> Returns {@link File File} </p>
          */
         public GetRemoteFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message.
+         *
+         * <p> Returns {@link File File} </p>
          *
          * @param remoteFileId Remote identifier of the file to get.
          * @param fileType File type, if known.
@@ -33829,13 +39337,17 @@ public class TdApi {
         public long messageId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a message that is replied by given message.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public GetRepliedMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a message that is replied by given message.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId Identifier of the chat the message belongs to.
          * @param messageId Identifier of the message reply to which get.
@@ -33867,7 +39379,9 @@ public class TdApi {
     public static class GetSavedAnimations extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns saved animations.
+         *
+         * <p> Returns {@link Animations Animations} </p>
          */
         public GetSavedAnimations() {
         }
@@ -33894,7 +39408,9 @@ public class TdApi {
     public static class GetSavedOrderInfo extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns saved order info, if any.
+         *
+         * <p> Returns {@link OrderInfo OrderInfo} </p>
          */
         public GetSavedOrderInfo() {
         }
@@ -33925,13 +39441,17 @@ public class TdApi {
         public NotificationSettingsScope scope;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the notification settings for chats of a given type.
+         *
+         * <p> Returns {@link ScopeNotificationSettings ScopeNotificationSettings} </p>
          */
         public GetScopeNotificationSettings() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the notification settings for chats of a given type.
+         *
+         * <p> Returns {@link ScopeNotificationSettings ScopeNotificationSettings} </p>
          *
          * @param scope Types of chats for which to return the notification settings information.
          */
@@ -33965,13 +39485,17 @@ public class TdApi {
         public int secretChatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a secret chat by its identifier. This is an offline request.
+         *
+         * <p> Returns {@link SecretChat SecretChat} </p>
          */
         public GetSecretChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a secret chat by its identifier. This is an offline request.
+         *
+         * <p> Returns {@link SecretChat SecretChat} </p>
          *
          * @param secretChatId Secret chat identifier.
          */
@@ -34005,13 +39529,17 @@ public class TdApi {
         public InputFile sticker;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns emoji corresponding to a sticker.
+         *
+         * <p> Returns {@link StickerEmojis StickerEmojis} </p>
          */
         public GetStickerEmojis() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns emoji corresponding to a sticker.
+         *
+         * <p> Returns {@link StickerEmojis StickerEmojis} </p>
          *
          * @param sticker Sticker file identifier.
          */
@@ -34045,13 +39573,17 @@ public class TdApi {
         public long setId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a sticker set by its identifier.
+         *
+         * <p> Returns {@link StickerSet StickerSet} </p>
          */
         public GetStickerSet() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a sticker set by its identifier.
+         *
+         * <p> Returns {@link StickerSet StickerSet} </p>
          *
          * @param setId Identifier of the sticker set.
          */
@@ -34089,13 +39621,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is not empty, favorite and recently used stickers may also be returned.
+         *
+         * <p> Returns {@link Stickers Stickers} </p>
          */
         public GetStickers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is not empty, favorite and recently used stickers may also be returned.
+         *
+         * <p> Returns {@link Stickers Stickers} </p>
          *
          * @param emoji String representation of emoji. If empty, returns all known installed stickers.
          * @param limit Maximum number of stickers to be returned.
@@ -34120,7 +39656,7 @@ public class TdApi {
     }
 
     /**
-     * Returns storage usage statistics.
+     * Returns storage usage statistics. Can be called before authorization.
      *
      * <p> Returns {@link StorageStatistics StorageStatistics} </p>
      */
@@ -34131,13 +39667,17 @@ public class TdApi {
         public int chatLimit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns storage usage statistics. Can be called before authorization.
+         *
+         * <p> Returns {@link StorageStatistics StorageStatistics} </p>
          */
         public GetStorageStatistics() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns storage usage statistics. Can be called before authorization.
+         *
+         * <p> Returns {@link StorageStatistics StorageStatistics} </p>
          *
          * @param chatLimit Maximum number of chats with the largest storage usage for which separate statistics should be returned. All other chats will be grouped in entries with chatId == 0. If the chat info database is not used, the chatLimit is ignored and is always set to 0.
          */
@@ -34160,14 +39700,16 @@ public class TdApi {
     }
 
     /**
-     * Quickly returns approximate storage usage statistics.
+     * Quickly returns approximate storage usage statistics. Can be called before authorization.
      *
      * <p> Returns {@link StorageStatisticsFast StorageStatisticsFast} </p>
      */
     public static class GetStorageStatisticsFast extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which quickly returns approximate storage usage statistics. Can be called before authorization.
+         *
+         * <p> Returns {@link StorageStatisticsFast StorageStatisticsFast} </p>
          */
         public GetStorageStatisticsFast() {
         }
@@ -34198,13 +39740,17 @@ public class TdApi {
         public int supergroupId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a supergroup or channel by its identifier. This is an offline request if the current user is not a bot.
+         *
+         * <p> Returns {@link Supergroup Supergroup} </p>
          */
         public GetSupergroup() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a supergroup or channel by its identifier. This is an offline request if the current user is not a bot.
+         *
+         * <p> Returns {@link Supergroup Supergroup} </p>
          *
          * @param supergroupId Supergroup or channel identifier.
          */
@@ -34238,13 +39784,17 @@ public class TdApi {
         public int supergroupId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns full information about a supergroup or channel by its identifier, cached for up to 1 minute.
+         *
+         * <p> Returns {@link SupergroupFullInfo SupergroupFullInfo} </p>
          */
         public GetSupergroupFullInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns full information about a supergroup or channel by its identifier, cached for up to 1 minute.
+         *
+         * <p> Returns {@link SupergroupFullInfo SupergroupFullInfo} </p>
          *
          * @param supergroupId Supergroup or channel identifier.
          */
@@ -34290,13 +39840,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about members or banned users in a supergroup or channel. Can be used only if SupergroupFullInfo.canGetMembers == true; additionally, administrator privileges may be required for some filters.
+         *
+         * <p> Returns {@link ChatMembers ChatMembers} </p>
          */
         public GetSupergroupMembers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about members or banned users in a supergroup or channel. Can be used only if SupergroupFullInfo.canGetMembers == true; additionally, administrator privileges may be required for some filters.
+         *
+         * <p> Returns {@link ChatMembers ChatMembers} </p>
          *
          * @param supergroupId Identifier of the supergroup or channel.
          * @param filter The type of users to return. By default, supergroupMembersRecent.
@@ -34332,7 +39886,9 @@ public class TdApi {
     public static class GetSupportUser extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a user that can be contacted to get support.
+         *
+         * <p> Returns {@link User User} </p>
          */
         public GetSupportUser() {
         }
@@ -34359,7 +39915,9 @@ public class TdApi {
     public static class GetTemporaryPasswordState extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about the current temporary password.
+         *
+         * <p> Returns {@link TemporaryPasswordState TemporaryPasswordState} </p>
          */
         public GetTemporaryPasswordState() {
         }
@@ -34390,13 +39948,17 @@ public class TdApi {
         public String text;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns all entities (mentions, hashtags, cashtags, bot commands, URLs, and email addresses) contained in the text. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link TextEntities TextEntities} </p>
          */
         public GetTextEntities() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns all entities (mentions, hashtags, cashtags, bot commands, URLs, and email addresses) contained in the text. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link TextEntities TextEntities} </p>
          *
          * @param text The text in which to look for entites.
          */
@@ -34434,13 +39996,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a list of frequently used chats. Supported only if the chat info database is enabled.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          */
         public GetTopChats() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a list of frequently used chats. Supported only if the chat info database is enabled.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          *
          * @param category Category of chats to be returned.
          * @param limit Maximum number of chats to be returned; up to 30.
@@ -34472,7 +40038,9 @@ public class TdApi {
     public static class GetTrendingStickerSets extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a list of trending sticker sets.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          */
         public GetTrendingStickerSets() {
         }
@@ -34503,13 +40071,17 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about a user by their identifier. This is an offline request if the current user is not a bot.
+         *
+         * <p> Returns {@link User User} </p>
          */
         public GetUser() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about a user by their identifier. This is an offline request if the current user is not a bot.
+         *
+         * <p> Returns {@link User User} </p>
          *
          * @param userId User identifier.
          */
@@ -34543,13 +40115,17 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns full information about a user by their identifier.
+         *
+         * <p> Returns {@link UserFullInfo UserFullInfo} </p>
          */
         public GetUserFullInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns full information about a user by their identifier.
+         *
+         * <p> Returns {@link UserFullInfo UserFullInfo} </p>
          *
          * @param userId User identifier.
          */
@@ -34583,13 +40159,17 @@ public class TdApi {
         public UserPrivacySetting setting;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the current privacy settings.
+         *
+         * <p> Returns {@link UserPrivacySettingRules UserPrivacySettingRules} </p>
          */
         public GetUserPrivacySettingRules() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the current privacy settings.
+         *
+         * <p> Returns {@link UserPrivacySettingRules UserPrivacySettingRules} </p>
          *
          * @param setting The privacy setting.
          */
@@ -34631,13 +40211,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already.
+         *
+         * <p> Returns {@link UserProfilePhotos UserProfilePhotos} </p>
          */
         public GetUserProfilePhotos() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already.
+         *
+         * <p> Returns {@link UserProfilePhotos UserProfilePhotos} </p>
          *
          * @param userId User identifier.
          * @param offset The number of photos to skip; must be non-negative.
@@ -34671,7 +40255,9 @@ public class TdApi {
     public static class GetWallpapers extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns background wallpapers.
+         *
+         * <p> Returns {@link Wallpapers Wallpapers} </p>
          */
         public GetWallpapers() {
         }
@@ -34706,13 +40292,17 @@ public class TdApi {
         public boolean forceFull;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page.
+         *
+         * <p> Returns {@link WebPageInstantView WebPageInstantView} </p>
          */
         public GetWebPageInstantView() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page.
+         *
+         * <p> Returns {@link WebPageInstantView WebPageInstantView} </p>
          *
          * @param url The web page URL.
          * @param forceFull If true, the full instant view for the web page will be returned.
@@ -34748,13 +40338,17 @@ public class TdApi {
         public FormattedText text;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview.
+         *
+         * <p> Returns {@link WebPage WebPage} </p>
          */
         public GetWebPagePreview() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview.
+         *
+         * <p> Returns {@link WebPage WebPage} </p>
          *
          * @param text Message text with formatting.
          */
@@ -34788,13 +40382,17 @@ public class TdApi {
         public Contact[] contacts;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds new contacts or edits existing contacts; contacts' user identifiers are ignored.
+         *
+         * <p> Returns {@link ImportedContacts ImportedContacts} </p>
          */
         public ImportContacts() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds new contacts or edits existing contacts; contacts' user identifiers are ignored.
+         *
+         * <p> Returns {@link ImportedContacts ImportedContacts} </p>
          *
          * @param contacts The list of contacts to import or edit, contact's vCard are ignored and are not imported.
          */
@@ -34828,13 +40426,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds current user as a new member to a chat. Private and secret chats can't be joined using this method.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public JoinChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds current user as a new member to a chat. Private and secret chats can't be joined using this method.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          */
@@ -34868,13 +40470,17 @@ public class TdApi {
         public String inviteLink;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which uses an invite link to add the current user to the chat if possible. The new member will not be added until the chat state has been synchronized with the server.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public JoinChatByInviteLink() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which uses an invite link to add the current user to the chat if possible. The new member will not be added until the chat state has been synchronized with the server.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          *
          * @param inviteLink Invite link to import; should begin with &quot;https://t.me/joinchat/&quot;, &quot;https://telegram.me/joinchat/&quot;, or &quot;https://telegram.dog/joinchat/&quot;.
          */
@@ -34908,13 +40514,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes current user from chat members. Private and secret chats can't be left using this method.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public LeaveChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes current user from chat members. Private and secret chats can't be left using this method.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          */
@@ -34944,7 +40554,9 @@ public class TdApi {
     public static class LogOut extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public LogOut() {
         }
@@ -34964,7 +40576,7 @@ public class TdApi {
     }
 
     /**
-     * This method should be called if the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats).
+     * Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats).
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -34975,13 +40587,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats).
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public OpenChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats).
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          */
@@ -35004,7 +40620,7 @@ public class TdApi {
     }
 
     /**
-     * This method should be called if the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed.
+     * Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -35019,13 +40635,17 @@ public class TdApi {
         public long messageId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public OpenMessageContent() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier of the message.
          * @param messageId Identifier of the message with the opened content.
@@ -35089,13 +40709,17 @@ public class TdApi {
         public int chatLimit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted.
+         *
+         * <p> Returns {@link StorageStatistics StorageStatistics} </p>
          */
         public OptimizeStorage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted.
+         *
+         * <p> Returns {@link StorageStatistics StorageStatistics} </p>
          *
          * @param size Limit on the total size of files after deletion. Pass -1 to use the default limit.
          * @param ttl Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit.
@@ -35147,13 +40771,17 @@ public class TdApi {
         public TextParseMode parseMode;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which parses Bold, Italic, Code, Pre, PreCode and TextUrl entities contained in the text. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link FormattedText FormattedText} </p>
          */
         public ParseTextEntities() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which parses Bold, Italic, Code, Pre, PreCode and TextUrl entities contained in the text. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link FormattedText FormattedText} </p>
          *
          * @param text The text which should be parsed.
          * @param parseMode Text parse mode.
@@ -35178,15 +40806,15 @@ public class TdApi {
     }
 
     /**
-     * Pins a message in a supergroup or channel; requires appropriate administrator rights in the supergroup or channel.
+     * Pins a message in a chat; requires appropriate administrator rights in the group or channel.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
-    public static class PinSupergroupMessage extends Function {
+    public static class PinChatMessage extends Function {
         /**
-         * Identifier of the supergroup or channel.
+         * Identifier of the chat.
          */
-        public int supergroupId;
+        public long chatId;
         /**
          * Identifier of the new pinned message.
          */
@@ -35197,20 +40825,24 @@ public class TdApi {
         public boolean disableNotification;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which pins a message in a chat; requires appropriate administrator rights in the group or channel.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
-        public PinSupergroupMessage() {
+        public PinChatMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which pins a message in a chat; requires appropriate administrator rights in the group or channel.
          *
-         * @param supergroupId Identifier of the supergroup or channel.
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param chatId Identifier of the chat.
          * @param messageId Identifier of the new pinned message.
          * @param disableNotification True, if there should be no notification about the pinned message.
          */
-        public PinSupergroupMessage(int supergroupId, long messageId, boolean disableNotification) {
-            this.supergroupId = supergroupId;
+        public PinChatMessage(long chatId, long messageId, boolean disableNotification) {
+            this.chatId = chatId;
             this.messageId = messageId;
             this.disableNotification = disableNotification;
         }
@@ -35218,7 +40850,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = 1141187557;
+        public static final int CONSTRUCTOR = -554712351;
 
         /**
          * @return this.CONSTRUCTOR
@@ -35241,13 +40873,17 @@ public class TdApi {
         public int proxyId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization.
+         *
+         * <p> Returns {@link Seconds Seconds} </p>
          */
         public PingProxy() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization.
+         *
+         * <p> Returns {@link Seconds Seconds} </p>
          *
          * @param proxyId Proxy identifier. Use 0 to ping a Telegram server without a proxy.
          */
@@ -35270,41 +40906,39 @@ public class TdApi {
     }
 
     /**
-     * Handles a DCUPDATE push service notification. Can be called before authorization.
+     * Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
-    public static class ProcessDcUpdate extends Function {
+    public static class ProcessPushNotification extends Function {
         /**
-         * Value of the &quot;dc&quot; parameter of the notification.
+         * JSON-encoded push notification payload with all fields sent by the server, and &quot;google.sentTime&quot; and &quot;google.notification.sound&quot; fields added.
          */
-        public String dc;
-        /**
-         * Value of the &quot;addr&quot; parameter of the notification.
-         */
-        public String addr;
+        public String payload;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
-        public ProcessDcUpdate() {
+        public ProcessPushNotification() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization.
          *
-         * @param dc Value of the &quot;dc&quot; parameter of the notification.
-         * @param addr Value of the &quot;addr&quot; parameter of the notification.
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param payload JSON-encoded push notification payload with all fields sent by the server, and &quot;google.sentTime&quot; and &quot;google.notification.sound&quot; fields added.
          */
-        public ProcessDcUpdate(String dc, String addr) {
-            this.dc = dc;
-            this.addr = addr;
+        public ProcessPushNotification(String payload) {
+            this.payload = payload;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -1806562997;
+        public static final int CONSTRUCTOR = 786679952;
 
         /**
          * @return this.CONSTRUCTOR
@@ -35327,13 +40961,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which marks all mentions in a chat as read.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ReadAllChatMentions() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which marks all mentions in a chat as read.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          */
@@ -35356,6 +40994,62 @@ public class TdApi {
     }
 
     /**
+     * Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the client has no direct access to TDLib's file system, because it is usually slower than a direct read from the file.
+     *
+     * <p> Returns {@link FilePart FilePart} </p>
+     */
+    public static class ReadFilePart extends Function {
+        /**
+         * Identifier of the file. The file must be located in the TDLib file cache.
+         */
+        public int fileId;
+        /**
+         * The offset from which to read the file.
+         */
+        public int offset;
+        /**
+         * Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position.
+         */
+        public int count;
+
+        /**
+         * Default constructor for a function, which reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the client has no direct access to TDLib's file system, because it is usually slower than a direct read from the file.
+         *
+         * <p> Returns {@link FilePart FilePart} </p>
+         */
+        public ReadFilePart() {
+        }
+
+        /**
+         * Creates a function, which reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the client has no direct access to TDLib's file system, because it is usually slower than a direct read from the file.
+         *
+         * <p> Returns {@link FilePart FilePart} </p>
+         *
+         * @param fileId Identifier of the file. The file must be located in the TDLib file cache.
+         * @param offset The offset from which to read the file.
+         * @param count Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position.
+         */
+        public ReadFilePart(int fileId, int offset, int count) {
+            this.fileId = fileId;
+            this.offset = offset;
+            this.count = count;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -407749314;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword.
      *
      * <p> Returns {@link Ok Ok} </p>
@@ -35367,13 +41061,17 @@ public class TdApi {
         public String recoveryCode;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RecoverAuthenticationPassword() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param recoveryCode Recovery code to check.
          */
@@ -35407,13 +41105,17 @@ public class TdApi {
         public String recoveryCode;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which recovers the password using a recovery code sent to an email address that was previously set up.
+         *
+         * <p> Returns {@link PasswordState PasswordState} </p>
          */
         public RecoverPassword() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which recovers the password using a recovery code sent to an email address that was previously set up.
+         *
+         * <p> Returns {@link PasswordState PasswordState} </p>
          *
          * @param recoveryCode Recovery code to check.
          */
@@ -35436,9 +41138,9 @@ public class TdApi {
     }
 
     /**
-     * Registers the currently used device for receiving push notifications.
+     * Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription.
      *
-     * <p> Returns {@link Ok Ok} </p>
+     * <p> Returns {@link PushReceiverId PushReceiverId} </p>
      */
     public static class RegisterDevice extends Function {
         /**
@@ -35446,21 +41148,25 @@ public class TdApi {
          */
         public DeviceToken deviceToken;
         /**
-         * List of at most 100 user identifiers of other users currently using the client.
+         * List of user identifiers of other users currently using the client.
          */
         public int[] otherUserIds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription.
+         *
+         * <p> Returns {@link PushReceiverId PushReceiverId} </p>
          */
         public RegisterDevice() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription.
+         *
+         * <p> Returns {@link PushReceiverId PushReceiverId} </p>
          *
          * @param deviceToken Device token.
-         * @param otherUserIds List of at most 100 user identifiers of other users currently using the client.
+         * @param otherUserIds List of user identifiers of other users currently using the client.
          */
         public RegisterDevice(DeviceToken deviceToken, int[] otherUserIds) {
             this.deviceToken = deviceToken;
@@ -35470,7 +41176,7 @@ public class TdApi {
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -413637293;
+        public static final int CONSTRUCTOR = 1734127493;
 
         /**
          * @return this.CONSTRUCTOR
@@ -35482,7 +41188,7 @@ public class TdApi {
     }
 
     /**
-     * Removes users from the contacts list.
+     * Removes users from the contact list.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -35493,13 +41199,17 @@ public class TdApi {
         public int[] userIds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes users from the contact list.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RemoveContacts() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes users from the contact list.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param userIds Identifiers of users to be deleted.
          */
@@ -35533,13 +41243,17 @@ public class TdApi {
         public InputFile sticker;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes a sticker from the list of favorite stickers.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RemoveFavoriteSticker() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes a sticker from the list of favorite stickers.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param sticker Sticker file to delete from the list.
          */
@@ -35562,6 +41276,106 @@ public class TdApi {
     }
 
     /**
+     * Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class RemoveNotification extends Function {
+        /**
+         * Identifier of notification group to which the notification belongs.
+         */
+        public int notificationGroupId;
+        /**
+         * Identifier of removed notification.
+         */
+        public int notificationId;
+
+        /**
+         * Default constructor for a function, which removes an active notification from notification list. Needs to be called only if the notification is removed by the current user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public RemoveNotification() {
+        }
+
+        /**
+         * Creates a function, which removes an active notification from notification list. Needs to be called only if the notification is removed by the current user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param notificationGroupId Identifier of notification group to which the notification belongs.
+         * @param notificationId Identifier of removed notification.
+         */
+        public RemoveNotification(int notificationGroupId, int notificationId) {
+            this.notificationGroupId = notificationGroupId;
+            this.notificationId = notificationId;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 862630734;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class RemoveNotificationGroup extends Function {
+        /**
+         * Notification group identifier.
+         */
+        public int notificationGroupId;
+        /**
+         * Maximum identifier of removed notifications.
+         */
+        public int maxNotificationId;
+
+        /**
+         * Default constructor for a function, which removes a group of active notifications. Needs to be called only if the notification group is removed by the current user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public RemoveNotificationGroup() {
+        }
+
+        /**
+         * Creates a function, which removes a group of active notifications. Needs to be called only if the notification group is removed by the current user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param notificationGroupId Notification group identifier.
+         * @param maxNotificationId Maximum identifier of removed notifications.
+         */
+        public RemoveNotificationGroup(int notificationGroupId, int maxNotificationId) {
+            this.notificationGroupId = notificationGroupId;
+            this.maxNotificationId = maxNotificationId;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1713005454;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Removes a proxy server. Can be called before authorization.
      *
      * <p> Returns {@link Ok Ok} </p>
@@ -35573,13 +41387,17 @@ public class TdApi {
         public int proxyId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes a proxy server. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RemoveProxy() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes a proxy server. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param proxyId Proxy identifier.
          */
@@ -35613,13 +41431,17 @@ public class TdApi {
         public String hashtag;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes a hashtag from the list of recently used hashtags.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RemoveRecentHashtag() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes a hashtag from the list of recently used hashtags.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param hashtag Hashtag to delete.
          */
@@ -35657,13 +41479,17 @@ public class TdApi {
         public InputFile sticker;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes a sticker from the list of recently used stickers.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RemoveRecentSticker() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes a sticker from the list of recently used stickers.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param isAttached Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers.
          * @param sticker Sticker file to delete.
@@ -35699,13 +41525,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes a chat from the list of recently found chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RemoveRecentlyFoundChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes a chat from the list of recently found chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Identifier of the chat to be removed.
          */
@@ -35739,13 +41569,17 @@ public class TdApi {
         public InputFile animation;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes an animation from the list of saved animations.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RemoveSavedAnimation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes an animation from the list of saved animations.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param animation Animation file to be removed.
          */
@@ -35779,13 +41613,17 @@ public class TdApi {
         public InputFile sticker;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RemoveStickerFromSet() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param sticker Sticker.
          */
@@ -35823,13 +41661,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RemoveTopChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param category Category of frequently used chats.
          * @param chatId Chat identifier.
@@ -35869,13 +41711,17 @@ public class TdApi {
         public long[] stickerSetIds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the order of installed sticker sets.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ReorderInstalledStickerSets() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the order of installed sticker sets.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param isMasks Pass true to change the order of mask sticker sets; pass false to change the order of ordinary sticker sets.
          * @param stickerSetIds Identifiers of installed sticker sets in the new correct order.
@@ -35919,13 +41765,17 @@ public class TdApi {
         public long[] messageIds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which reports a chat to the Telegram moderators. Supported only for supergroups, channels, or private chats with bots, since other chats can't be checked by moderators.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ReportChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which reports a chat to the Telegram moderators. Supported only for supergroups, channels, or private chats with bots, since other chats can't be checked by moderators.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param reason The reason for reporting the chat.
@@ -35971,13 +41821,17 @@ public class TdApi {
         public long[] messageIds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ReportSupergroupSpam() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param supergroupId Supergroup identifier.
          * @param userId User identifier.
@@ -36011,7 +41865,9 @@ public class TdApi {
     public static class RequestAuthenticationPasswordRecovery extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which requests to send a password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public RequestAuthenticationPasswordRecovery() {
         }
@@ -36038,7 +41894,9 @@ public class TdApi {
     public static class RequestPasswordRecovery extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which requests to send a password recovery code to an email address that was previously set up.
+         *
+         * <p> Returns {@link EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo} </p>
          */
         public RequestPasswordRecovery() {
         }
@@ -36065,7 +41923,9 @@ public class TdApi {
     public static class ResendAuthenticationCode extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which re-sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode and the nextCodeType of the result is not null.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ResendAuthenticationCode() {
         }
@@ -36092,7 +41952,9 @@ public class TdApi {
     public static class ResendChangePhoneNumberCode extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which re-sends the authentication code sent to confirm a new phone number for the user. Works only if the previously received authenticationCodeInfo nextCodeType was not null.
+         *
+         * <p> Returns {@link AuthenticationCodeInfo AuthenticationCodeInfo} </p>
          */
         public ResendChangePhoneNumberCode() {
         }
@@ -36119,7 +41981,9 @@ public class TdApi {
     public static class ResendEmailAddressVerificationCode extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which re-sends the code to verify an email address to be added to a user's Telegram Passport.
+         *
+         * <p> Returns {@link EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo} </p>
          */
         public ResendEmailAddressVerificationCode() {
         }
@@ -36146,7 +42010,9 @@ public class TdApi {
     public static class ResendPhoneNumberConfirmationCode extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which resends phone number confirmation code.
+         *
+         * <p> Returns {@link AuthenticationCodeInfo AuthenticationCodeInfo} </p>
          */
         public ResendPhoneNumberConfirmationCode() {
         }
@@ -36173,7 +42039,9 @@ public class TdApi {
     public static class ResendPhoneNumberVerificationCode extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which re-sends the code to verify a phone number to be added to a user's Telegram Passport.
+         *
+         * <p> Returns {@link AuthenticationCodeInfo AuthenticationCodeInfo} </p>
          */
         public ResendPhoneNumberVerificationCode() {
         }
@@ -36193,6 +42061,35 @@ public class TdApi {
     }
 
     /**
+     * Resends the 2-step verification recovery email address verification code.
+     *
+     * <p> Returns {@link PasswordState PasswordState} </p>
+     */
+    public static class ResendRecoveryEmailAddressCode extends Function {
+
+        /**
+         * Default constructor for a function, which resends the 2-step verification recovery email address verification code.
+         *
+         * <p> Returns {@link PasswordState PasswordState} </p>
+         */
+        public ResendRecoveryEmailAddressCode() {
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 433483548;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to &quot;default&quot; and message previews are shown.
      *
      * <p> Returns {@link Ok Ok} </p>
@@ -36200,7 +42097,9 @@ public class TdApi {
     public static class ResetAllNotificationSettings extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to &quot;default&quot; and message previews are shown.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ResetAllNotificationSettings() {
         }
@@ -36227,7 +42126,9 @@ public class TdApi {
     public static class ResetNetworkStatistics extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which resets all network data usage statistics to zero. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ResetNetworkStatistics() {
         }
@@ -36236,6 +42137,62 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = 1646452102;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Saves application log event on the server. Can be called before authorization.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class SaveApplicationLogEvent extends Function {
+        /**
+         * Event type.
+         */
+        public String type;
+        /**
+         * Optional chat identifier, associated with the event.
+         */
+        public long chatId;
+        /**
+         * The log event data.
+         */
+        public JsonValue data;
+
+        /**
+         * Default constructor for a function, which saves application log event on the server. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public SaveApplicationLogEvent() {
+        }
+
+        /**
+         * Creates a function, which saves application log event on the server. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param type Event type.
+         * @param chatId Optional chat identifier, associated with the event.
+         * @param data The log event data.
+         */
+        public SaveApplicationLogEvent(String type, long chatId, JsonValue data) {
+            this.type = type;
+            this.chatId = chatId;
+            this.data = data;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -811154930;
 
         /**
          * @return this.CONSTRUCTOR
@@ -36266,13 +42223,17 @@ public class TdApi {
         public boolean onlyMissed;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing messageId). For optimal performance the number of returned messages is chosen by the library.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          */
         public SearchCallMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing messageId). For optimal performance the number of returned messages is chosen by the library.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          *
          * @param fromMessageId Identifier of the message from which to search; use 0 to get results from the last message.
          * @param limit The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached.
@@ -36322,13 +42283,17 @@ public class TdApi {
         public ChatMembersFilter filter;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels.
+         *
+         * <p> Returns {@link ChatMembers ChatMembers} </p>
          */
         public SearchChatMembers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels.
+         *
+         * <p> Returns {@link ChatMembers ChatMembers} </p>
          *
          * @param chatId Chat identifier.
          * @param query Query to search for.
@@ -36392,13 +42357,17 @@ public class TdApi {
         public SearchMessagesFilter filter;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing messageId. Cannot be used in secret chats with a non-empty query (searchSecretMessages should be used instead), or without an enabled message database. For optimal performance the number of returned messages is chosen by the library.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          */
         public SearchChatMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing messageId. Cannot be used in secret chats with a non-empty query (searchSecretMessages should be used instead), or without an enabled message database. For optimal performance the number of returned messages is chosen by the library.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          *
          * @param chatId Identifier of the chat in which to search messages.
          * @param query Query to search for.
@@ -36448,13 +42417,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          */
         public SearchChatRecentLocationMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          *
          * @param chatId Chat identifier.
          * @param limit Maximum number of messages to be returned.
@@ -36494,13 +42467,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the chat list.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          */
         public SearchChats() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the chat list.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          *
          * @param query Query to search for. If the query is empty, returns up to 20 recently found chats.
          * @param limit Maximum number of chats to be returned.
@@ -36540,13 +42517,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the chat list.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          */
         public SearchChatsOnServer() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the chat list.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          *
          * @param query Query to search for.
          * @param limit Maximum number of chats to be returned.
@@ -36577,7 +42558,7 @@ public class TdApi {
      */
     public static class SearchContacts extends Function {
         /**
-         * Query to search for; can be empty to return all contacts.
+         * Query to search for; may be empty to return all contacts.
          */
         public String query;
         /**
@@ -36586,15 +42567,19 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for the specified query in the first names, last names and usernames of the known user contacts.
+         *
+         * <p> Returns {@link Users Users} </p>
          */
         public SearchContacts() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for the specified query in the first names, last names and usernames of the known user contacts.
          *
-         * @param query Query to search for; can be empty to return all contacts.
+         * <p> Returns {@link Users Users} </p>
+         *
+         * @param query Query to search for; may be empty to return all contacts.
          * @param limit Maximum number of users to be returned.
          */
         public SearchContacts(String query, int limit) {
@@ -36632,13 +42617,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for recently used hashtags by their prefix.
+         *
+         * <p> Returns {@link Hashtags Hashtags} </p>
          */
         public SearchHashtags() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for recently used hashtags by their prefix.
+         *
+         * <p> Returns {@link Hashtags Hashtags} </p>
          *
          * @param prefix Hashtag prefix to search for.
          * @param limit Maximum number of hashtags to be returned.
@@ -36682,13 +42671,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for installed sticker sets by looking for specified query in their title and name.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          */
         public SearchInstalledStickerSets() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for installed sticker sets by looking for specified query in their title and name.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          *
          * @param isMasks Pass true to return mask sticker sets; pass false to return ordinary sticker sets.
          * @param query Query to search for.
@@ -36742,13 +42735,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chatId, messageId)). For optimal performance the number of returned messages is chosen by the library.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          */
         public SearchMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chatId, messageId)). For optimal performance the number of returned messages is chosen by the library.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          *
          * @param query Query to search for.
          * @param offsetDate The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message.
@@ -36790,13 +42787,17 @@ public class TdApi {
         public String username;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches a public chat by its username. Currently only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public SearchPublicChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches a public chat by its username. Currently only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          *
          * @param username Username to be resolved.
          */
@@ -36830,13 +42831,17 @@ public class TdApi {
         public String query;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches public chats by looking for specified query in their username and title. Currently only private chats, supergroups and channels can be public. Returns a meaningful number of results. Returns nothing if the length of the searched username prefix is less than 5. Excludes private chats with contacts and chats from the chat list from the results.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          */
         public SearchPublicChats() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches public chats by looking for specified query in their username and title. Currently only private chats, supergroups and channels can be public. Returns a meaningful number of results. Returns nothing if the length of the searched username prefix is less than 5. Excludes private chats with contacts and chats from the chat list from the results.
+         *
+         * <p> Returns {@link Chats Chats} </p>
          *
          * @param query Query to search for.
          */
@@ -36886,13 +42891,17 @@ public class TdApi {
         public SearchMessagesFilter filter;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance the number of returned messages is chosen by the library.
+         *
+         * <p> Returns {@link FoundMessages FoundMessages} </p>
          */
         public SearchSecretMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance the number of returned messages is chosen by the library.
+         *
+         * <p> Returns {@link FoundMessages FoundMessages} </p>
          *
          * @param chatId Identifier of the chat in which to search. Specify 0 to search in all secret chats.
          * @param query Query to search for. If empty, searchChatMessages should be used instead.
@@ -36934,13 +42943,17 @@ public class TdApi {
         public String name;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for a sticker set by its name.
+         *
+         * <p> Returns {@link StickerSet StickerSet} </p>
          */
         public SearchStickerSet() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for a sticker set by its name.
+         *
+         * <p> Returns {@link StickerSet StickerSet} </p>
          *
          * @param name Name of the sticker set.
          */
@@ -36974,13 +42987,17 @@ public class TdApi {
         public String query;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          */
         public SearchStickerSets() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results.
+         *
+         * <p> Returns {@link StickerSets StickerSets} </p>
          *
          * @param query Query to search for.
          */
@@ -37018,13 +43035,17 @@ public class TdApi {
         public int limit;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which searches for stickers from public sticker sets that correspond to a given emoji.
+         *
+         * <p> Returns {@link Stickers Stickers} </p>
          */
         public SearchStickers() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which searches for stickers from public sticker sets that correspond to a given emoji.
+         *
+         * <p> Returns {@link Stickers Stickers} </p>
          *
          * @param emoji String representation of emoji; must be non-empty.
          * @param limit Maximum number of stickers to be returned.
@@ -37068,13 +43089,17 @@ public class TdApi {
         public String parameter;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public SendBotStartMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param botUserId Identifier of the bot.
          * @param chatId Identifier of the target chat.
@@ -37116,13 +43141,17 @@ public class TdApi {
         public String debugInformation;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends debug information for a call.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SendCallDebugInformation() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends debug information for a call.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param callId Call identifier.
          * @param debugInformation Debug information in application-specific format.
@@ -37166,13 +43195,17 @@ public class TdApi {
         public String comment;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a call rating.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SendCallRating() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends a call rating.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param callId Call identifier.
          * @param rating Call rating; 1-5.
@@ -37214,13 +43247,17 @@ public class TdApi {
         public ChatAction action;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a notification about user activity in a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SendChatAction() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends a notification about user activity in a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param action The action description.
@@ -37256,13 +43293,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a notification about a screenshot taken in a chat. Supported only in private and secret chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SendChatScreenshotTakenNotification() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends a notification about a screenshot taken in a chat. Supported only in private and secret chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          */
@@ -37300,13 +43341,17 @@ public class TdApi {
         public int ttl;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the current TTL setting (sets a new self-destruct timer) in a secret chat and sends the corresponding message.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public SendChatSetTtlMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the current TTL setting (sets a new self-destruct timer) in a secret chat and sends the corresponding message.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId Chat identifier.
          * @param ttl New TTL value, in seconds.
@@ -37346,13 +43391,17 @@ public class TdApi {
         public String parameters;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a custom request; for bots only.
+         *
+         * <p> Returns {@link CustomRequestResult CustomRequestResult} </p>
          */
         public SendCustomRequest() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends a custom request; for bots only.
+         *
+         * <p> Returns {@link CustomRequestResult CustomRequestResult} </p>
          *
          * @param method The method name.
          * @param parameters JSON-serialized method parameters.
@@ -37388,13 +43437,17 @@ public class TdApi {
         public String emailAddress;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a code to verify an email address to be added to a user's Telegram Passport.
+         *
+         * <p> Returns {@link EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo} </p>
          */
         public SendEmailAddressVerificationCode() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends a code to verify an email address to be added to a user's Telegram Passport.
+         *
+         * <p> Returns {@link EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo} </p>
          *
          * @param emailAddress Email address.
          */
@@ -37446,15 +43499,23 @@ public class TdApi {
          * Identifier of the inline result.
          */
         public String resultId;
+        /**
+         * If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption(&quot;animation_search_bot_username&quot;), GetOption(&quot;photo_search_bot_username&quot;) and GetOption(&quot;venue_search_bot_username&quot;).
+         */
+        public boolean hideViaBot;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public SendInlineQueryResultMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId Target chat.
          * @param replyToMessageId Identifier of a message to reply to or 0.
@@ -37462,20 +43523,22 @@ public class TdApi {
          * @param fromBackground Pass true if the message is sent from background.
          * @param queryId Identifier of the inline query.
          * @param resultId Identifier of the inline result.
+         * @param hideViaBot If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption(&quot;animation_search_bot_username&quot;), GetOption(&quot;photo_search_bot_username&quot;) and GetOption(&quot;venue_search_bot_username&quot;).
          */
-        public SendInlineQueryResultMessage(long chatId, long replyToMessageId, boolean disableNotification, boolean fromBackground, long queryId, String resultId) {
+        public SendInlineQueryResultMessage(long chatId, long replyToMessageId, boolean disableNotification, boolean fromBackground, long queryId, String resultId, boolean hideViaBot) {
             this.chatId = chatId;
             this.replyToMessageId = replyToMessageId;
             this.disableNotification = disableNotification;
             this.fromBackground = fromBackground;
             this.queryId = queryId;
             this.resultId = resultId;
+            this.hideViaBot = hideViaBot;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -643910868;
+        public static final int CONSTRUCTOR = 893888200;
 
         /**
          * @return this.CONSTRUCTOR
@@ -37518,13 +43581,17 @@ public class TdApi {
         public InputMessageContent inputMessageContent;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a message. Returns the sent message.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public SendMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends a message. Returns the sent message.
+         *
+         * <p> Returns {@link Message Message} </p>
          *
          * @param chatId Target chat.
          * @param replyToMessageId Identifier of the message to reply to or 0.
@@ -37584,13 +43651,17 @@ public class TdApi {
         public InputMessageContent[] inputMessageContents;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends messages grouped together into an album. Currently only photo and video messages can be grouped into an album. Returns sent messages.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          */
         public SendMessageAlbum() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends messages grouped together into an album. Currently only photo and video messages can be grouped into an album. Returns sent messages.
+         *
+         * <p> Returns {@link Messages Messages} </p>
          *
          * @param chatId Target chat.
          * @param replyToMessageId Identifier of a message to reply to or 0.
@@ -37621,7 +43692,7 @@ public class TdApi {
     }
 
     /**
-     * Sends a Telegram Passport authorization form, effectively sharing data with the service.
+     * Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements need to be used.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -37636,13 +43707,17 @@ public class TdApi {
         public PassportElementType[] types;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements need to be used.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SendPassportAuthorizationForm() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements need to be used.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param autorizationFormId Authorization form identifier.
          * @param types Types of Telegram Passport elements chosen by user to complete the authorization form.
@@ -37694,13 +43769,17 @@ public class TdApi {
         public InputCredentials credentials;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a filled-out payment form to the bot for final verification.
+         *
+         * <p> Returns {@link PaymentResult PaymentResult} </p>
          */
         public SendPaymentForm() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends a filled-out payment form to the bot for final verification.
+         *
+         * <p> Returns {@link PaymentResult PaymentResult} </p>
          *
          * @param chatId Chat identifier of the Invoice message.
          * @param messageId Message identifier.
@@ -37754,13 +43833,17 @@ public class TdApi {
         public boolean isCurrentPhoneNumber;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends phone number confirmation code. Should be called when user presses &quot;https://t.me/confirmphone?phone=*******&amp;hash=**********&quot; or &quot;tg://confirmphone?phone=*******&amp;hash=**********&quot; link.
+         *
+         * <p> Returns {@link AuthenticationCodeInfo AuthenticationCodeInfo} </p>
          */
         public SendPhoneNumberConfirmationCode() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends phone number confirmation code. Should be called when user presses &quot;https://t.me/confirmphone?phone=*******&amp;hash=**********&quot; or &quot;tg://confirmphone?phone=*******&amp;hash=**********&quot; link.
+         *
+         * <p> Returns {@link AuthenticationCodeInfo AuthenticationCodeInfo} </p>
          *
          * @param hash Value of the &quot;hash&quot; parameter from the link.
          * @param phoneNumber Value of the &quot;phone&quot; parameter from the link.
@@ -37808,13 +43891,17 @@ public class TdApi {
         public boolean isCurrentPhoneNumber;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a code to verify a phone number to be added to a user's Telegram Passport.
+         *
+         * <p> Returns {@link AuthenticationCodeInfo AuthenticationCodeInfo} </p>
          */
         public SendPhoneNumberVerificationCode() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sends a code to verify a phone number to be added to a user's Telegram Passport.
+         *
+         * <p> Returns {@link AuthenticationCodeInfo AuthenticationCodeInfo} </p>
          *
          * @param phoneNumber The phone number of the user, in international format.
          * @param allowFlashCall Pass true if the authentication code may be sent via flash call to the specified phone number.
@@ -37852,13 +43939,17 @@ public class TdApi {
         public AccountTtl ttl;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the period of inactivity after which the account of the current user will automatically be deleted.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetAccountTtl() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the period of inactivity after which the account of the current user will automatically be deleted.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param ttl New account TTL.
          */
@@ -37892,13 +43983,17 @@ public class TdApi {
         public double seconds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which succeeds after a specified amount of time has passed. Can be called before authorization. Can be called before initialization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetAlarm() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which succeeds after a specified amount of time has passed. Can be called before authorization. Can be called before initialization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param seconds Number of seconds before the function returns.
          */
@@ -37940,13 +44035,17 @@ public class TdApi {
         public boolean isCurrentPhoneNumber;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetAuthenticationPhoneNumber() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param phoneNumber The phone number of the user, in international format.
          * @param allowFlashCall Pass true if the authentication code may be sent via flash call to the specified phone number.
@@ -37984,13 +44083,17 @@ public class TdApi {
         public String bio;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the bio of the current user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetBio() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the bio of the current user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param bio The new value of the user bio; 0-70 characters without line feeds.
          */
@@ -38028,13 +44131,17 @@ public class TdApi {
         public String errorMessage;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetBotUpdatesStatus() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param pendingUpdateCount The number of pending updates.
          * @param errorMessage The last error message.
@@ -38074,13 +44181,17 @@ public class TdApi {
         public String clientData;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes client data associated with a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetChatClientData() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes client data associated with a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param clientData New value of clientData.
@@ -38120,13 +44231,17 @@ public class TdApi {
         @Nullable public DraftMessage draftMessage;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the draft message in a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetChatDraftMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the draft message in a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param draftMessage New draft message; may be null.
@@ -38170,13 +44285,17 @@ public class TdApi {
         public ChatMemberStatus status;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for adding new members to the chat; instead, use addChatMember. The chat member status will not be changed until it has been synchronized with the server.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetChatMemberStatus() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for adding new members to the chat; instead, use addChatMember. The chat member status will not be changed until it has been synchronized with the server.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param userId User identifier.
@@ -38218,13 +44337,17 @@ public class TdApi {
         public ChatNotificationSettings notificationSettings;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the notification settings of a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetChatNotificationSettings() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the notification settings of a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param notificationSettings New notification settings for the chat.
@@ -38264,13 +44387,17 @@ public class TdApi {
         public InputFile photo;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires administrator rights in basic groups and the appropriate administrator rights in supergroups and channels. The photo will not be changed before request to the server has been completed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetChatPhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires administrator rights in basic groups and the appropriate administrator rights in supergroups and channels. The photo will not be changed before request to the server has been completed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param photo New chat photo. You can use a zero InputFileId to delete the chat photo. Files that are accessible only by HTTP URL are not acceptable.
@@ -38305,21 +44432,25 @@ public class TdApi {
          */
         public long chatId;
         /**
-         * New title of the chat; 1-255 characters.
+         * New title of the chat; 1-128 characters.
          */
         public String title;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the chat title. Supported only for basic groups, supergroups and channels. Requires administrator rights in basic groups and the appropriate administrator rights in supergroups and channels. The title will not be changed until the request to the server has been completed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetChatTitle() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the chat title. Supported only for basic groups, supergroups and channels. Requires administrator rights in basic groups and the appropriate administrator rights in supergroups and channels. The title will not be changed until the request to the server has been completed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
-         * @param title New title of the chat; 1-255 characters.
+         * @param title New title of the chat; 1-128 characters.
          */
         public SetChatTitle(long chatId, String title) {
             this.chatId = chatId;
@@ -38341,13 +44472,13 @@ public class TdApi {
     }
 
     /**
-     * Adds or changes a custom language pack to the current localization target.
+     * Adds or changes a custom local language pack to the current localization target.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
     public static class SetCustomLanguagePack extends Function {
         /**
-         * Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters.
+         * Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization.
          */
         public LanguagePackInfo info;
         /**
@@ -38356,15 +44487,19 @@ public class TdApi {
         public LanguagePackString[] strings;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds or changes a custom local language pack to the current localization target.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetCustomLanguagePack() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds or changes a custom local language pack to the current localization target.
          *
-         * @param info Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters.
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param info Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization.
          * @param strings Strings of the new language pack.
          */
         public SetCustomLanguagePack(LanguagePackInfo info, LanguagePackString[] strings) {
@@ -38387,13 +44522,13 @@ public class TdApi {
     }
 
     /**
-     * Adds, edits or deletes a string in a custom language pack.
+     * Adds, edits or deletes a string in a custom local language pack. Can be called before authorization.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
     public static class SetCustomLanguagePackString extends Function {
         /**
-         * Identifier of a previously added custom language pack in the current localization target.
+         * Identifier of a previously added custom local language pack in the current localization target.
          */
         public String languagePackId;
         /**
@@ -38402,15 +44537,19 @@ public class TdApi {
         public LanguagePackString newString;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds, edits or deletes a string in a custom local language pack. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetCustomLanguagePackString() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds, edits or deletes a string in a custom local language pack. Can be called before authorization.
          *
-         * @param languagePackId Identifier of a previously added custom language pack in the current localization target.
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param languagePackId Identifier of a previously added custom local language pack in the current localization target.
          * @param newString New language pack string.
          */
         public SetCustomLanguagePackString(String languagePackId, LanguagePackString newString) {
@@ -38444,13 +44583,17 @@ public class TdApi {
         public byte[] newEncryptionKey;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetDatabaseEncryptionKey() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param newEncryptionKey New encryption key.
          */
@@ -38473,7 +44616,7 @@ public class TdApi {
     }
 
     /**
-     * The next part of a file was generated.
+     * Informs TDLib on a file generation prograss.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -38492,13 +44635,17 @@ public class TdApi {
         public int localPrefixSize;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which informs TDLib on a file generation prograss.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetFileGenerationProgress() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which informs TDLib on a file generation prograss.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param generationId The identifier of the generation process.
          * @param expectedSize Expected size of the generated file, in bytes; 0 if unknown.
@@ -38531,7 +44678,7 @@ public class TdApi {
      */
     public static class SetGameScore extends Function {
         /**
-         * The chat to which the message with the game.
+         * The chat to which the message with the game belongs.
          */
         public long chatId;
         /**
@@ -38556,15 +44703,19 @@ public class TdApi {
         public boolean force;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which updates the game score of the specified user in the game; for bots only.
+         *
+         * <p> Returns {@link Message Message} </p>
          */
         public SetGameScore() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which updates the game score of the specified user in the game; for bots only.
          *
-         * @param chatId The chat to which the message with the game.
+         * <p> Returns {@link Message Message} </p>
+         *
+         * @param chatId The chat to which the message with the game belongs.
          * @param messageId Identifier of the message.
          * @param editMessage True, if the message should be edited.
          * @param userId User identifier.
@@ -38622,13 +44773,17 @@ public class TdApi {
         public boolean force;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which updates the game score of the specified user in a game; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetInlineGameScore() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which updates the game score of the specified user in a game; for bots only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param inlineMessageId Inline message identifier.
          * @param editMessage True, if the message should be edited.
@@ -38659,31 +44814,173 @@ public class TdApi {
     }
 
     /**
+     * Sets new log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class SetLogStream extends Function {
+        /**
+         * New log stream.
+         */
+        public LogStream logStream;
+
+        /**
+         * Default constructor for a function, which sets new log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public SetLogStream() {
+        }
+
+        /**
+         * Creates a function, which sets new log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param logStream New log stream.
+         */
+        public SetLogStream(LogStream logStream) {
+            this.logStream = logStream;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1364199535;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Sets the verbosity level for a specified TDLib internal log tag. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class SetLogTagVerbosityLevel extends Function {
+        /**
+         * Logging tag to change verbosity level.
+         */
+        public String tag;
+        /**
+         * New verbosity level; 1-1024.
+         */
+        public int newVerbosityLevel;
+
+        /**
+         * Default constructor for a function, which sets the verbosity level for a specified TDLib internal log tag. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public SetLogTagVerbosityLevel() {
+        }
+
+        /**
+         * Creates a function, which sets the verbosity level for a specified TDLib internal log tag. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param tag Logging tag to change verbosity level.
+         * @param newVerbosityLevel New verbosity level; 1-1024.
+         */
+        public SetLogTagVerbosityLevel(String tag, int newVerbosityLevel) {
+            this.tag = tag;
+            this.newVerbosityLevel = newVerbosityLevel;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -2095589738;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Sets the verbosity level of the internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class SetLogVerbosityLevel extends Function {
+        /**
+         * New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging.
+         */
+        public int newVerbosityLevel;
+
+        /**
+         * Default constructor for a function, which sets the verbosity level of the internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public SetLogVerbosityLevel() {
+        }
+
+        /**
+         * Creates a function, which sets the verbosity level of the internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param newVerbosityLevel New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging.
+         */
+        public SetLogVerbosityLevel(int newVerbosityLevel) {
+            this.newVerbosityLevel = newVerbosityLevel;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -303429678;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Changes the first and last name of the current user. If something changes, updateUser will be sent.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
     public static class SetName extends Function {
         /**
-         * The new value of the first name for the user; 1-255 characters.
+         * The new value of the first name for the user; 1-64 characters.
          */
         public String firstName;
         /**
-         * The new value of the optional last name for the user; 0-255 characters.
+         * The new value of the optional last name for the user; 0-64 characters.
          */
         public String lastName;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the first and last name of the current user. If something changes, updateUser will be sent.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetName() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the first and last name of the current user. If something changes, updateUser will be sent.
          *
-         * @param firstName The new value of the first name for the user; 1-255 characters.
-         * @param lastName The new value of the optional last name for the user; 0-255 characters.
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param firstName The new value of the first name for the user; 1-64 characters.
+         * @param lastName The new value of the optional last name for the user; 0-64 characters.
          */
         public SetName(String firstName, String lastName) {
             this.firstName = firstName;
@@ -38716,13 +45013,17 @@ public class TdApi {
         public NetworkType type;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks, so it should be called whenever the network is changed, even if the network type remains the same. Network type is used to check whether the library can use the network at all and also for collecting detailed network data usage statistics.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetNetworkType() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks, so it should be called whenever the network is changed, even if the network type remains the same. Network type is used to check whether the library can use the network at all and also for collecting detailed network data usage statistics.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param type The new network type. By default, networkTypeOther.
          */
@@ -38760,13 +45061,17 @@ public class TdApi {
         public OptionValue value;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetOption() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param name The name of the option.
          * @param value The new value of the option.
@@ -38791,7 +45096,7 @@ public class TdApi {
     }
 
     /**
-     * Adds an element to the user's Telegram Passport. May return an error with a message &quot;PHONEVERIFICATIONNEEDED&quot; or &quot;EMAILVERIFICATIONNEEDED&quot; if the chosen phone number or the chosen email address must be verified first.
+     * Adds an element to the user's Telegram Passport. May return an error with a message &quot;PHONE_VERIFICATION_NEEDED&quot; or &quot;EMAIL_VERIFICATION_NEEDED&quot; if the chosen phone number or the chosen email address must be verified first.
      *
      * <p> Returns {@link PassportElement PassportElement} </p>
      */
@@ -38806,13 +45111,17 @@ public class TdApi {
         public String password;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which adds an element to the user's Telegram Passport. May return an error with a message &quot;PHONE_VERIFICATION_NEEDED&quot; or &quot;EMAIL_VERIFICATION_NEEDED&quot; if the chosen phone number or the chosen email address must be verified first.
+         *
+         * <p> Returns {@link PassportElement PassportElement} </p>
          */
         public SetPassportElement() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which adds an element to the user's Telegram Passport. May return an error with a message &quot;PHONE_VERIFICATION_NEEDED&quot; or &quot;EMAIL_VERIFICATION_NEEDED&quot; if the chosen phone number or the chosen email address must be verified first.
+         *
+         * <p> Returns {@link PassportElement PassportElement} </p>
          *
          * @param element Input Telegram Passport element.
          * @param password Password of the current user.
@@ -38852,13 +45161,17 @@ public class TdApi {
         public InputPassportElementError[] errors;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetPassportElementErrors() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param userId User identifier.
          * @param errors The errors.
@@ -38883,7 +45196,7 @@ public class TdApi {
     }
 
     /**
-     * Changes the password for the user. If a new recovery email address is specified, then the error EMAILUNCONFIRMED is returned and the password change will not be applied until the new recovery email address has been confirmed. The application should periodically call getPasswordState to check whether the new email address has been confirmed.
+     * Changes the password for the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed.
      *
      * <p> Returns {@link PasswordState PasswordState} </p>
      */
@@ -38910,13 +45223,17 @@ public class TdApi {
         public String newRecoveryEmailAddress;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the password for the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed.
+         *
+         * <p> Returns {@link PasswordState PasswordState} </p>
          */
         public SetPassword() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the password for the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed.
+         *
+         * <p> Returns {@link PasswordState PasswordState} </p>
          *
          * @param oldPassword Previous password of the user.
          * @param newPassword New password of the user; may be empty to remove the password.
@@ -38958,13 +45275,17 @@ public class TdApi {
         public long[] chatIds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the order of pinned chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetPinnedChats() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the order of pinned chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatIds The new list of pinned chats.
          */
@@ -38987,6 +45308,62 @@ public class TdApi {
     }
 
     /**
+     * Changes user answer to a poll.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class SetPollAnswer extends Function {
+        /**
+         * Identifier of the chat to which the poll belongs.
+         */
+        public long chatId;
+        /**
+         * Identifier of the message containing the poll.
+         */
+        public long messageId;
+        /**
+         * 0-based identifiers of options, chosen by the user. Currently user can't choose more than 1 option.
+         */
+        public int[] optionIds;
+
+        /**
+         * Default constructor for a function, which changes user answer to a poll.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public SetPollAnswer() {
+        }
+
+        /**
+         * Creates a function, which changes user answer to a poll.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param chatId Identifier of the chat to which the poll belongs.
+         * @param messageId Identifier of the message containing the poll.
+         * @param optionIds 0-based identifiers of options, chosen by the user. Currently user can't choose more than 1 option.
+         */
+        public SetPollAnswer(long chatId, long messageId, int[] optionIds) {
+            this.chatId = chatId;
+            this.messageId = messageId;
+            this.optionIds = optionIds;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -1399388792;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Uploads a new profile photo for the current user. If something changes, updateUser will be sent.
      *
      * <p> Returns {@link Ok Ok} </p>
@@ -38998,13 +45375,17 @@ public class TdApi {
         public InputFile photo;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which uploads a new profile photo for the current user. If something changes, updateUser will be sent.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetProfilePhoto() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which uploads a new profile photo for the current user. If something changes, updateUser will be sent.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param photo Profile photo to set. inputFileId and inputFileRemote may still be unsupported.
          */
@@ -39027,7 +45408,7 @@ public class TdApi {
     }
 
     /**
-     * Changes the recovery email address of the user. If a new recovery email address is specified, then the error EMAILUNCONFIRMED is returned and the email address will not be changed until the new email has been confirmed. The application should periodically call getPasswordState to check whether the email address has been confirmed. If newRecoveryEmailAddress is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation.
+     * Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed If newRecoveryEmailAddress is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation.
      *
      * <p> Returns {@link PasswordState PasswordState} </p>
      */
@@ -39042,13 +45423,17 @@ public class TdApi {
         public String newRecoveryEmailAddress;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed If newRecoveryEmailAddress is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation.
+         *
+         * <p> Returns {@link PasswordState PasswordState} </p>
          */
         public SetRecoveryEmailAddress() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed If newRecoveryEmailAddress is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation.
+         *
+         * <p> Returns {@link PasswordState PasswordState} </p>
          *
          * @param password Password of the current user.
          * @param newRecoveryEmailAddress New recovery email address.
@@ -39088,13 +45473,17 @@ public class TdApi {
         public ScopeNotificationSettings notificationSettings;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes notification settings for chats of a given type.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetScopeNotificationSettings() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes notification settings for chats of a given type.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param scope Types of chats for which to change the notification settings.
          * @param notificationSettings The new notification settings for the given scope.
@@ -39134,13 +45523,17 @@ public class TdApi {
         public int position;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetStickerPositionInSet() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param sticker Sticker.
          * @param position New position of the sticker in the set, zero-based.
@@ -39180,13 +45573,17 @@ public class TdApi {
         public String description;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes information about a supergroup or channel; requires appropriate administrator rights.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetSupergroupDescription() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes information about a supergroup or channel; requires appropriate administrator rights.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param supergroupId Identifier of the supergroup or channel.
          * @param description New supergroup or channel description; 0-255 characters.
@@ -39226,13 +45623,17 @@ public class TdApi {
         public long stickerSetId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the sticker set of a supergroup; requires appropriate rights in the supergroup.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetSupergroupStickerSet() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the sticker set of a supergroup; requires appropriate rights in the supergroup.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param supergroupId Identifier of the supergroup.
          * @param stickerSetId New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set.
@@ -39272,13 +45673,17 @@ public class TdApi {
         public String username;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the username of a supergroup or channel, requires creator privileges in the supergroup or channel.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetSupergroupUsername() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the username of a supergroup or channel, requires creator privileges in the supergroup or channel.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param supergroupId Identifier of the supergroup or channel.
          * @param username New value of the username. Use an empty string to remove the username.
@@ -39314,13 +45719,17 @@ public class TdApi {
         public TdlibParameters parameters;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetTdlibParameters() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param parameters Parameters.
          */
@@ -39358,13 +45767,17 @@ public class TdApi {
         public UserPrivacySettingRules rules;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes user privacy settings.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetUserPrivacySettingRules() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes user privacy settings.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param setting The privacy setting.
          * @param rules The new privacy rules.
@@ -39400,13 +45813,17 @@ public class TdApi {
         public String username;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the username of the current user. If something changes, updateUser will be sent.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public SetUsername() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the username of the current user. If something changes, updateUser will be sent.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param username The new value of the username. Use an empty string to remove the username.
          */
@@ -39429,6 +45846,106 @@ public class TdApi {
     }
 
     /**
+     * Stops a poll. A poll in a message can be stopped when the message has canBeEdited flag set.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class StopPoll extends Function {
+        /**
+         * Identifier of the chat to which the poll belongs.
+         */
+        public long chatId;
+        /**
+         * Identifier of the message containing the poll.
+         */
+        public long messageId;
+        /**
+         * The new message reply markup; for bots only.
+         */
+        public ReplyMarkup replyMarkup;
+
+        /**
+         * Default constructor for a function, which stops a poll. A poll in a message can be stopped when the message has canBeEdited flag set.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public StopPoll() {
+        }
+
+        /**
+         * Creates a function, which stops a poll. A poll in a message can be stopped when the message has canBeEdited flag set.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param chatId Identifier of the chat to which the poll belongs.
+         * @param messageId Identifier of the message containing the poll.
+         * @param replyMarkup The new message reply markup; for bots only.
+         */
+        public StopPoll(long chatId, long messageId, ReplyMarkup replyMarkup) {
+            this.chatId = chatId;
+            this.messageId = messageId;
+            this.replyMarkup = replyMarkup;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = 1659374253;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class SynchronizeLanguagePack extends Function {
+        /**
+         * Language pack identifier.
+         */
+        public String languagePackId;
+
+        /**
+         * Default constructor for a function, which fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public SynchronizeLanguagePack() {
+        }
+
+        /**
+         * Creates a function, which fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param languagePackId Language pack identifier.
+         */
+        public SynchronizeLanguagePack(String languagePackId) {
+            this.languagePackId = languagePackId;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -2065307858;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
      * Terminates all other sessions of the current user.
      *
      * <p> Returns {@link Ok Ok} </p>
@@ -39436,7 +45953,9 @@ public class TdApi {
     public static class TerminateAllOtherSessions extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which terminates all other sessions of the current user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public TerminateAllOtherSessions() {
         }
@@ -39467,13 +45986,17 @@ public class TdApi {
         public long sessionId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which terminates a session of the current user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public TerminateSession() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which terminates a session of the current user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param sessionId Session identifier.
          */
@@ -39496,7 +46019,7 @@ public class TdApi {
     }
 
     /**
-     * Returns the received bytes; for testing only.
+     * Returns the received bytes; for testing only. This is an offline method. Can be called before authorization.
      *
      * <p> Returns {@link TestBytes TestBytes} </p>
      */
@@ -39507,13 +46030,17 @@ public class TdApi {
         public byte[] x;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the received bytes; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestBytes TestBytes} </p>
          */
         public TestCallBytes() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the received bytes; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestBytes TestBytes} </p>
          *
          * @param x Bytes to return.
          */
@@ -39536,14 +46063,16 @@ public class TdApi {
     }
 
     /**
-     * Does nothing; for testing only.
+     * Does nothing; for testing only. This is an offline method. Can be called before authorization.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
     public static class TestCallEmpty extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which does nothing; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public TestCallEmpty() {
         }
@@ -39563,7 +46092,7 @@ public class TdApi {
     }
 
     /**
-     * Returns the received string; for testing only.
+     * Returns the received string; for testing only. This is an offline method. Can be called before authorization.
      *
      * <p> Returns {@link TestString TestString} </p>
      */
@@ -39574,13 +46103,17 @@ public class TdApi {
         public String x;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the received string; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestString TestString} </p>
          */
         public TestCallString() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the received string; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestString TestString} </p>
          *
          * @param x String to return.
          */
@@ -39603,7 +46136,7 @@ public class TdApi {
     }
 
     /**
-     * Returns the received vector of numbers; for testing only.
+     * Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization.
      *
      * <p> Returns {@link TestVectorInt TestVectorInt} </p>
      */
@@ -39614,13 +46147,17 @@ public class TdApi {
         public int[] x;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestVectorInt TestVectorInt} </p>
          */
         public TestCallVectorInt() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestVectorInt TestVectorInt} </p>
          *
          * @param x Vector of numbers to return.
          */
@@ -39643,7 +46180,7 @@ public class TdApi {
     }
 
     /**
-     * Returns the received vector of objects containing a number; for testing only.
+     * Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization.
      *
      * <p> Returns {@link TestVectorIntObject TestVectorIntObject} </p>
      */
@@ -39654,13 +46191,17 @@ public class TdApi {
         public TestInt[] x;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestVectorIntObject TestVectorIntObject} </p>
          */
         public TestCallVectorIntObject() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestVectorIntObject TestVectorIntObject} </p>
          *
          * @param x Vector of objects to return.
          */
@@ -39683,7 +46224,7 @@ public class TdApi {
     }
 
     /**
-     * For testing only request. Returns the received vector of strings; for testing only.
+     * Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization.
      *
      * <p> Returns {@link TestVectorString TestVectorString} </p>
      */
@@ -39694,13 +46235,17 @@ public class TdApi {
         public String[] x;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestVectorString TestVectorString} </p>
          */
         public TestCallVectorString() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestVectorString TestVectorString} </p>
          *
          * @param x Vector of strings to return.
          */
@@ -39723,7 +46268,7 @@ public class TdApi {
     }
 
     /**
-     * Returns the received vector of objects containing a string; for testing only.
+     * Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization.
      *
      * <p> Returns {@link TestVectorStringObject TestVectorStringObject} </p>
      */
@@ -39734,13 +46279,17 @@ public class TdApi {
         public TestString[] x;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestVectorStringObject TestVectorStringObject} </p>
          */
         public TestCallVectorStringObject() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestVectorStringObject TestVectorStringObject} </p>
          *
          * @param x Vector of objects to return.
          */
@@ -39770,7 +46319,9 @@ public class TdApi {
     public static class TestGetDifference extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which forces an updates.getDifference call to the Telegram servers; for testing only.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public TestGetDifference() {
         }
@@ -39790,14 +46341,16 @@ public class TdApi {
     }
 
     /**
-     * Sends a simple network request to the Telegram servers; for testing only.
+     * Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
     public static class TestNetwork extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which sends a simple network request to the Telegram servers; for testing only. Can be called before authorization.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public TestNetwork() {
         }
@@ -39817,7 +46370,7 @@ public class TdApi {
     }
 
     /**
-     * Returns the squared received number; for testing only.
+     * Returns the squared received number; for testing only. This is an offline method. Can be called before authorization.
      *
      * <p> Returns {@link TestInt TestInt} </p>
      */
@@ -39828,13 +46381,17 @@ public class TdApi {
         public int x;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which returns the squared received number; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestInt TestInt} </p>
          */
         public TestSquareInt() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which returns the squared received number; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link TestInt TestInt} </p>
          *
          * @param x Number to square.
          */
@@ -39857,14 +46414,16 @@ public class TdApi {
     }
 
     /**
-     * Does nothing and ensures that the Error object is used; for testing only.
+     * Does nothing and ensures that the Error object is used; for testing only. This is an offline method. Can be called before authorization.
      *
      * <p> Returns {@link Error Error} </p>
      */
     public static class TestUseError extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which does nothing and ensures that the Error object is used; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link Error Error} </p>
          */
         public TestUseError() {
         }
@@ -39884,14 +46443,16 @@ public class TdApi {
     }
 
     /**
-     * Does nothing and ensures that the Update object is used; for testing only.
+     * Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization.
      *
      * <p> Returns {@link Update Update} </p>
      */
     public static class TestUseUpdate extends Function {
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization.
+         *
+         * <p> Returns {@link Update Update} </p>
          */
         public TestUseUpdate() {
         }
@@ -39926,13 +46487,17 @@ public class TdApi {
         public boolean everyoneIsAdministrator;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which toggles the &quot;All members are admins&quot; setting in basic groups; requires creator privileges in the group.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ToggleBasicGroupAdministrators() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which toggles the &quot;All members are admins&quot; setting in basic groups; requires creator privileges in the group.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param basicGroupId Identifier of the basic group.
          * @param everyoneIsAdministrator New value of everyoneIsAdministrator.
@@ -39972,13 +46537,17 @@ public class TdApi {
         public boolean defaultDisableNotification;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the value of the default disableNotification parameter, used when a message is sent to a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ToggleChatDefaultDisableNotification() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the value of the default disableNotification parameter, used when a message is sent to a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param defaultDisableNotification New value of defaultDisableNotification.
@@ -40018,13 +46587,17 @@ public class TdApi {
         public boolean isMarkedAsUnread;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the marked as unread state of a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ToggleChatIsMarkedAsUnread() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the marked as unread state of a chat.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param isMarkedAsUnread New value of isMarkedAsUnread.
@@ -40049,7 +46622,7 @@ public class TdApi {
     }
 
     /**
-     * Changes the pinned state of a chat. You can pin up to GetOption(&quot;pinnedChatCountMax&quot;) non-secret chats and the same number of secret chats.
+     * Changes the pinned state of a chat. You can pin up to GetOption(&quot;pinned_chat_count_max&quot;) non-secret chats and the same number of secret chats.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -40064,13 +46637,17 @@ public class TdApi {
         public boolean isPinned;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which changes the pinned state of a chat. You can pin up to GetOption(&quot;pinned_chat_count_max&quot;) non-secret chats and the same number of secret chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ToggleChatIsPinned() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which changes the pinned state of a chat. You can pin up to GetOption(&quot;pinned_chat_count_max&quot;) non-secret chats and the same number of secret chats.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param isPinned New value of isPinned.
@@ -40110,13 +46687,17 @@ public class TdApi {
         public boolean anyoneCanInvite;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which toggles whether all members of a supergroup can add new members; requires appropriate administrator rights in the supergroup.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ToggleSupergroupInvites() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which toggles whether all members of a supergroup can add new members; requires appropriate administrator rights in the supergroup.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param supergroupId Identifier of the supergroup.
          * @param anyoneCanInvite New value of anyoneCanInvite.
@@ -40156,13 +46737,17 @@ public class TdApi {
         public boolean isAllHistoryAvailable;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which toggles whether the message history of a supergroup is available to new members; requires appropriate administrator rights in the supergroup.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ToggleSupergroupIsAllHistoryAvailable() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which toggles whether the message history of a supergroup is available to new members; requires appropriate administrator rights in the supergroup.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param supergroupId The identifier of the supergroup.
          * @param isAllHistoryAvailable The new value of isAllHistoryAvailable.
@@ -40202,13 +46787,17 @@ public class TdApi {
         public boolean signMessages;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which toggles sender signatures messages sent in a channel; requires appropriate administrator rights in the channel.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ToggleSupergroupSignMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which toggles sender signatures messages sent in a channel; requires appropriate administrator rights in the channel.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param supergroupId Identifier of the channel.
          * @param signMessages New value of signMessages.
@@ -40244,13 +46833,17 @@ public class TdApi {
         public int userId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes a user from the blacklist.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public UnblockUser() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes a user from the blacklist.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param userId User identifier.
          */
@@ -40273,35 +46866,39 @@ public class TdApi {
     }
 
     /**
-     * Removes the pinned message from a supergroup or channel; requires appropriate administrator rights in the supergroup or channel.
+     * Removes the pinned message from a chat; requires appropriate administrator rights in the group or channel.
      *
      * <p> Returns {@link Ok Ok} </p>
      */
-    public static class UnpinSupergroupMessage extends Function {
+    public static class UnpinChatMessage extends Function {
         /**
-         * Identifier of the supergroup or channel.
+         * Identifier of the chat.
          */
-        public int supergroupId;
+        public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which removes the pinned message from a chat; requires appropriate administrator rights in the group or channel.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
-        public UnpinSupergroupMessage() {
+        public UnpinChatMessage() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which removes the pinned message from a chat; requires appropriate administrator rights in the group or channel.
          *
-         * @param supergroupId Identifier of the supergroup or channel.
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param chatId Identifier of the chat.
          */
-        public UnpinSupergroupMessage(int supergroupId) {
-            this.supergroupId = supergroupId;
+        public UnpinChatMessage(long chatId) {
+            this.chatId = chatId;
         }
 
         /**
          * Identifier uniquely determining type of the object.
          */
-        public static final int CONSTRUCTOR = -1987029530;
+        public static final int CONSTRUCTOR = 277557690;
 
         /**
          * @return this.CONSTRUCTOR
@@ -40324,13 +46921,17 @@ public class TdApi {
         public long chatId;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom. Deactivates the original basic group.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          */
         public UpgradeBasicGroupChatToSupergroupChat() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom. Deactivates the original basic group.
+         *
+         * <p> Returns {@link Chat Chat} </p>
          *
          * @param chatId Identifier of the chat to upgrade.
          */
@@ -40372,13 +46973,17 @@ public class TdApi {
         public int priority;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message.
+         *
+         * <p> Returns {@link File File} </p>
          */
         public UploadFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message.
+         *
+         * <p> Returns {@link File File} </p>
          *
          * @param file File to upload.
          * @param fileType File type.
@@ -40420,13 +47025,17 @@ public class TdApi {
         public InputFile pngSticker;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which uploads a PNG image with a sticker; for bots only; returns the uploaded file.
+         *
+         * <p> Returns {@link File File} </p>
          */
         public UploadStickerFile() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which uploads a PNG image with a sticker; for bots only; returns the uploaded file.
+         *
+         * <p> Returns {@link File File} </p>
          *
          * @param userId Sticker file owner.
          * @param pngSticker PNG image with the sticker; must be up to 512 kB in size and fit in 512x512 square.
@@ -40474,13 +47083,17 @@ public class TdApi {
         public boolean allowSave;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which validates the order information provided by a user and returns the available shipping options for a flexible invoice.
+         *
+         * <p> Returns {@link ValidatedOrderInfo ValidatedOrderInfo} </p>
          */
         public ValidateOrderInfo() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which validates the order information provided by a user and returns the available shipping options for a flexible invoice.
+         *
+         * <p> Returns {@link ValidatedOrderInfo ValidatedOrderInfo} </p>
          *
          * @param chatId Chat identifier of the Invoice message.
          * @param messageId Message identifier.
@@ -40509,7 +47122,7 @@ public class TdApi {
     }
 
     /**
-     * This method should be called if messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels).
+     * Informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels).
      *
      * <p> Returns {@link Ok Ok} </p>
      */
@@ -40528,13 +47141,17 @@ public class TdApi {
         public boolean forceRead;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels).
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ViewMessages() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels).
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param chatId Chat identifier.
          * @param messageIds The identifiers of the messages being viewed.
@@ -40572,13 +47189,17 @@ public class TdApi {
         public long[] stickerSetIds;
 
         /**
-         * Default constructor.
+         * Default constructor for a function, which informs the server that some trending sticker sets have been viewed by the user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          */
         public ViewTrendingStickerSets() {
         }
 
         /**
-         * Constructor for initialization of all fields.
+         * Creates a function, which informs the server that some trending sticker sets have been viewed by the user.
+         *
+         * <p> Returns {@link Ok Ok} </p>
          *
          * @param stickerSetIds Identifiers of viewed trending sticker sets.
          */
@@ -40590,6 +47211,62 @@ public class TdApi {
          * Identifier uniquely determining type of the object.
          */
         public static final int CONSTRUCTOR = -952416520;
+
+        /**
+         * @return this.CONSTRUCTOR
+         */
+        @Override
+        public int getConstructor() {
+            return CONSTRUCTOR;
+        }
+    }
+
+    /**
+     * Writes a part of a generated file. This method is intended to be used only if the client has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file.
+     *
+     * <p> Returns {@link Ok Ok} </p>
+     */
+    public static class WriteGeneratedFilePart extends Function {
+        /**
+         * The identifier of the generation process.
+         */
+        public long generationId;
+        /**
+         * The offset from which to write the data to the file.
+         */
+        public int offset;
+        /**
+         * The data to write.
+         */
+        public byte[] data;
+
+        /**
+         * Default constructor for a function, which writes a part of a generated file. This method is intended to be used only if the client has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         */
+        public WriteGeneratedFilePart() {
+        }
+
+        /**
+         * Creates a function, which writes a part of a generated file. This method is intended to be used only if the client has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file.
+         *
+         * <p> Returns {@link Ok Ok} </p>
+         *
+         * @param generationId The identifier of the generation process.
+         * @param offset The offset from which to write the data to the file.
+         * @param data The data to write.
+         */
+        public WriteGeneratedFilePart(long generationId, int offset, byte[] data) {
+            this.generationId = generationId;
+            this.offset = offset;
+            this.data = data;
+        }
+
+        /**
+         * Identifier uniquely determining type of the object.
+         */
+        public static final int CONSTRUCTOR = -2062358189;
 
         /**
          * @return this.CONSTRUCTOR

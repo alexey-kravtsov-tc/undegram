@@ -19,11 +19,10 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '27.0.3'
+    buildToolsVersion "24.0.3"
 
     sourceSets.main {
         jniLibs.srcDir 'src/main/libs'
@@ -32,7 +31,7 @@ android {
 
     defaultConfig {
         minSdkVersion 10
-        targetSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -50,9 +49,5 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:support-annotations:25.0.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
-repositories {
-    mavenCentral()
+    implementation 'androidx.annotation:annotation:1.0.2'
 }

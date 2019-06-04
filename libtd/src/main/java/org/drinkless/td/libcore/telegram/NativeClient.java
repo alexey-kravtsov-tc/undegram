@@ -14,8 +14,8 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with TD.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2014-2015 Arseny Smirnov
- *           2014-2015 Aliaksei Levin
+ * Copyright 2014-2019 Arseny Smirnov
+ *           2014-2019 Aliaksei Levin
  */
 
 package org.drinkless.td.libcore.telegram;

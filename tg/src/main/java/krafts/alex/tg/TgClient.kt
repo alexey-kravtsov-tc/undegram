@@ -42,33 +42,42 @@ class TgClient(context: Context) {
                 }
                 sendClient(TdApi.SetTdlibParameters(parameters))
             }
+
             TdApi.AuthorizationStateWaitEncryptionKey.CONSTRUCTOR -> sendClient(TdApi.CheckDatabaseEncryptionKey())
+
             TdApi.AuthorizationStateWaitPhoneNumber.CONSTRUCTOR -> {
                 TgEvent.publish(EnterPhone)
             }
+
             TdApi.AuthorizationStateWaitCode.CONSTRUCTOR -> {
                 TgEvent.publish(EnterCode)
             }
+
             TdApi.AuthorizationStateWaitPassword.CONSTRUCTOR -> {
                 TgEvent.publish(EnterPassword)
             }
+
             TdApi.AuthorizationStateReady.CONSTRUCTOR -> {
                 TgEvent.publish(AuthOk)
             }
+
             TdApi.AuthorizationStateLoggingOut.CONSTRUCTOR -> {
                 haveAuthorization = false
                 print("Logging out")
             }
+
             TdApi.AuthorizationStateClosing.CONSTRUCTOR -> {
                 haveAuthorization = false
                 print("Closing")
             }
+
             TdApi.AuthorizationStateClosed.CONSTRUCTOR -> {
                 print("Closed")
                 if (!quiting) {
                     client = createClient() // recreate client after previous has closed
                 }
             }
+
             else -> Log.e(this.toString(), "Unsupported authorization state: $authorizationState")
         }
     }
@@ -106,6 +115,7 @@ class TgClient(context: Context) {
                 onAuthorizationStateUpdated(it.authorizationState)
             is TdApi.UpdateNewMessage ->
                 messages.add(it.message)
+
             is TdApi.UpdateMessageContent -> {
                 val origin = messages.get(it.messageId)
 
@@ -113,8 +123,8 @@ class TgClient(context: Context) {
                 val after = it.newContent.text()
 
                 Log.e("~~~~~~~edited", "from $before to $after")
-
             }
+
             is TdApi.UpdateDeleteMessages -> {
                 if (it.isPermanent) {
                     for (id in it.messageIds) {
@@ -124,18 +134,19 @@ class TgClient(context: Context) {
                     }
                 }
             }
+
             is TdApi.UpdateUser -> {
                 val user = User.fromTg(it.user)
                 users.add(user)
                 if (user.photoBig?.downloaded == false)
-                    sendClient(TdApi.DownloadFile(user.photoBig.fileId, 32))
-
+                    sendClient(TdApi.DownloadFile(user.photoBig.fileId, 32, 0, 0, true))
             }
+
             is TdApi.UpdateNewChat -> {
                 val chat = Chat.fromTg(it.chat)
                 chats.add(chat)
                 if (chat.photoBig?.downloaded == false)
-                    sendClient(TdApi.DownloadFile(chat.photoBig.fileId, 32))
+                    sendClient(TdApi.DownloadFile(chat.photoBig.fileId, 32, 0, 0, true))
             }
 
             is TdApi.UpdateUserStatus -> {
@@ -155,14 +166,12 @@ class TgClient(context: Context) {
         Log.e(this.toString(), it.localizedMessage)
     }, null)
 
-
     private fun TdApi.MessageContent.text(): String {
         if (this is TdApi.MessageText) {
             return this.text.text
         }
         return ""
     }
-
 
     private fun sendClient(query: TdApi.Function) {
         client.send(query) {
@@ -171,15 +180,14 @@ class TgClient(context: Context) {
                     Log.e(this.toString(), (it as TdApi.Error).message)
                     this.onAuthorizationStateUpdated(null) // repeat last action
                 }
+
                 TdApi.Ok.CONSTRUCTOR -> {
 
                     //TODO HANDLE OK RESPONSE FOR AuthorizationStateWaitEncryptionKey
                 }
+
                 else -> print("Receive wrong response from TDLib")
             }
         }
-
     }
-
-
 }

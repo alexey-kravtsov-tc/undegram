@@ -14,8 +14,8 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with TD.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2014-2015 Arseny Smirnov
- *           2014-2015 Aliaksei Levin
+ * Copyright 2014-2019 Arseny Smirnov
+ *           2014-2019 Aliaksei Levin
  */
 
 package org.drinkless.td.libcore.telegram;
@@ -197,6 +197,7 @@ public final class Client implements Runnable {
     /**
      * Changes TDLib log verbosity.
      *
+     * @deprecated As of TDLib 1.4.0 in favor of {@link TdApi.SetLogVerbosityLevel}, to be removed in the future.
      * @param newLogVerbosity New value of log verbosity. Must be non-negative.
      *                        Value 0 corresponds to android.util.Log.ASSERT,
      *                        value 1 corresponds to android.util.Log.ERROR,
@@ -208,6 +209,7 @@ public final class Client implements Runnable {
      *                        Default value of the log verbosity is 5.
      * @throws IllegalArgumentException if newLogVerbosity is negative.
      */
+    @Deprecated
     public static void setLogVerbosityLevel(int newLogVerbosity) {
         if (newLogVerbosity < 0) {
             throw new IllegalArgumentException("newLogVerbosity can't be negative");
@@ -220,10 +222,12 @@ public final class Client implements Runnable {
      * By default TDLib writes logs to the Android Log.
      * Use this method to write the log to a file instead.
      *
+     * @deprecated As of TDLib 1.4.0 in favor of {@link TdApi.SetLogStream}, to be removed in the future.
      * @param filePath Path to a file for writing TDLib internal log. Use an empty path to
      *                 switch back to logging to the Android Log.
      * @return whether opening the log file succeeded
      */
+    @Deprecated
     public static boolean setLogFilePath(String filePath) {
         return NativeClient.setLogFilePath(filePath);
     }
@@ -231,10 +235,12 @@ public final class Client implements Runnable {
     /**
      * Changes maximum size of TDLib log file.
      *
+     * @deprecated As of TDLib 1.4.0 in favor of {@link TdApi.SetLogStream}, to be removed in the future.
      * @param maxFileSize Maximum size of the file to where the internal TDLib log is written
      *                    before the file will be auto-rotated. Must be positive. Defaults to 10 MB.
      * @throws IllegalArgumentException if max_file_size is non-positive.
      */
+    @Deprecated
     public static void setLogMaxFileSize(long maxFileSize) {
         if (maxFileSize <= 0) {
             throw new IllegalArgumentException("maxFileSize should be positive");
@@ -268,6 +274,7 @@ public final class Client implements Runnable {
                 }
             }
             NativeClient.destroyClient(nativeClientId);
+            clientCount.decrementAndGet();
         } finally {
             writeLock.unlock();
         }
@@ -294,11 +301,11 @@ public final class Client implements Runnable {
                     return;
                 }
 
-                throw new ClientException_7("TDLib fatal error: " + errorMessage);
+                throw new ClientException("TDLib fatal error (" + clientCount.get() + "): " + errorMessage);
             }
 
             private void processExternalError() {
-                throw new ClientException_7("Fatal error: " + errorMessage);
+                throw new ClientException("Fatal error (" + clientCount.get() + "): " + errorMessage);
             }
         }
 
@@ -322,7 +329,7 @@ public final class Client implements Runnable {
 
     private static boolean isDiskFullError(String message) {
         return message.contains("PosixError : No space left on device") ||
-                message.contains("[query:COMMIT] failed: database or disk is full");
+                message.contains("database or disk is full");
     }
 
     private static boolean isExternalError(String message) {
@@ -330,8 +337,8 @@ public final class Client implements Runnable {
                 message.contains("I/O error");
     }
 
-    private static final class ClientException_7 extends RuntimeException {
-        private ClientException_7(String message) {
+    private static final class ClientException extends RuntimeException {
+        private ClientException(String message) {
             super(message);
         }
     }
@@ -339,6 +346,8 @@ public final class Client implements Runnable {
     private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
     private final Lock readLock = readWriteLock.readLock();
     private final Lock writeLock = readWriteLock.writeLock();
+
+    private static AtomicLong clientCount = new AtomicLong();
 
     private volatile boolean stopFlag = false;
     private volatile boolean isClientDestroyed = false;
@@ -364,6 +373,7 @@ public final class Client implements Runnable {
     }
 
     private Client(ResultHandler updatesHandler, ExceptionHandler updateExceptionHandler, ExceptionHandler defaultExceptionHandler) {
+        clientCount.incrementAndGet();
         nativeClientId = NativeClient.createClient();
         handlers.put(0L, new Handler(updatesHandler, updateExceptionHandler));
         this.defaultExceptionHandler = defaultExceptionHandler;
