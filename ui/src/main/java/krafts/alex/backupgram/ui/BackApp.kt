@@ -6,16 +6,21 @@ import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.MessagesRepository
 import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.UsersRepository
+import android.content.Context
 
 class BackApp : Application() {
 
     override fun onCreate() {
-        client = TgClient(applicationContext)
         messages = MessagesRepository(applicationContext)
         users = UsersRepository(applicationContext)
         chats = ChatRepository(applicationContext)
         sessions = SessionRepository(applicationContext)
         super.onCreate()
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        base?.let { DumbService.start(it) }
+        super.attachBaseContext(base)
     }
 
     companion object {
