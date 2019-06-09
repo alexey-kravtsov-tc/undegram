@@ -1,4 +1,4 @@
-package krafts.alex.backupgram.ui
+package krafts.alex.backupgram.ui.chats
 
 import android.arch.lifecycle.Observer
 import android.graphics.Color
@@ -15,13 +15,15 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlinx.android.synthetic.main.fragment_dialog_details.*
+import krafts.alex.backupgram.ui.BackApp
+import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.messages.MessagesAdapter
 import java.lang.StringBuilder
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.concurrent.TimeUnit
 
-class DialogDetailsFragment : Fragment() {
+class ChatDetailsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +36,7 @@ class DialogDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapt = MessagesAdapter(emptyList()) //TODO: listadapter paging
+        val adapt = MessagesAdapter(emptyList())
 
         chart.apply {
             setPinchZoom(true)
@@ -68,7 +70,7 @@ class DialogDetailsFragment : Fragment() {
 
 
         arguments?.let {
-            val args = DialogDetailsFragmentArgs.fromBundle(it)
+            val args = ChatDetailsFragmentArgs.fromBundle(it)
             textView.text = BackApp.chats.get(args.chatId)?.title
 
             notifyDeleted.setOnClickListener {

@@ -21,16 +21,16 @@
         android:name="krafts.alex.backupgram.ui.messages.MessagesFragment"
         android:label="MessagesFragment" >
         <action
-            android:id="@+id/action_dialog_details"
-            app:destination="@id/dialog_details_destination"
+            android:id="@+id/action_chat_details"
+            app:destination="@id/chat_details_destination"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@+id/messages_destination" />
     </fragment>
     <fragment
-        android:id="@+id/dialog_details_destination"
-        android:name="krafts.alex.backupgram.ui.DialogDetailsFragment"
-        android:label="DialogDetailsFragment" >
+        android:id="@+id/chat_details_destination"
+        android:name="krafts.alex.backupgram.ui.chats.ChatDetailsFragment"
+        android:label="ChatDetailsFragment">
         <argument
             android:name="chatId"
             app:argType="long" />

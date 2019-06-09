@@ -7,6 +7,7 @@ import krafts.alex.tg.repo.MessagesRepository
 import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.UsersRepository
 import android.content.Context
+import services.DumbService
 
 class BackApp : Application() {
 

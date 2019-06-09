@@ -20,7 +20,7 @@ class MessagesFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_messages_list, container, false)
 
-        val adapt = ChatAdapter(emptyList()) //TODO: listadapter paging
+        val adapt = MessagesAdapter(emptyList())
 
 
         BackApp.messages.getAllRemoved().observe(this, Observer {
