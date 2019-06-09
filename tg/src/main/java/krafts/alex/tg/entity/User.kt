@@ -11,6 +11,8 @@ data class User(
     val firstName: String,
     val lastName: String,
     val phoneNumber: String,
+    val notifyDelete: Boolean?,
+    val notifyOnline: Boolean?,
     @Embedded val photoBig: File?
 ) {
 
@@ -25,7 +27,9 @@ data class User(
             firstName = usr.firstName,
             lastName = usr.lastName,
             phoneNumber = usr.phoneNumber,
-            photoBig = usr.profilePhoto?.let { File.fromTg(it.big) }
+            photoBig = usr.profilePhoto?.let { File.fromTg(it.big) },
+            notifyDelete = false,
+            notifyOnline = false
         )
     }
 }

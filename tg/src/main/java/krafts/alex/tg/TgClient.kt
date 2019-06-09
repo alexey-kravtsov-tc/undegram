@@ -1,6 +1,10 @@
 package krafts.alex.tg
 
+import android.app.NotificationManager
 import android.content.Context
+import android.support.v4.app.NotificationCompat
+import android.support.v4.app.NotificationManagerCompat
+import android.support.v4.content.ContextCompat.getSystemService
 import android.util.Log
 import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.User
@@ -20,6 +24,10 @@ class TgClient(context: Context) {
     private var haveAuthorization: Boolean = false
 
     private var quiting: Boolean = false
+
+    private val notificationCompat = NotificationCompat.Builder(context, "tg")
+
+    private val notificationManager = NotificationManagerCompat.from(context)
 
     private fun onAuthorizationStateUpdated(authorizationState: TdApi.AuthorizationState?) {
         if (authorizationState != null) {
@@ -131,6 +139,15 @@ class TgClient(context: Context) {
                         val message = messages.get(id)
                         Log.e("======removed", message.text)
                         messages.delete(id)
+                        val user = users.get(message.senderId)
+                        if (user.notifyDelete == true) {
+                            val not = notificationCompat
+                                .setSmallIcon(R.drawable.ic_delete)
+                                .setContentTitle("${user.firstName} deleted message")
+                                .setContentText(message.text).build()
+
+                            notificationManager.notify(123, not)
+                        }
                     }
                 }
             }

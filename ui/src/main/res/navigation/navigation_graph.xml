@@ -22,7 +22,10 @@
         android:label="MessagesFragment" >
         <action
             android:id="@+id/action_dialog_details"
-            app:destination="@id/dialog_details_destination" />
+            app:destination="@id/dialog_details_destination"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/messages_destination" />
     </fragment>
     <fragment
         android:id="@+id/dialog_details_destination"

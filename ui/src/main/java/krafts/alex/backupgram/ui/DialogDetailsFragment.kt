@@ -5,12 +5,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Range
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -72,6 +70,11 @@ class DialogDetailsFragment : Fragment() {
         arguments?.let {
             val args = DialogDetailsFragmentArgs.fromBundle(it)
             textView.text = BackApp.chats.get(args.chatId)?.title
+
+            notifyDeleted.setOnClickListener {
+                BackApp.users.updateNotificationsSettings(args.chatId.toInt(), true, false)
+            }
+
             BackApp.messages.getRemovedForChat(args.chatId).observe(this, Observer {
                 it?.let { adapt.setAll(it) }
             })
@@ -80,11 +83,11 @@ class DialogDetailsFragment : Fragment() {
                 val values = ArrayList<Entry>()
 
                 it?.forEach {
-                    values.add(Entry(it.start.toMinutes().toFloat(), 0F))
-                    for (x in it.start.toMinutes()+1 until it.expires.toMinutes()) {
+                    values.add(Entry(it.start.toInterval().toFloat(), 0F))
+                    for (x in it.start.toInterval() + 1 until it.expires.toInterval()) {
                         values.add(Entry(x.toFloat(), 1F))
                     }
-                    values.add(Entry(it.expires.toMinutes().toFloat(), 0F))
+                    values.add(Entry(it.expires.toInterval().toFloat(), 0F))
                 }
 
                 val set = LineDataSet(values, "online")
@@ -92,9 +95,11 @@ class DialogDetailsFragment : Fragment() {
                     color = Color.GREEN
                     fillColor = Color.GREEN
                     fillAlpha = 65
+
                     setDrawValues(false)
                     setDrawCircles(false)
                     setDrawFilled(true)
+                    cubicIntensity = 1F
                 }
                 val data = LineData(set)
 
@@ -116,7 +121,7 @@ class DialogDetailsFragment : Fragment() {
         }
     }
 
-    private fun Int.toMinutes() = this.toLong()
+    private fun Int.toInterval() = this.toLong()
 
     private fun Int.display() = SimpleDateFormat("HH:mm:ss").format(Date(this.toLong() * 1000))
 }

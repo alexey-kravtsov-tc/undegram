@@ -17,7 +17,7 @@ import krafts.alex.tg.entity.Session
 
 @Database(
     entities = [Message::class, User::class, Chat::class, Session::class],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 abstract class TgDataBase : RoomDatabase() {
@@ -52,6 +52,13 @@ abstract class TgDataBase : RoomDatabase() {
             }
         }
 
+        private val notify_user_migration: Migration = object : Migration(5, 6) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("alter table User add column `notifyOnline` INTEGER ")
+                database.execSQL("alter table User add column `notifyDelete` INTEGER ")
+            }
+        }
+
         /**
          * Gets the singleton instance of TgDataBase.
          *
@@ -63,7 +70,7 @@ abstract class TgDataBase : RoomDatabase() {
             if (sInstance == null) {
                 sInstance = Room
                     .databaseBuilder(context.applicationContext, TgDataBase::class.java, "data")
-                    .addMigrations(chat_migration, session_migration)
+                    .addMigrations(chat_migration, session_migration, notify_user_migration)
                     .allowMainThreadQueries()
                     .build()
             }

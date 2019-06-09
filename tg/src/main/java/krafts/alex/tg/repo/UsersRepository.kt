@@ -25,5 +25,11 @@ class UsersRepository(context: Context) {
             users.updatePhoto(it.id, File.fromTg(file).localPath)
         }
     }
+
+    fun updateNotificationsSettings(
+        userId: Int,
+        delete: Boolean = false,
+        online: Boolean = false
+    ) = users.updateNotifications(userId, delete, online)
 }
 
