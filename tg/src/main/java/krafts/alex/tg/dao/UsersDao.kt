@@ -1,10 +1,10 @@
 package krafts.alex.tg.dao
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy.IGNORE
-import android.arch.persistence.room.OnConflictStrategy.REPLACE
-import android.arch.persistence.room.Query
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy.IGNORE
+import androidx.room.Query
 import krafts.alex.tg.entity.User
 
 @Dao
@@ -18,6 +18,9 @@ interface UsersDao {
 
     @Query("SELECT * from user")
     fun getList(): List<User>
+
+    @Query("SELECT * from user")
+    fun getRecent(): LiveData<List<User>>
 
     @Query("UPDATE user SET localPath = :path, downloaded = :downloaded where id = :userId")
     fun updatePhoto(userId: Int, path: String, downloaded: Boolean = true)

@@ -2,15 +2,12 @@ package krafts.alex.backupgram.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.navigation.Navigation
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_login.*
 import krafts.alex.tg.*
@@ -42,7 +39,7 @@ class LoginFragment : Fragment() {
         }
         TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe{
             Snackbar.make(view, "Logged in!", Snackbar.LENGTH_LONG).setAction("Action", null).show()
-            findNavController().navigate(R.id.action_messages)
+            findNavController(view).navigate(R.id.action_messages)
         }
 
         button_send_phone.setOnClickListener {

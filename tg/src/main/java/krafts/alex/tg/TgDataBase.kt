@@ -1,17 +1,17 @@
 package krafts.alex.tg
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import krafts.alex.tg.dao.ChatDao
 import krafts.alex.tg.dao.MessagesDao
 import krafts.alex.tg.dao.UsersDao
 import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.Message
 import krafts.alex.tg.entity.User
-import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.migration.Migration
 import krafts.alex.tg.dao.SessionsDao
 import krafts.alex.tg.entity.Session
 

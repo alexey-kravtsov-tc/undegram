@@ -1,11 +1,9 @@
 package krafts.alex.tg
 
-import android.app.NotificationManager
 import android.content.Context
-import android.support.v4.app.NotificationCompat
-import android.support.v4.app.NotificationManagerCompat
-import android.support.v4.content.ContextCompat.getSystemService
 import android.util.Log
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.User
 import krafts.alex.tg.repo.ChatRepository
@@ -14,7 +12,6 @@ import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.UsersRepository
 import org.drinkless.td.libcore.telegram.Client
 import org.drinkless.td.libcore.telegram.TdApi
-import java.util.concurrent.TimeUnit
 
 class TgClient(context: Context) {
 

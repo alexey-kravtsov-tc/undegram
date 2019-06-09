@@ -18,7 +18,7 @@ class UsersRepository(context: Context) {
 
     fun get(id: Int) = users.getById(id)
 
-    fun getAll() = users.getList()
+    fun getMostRecent() = users.getRecent()
 
     fun updateImage(file: TdApi.File) {
         users.getList().find { it.photoBig?.fileId == file.id }?.let {

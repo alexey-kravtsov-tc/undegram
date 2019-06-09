@@ -1,12 +1,13 @@
 package krafts.alex.backupgram.ui
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import krafts.alex.tg.AuthOk
@@ -36,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        (bottom_nav)?.let {
+            NavigationUI.setupWithNavController(it, navController!!)
+        }
         if (loginNeeded) {
             navController?.navigate(R.id.login_destination)
         }

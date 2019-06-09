@@ -3,8 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="krafts.alex.backupgram.ui.MainActivity">
     <item
+        android:id="@+id/messages_destination"
+        android:icon="@drawable/ic_chat_empty"
+        android:orderInCategory="100"
+        android:title="@string/action_chats"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/destination_users"
+        android:icon="@drawable/ic_users"
+        android:orderInCategory="100"
+        android:title="@string/action_users"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
 </menu>

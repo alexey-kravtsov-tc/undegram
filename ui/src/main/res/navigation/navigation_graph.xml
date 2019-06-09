@@ -35,4 +35,8 @@
             android:name="chatId"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/destination_users"
+        android:name="krafts.alex.backupgram.ui.users.UsersFragment"
+        android:label="UsersdDestination" />
 </navigation>

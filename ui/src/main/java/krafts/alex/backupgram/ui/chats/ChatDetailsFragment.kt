@@ -1,13 +1,13 @@
 package krafts.alex.backupgram.ui.chats
 
-import android.arch.lifecycle.Observer
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -36,7 +36,7 @@ class ChatDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapt = MessagesAdapter(emptyList())
+        val adapt = ChatAdapter(emptyList())
 
         chart.apply {
             setPinchZoom(true)

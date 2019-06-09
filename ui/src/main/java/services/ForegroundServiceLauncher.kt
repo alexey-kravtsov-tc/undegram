@@ -3,7 +3,7 @@ package services
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 
 class ForegroundServiceLauncher(private val serviceClass: Class<out Service>) {
 

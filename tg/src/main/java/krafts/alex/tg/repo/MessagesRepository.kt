@@ -1,8 +1,8 @@
 package krafts.alex.tg.repo
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Transformations
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import krafts.alex.tg.TgDataBase
 import krafts.alex.tg.entity.Message
 import org.drinkless.td.libcore.telegram.TdApi
