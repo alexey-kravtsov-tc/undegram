@@ -16,19 +16,6 @@ class MessagesAdapter(
     private var values: List<Message>
 ) : RecyclerView.Adapter<MessageViewHolder>() {
 
-    private val mOnClickListener: View.OnClickListener
-
-    init {
-        mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as Message
-            val action =
-                MessagesFragmentDirections.actionChatDetails(
-                    item.chatId
-                )
-            Navigation.findNavController(v).navigate(action)
-        }
-    }
-
     fun setAll(items: List<Message>) {
         values = items
         notifyDataSetChanged()
@@ -64,7 +51,14 @@ class MessagesAdapter(
 
         with(holder.view) {
             tag = item
-            setOnClickListener(mOnClickListener)
+            setOnClickListener { v ->
+                val item = v.tag as Message
+                val action =
+                    MessagesFragmentDirections.actionChatDetails(
+                        item.chatId
+                    )
+                Navigation.findNavController(v).navigate(action)
+            }
         }
     }
 

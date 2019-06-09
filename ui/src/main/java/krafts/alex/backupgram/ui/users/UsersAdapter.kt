@@ -2,10 +2,13 @@ package krafts.alex.backupgram.ui.users
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import krafts.alex.backupgram.ui.R
+import krafts.alex.backupgram.ui.messages.MessagesFragmentDirections
 import krafts.alex.backupgram.ui.utils.CircleTransform
+import krafts.alex.tg.entity.Message
 import krafts.alex.tg.entity.User
 import java.io.File
 
@@ -37,7 +40,19 @@ class UsersAdapter(
                     .into(holder.avatar)
         }
 
+        with(holder.view) {
+            tag = item
+            setOnClickListener { v ->
+                (v.tag as? User)?.let {
+                    Navigation.findNavController(v).navigate(
+                        MessagesFragmentDirections.actionChatDetails(
+                            it.id.toLong()
+                        )
+                    )
+                }
+            }
 
+        }
     }
 
     override fun getItemCount(): Int = values.size

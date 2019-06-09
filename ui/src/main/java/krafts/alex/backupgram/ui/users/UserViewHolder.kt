@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_user.view.*
 
-class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     val name: TextView = view.name
     val avatar: ImageView = view.avatar
 }

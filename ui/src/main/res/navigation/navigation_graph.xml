@@ -38,5 +38,12 @@
     <fragment
         android:id="@+id/destination_users"
         android:name="krafts.alex.backupgram.ui.users.UsersFragment"
-        android:label="UsersdDestination" />
+        android:label="UsersdDestination" >
+        <action
+            android:id="@+id/action_chat_details"
+            app:destination="@id/chat_details_destination"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/messages_destination" />
+    </fragment>
 </navigation>
