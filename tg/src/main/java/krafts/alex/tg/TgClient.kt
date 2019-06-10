@@ -180,12 +180,19 @@ class TgClient(context: Context) {
         Log.e(this.toString(), it.localizedMessage)
     }, null)
 
-    private fun TdApi.MessageContent.text(): String {
-        if (this is TdApi.MessageText) {
-            return this.text.text
+    private fun TdApi.MessageContent.text() =
+        when (this) {
+            is TdApi.MessageText -> this.text.text
+            is TdApi.MessagePinMessage ->
+                "pin ${messages.get(this.messageId).text}"
+            is TdApi.MessagePhoto ->
+                "photo ${this.caption}"
+            is TdApi.MessageVideo ->
+                "video ${this.caption}"
+            is TdApi.MessageAnimation ->
+                "animation ${this.caption}"
+            else -> ""
         }
-        return ""
-    }
 
     private fun sendClient(query: TdApi.Function) {
         client.send(query) {
