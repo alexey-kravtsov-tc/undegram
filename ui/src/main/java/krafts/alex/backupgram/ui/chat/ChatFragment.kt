@@ -13,14 +13,13 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
-import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlinx.android.synthetic.main.fragment_chat.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
+import krafts.alex.backupgram.ui.utils.MinuteDataFormatter
 import java.lang.StringBuilder
 import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.concurrent.TimeUnit
 
 class ChatFragment : Fragment() {
 
@@ -124,9 +123,3 @@ class ChatFragment : Fragment() {
     private fun Int.display() = SimpleDateFormat("HH:mm:ss").format(Date(this.toLong() * 1000))
 }
 
-class MinuteDataFormatter : ValueFormatter() {
-    override fun getFormattedValue(value: Float): String {
-        val date = Date(TimeUnit.SECONDS.toMillis(value.toLong()))
-        return SimpleDateFormat("HH:mm").format(date)
-    }
-}
