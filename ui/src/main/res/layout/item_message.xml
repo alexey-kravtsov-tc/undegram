@@ -37,8 +37,34 @@
         android:textAppearance="?attr/textAppearanceListItem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/avatar"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/labels"
         app:layout_constraintTop_toBottomOf="@id/name"
         />
+
+    <LinearLayout
+        android:id="@+id/labels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toRightOf="@id/message"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/message"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/edited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/removed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_remove"
+            />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

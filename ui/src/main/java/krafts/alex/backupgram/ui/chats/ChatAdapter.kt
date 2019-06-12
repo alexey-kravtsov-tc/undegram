@@ -7,27 +7,26 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import krafts.alex.backupgram.ui.R
-import krafts.alex.backupgram.ui.messages.MessageViewHolder
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.tg.entity.Message
 import java.io.File
 
 class ChatAdapter(
     private var values: List<Message>
-) : RecyclerView.Adapter<MessageViewHolder>() {
+) : RecyclerView.Adapter<ChatViewHolder>() {
 
     fun setAll(items: List<Message>) {
         values = items
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_message, parent, false)
-        return MessageViewHolder(view)
+        return ChatViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         val item = values[position]
 
         holder.name.text = item.user?.let { it.firstName + " " + it.lastName }
@@ -42,6 +41,9 @@ class ChatAdapter(
         }
 
         holder.message.text = item.text
+
+        holder.edit.visibility = if (item.edited) View.VISIBLE else View.GONE
+        holder.remove.visibility = if (item.deleted) View.VISIBLE else View.GONE
 
         if (position != 0 && item.senderId == values[position - 1].senderId) {
             holder.name.visibility = View.GONE

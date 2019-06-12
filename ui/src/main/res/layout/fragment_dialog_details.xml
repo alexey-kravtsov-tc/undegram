@@ -23,10 +23,11 @@
         android:visibility="gone"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/notifyDeleted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
         android:text="notify deleted"
         />
 

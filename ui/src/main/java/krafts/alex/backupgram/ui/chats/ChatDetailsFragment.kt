@@ -29,7 +29,6 @@ class ChatDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_dialog_details, container, false)
     }
 
@@ -45,7 +44,6 @@ class ChatDetailsFragment : Fragment() {
             isScaleYEnabled = false
             description.isEnabled = false
 
-
             axisLeft.apply {
                 legend.isEnabled = false
                 valueFormatter = DefaultValueFormatter(1)
@@ -53,8 +51,8 @@ class ChatDetailsFragment : Fragment() {
                 axisMaximum = 1F
                 axisMinimum = 0.1F
                 isEnabled = false
-
             }
+
             axisRight.apply {
                 isEnabled = false
             }
@@ -68,13 +66,12 @@ class ChatDetailsFragment : Fragment() {
 
         }
 
-
         arguments?.let {
             val args = ChatDetailsFragmentArgs.fromBundle(it)
             textView.text = BackApp.chats.get(args.chatId)?.title
 
             notifyDeleted.setOnClickListener {
-                BackApp.users.updateNotificationsSettings(args.chatId.toInt(), true, false)
+                BackApp.users.updateNotificationsSettings(args.chatId.toInt(), true)
             }
 
             BackApp.messages.getRemovedForChat(args.chatId).observe(this, Observer {
