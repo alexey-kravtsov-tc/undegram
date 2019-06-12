@@ -8,7 +8,9 @@ import krafts.alex.tg.entity.Message
 import org.drinkless.td.libcore.telegram.TdApi
 
 class ChatRepository(context: Context) {
+
     private val chats = TgDataBase.getInstance(context).chats()
+
     fun add(chat: Chat) = chats.insert(chat)
 
     fun add(chat: TdApi.Chat) = chats.insert(

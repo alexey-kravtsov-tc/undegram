@@ -14,6 +14,7 @@ data class Message @JvmOverloads constructor(
     val date: Int,
     var editDate: Int,
     var deleted: Boolean,
+    var edited: Boolean,
     @Ignore var user: User? = null,
     @Ignore var chat: Chat? = null
 ) {
@@ -28,6 +29,7 @@ data class Message @JvmOverloads constructor(
             date = msg.date,
             editDate = msg.editDate,
             deleted = false,
+            edited = false,
             user = null,
             chat = null
         )

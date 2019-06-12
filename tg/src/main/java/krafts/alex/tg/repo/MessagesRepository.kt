@@ -42,4 +42,7 @@ class MessagesRepository(context: Context) {
     fun get(id: Long) = msgs.getById(id)
 
     fun delete(id: Long) = msgs.markDeleted(id)
+
+    fun edit(id: Long, text: String) = msgs.edit(id, text)
+
 }

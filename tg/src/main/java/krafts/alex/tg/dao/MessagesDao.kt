@@ -13,7 +13,7 @@ interface MessagesDao {
     fun insert(msg: Message)
 
     @Query("SELECT * from message where id = :id LIMIT 1")
-    fun getById(id: Long): Message
+    fun getById(id: Long): Message?
 
     @Query("SELECT * from message ORDER BY id DESC LIMIT 25")
     fun getAll(): LiveData<List<Message>>
@@ -26,6 +26,9 @@ interface MessagesDao {
 
     @Query("UPDATE message SET deleted = :deleted where id = :id")
     fun markDeleted(id: Long, deleted: Boolean = true)
+
+    @Query("UPDATE message SET edited = :edited, text = :text where id = :id")
+    fun edit(id: Long, text: String, edited: Boolean = true)
 
 }
 

@@ -5,8 +5,10 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import krafts.alex.tg.entity.Chat
+import krafts.alex.tg.entity.Edit
 import krafts.alex.tg.entity.User
 import krafts.alex.tg.repo.ChatRepository
+import krafts.alex.tg.repo.EditRepository
 import krafts.alex.tg.repo.MessagesRepository
 import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.UsersRepository
@@ -16,6 +18,7 @@ import org.drinkless.td.libcore.telegram.TdApi
 class TgClient(context: Context) {
 
     var client = createClient()
+
     var authorizationState: TdApi.AuthorizationState? = null
 
     private var haveAuthorization: Boolean = false
@@ -111,6 +114,7 @@ class TgClient(context: Context) {
     private val users = UsersRepository(context)
     private val chats = ChatRepository(context)
     private val sessions = SessionRepository(context)
+    private val messageEdits = EditRepository(context)
 
     private fun createClient(): Client = Client.create(Client.ResultHandler {
         //Log.e("--------result handled", it.toString())
@@ -122,26 +126,30 @@ class TgClient(context: Context) {
                 messages.add(it.message)
 
             is TdApi.UpdateMessageContent -> {
-                val origin = messages.get(it.messageId)
+                messages.get(it.messageId)?.let { origin ->
 
-                val before = origin.text
-                val after = it.newContent.text()
+                    messageEdits.add(Edit.fromMessage(origin))
+                    messages.edit(it.messageId, it.newContent.text())
 
-                Log.e("~~~~~~~edited", "from $before to $after")
+                    val before = origin.text
+                    val after = it.newContent.text()
+
+                    Log.e("~~~~~~~edited", "from $before to $after")
+                }
             }
 
             is TdApi.UpdateDeleteMessages -> {
                 if (it.isPermanent) {
                     for (id in it.messageIds) {
                         val message = messages.get(id)
-                        Log.e("======removed", message.text)
+                        Log.e("======removed", message?.text)
                         messages.delete(id)
-                        val user = users.get(message.senderId)
+                        val user = users.get(message?.senderId ?: 0)
                         if (user.notifyDelete == true) {
                             val not = notificationCompat
                                 .setSmallIcon(R.drawable.ic_delete)
                                 .setContentTitle("${user.firstName} deleted message")
-                                .setContentText(message.text).build()
+                                .setContentText(message?.text).build()
 
                             notificationManager.notify(123, not)
                         }
@@ -184,7 +192,7 @@ class TgClient(context: Context) {
         when (this) {
             is TdApi.MessageText -> this.text.text
             is TdApi.MessagePinMessage ->
-                "pin ${messages.get(this.messageId).text}"
+                "pin ${messages.get(this.messageId)?.text}"
             is TdApi.MessagePhoto ->
                 "photo ${this.caption}"
             is TdApi.MessageVideo ->

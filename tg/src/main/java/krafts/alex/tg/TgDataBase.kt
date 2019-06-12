@@ -7,17 +7,19 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import krafts.alex.tg.dao.ChatDao
+import krafts.alex.tg.dao.EditsDao
 import krafts.alex.tg.dao.MessagesDao
 import krafts.alex.tg.dao.UsersDao
 import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.Message
 import krafts.alex.tg.entity.User
 import krafts.alex.tg.dao.SessionsDao
+import krafts.alex.tg.entity.Edit
 import krafts.alex.tg.entity.Session
 
 @Database(
-    entities = [Message::class, User::class, Chat::class, Session::class],
-    version = 6,
+    entities = [Message::class, User::class, Chat::class, Session::class, Edit::class],
+    version = 7,
     exportSchema = false
 )
 abstract class TgDataBase : RoomDatabase() {
@@ -29,6 +31,8 @@ abstract class TgDataBase : RoomDatabase() {
     abstract fun chats(): ChatDao
 
     abstract fun sessions(): SessionsDao
+
+    abstract fun edits(): EditsDao
 
     companion object {
         /**
@@ -59,6 +63,13 @@ abstract class TgDataBase : RoomDatabase() {
             }
         }
 
+        private val edit_message_migration: Migration = object : Migration(6,7) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("alter table Message add column `edited` INTEGER DEFAULT 0 NOT NULL")
+                database.execSQL("CREATE TABLE IF NOT EXISTS `Edit` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `messageId` INTEGER NOT NULL, `date` INTEGER NOT NULL, `text` TEXT NOT NULL)")
+            }
+        }
+
         /**
          * Gets the singleton instance of TgDataBase.
          *
@@ -70,7 +81,12 @@ abstract class TgDataBase : RoomDatabase() {
             if (sInstance == null) {
                 sInstance = Room
                     .databaseBuilder(context.applicationContext, TgDataBase::class.java, "data")
-                    .addMigrations(chat_migration, session_migration, notify_user_migration)
+                    .addMigrations(
+                        chat_migration,
+                        session_migration,
+                        notify_user_migration,
+                        edit_message_migration
+                    )
                     .allowMainThreadQueries()
                     .build()
             }
