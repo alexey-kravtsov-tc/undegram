@@ -1,4 +1,4 @@
-package krafts.alex.backupgram.ui.messages
+package krafts.alex.backupgram.ui.chatList
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,16 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 
-class MessagesFragment : Fragment() {
-
+class ChatListFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_messages_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_chat_list, container, false)
 
-        val adapt = MessagesAdapter(emptyList())
+        val adapt = ChatsAdapter(emptyList())
 
 
         BackApp.messages.getAllRemoved().observe(this, Observer {

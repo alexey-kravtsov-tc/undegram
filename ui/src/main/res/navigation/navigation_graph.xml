@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/messages_destination"
-        android:name="krafts.alex.backupgram.ui.messages.MessagesFragment"
+        android:name="krafts.alex.backupgram.ui.chatList.ChatListFragment"
         android:label="MessagesFragment" >
         <action
             android:id="@+id/action_chat_details"
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/chat_details_destination"
-        android:name="krafts.alex.backupgram.ui.chats.ChatDetailsFragment"
+        android:name="krafts.alex.backupgram.ui.chat.ChatFragment"
         android:label="ChatDetailsFragment">
         <argument
             android:name="chatId"

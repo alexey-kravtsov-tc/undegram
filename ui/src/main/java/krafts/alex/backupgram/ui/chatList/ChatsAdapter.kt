@@ -1,17 +1,17 @@
-package krafts.alex.backupgram.ui.chats
+package krafts.alex.backupgram.ui.chatList
 
-import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.tg.entity.Message
 import java.io.File
 
-class ChatAdapter(
+class ChatsAdapter(
     private var values: List<Message>
 ) : RecyclerView.Adapter<ChatViewHolder>() {
 
@@ -22,16 +22,22 @@ class ChatAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_message, parent, false)
+            .inflate(R.layout.item_chat, parent, false)
         return ChatViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         val item = values[position]
 
-        holder.name.text = item.user?.let { it.firstName + " " + it.lastName }
 
-        item.user?.photoBig?.let {
+        if (item.chat == null) {
+            BackApp.client.getChatInfo(item.chatId)
+        }
+
+        holder.name.text = item?.chat?.title ?:
+            item.user?.let { it.firstName + " " + it.lastName }
+
+        (item?.chat?.photoBig ?: item.user?.photoBig)?.let {
             if (it.downloaded)
                 Picasso
                     .get()
@@ -42,18 +48,19 @@ class ChatAdapter(
 
         holder.message.text = item.text
 
-        holder.edit.visibility = if (item.edited) View.VISIBLE else View.GONE
-        holder.remove.visibility = if (item.deleted) View.VISIBLE else View.GONE
-
-        if (position != 0 && item.senderId == values[position - 1].senderId) {
-            holder.name.visibility = View.GONE
-            holder.avatar.setColorFilter(Color.WHITE)
-        }
         with(holder.view) {
             tag = item
+            setOnClickListener { v ->
+                val item = v.tag as Message
+                val action =
+                    ChatListFragmentDirections.actionChatDetails(
+                        item.chatId
+                    )
+                Navigation.findNavController(v).navigate(action)
+            }
         }
     }
 
     override fun getItemCount(): Int = values.size
-
 }
+
