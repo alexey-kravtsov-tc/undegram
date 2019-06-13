@@ -48,9 +48,6 @@ class MessagesAdapter(
         holder.message.text = item.text
         holder.date.text = "${ if(item.edited) "edited" else "deleted"} ${item.date.display()}"
 
-        holder.edit.visibility = if (item.edited) View.VISIBLE else View.GONE
-        holder.remove.visibility = if (item.deleted) View.VISIBLE else View.GONE
-
         if (position != 0 && item.senderId == values[position - 1].senderId) {
             holder.name.visibility = View.GONE
             holder.avatar.setColorFilter(Color.WHITE)

@@ -13,8 +13,6 @@ class MessageViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     val message: TextView = view.message
     val date: TextView = view.date
     val avatar: ImageView = view.avatar
-    val edit: AppCompatImageView = view.edited
-    val remove: AppCompatImageView = view.removed
     val editList: RecyclerView = view.editList
 
     override fun toString(): String {

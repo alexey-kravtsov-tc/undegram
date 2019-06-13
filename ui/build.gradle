@@ -44,6 +44,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-runtime:2.0.0'
     implementation "androidx.lifecycle:lifecycle-livedata:2.0.0"
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.preference:preference:1.0.0'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

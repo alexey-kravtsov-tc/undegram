@@ -15,7 +15,7 @@
         android:title="@string/action_users"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/settings_destination"
         android:icon="@drawable/ic_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"

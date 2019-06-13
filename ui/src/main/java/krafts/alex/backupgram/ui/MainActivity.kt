@@ -18,12 +18,12 @@ class MainActivity : AppCompatActivity() {
 
 
     var loginNeeded = false
-    var navController: NavController? = null
+    private lateinit var navController: NavController
 
     init {
         TgEvent.listen<EnterPhone>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             loginNeeded = true
-            navController?.navigate(R.id.login_destination)
+            navController.navigate(R.id.login_destination)
         }
         TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             loginNeeded = false
@@ -37,11 +37,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+
         (bottom_nav)?.let {
-            NavigationUI.setupWithNavController(it, navController!!)
+            NavigationUI.setupWithNavController(it, navController)
+            NavigationUI.setupActionBarWithNavController(this, navController)
         }
         if (loginNeeded) {
-            navController?.navigate(R.id.login_destination)
+            navController.navigate(R.id.login_destination)
         }
 
         fab.setOnClickListener { view ->
@@ -62,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.settings_destination) {
             return true
         }
 

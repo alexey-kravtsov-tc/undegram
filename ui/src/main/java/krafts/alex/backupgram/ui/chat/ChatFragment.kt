@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,7 +37,7 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapt = MessagesAdapter(emptyList(), this)
+        val adapt = MessagesAdapter(emptyList(), this).apply { setHasStableIds(true) }
 
         with(list) {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -136,5 +135,4 @@ class ChatFragment : Fragment() {
     }
 
     private fun Int.toInterval() = this.toLong()
-
 }
