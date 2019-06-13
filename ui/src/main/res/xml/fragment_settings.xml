@@ -1,19 +1,22 @@
-<PreferenceScreen
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <SwitchPreferenceCompat
         app:key="dark_theme"
-        app:title="Dark Theme"
-        />
+        app:title="Dark Theme" />
 
     <SwitchPreferenceCompat
         app:key="hide_edits"
-        app:title="Hide message edits history"
-        />
+        app:title="Hide message edits history" />
 
     <Preference
         app:key="feedback"
-        app:title="Send feedback"
-        app:summary="Report technical issues or suggest new features"/>
+        app:summary="Report technical issues or suggest new features"
+        app:title="Send feedback">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://telegram.me/akrafts"
+            />
+    </Preference>
 
 </PreferenceScreen>
