@@ -8,11 +8,62 @@
     tools:context=".chat.ChatFragment"
     >
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:paddingEnd="@dimen/text_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingStart="@dimen/text_margin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <TextView
+            android:id="@+id/today"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/text_margin"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textStyle="bold|normal"
+            app:layout_constraintLeft_toRightOf="@id/avatar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="online today 1h 20m"
+            />
+        <TextView
+            android:id="@+id/yesterday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/text_margin"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textStyle="bold|normal"
+            app:layout_constraintLeft_toRightOf="@id/avatar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/today"
+            android:text="online yesterday 1h 20m"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="some shit happened"
+        android:text="Name Surname"
+        android:textAppearance="?attr/textAppearanceLargePopupMenu"
+        android:visibility="gone"
         />
 
     <TextView
@@ -23,26 +74,22 @@
         android:visibility="gone"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/notifyDeleted"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+        android:background="@color/cardview_light_background"
+        android:drawableTop="@drawable/ic_remove"
+        android:src="@drawable/ic_remove"
+        android:visibility="gone"
         android:text="notify deleted"
         />
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/item_message"
         />

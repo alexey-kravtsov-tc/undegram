@@ -27,8 +27,8 @@ interface MessagesDao {
     @Query("UPDATE message SET deleted = :deleted where id = :id")
     fun markDeleted(id: Long, deleted: Boolean = true)
 
-    @Query("UPDATE message SET edited = :edited, text = :text where id = :id")
-    fun edit(id: Long, text: String, edited: Boolean = true)
+    @Query("UPDATE message SET edited = :edited, date = :date, text = :text where id = :id")
+    fun edit(id: Long, text: String, date: Int, edited: Boolean = true)
 
 }
 

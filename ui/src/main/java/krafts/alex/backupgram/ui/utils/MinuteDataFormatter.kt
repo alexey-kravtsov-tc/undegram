@@ -11,3 +11,5 @@ class MinuteDataFormatter : ValueFormatter() {
         return SimpleDateFormat("HH:mm").format(date)
     }
 }
+
+fun Int.display() = SimpleDateFormat("HH:mm").format(Date(this.toLong() * 1000))

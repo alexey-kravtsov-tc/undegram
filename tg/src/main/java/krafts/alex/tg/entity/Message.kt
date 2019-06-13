@@ -1,5 +1,6 @@
 package krafts.alex.tg.entity
 
+import androidx.lifecycle.LiveData
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -16,7 +17,8 @@ data class Message @JvmOverloads constructor(
     var deleted: Boolean,
     var edited: Boolean,
     @Ignore var user: User? = null,
-    @Ignore var chat: Chat? = null
+    @Ignore var chat: Chat? = null,
+    @Ignore var edits: LiveData<List<Edit>>? = null
 ) {
 
     companion object {

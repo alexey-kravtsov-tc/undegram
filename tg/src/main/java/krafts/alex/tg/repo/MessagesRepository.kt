@@ -6,6 +6,7 @@ import androidx.lifecycle.Transformations
 import krafts.alex.tg.TgDataBase
 import krafts.alex.tg.entity.Message
 import org.drinkless.td.libcore.telegram.TdApi
+import java.util.concurrent.TimeUnit
 
 class MessagesRepository(context: Context) {
 
@@ -14,6 +15,8 @@ class MessagesRepository(context: Context) {
     private val users = UsersRepository(context)
 
     private val chats = ChatRepository(context)
+
+    private val edits = EditRepository(context)
 
     fun getAll() = msgs.getAll()
 
@@ -32,6 +35,7 @@ class MessagesRepository(context: Context) {
             msg.forEach {
                 it.user = users.get(it.senderId)
                 it.chat = chats.get(it)
+                it.edits = edits.getForMessage(it.id)
             }
             return@map msg
         }
@@ -43,6 +47,8 @@ class MessagesRepository(context: Context) {
 
     fun delete(id: Long) = msgs.markDeleted(id)
 
-    fun edit(id: Long, text: String) = msgs.edit(id, text)
+    fun edit(id: Long, text: String) = msgs.edit(id, text, now())
+
+    private fun now() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()
 
 }

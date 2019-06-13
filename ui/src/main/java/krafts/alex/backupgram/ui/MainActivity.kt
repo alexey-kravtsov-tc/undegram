@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
             navController?.navigate(R.id.login_destination)
         }
 
-
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()

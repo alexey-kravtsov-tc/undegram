@@ -5,21 +5,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_chat.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
+import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.backupgram.ui.utils.MinuteDataFormatter
+import krafts.alex.backupgram.ui.utils.display
+import java.io.File
 import java.lang.StringBuilder
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class ChatFragment : Fragment() {
 
@@ -33,7 +38,12 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapt = MessagesAdapter(emptyList())
+        val adapt = MessagesAdapter(emptyList(), this)
+
+        with(list) {
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            adapter = adapt
+        }
 
         chart.apply {
             setPinchZoom(true)
@@ -66,7 +76,19 @@ class ChatFragment : Fragment() {
 
         arguments?.let {
             val args = ChatFragmentArgs.fromBundle(it)
-            textView.text = BackApp.chats.get(args.chatId)?.title
+
+            val user = BackApp.chats.get(args.chatId)
+            activity?.toolbar?.title = user?.title
+
+            user?.photoBig?.let {
+                if (it.downloaded)
+                    Picasso.get()
+                        .load(File(it.localPath))
+                        .placeholder(R.drawable.ic_users)
+                        .transform(CircleTransform())
+                        .into(avatar)
+            }
+
 
             notifyDeleted.setOnClickListener {
                 BackApp.users.updateNotificationsSettings(args.chatId.toInt(), true)
@@ -111,15 +133,8 @@ class ChatFragment : Fragment() {
                 sessions.text = builder.toString()
             })
         }
-
-        with(list) {
-            layoutManager = LinearLayoutManager(context)
-            adapter = adapt
-        }
     }
 
     private fun Int.toInterval() = this.toLong()
 
-    private fun Int.display() = SimpleDateFormat("HH:mm:ss").format(Date(this.toLong() * 1000))
 }
-

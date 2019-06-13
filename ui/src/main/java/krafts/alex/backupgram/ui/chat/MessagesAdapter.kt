@@ -4,15 +4,20 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import krafts.alex.backupgram.ui.R
+import krafts.alex.backupgram.ui.chat.edits.EditsAdapter
 import krafts.alex.backupgram.ui.utils.CircleTransform
+import krafts.alex.backupgram.ui.utils.display
 import krafts.alex.tg.entity.Message
 import java.io.File
 
 class MessagesAdapter(
-    private var values: List<Message>
+    private var values: List<Message>,
+    private val fragment: Fragment
 ) : RecyclerView.Adapter<MessageViewHolder>() {
 
     fun setAll(items: List<Message>) {
@@ -41,6 +46,7 @@ class MessagesAdapter(
         }
 
         holder.message.text = item.text
+        holder.date.text = "${ if(item.edited) "edited" else "deleted"} ${item.date.display()}"
 
         holder.edit.visibility = if (item.edited) View.VISIBLE else View.GONE
         holder.remove.visibility = if (item.deleted) View.VISIBLE else View.GONE
@@ -49,11 +55,18 @@ class MessagesAdapter(
             holder.name.visibility = View.GONE
             holder.avatar.setColorFilter(Color.WHITE)
         }
+
+        val editsAdapter = EditsAdapter(emptyList())
+        item.edits?.observe(fragment, Observer {
+            editsAdapter.setAll(it)
+        })
+        holder.editList.adapter = editsAdapter
+        holder.editList.visibility = if (item.edited) View.VISIBLE else View.GONE
+
         with(holder.view) {
             tag = item
         }
     }
 
     override fun getItemCount(): Int = values.size
-
 }

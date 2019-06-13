@@ -35,6 +35,7 @@ class UsersAdapter(
             if (it.downloaded)
                 Picasso.get()
                     .load(File(it.localPath))
+                    .placeholder(R.drawable.ic_users)
                     .transform(CircleTransform())
                     .into(holder.avatar)
         }
