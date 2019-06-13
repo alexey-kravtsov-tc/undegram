@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/messages_destination"
         android:name="krafts.alex.backupgram.ui.chatList.ChatListFragment"
-        android:label="Chats" >
+        android:label="Backupgram" >
         <action
             android:id="@+id/action_chat_details"
             app:destination="@id/chat_details_destination"

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingVertical="@dimen/text_margin"
+    android:paddingTop="@dimen/user_margin"
+    android:paddingBottom="@dimen/user_margin"
     >
 
     <ImageView
@@ -28,6 +29,7 @@
         app:layout_constraintLeft_toRightOf="@id/avatar"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@ class MessageViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     val date: TextView = view.date
     val avatar: ImageView = view.avatar
     val editList: RecyclerView = view.editList
+    val separator: View = view.separator
 
     override fun toString(): String {
         return super.toString() + " '" + message.text + "'"

@@ -34,23 +34,23 @@ class MessagesAdapter(
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val item = values[position]
 
-        holder.name.text = item.user?.let { it.firstName + " " + it.lastName }
-
-        item.user?.photoBig?.let {
-            if (it.downloaded)
-                Picasso
-                    .get()
-                    .load(File(it.localPath))
-                    .transform(CircleTransform())
-                    .into(holder.avatar)
-        }
-
         holder.message.text = item.text
-        holder.date.text = "${ if(item.edited) "edited" else "deleted"} ${item.date.display()}"
+        holder.date.text = "${if (item.edited) "edited" else "deleted"} ${item.date.display()}"
 
-        if (position != 0 && item.senderId == values[position - 1].senderId) {
+        if (position == 0 || item.senderId != values[position - 1].senderId) {
+            holder.name.text = item.user?.let { it.firstName + " " + it.lastName }
+
+            item.user?.photoBig?.let {
+                if (it.downloaded)
+                    Picasso
+                        .get()
+                        .load(File(it.localPath))
+                        .transform(CircleTransform())
+                        .into(holder.avatar)
+            }
+        } else {
             holder.name.visibility = View.GONE
-            holder.avatar.setColorFilter(Color.WHITE)
+            holder.avatar.visibility = View.GONE
         }
 
         val editsAdapter = EditsAdapter(emptyList())
@@ -59,6 +59,7 @@ class MessagesAdapter(
         })
         holder.editList.adapter = editsAdapter
         holder.editList.visibility = if (item.edited) View.VISIBLE else View.GONE
+        holder.separator.visibility = if (item.edited) View.VISIBLE else View.GONE
 
         with(holder.view) {
             tag = item

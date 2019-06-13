@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import krafts.alex.backupgram.ui.settings.SettingsFragment
 import krafts.alex.tg.AuthOk
 import krafts.alex.tg.EnterPhone
 import krafts.alex.tg.TgEvent
@@ -33,6 +36,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        delegate.localNightMode = if (PreferenceManager
+                .getDefaultSharedPreferences(this)
+                .getBoolean(SettingsFragment.DARK_KEY, false)
+        ) {
+            AppCompatDelegate.MODE_NIGHT_YES
+        } else {
+            AppCompatDelegate.MODE_NIGHT_NO
+        }
 
         setSupportActionBar(toolbar)
 

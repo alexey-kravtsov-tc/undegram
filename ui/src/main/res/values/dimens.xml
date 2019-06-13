@@ -5,4 +5,9 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="message_margin">8dp</dimen>
+    <dimen name="chat_margin">@dimen/message_margin</dimen>
+    <dimen name="user_margin">@dimen/message_margin</dimen>
+    <dimen name="avatar_width">70dp</dimen>
+
 </resources>

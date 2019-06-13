@@ -68,7 +68,7 @@ class ChatFragment : Fragment() {
                 valueFormatter = MinuteDataFormatter()
                 position = XAxis.XAxisPosition.BOTTOM
                 setDrawGridLines(false)
-
+                textColor = activity?.resources?.getColor(R.color.colorAccent) ?: Color.BLACK
             }
 
         }
