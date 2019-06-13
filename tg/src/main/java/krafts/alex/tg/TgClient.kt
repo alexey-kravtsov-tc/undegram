@@ -1,6 +1,7 @@
 package krafts.alex.tg
 
 import android.content.Context
+import android.preference.PreferenceManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -145,11 +146,14 @@ class TgClient(context: Context) {
                         Log.e("======removed", message?.text)
                         messages.delete(id)
                         val user = users.get(message?.senderId ?: 0)
-                        if (user.notifyDelete == true) {
+                        if (message?.isPersonal() == true && (user.notifyDelete == true
+                                || prefereneces.getBoolean("notify_private", false))
+                        ) {
                             val not = notificationCompat
                                 .setSmallIcon(R.drawable.ic_delete)
                                 .setContentTitle("${user.firstName} deleted message")
-                                .setContentText(message?.text).build()
+                                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                .setContentText(message.text).build()
 
                             notificationManager.notify(123, not)
                         }
@@ -194,11 +198,11 @@ class TgClient(context: Context) {
             is TdApi.MessagePinMessage ->
                 "pin ${messages.get(this.messageId)?.text}"
             is TdApi.MessagePhoto ->
-                "photo ${this.caption}"
+                "photo ${this.caption?.text}"
             is TdApi.MessageVideo ->
-                "video ${this.caption}"
+                "video ${this.caption?.text}"
             is TdApi.MessageAnimation ->
-                "animation ${this.caption}"
+                "animation ${this.caption?.text}"
             else -> ""
         }
 

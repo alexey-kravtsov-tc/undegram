@@ -4,13 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.IGNORE
+import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import krafts.alex.tg.entity.User
 
 @Dao
 interface UsersDao {
 
-    @Insert(onConflict = IGNORE)
+    @Insert(onConflict = REPLACE)
     fun insert(usr: User)
 
     @Query("SELECT * from user where id = :id LIMIT 1")

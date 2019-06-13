@@ -21,6 +21,8 @@ data class Message @JvmOverloads constructor(
     @Ignore var edits: LiveData<List<Edit>>? = null
 ) {
 
+    fun isPersonal() = senderId.toLong() == chatId
+
     companion object {
 
         fun fromTg(msg: TdApi.Message) = Message(

@@ -9,14 +9,23 @@
         app:key="hide_edits"
         app:title="Hide message edits history" />
 
+    <PreferenceCategory
+        app:key="notifications_category"
+        app:title="Notify deleted messages">
+
+        <SwitchPreferenceCompat
+            app:key="notify_private"
+            app:title="From all private chats" />
+
+    </PreferenceCategory>
+
     <Preference
         app:key="feedback"
         app:summary="Report technical issues or suggest new features"
         app:title="Send feedback">
         <intent
             android:action="android.intent.action.VIEW"
-            android:data="https://telegram.me/akrafts"
-            />
+            android:data="https://telegram.me/akrafts" />
     </Preference>
 
 </PreferenceScreen>
