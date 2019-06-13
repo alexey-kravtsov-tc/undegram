@@ -6,6 +6,11 @@
         app:title="Dark Theme"
         />
 
+    <SwitchPreferenceCompat
+        app:key="hide_edits"
+        app:title="Hide message edits history"
+        />
+
     <Preference
         app:key="feedback"
         app:title="Send feedback"

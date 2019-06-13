@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
+import krafts.alex.backupgram.ui.settings.SettingsFragment
 
 class ChatListFragment : Fragment() {
 
@@ -21,8 +23,11 @@ class ChatListFragment : Fragment() {
 
         val adapt = ChatsAdapter(emptyList())
 
+        val hideEdited = PreferenceManager
+            .getDefaultSharedPreferences(activity)
+            .getBoolean(SettingsFragment.HIDE_EDIT, false)
 
-        BackApp.messages.getAllRemoved().observe(this, Observer {
+        BackApp.messages.getAllRemoved(hideEdited).observe(this, Observer {
             it?.let { adapt.setAll(it) }
         })
 
@@ -35,5 +40,4 @@ class ChatListFragment : Fragment() {
         }
         return view
     }
-
 }

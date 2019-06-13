@@ -20,8 +20,13 @@ class MessagesRepository(context: Context) {
 
     fun getAll() = msgs.getAll()
 
-    fun getAllRemoved(): LiveData<List<Message>> {
-        return Transformations.map(msgs.getAllDeletedPerChat()) { msg ->
+    fun getAllRemoved(hideEdit: Boolean): LiveData<List<Message>> {
+        val messages = if (hideEdit) {
+            msgs.getAllDeletedPerChat()
+        } else {
+            msgs.getAllDeletedAndEditedPerChat()
+        }
+        return Transformations.map(messages) { msg ->
             msg.forEach {
                 it.user = users.get(it.senderId)
                 it.chat = chats.get(it)
@@ -30,8 +35,13 @@ class MessagesRepository(context: Context) {
         }
     }
 
-    fun getRemovedForChat(chatId: Long): LiveData<List<Message>> {
-        return Transformations.map(msgs.getAllDeletedForChat(chatId)) { msg ->
+    fun getRemovedForChat(chatId: Long, hideEdit: Boolean): LiveData<List<Message>> {
+        val messages = if (hideEdit) {
+            msgs.getAllDeletedForChat(chatId)
+        } else {
+            msgs.getAllDeletedAndEditedForChat(chatId)
+        }
+        return Transformations.map(messages) { msg ->
             msg.forEach {
                 it.user = users.get(it.senderId)
                 it.chat = chats.get(it)

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.components.XAxis
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_chat.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
+import krafts.alex.backupgram.ui.settings.SettingsFragment
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.backupgram.ui.utils.MinuteDataFormatter
 import krafts.alex.backupgram.ui.utils.display
@@ -93,7 +95,11 @@ class ChatFragment : Fragment() {
                 BackApp.users.updateNotificationsSettings(args.chatId.toInt(), true)
             }
 
-            BackApp.messages.getRemovedForChat(args.chatId).observe(this, Observer {
+            val hideEdited = PreferenceManager
+                .getDefaultSharedPreferences(activity)
+                .getBoolean(SettingsFragment.HIDE_EDIT, false)
+
+            BackApp.messages.getRemovedForChat(args.chatId, hideEdited).observe(this, Observer {
                 it?.let { adapt.setAll(it) }
             })
             BackApp.sessions.getSessionsForUser(args.chatId.toInt()).observe(this, Observer {

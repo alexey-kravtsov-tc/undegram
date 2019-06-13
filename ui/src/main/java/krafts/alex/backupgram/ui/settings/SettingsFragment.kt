@@ -37,6 +37,6 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
     companion object {
         const val DARK_KEY = "dark_theme"
-        fun isDarkMode() {}
+        const val HIDE_EDIT = "hide_edits"
     }
 }
