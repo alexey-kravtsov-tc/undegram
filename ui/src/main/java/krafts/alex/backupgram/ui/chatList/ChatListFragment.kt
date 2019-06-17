@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsFragment
+import krafts.alex.backupgram.ui.settings.SwipeToDeleteCallback
 
 class ChatListFragment : Fragment() {
 
@@ -21,7 +23,7 @@ class ChatListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_chat_list, container, false)
 
-        val adapt = ChatsAdapter(emptyList())
+        val adapt = ChatsAdapter()
 
         val hideEdited = PreferenceManager
             .getDefaultSharedPreferences(activity)

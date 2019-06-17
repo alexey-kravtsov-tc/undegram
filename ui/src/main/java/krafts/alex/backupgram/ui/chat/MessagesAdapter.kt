@@ -1,6 +1,5 @@
 package krafts.alex.backupgram.ui.chat
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +15,20 @@ import krafts.alex.tg.entity.Message
 import java.io.File
 
 class MessagesAdapter(
-    private var values: List<Message>,
     private val fragment: Fragment
 ) : RecyclerView.Adapter<MessageViewHolder>() {
 
+    private var values: MutableList<Message> = mutableListOf()
+
     fun setAll(items: List<Message>) {
-        values = items
+        values = items.toMutableList()
         notifyDataSetChanged()
+    }
+
+    fun removeAt(position: Int, block: Message.() -> Unit = {}) {
+        val item = values[position]
+        block(item)
+        notifyItemRemoved(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {

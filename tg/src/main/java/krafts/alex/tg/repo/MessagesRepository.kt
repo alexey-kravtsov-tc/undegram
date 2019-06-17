@@ -57,6 +57,8 @@ class MessagesRepository(context: Context) {
 
     fun delete(id: Long) = msgs.markDeleted(id)
 
+    fun deletePermanently(message: Message) = msgs.delete(message)
+
     fun edit(id: Long, text: String) = msgs.edit(id, text, now())
 
     private fun now() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()

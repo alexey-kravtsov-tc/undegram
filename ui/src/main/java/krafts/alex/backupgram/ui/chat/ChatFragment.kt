@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.components.XAxis
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_chat.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsFragment
+import krafts.alex.backupgram.ui.settings.SwipeToDeleteCallback
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.backupgram.ui.utils.MinuteDataFormatter
 import krafts.alex.backupgram.ui.utils.display
@@ -39,11 +41,20 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapt = MessagesAdapter(emptyList(), this).apply { setHasStableIds(true) }
+        val adapt = MessagesAdapter(this).apply { setHasStableIds(true) }
+
+        val itemTouchHelper = ItemTouchHelper(object : SwipeToDeleteCallback(view.context) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                adapt.removeAt(viewHolder.adapterPosition) {
+                    BackApp.messages.deletePermanently(this)
+                }
+            }
+        })
 
         with(list) {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = adapt
+            itemTouchHelper.attachToRecyclerView(list)
         }
 
         chart.apply {

@@ -11,12 +11,12 @@ import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.tg.entity.Message
 import java.io.File
 
-class ChatsAdapter(
-    private var values: List<Message>
-) : RecyclerView.Adapter<ChatViewHolder>() {
+class ChatsAdapter: RecyclerView.Adapter<ChatViewHolder>() {
+
+    private var values: MutableList<Message> = mutableListOf()
 
     fun setAll(items: List<Message>) {
-        values = items
+        values = items.toMutableList()
         notifyDataSetChanged()
     }
 

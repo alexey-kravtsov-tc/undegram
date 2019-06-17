@@ -2,6 +2,7 @@ package krafts.alex.tg.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import krafts.alex.tg.entity.Message
@@ -33,8 +34,10 @@ interface MessagesDao {
     @Query("UPDATE message SET deleted = :deleted where id = :id")
     fun markDeleted(id: Long, deleted: Boolean = true)
 
+    @Delete
+    fun delete(message: Message)
+
     @Query("UPDATE message SET edited = :edited, date = :date, text = :text where id = :id")
     fun edit(id: Long, text: String, date: Int, edited: Boolean = true)
 
 }
-
