@@ -25,25 +25,39 @@
             app:layout_constraintTop_toTopOf="parent"
             />
 
+
         <TextView
-            android:id="@+id/today"
+            android:id="@+id/total"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/text_margin"
-            android:text="online today 1h 20m"
+            android:paddingBottom="@dimen/message_margin"
+            android:paddingTop="@dimen/message_margin"
+                android:text="Recorded time online"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textStyle="bold|normal"
             app:layout_constraintLeft_toRightOf="@id/avatar"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
+        <TextView
+            android:id="@+id/today"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/message_margin"
+            android:text="today 1h 20m"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textStyle="bold|normal"
+            app:layout_constraintLeft_toRightOf="@id/avatar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/total"
+            />
 
         <TextView
             android:id="@+id/yesterday"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/text_margin"
-            android:text="online yesterday 1h 20m"
+            android:paddingBottom="@dimen/message_margin"
+            android:text="yesterday 1h 20m"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textStyle="bold|normal"
             app:layout_constraintLeft_toRightOf="@id/avatar"

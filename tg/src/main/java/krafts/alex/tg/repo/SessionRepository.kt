@@ -1,6 +1,7 @@
 package krafts.alex.tg.repo
 
 import android.content.Context
+import com.kizitonwose.time.days
 import krafts.alex.tg.TgDataBase
 import krafts.alex.tg.entity.Session
 import org.drinkless.td.libcore.telegram.TdApi
@@ -36,4 +37,19 @@ class SessionRepository(context: Context) {
     }
 
     fun getSessionsForUser(userId: Int) = sessions.getByUserId(userId)
+
+    fun getYesterdayTotal(userId: Int): Int =
+        sessions.getSumByUserIdForPeriod(
+            id = userId,
+            start = now() - 2.days.inSeconds.longValue.toInt(),
+            end = now() - 1.days.inSeconds.longValue.toInt()
+        )
+
+    fun getTodayTotal(userId: Int): Int =
+        sessions.getSumByUserIdForPeriod(
+            id = userId,
+            start = now() - 1.days.inSeconds.longValue.toInt(),
+            end = now()
+        )
+
 }

@@ -89,18 +89,36 @@ class ChatFragment : Fragment() {
         arguments?.let {
             val args = ChatFragmentArgs.fromBundle(it)
 
-            val user = BackApp.chats.get(args.chatId)
-            activity?.toolbar?.title = user?.title
+            BackApp.chats.get(args.chatId)?.let { user ->
+                activity?.toolbar?.title = user.title
 
-            user?.photoBig?.let {
-                if (it.downloaded)
-                    Picasso.get()
-                        .load(File(it.localPath))
-                        .placeholder(R.drawable.ic_users)
-                        .transform(CircleTransform())
-                        .into(avatar)
+                user.photoBig?.let {
+                    if (it.downloaded)
+                        Picasso.get()
+                            .load(File(it.localPath))
+                            .placeholder(R.drawable.ic_users)
+                            .transform(CircleTransform())
+                            .into(avatar)
+                }
+
+                val timeYesterday = BackApp.sessions.getYesterdayTotal(user.id.toInt())
+                val timeToday = BackApp.sessions.getTodayTotal(user.id.toInt())
+
+                //TODO: use proper time formatting
+                yesterday.text = timeYesterday.takeIf { it > 0 }?.let {
+                    "yesterday: ${it / 3600} h ${it % 3600 / 60} m "
+                } ?: ""
+                today.text = timeToday.takeIf { it > 0 }?.let {
+                    "today: ${it / 3600} h ${it % 3600 / 60} m "
+                } ?: ""
+
+                if (timeYesterday + timeToday > 0) {
+                    total.text = "Recorded time online"
+                } else {
+                    total.text = "Some info about chat"
+                    chart.visibility = View.GONE
+                }
             }
-
 
             notifyDeleted.setOnClickListener {
                 BackApp.users.updateNotificationsSettings(args.chatId.toInt(), true)
