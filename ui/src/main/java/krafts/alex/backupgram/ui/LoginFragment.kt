@@ -29,30 +29,35 @@ class LoginFragment : Fragment() {
         password_enter_form.visibility = View.GONE
 
         TgEvent.listen<EnterPhone>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            phone_enter_form.visibility = View.VISIBLE
+            phone_enter_form?.visibility = View.VISIBLE
         }
         TgEvent.listen<EnterPassword>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            password_enter_form.visibility = View.VISIBLE
+            progress?.visibility = View.GONE
+            password_enter_form?.visibility = View.VISIBLE
         }
-        TgEvent.listen<EnterCode>().observeOn(AndroidSchedulers.mainThread()).subscribe{
-            code_enter_form.visibility = View.VISIBLE
+        TgEvent.listen<EnterCode>().observeOn(AndroidSchedulers.mainThread()).subscribe {
+            progress?.visibility = View.GONE
+            code_enter_form?.visibility = View.VISIBLE
         }
-        TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe{
+        TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             Snackbar.make(view, "Logged in!", Snackbar.LENGTH_LONG).setAction("Action", null).show()
             findNavController(view).navigate(R.id.action_messages)
         }
 
         button_send_phone.setOnClickListener {
-            BackApp.client.sendPhone(phone.text.toString())
+            BackApp.loginClient?.sendPhone(phone.text.toString())
             phone_enter_form.visibility = View.GONE
+            progress.visibility = View.VISIBLE
         }
         button_send_code.setOnClickListener {
-            BackApp.client.sendCode(code.text.toString())
+            BackApp.loginClient?.sendCode(code.text.toString())
             code_enter_form.visibility = View.GONE
+            progress.visibility = View.VISIBLE
         }
         button_send_password.setOnClickListener {
-            BackApp.client.sendPassword(password.text.toString())
+            BackApp.loginClient?.sendPassword(password.text.toString())
             password_enter_form.visibility = View.GONE
+            progress.visibility = View.VISIBLE
         }
     }
 

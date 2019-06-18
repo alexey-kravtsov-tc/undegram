@@ -10,7 +10,7 @@
     <fragment
         android:id="@+id/login_destination"
         android:name="krafts.alex.backupgram.ui.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="Login" >
         <action
             android:id="@+id/action_messages"
             app:destination="@id/messages_destination"

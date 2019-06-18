@@ -3,9 +3,11 @@ package krafts.alex.backupgram.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.preference.PreferenceManager
@@ -14,24 +16,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import krafts.alex.backupgram.ui.settings.SettingsFragment
 import krafts.alex.tg.AuthOk
-import krafts.alex.tg.EnterPhone
 import krafts.alex.tg.TgEvent
 
 class MainActivity : AppCompatActivity() {
 
-
-    var loginNeeded = false
     private lateinit var navController: NavController
-
-    init {
-        TgEvent.listen<EnterPhone>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            loginNeeded = true
-            navController.navigate(R.id.login_destination)
-        }
-        TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            loginNeeded = false
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +43,21 @@ class MainActivity : AppCompatActivity() {
             NavigationUI.setupWithNavController(it, navController)
             NavigationUI.setupActionBarWithNavController(this, navController)
         }
-        if (loginNeeded) {
+        if (BackApp.loginClient?.haveAuthorization == false) {
             navController.navigate(R.id.login_destination)
+            bottom_nav.visibility = View.GONE
+        } else {
+            BackApp.startService(applicationContext)
         }
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+        }
+
+        TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
+            BackApp.startService(applicationContext)
+            bottom_nav.visibility = View.VISIBLE
         }
     }
 

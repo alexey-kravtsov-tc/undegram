@@ -22,7 +22,7 @@ class TgClient(context: Context) {
 
     var authorizationState: TdApi.AuthorizationState? = null
 
-    private var haveAuthorization: Boolean = false
+    var haveAuthorization: Boolean = false
 
     private var quiting: Boolean = false
 
@@ -30,6 +30,7 @@ class TgClient(context: Context) {
 
     private val notificationManager = NotificationManagerCompat.from(context)
 
+    private val prefereneces = PreferenceManager.getDefaultSharedPreferences(context)
     private fun onAuthorizationStateUpdated(authorizationState: TdApi.AuthorizationState?) {
         if (authorizationState != null) {
             this.authorizationState = authorizationState
@@ -68,6 +69,7 @@ class TgClient(context: Context) {
 
             TdApi.AuthorizationStateReady.CONSTRUCTOR -> {
                 TgEvent.publish(AuthOk)
+                haveAuthorization = true
             }
 
             TdApi.AuthorizationStateLoggingOut.CONSTRUCTOR -> {

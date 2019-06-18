@@ -31,13 +31,13 @@ class ChatsAdapter: RecyclerView.Adapter<ChatViewHolder>() {
 
 
         if (item.chat == null) {
-            BackApp.client.getChatInfo(item.chatId)
+//            BackApp.loginClient.getChatInfo(item.chatId)
         }
 
         holder.name.text = item?.chat?.title ?:
             item.user?.let { it.firstName + " " + it.lastName }
 
-        (item?.chat?.photoBig ?: item.user?.photoBig)?.let {
+        (item.chat?.photoBig ?: item.user?.photoBig)?.let {
             if (it.downloaded)
                 Picasso
                     .get()

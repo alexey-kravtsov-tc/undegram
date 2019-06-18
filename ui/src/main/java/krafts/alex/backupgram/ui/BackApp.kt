@@ -16,22 +16,23 @@ class BackApp : Application() {
         users = UsersRepository(applicationContext)
         chats = ChatRepository(applicationContext)
         sessions = SessionRepository(applicationContext)
-        super.onCreate()
-    }
+        loginClient = TgClient(applicationContext)
 
-    override fun attachBaseContext(base: Context?) {
-        base?.let { DumbService.start(it) }
-        super.attachBaseContext(base)
+        super.onCreate()
     }
 
     companion object {
 
-        lateinit var client: TgClient
+        fun startService(context: Context) {
+            loginClient = null
+            DumbService.start(context)
+        }
+
+        var loginClient: TgClient? = null
         lateinit var messages: MessagesRepository
         lateinit var users: UsersRepository
         lateinit var chats: ChatRepository
         lateinit var sessions: SessionRepository
-
     }
 }
 
