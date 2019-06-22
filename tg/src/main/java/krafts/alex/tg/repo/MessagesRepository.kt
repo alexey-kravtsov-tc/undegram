@@ -67,7 +67,7 @@ class MessagesRepository(context: Context) {
         edits.addExampleEdits()
         msgs.insert(stub(4, "you can delete permanently those messages by swipe left", true))
         msgs.insert(stub(5, "you can see user online activity at the chart above", true))
-        msgs.insert(stub(6, "User chat demo here", true))
+        msgs.insert(stub(6, "chat demo is here", true))
     }
 
     private fun stub(

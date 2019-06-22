@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.preference.PreferenceManager
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_chat_list.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsFragment
-import krafts.alex.backupgram.ui.settings.SwipeToDeleteCallback
 
 class ChatListFragment : Fragment() {
 
@@ -21,7 +19,11 @@ class ChatListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_chat_list, container, false)
+        return inflater.inflate(R.layout.fragment_chat_list, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val adapt = ChatsAdapter()
 
@@ -30,16 +32,16 @@ class ChatListFragment : Fragment() {
             .getBoolean(SettingsFragment.HIDE_EDIT, false)
 
         BackApp.messages.getAllRemoved(hideEdited).observe(this, Observer {
-            it?.let { adapt.setAll(it) }
+            it?.let {
+                adapt.setAll(it)
+                placeholder.visibility = if (it.count() > 2) View.GONE else View.VISIBLE
+            }
         })
 
         // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = adapt
-            }
+        list?.let {
+            it.layoutManager = LinearLayoutManager(context)
+            it.adapter = adapt
         }
-        return view
     }
 }

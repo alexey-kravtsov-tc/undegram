@@ -19,4 +19,8 @@
     <string name="action_users">Users</string>
     <string name="action_chats">Chats</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="users_list_placeholder_text">Users will appear here order by recent
+        online activity</string>
+    <string name="chats_list_placeholder_text">Here comes list of chats filled with removed
+    and edited messages collected by app</string>
 </resources>

@@ -16,4 +16,15 @@
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/item_user"
         />
+
+    <TextView
+        android:id="@+id/placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/users_list_placeholder_text"
+        android:maxWidth="200dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        />
 </FrameLayout>

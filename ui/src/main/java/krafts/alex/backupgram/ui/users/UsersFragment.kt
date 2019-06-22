@@ -28,7 +28,10 @@ class UsersFragment : Fragment() {
         val adapt = UsersAdapter(emptyList())
 
         BackApp.sessions.getUsersBySessionCount().observe(this, Observer {
-            it?.let { adapt.setAll(it) }
+            it?.let {
+                adapt.setAll(it)
+                placeholder.visibility = if (it.count() > 3) View.GONE else View.VISIBLE
+            }
         })
 
         // Set the adapter
