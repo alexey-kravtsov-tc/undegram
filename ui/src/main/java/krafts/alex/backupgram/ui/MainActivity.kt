@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import krafts.alex.backupgram.ui.settings.SettingsFragment
 import krafts.alex.tg.AuthOk
 import krafts.alex.tg.TgEvent
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
 
 class MainActivity : AppCompatActivity() {
 
@@ -64,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             BackApp.startService(applicationContext)
             button_login.visibility = View.GONE
         }
+        Fabric.with(this, Crashlytics())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

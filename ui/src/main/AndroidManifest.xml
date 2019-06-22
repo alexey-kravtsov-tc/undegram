@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <dist:module dist:instant="true" />
     <application android:name=".BackApp">
 
@@ -30,6 +31,9 @@
             </intent-filter>
         </activity>
         <service android:name="services.DumbService" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="dcddb58b1acaaa6bd37f9622f38f4c0912ea3099" />
     </application>
 
 </manifest>
