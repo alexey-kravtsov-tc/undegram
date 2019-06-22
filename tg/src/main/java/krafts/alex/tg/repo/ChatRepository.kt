@@ -30,4 +30,8 @@ class ChatRepository(context: Context) {
             chats.updatePhoto(it.id, File.fromTg(file).localPath)
         }
     }
+
+    fun addExampleChat() {
+        add(Chat(id=1, title = "demo chat", photoBig = null))
+    }
 }

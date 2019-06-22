@@ -45,9 +45,10 @@ class MainActivity : AppCompatActivity() {
         }
         if (BackApp.loginClient?.haveAuthorization == false) {
             navController.navigate(R.id.login_destination)
-            bottom_nav.visibility = View.GONE
+            button_login.visibility = View.VISIBLE
         } else {
             BackApp.startService(applicationContext)
+            button_login.visibility = View.GONE
         }
 
         fab.setOnClickListener { view ->
@@ -55,9 +56,13 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
+        button_login.setOnClickListener {
+            navController.navigate(R.id.login_destination)
+        }
+
         TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             BackApp.startService(applicationContext)
-            bottom_nav.visibility = View.VISIBLE
+            button_login.visibility = View.GONE
         }
     }
 

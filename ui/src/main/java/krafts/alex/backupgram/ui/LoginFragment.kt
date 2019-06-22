@@ -1,6 +1,7 @@
 package krafts.alex.backupgram.ui
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.android.schedulers.AndroidSchedulers
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login.*
 import krafts.alex.tg.*
 
@@ -58,6 +60,20 @@ class LoginFragment : Fragment() {
             BackApp.loginClient?.sendPassword(password.text.toString())
             password_enter_form.visibility = View.GONE
             progress.visibility = View.VISIBLE
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activity?.button_login?.visibility = View.GONE
+        activity?.bottom_nav?.visibility = View.GONE
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        activity?.bottom_nav?.visibility = View.VISIBLE
+        if (BackApp.loginClient?.haveAuthorization == false) {
+            activity?.button_login?.visibility = View.VISIBLE
         }
     }
 

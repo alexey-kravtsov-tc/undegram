@@ -89,10 +89,10 @@ class ChatFragment : Fragment() {
         arguments?.let {
             val args = ChatFragmentArgs.fromBundle(it)
 
-            BackApp.chats.get(args.chatId)?.let { user ->
-                activity?.toolbar?.title = user.title
+            BackApp.chats.get(args.chatId)?.let { chat ->
+                activity?.toolbar?.title = chat.title
 
-                user.photoBig?.let {
+                chat.photoBig?.let {
                     if (it.downloaded)
                         Picasso.get()
                             .load(File(it.localPath))
@@ -101,8 +101,8 @@ class ChatFragment : Fragment() {
                             .into(avatar)
                 }
 
-                val timeYesterday = BackApp.sessions.getYesterdayTotal(user.id.toInt())
-                val timeToday = BackApp.sessions.getTodayTotal(user.id.toInt())
+                val timeYesterday = BackApp.sessions.getYesterdayTotal(chat.id.toInt())
+                val timeToday = BackApp.sessions.getTodayTotal(chat.id.toInt())
 
                 //TODO: use proper time formatting
                 yesterday.text = timeYesterday.takeIf { it > 0 }?.let {

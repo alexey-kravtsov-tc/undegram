@@ -52,4 +52,30 @@ class SessionRepository(context: Context) {
             end = now()
         )
 
+    fun addExampleSessions() {
+        addExample(2000)
+        addExample(2200)
+        addExample(2202)
+        addExample(2300)
+        addExample(2400)
+
+
+        addExample(45)
+        addExample(55)
+        addExample(58)
+        addExample(35)
+        addExample(85)
+        addExample(65)
+    }
+
+    private fun addExample(minutesOffsetFromNow: Int) {
+        sessions.add(
+            Session(
+                id = 0,
+                userId = 1,
+                start = now() - (minutesOffsetFromNow + 1) * 60,
+                expires = now() - minutesOffsetFromNow * 60
+            )
+        )
+    }
 }
