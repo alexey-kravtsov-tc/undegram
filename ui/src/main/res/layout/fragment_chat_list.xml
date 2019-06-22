@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:maxWidth="200dp"
+        android:maxWidth="250dp"
         android:text="@string/chats_list_placeholder_text"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,9 +9,13 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:id="@+id/topPanel"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         >
 
         <ImageView
@@ -30,15 +34,16 @@
             android:id="@+id/total"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/message_margin"
             android:paddingTop="@dimen/message_margin"
-                android:text="Recorded time online"
+            android:paddingBottom="@dimen/message_margin"
+            android:text="Recorded time online"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textStyle="bold|normal"
             app:layout_constraintLeft_toRightOf="@id/avatar"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
+
         <TextView
             android:id="@+id/today"
             android:layout_width="0dp"
@@ -71,23 +76,9 @@
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name Surname"
-        android:textAppearance="?attr/textAppearanceLargePopupMenu"
-        android:visibility="gone"
-        />
-
-    <TextView
-        android:id="@+id/sessions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="some shit happened"
-        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topPanel"
         />
 
     <Button
@@ -99,17 +90,38 @@
         android:src="@drawable/ic_remove"
         android:text="notify deleted"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="@dimen/text_margin"
         android:layout_marginEnd="@dimen/text_margin"
         app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chart"
         tools:listitem="@layout/item_message"
+
         />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="200dp"
+        android:text="@string/messages_list_placeholder_text"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

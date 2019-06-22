@@ -19,6 +19,9 @@ import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_chat.*
+import kotlinx.android.synthetic.main.fragment_chat.list
+import kotlinx.android.synthetic.main.fragment_chat.placeholder
+import kotlinx.android.synthetic.main.fragment_users.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsFragment
@@ -131,7 +134,11 @@ class ChatFragment : Fragment() {
                 .getBoolean(SettingsFragment.HIDE_EDIT, false)
 
             BackApp.messages.getRemovedForChat(args.chatId, hideEdited).observe(this, Observer {
-                it?.let { adapt.setAll(it) }
+                it?.let {
+                    adapt.setAll(it)
+                    placeholder.visibility = if (it.count() > 0) View.GONE else View.VISIBLE
+                }
+
             })
             BackApp.sessions.getSessionsForUser(args.chatId.toInt()).observe(this, Observer {
 
@@ -166,7 +173,6 @@ class ChatFragment : Fragment() {
                 it?.forEach {
                     builder.appendln("${it.start.display()} - ${it.expires.display()}")
                 }
-                sessions.text = builder.toString()
             })
         }
     }
