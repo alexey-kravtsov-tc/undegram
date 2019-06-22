@@ -148,12 +148,12 @@ class TgClient(context: Context) {
                         Log.e("======removed", message?.text)
                         messages.delete(id)
                         val user = users.get(message?.senderId ?: 0)
-                        if (message?.isPersonal() == true && (user.notifyDelete == true
+                        if (message?.isPersonal() == true && (user?.notifyDelete == true
                                 || prefereneces.getBoolean("notify_private", false))
                         ) {
                             val not = notificationCompat
                                 .setSmallIcon(R.drawable.ic_delete)
-                                .setContentTitle("${user.firstName} deleted message")
+                                .setContentTitle("${user?.firstName} deleted message")
                                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                                 .setContentText(message.text).build()
 

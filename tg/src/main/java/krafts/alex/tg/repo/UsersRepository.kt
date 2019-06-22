@@ -1,7 +1,6 @@
 package krafts.alex.tg.repo
 
 import android.content.Context
-import krafts.alex.tg.R
 import krafts.alex.tg.TgDataBase
 import krafts.alex.tg.entity.File
 import krafts.alex.tg.entity.User
@@ -14,8 +13,6 @@ class UsersRepository(context: Context) {
     fun add(user: User) = users.insert(user)
 
     fun get(id: Int) = users.getById(id)
-
-    fun getMostRecent() = users.getRecent()
 
     fun updateImage(file: TdApi.File) {
         users.getList().find { it.photoBig?.fileId == file.id }?.let {

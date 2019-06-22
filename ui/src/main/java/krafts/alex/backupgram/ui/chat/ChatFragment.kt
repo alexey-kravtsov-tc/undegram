@@ -89,21 +89,23 @@ class ChatFragment : Fragment() {
         arguments?.let {
             val args = ChatFragmentArgs.fromBundle(it)
 
-            BackApp.chats.get(args.chatId)?.let { chat ->
-                activity?.toolbar?.title = chat.title
+            val user = BackApp.users.get(args.chatId.toInt())
+            val chat = BackApp.chats.get(args.chatId)
+            val title = chat?.title ?: "${user?.firstName} ${user?.lastName}"
 
-                chat.photoBig?.let {
-                    if (it.downloaded)
-                        Picasso.get()
-                            .load(File(it.localPath))
-                            .placeholder(R.drawable.ic_users)
-                            .transform(CircleTransform())
-                            .into(avatar)
-                }
+            activity?.toolbar?.title = title
+            (chat?.photoBig ?: user?.photoBig)?.let {
+                if (it.downloaded)
+                    Picasso.get()
+                        .load(File(it.localPath))
+                        .placeholder(R.drawable.ic_users)
+                        .transform(CircleTransform())
+                        .into(avatar)
+            }
 
-                val timeYesterday = BackApp.sessions.getYesterdayTotal(chat.id.toInt())
-                val timeToday = BackApp.sessions.getTodayTotal(chat.id.toInt())
-
+            user?.let {
+                val timeYesterday = BackApp.sessions.getYesterdayTotal(user.id)
+                val timeToday = BackApp.sessions.getTodayTotal(user.id)
                 //TODO: use proper time formatting
                 yesterday.text = timeYesterday.takeIf { it > 0 }?.let {
                     "yesterday: ${it / 3600} h ${it % 3600 / 60} m "

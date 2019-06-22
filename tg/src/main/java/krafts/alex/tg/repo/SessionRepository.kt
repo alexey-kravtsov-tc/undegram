@@ -1,6 +1,7 @@
 package krafts.alex.tg.repo
 
 import android.content.Context
+import androidx.lifecycle.Transformations
 import com.kizitonwose.time.days
 import krafts.alex.tg.TgDataBase
 import krafts.alex.tg.entity.Session
@@ -9,6 +10,7 @@ import java.util.concurrent.TimeUnit
 
 class SessionRepository(context: Context) {
     private val sessions = TgDataBase.getInstance(context).sessions()
+    private val users = TgDataBase.getInstance(context).users()
 
     fun updateSession(userStatus: TdApi.UpdateUserStatus) {
         (userStatus.status as? TdApi.UserStatusOnline)?.let { status ->
@@ -37,6 +39,10 @@ class SessionRepository(context: Context) {
     }
 
     fun getSessionsForUser(userId: Int) = sessions.getByUserId(userId)
+
+    fun getUsersBySessionCount() = Transformations.map(sessions.getUsersIdsByEditsCount()) { userIds ->
+        userIds.mapNotNull { id -> users.getById(id) }
+    }
 
     fun getYesterdayTotal(userId: Int): Int =
         sessions.getSumByUserIdForPeriod(

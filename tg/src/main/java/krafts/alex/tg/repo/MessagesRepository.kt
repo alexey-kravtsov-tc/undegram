@@ -3,10 +3,6 @@ package krafts.alex.tg.repo
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.kizitonwose.time.Interval
-import com.kizitonwose.time.Second
-import com.kizitonwose.time.days
-import com.kizitonwose.time.minutes
 import krafts.alex.tg.TgDataBase
 import krafts.alex.tg.entity.Message
 import org.drinkless.td.libcore.telegram.TdApi
@@ -21,8 +17,6 @@ class MessagesRepository(context: Context) {
     private val chats = ChatRepository(context)
 
     private val edits = EditRepository(context)
-
-    fun getAll() = msgs.getAll()
 
     fun getAllRemoved(hideEdit: Boolean): LiveData<List<Message>> {
         val messages = if (hideEdit) {

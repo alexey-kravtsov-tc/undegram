@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_users.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
+import krafts.alex.backupgram.ui.settings.SettingsFragment
 
 class UsersFragment : Fragment() {
 
@@ -25,8 +27,7 @@ class UsersFragment : Fragment() {
 
         val adapt = UsersAdapter(emptyList())
 
-
-        BackApp.users.getMostRecent().observe(this, Observer {
+        BackApp.sessions.getUsersBySessionCount().observe(this, Observer {
             it?.let { adapt.setAll(it) }
         })
 
