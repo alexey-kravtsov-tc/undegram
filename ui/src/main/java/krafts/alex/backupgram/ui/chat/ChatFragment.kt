@@ -106,22 +106,28 @@ class ChatFragment : Fragment() {
                         .into(avatar)
             }
 
+            total.text = "Some info about chat"
+            yesterday.text = ""
+            today.text = ""
+            chart.visibility = View.GONE
+
+
             user?.let {
                 val timeYesterday = BackApp.sessions.getYesterdayTotal(user.id)
                 val timeToday = BackApp.sessions.getTodayTotal(user.id)
-                //TODO: use proper time formatting
-                yesterday.text = timeYesterday.takeIf { it > 0 }?.let {
-                    "yesterday: ${it / 3600} h ${it % 3600 / 60} m "
-                } ?: ""
-                today.text = timeToday.takeIf { it > 0 }?.let {
-                    "today: ${it / 3600} h ${it % 3600 / 60} m "
-                } ?: ""
 
-                if (timeYesterday + timeToday > 0) {
-                    total.text = "Recorded time online"
+                //TODO: use proper time formatting
+                if (timeYesterday + timeToday > 60) {
+                    total.text = getString(R.string.recorded_time_online)
+                    yesterday.text = timeYesterday.let {
+                        "yesterday: ${it / 3600} h ${it % 3600 / 60} m "
+                    }
+                    today.text = timeToday.let {
+                        "today: ${it / 3600} h ${it % 3600 / 60} m "
+                    }
+                    chart.visibility = View.VISIBLE
                 } else {
-                    total.text = "Some info about chat"
-                    chart.visibility = View.GONE
+                    total.text = getString(R.string.collecting_data)
                 }
             }
 

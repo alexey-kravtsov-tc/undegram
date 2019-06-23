@@ -49,7 +49,7 @@ class MessagesRepository(context: Context) {
         }
     }
 
-    fun add(msg: TdApi.Message) = msgs.insert(Message.fromTg(msg))
+    fun add(msg: TdApi.Message, text: String) = msgs.insert(Message.fromTg(msg, text))
 
     fun get(id: Long) = msgs.getById(id)
 

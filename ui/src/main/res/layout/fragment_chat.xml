@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/message_margin"
             android:paddingBottom="@dimen/message_margin"
-            android:text="Recorded time online"
+            android:text="@string/recorded_time_online"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textStyle="bold|normal"
             app:layout_constraintLeft_toRightOf="@id/avatar"

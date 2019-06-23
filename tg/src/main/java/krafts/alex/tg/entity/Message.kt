@@ -25,11 +25,11 @@ data class Message @JvmOverloads constructor(
 
     companion object {
 
-        fun fromTg(msg: TdApi.Message) = Message(
+        fun fromTg(msg: TdApi.Message, text: String) = Message(
             id = msg.id,
             senderId = msg.senderUserId,
             chatId = msg.chatId,
-            text = msg.content.getText(),
+            text = text,
             date = msg.date,
             editDate = msg.editDate,
             deleted = false,
@@ -38,11 +38,5 @@ data class Message @JvmOverloads constructor(
             chat = null
         )
 
-        private fun TdApi.MessageContent.getText(): String {
-            if (this is TdApi.MessageText) {
-                return this.text.text
-            }
-            return this.toString()
-        }
     }
 }

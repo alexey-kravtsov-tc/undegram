@@ -6,13 +6,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login.*
 import krafts.alex.tg.*
+import androidx.core.content.ContextCompat.getSystemService
+import android.app.Activity
 
 class LoginFragment : Fragment() {
 
@@ -29,6 +34,7 @@ class LoginFragment : Fragment() {
         phone_enter_form.visibility = View.VISIBLE
         code_enter_form.visibility = View.GONE
         password_enter_form.visibility = View.GONE
+        val controller = findNavController(view)
 
         TgEvent.listen<EnterPhone>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             phone_enter_form?.visibility = View.VISIBLE
@@ -43,7 +49,9 @@ class LoginFragment : Fragment() {
         }
         TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             Snackbar.make(view, "Logged in!", Snackbar.LENGTH_LONG).setAction("Action", null).show()
-            findNavController(view).navigate(R.id.action_messages)
+            hideKeyboard(view)
+            controller.popBackStack(R.id.messages_destination, false)
+            activity?.bottom_nav?.visibility = View.VISIBLE
         }
 
         button_send_phone.setOnClickListener {
@@ -61,12 +69,24 @@ class LoginFragment : Fragment() {
             password_enter_form.visibility = View.GONE
             progress.visibility = View.VISIBLE
         }
+        goBack?.setOnClickListener {
+            hideKeyboard(view)
+            controller.popBackStack(R.id.messages_destination, false)
+        }
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         activity?.button_login?.visibility = View.GONE
         activity?.bottom_nav?.visibility = View.GONE
+    }
+
+    private fun hideKeyboard(view:View) {
+            this.activity?.currentFocus?.let {
+                val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as?
+                    InputMethodManager
+                imm?.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     override fun onDetach() {

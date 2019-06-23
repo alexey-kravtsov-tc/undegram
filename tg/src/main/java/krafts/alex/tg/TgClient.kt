@@ -126,7 +126,7 @@ class TgClient(context: Context) {
             is TdApi.UpdateAuthorizationState ->
                 onAuthorizationStateUpdated(it.authorizationState)
             is TdApi.UpdateNewMessage ->
-                messages.add(it.message)
+                messages.add(it.message, it.message.content.text())
 
             is TdApi.UpdateMessageContent -> {
                 messages.get(it.messageId)?.let { origin ->
@@ -194,19 +194,21 @@ class TgClient(context: Context) {
         Log.e(this.toString(), it.localizedMessage)
     }, null)
 
-    private fun TdApi.MessageContent.text() =
-        when (this) {
+    fun TdApi.MessageContent.text(): String {
+        val name = this.javaClass.simpleName
+        return when (this) {
             is TdApi.MessageText -> this.text.text
             is TdApi.MessagePinMessage ->
-                "pin ${messages.get(this.messageId)?.text}"
+                "[$name] ${messages.get(this.messageId)?.text}"
             is TdApi.MessagePhoto ->
-                "photo ${this.caption?.text}"
+                "[$name] ${this.caption?.text}"
             is TdApi.MessageVideo ->
-                "video ${this.caption?.text}"
+                "[$name] ${this.caption?.text}"
             is TdApi.MessageAnimation ->
-                "animation ${this.caption?.text}"
-            else -> ""
+                "[$name] ${this.caption?.text}"
+            else -> "[$name]"
         }
+    }
 
     private fun sendClient(query: TdApi.Function) {
         client.send(query) {

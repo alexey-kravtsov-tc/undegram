@@ -22,7 +22,10 @@
     <string name="users_list_placeholder_text">Users will appear here order by recent
         online activity. It will take some time.</string>
     <string name="chats_list_placeholder_text">Here comes list of chats filled with removed
-    and edited messages collected by Backupgram</string>
+    and edited messages collected by Undegram</string>
     <string name="messages_list_placeholder_text">No edited or deleted messages recorded</string>
+    <string name="login_demo_button">Take a look</string>
+    <string name="recorded_time_online">Recorded time online</string>
+    <string name="collecting_data">Collecting data...</string>
 
 </resources>

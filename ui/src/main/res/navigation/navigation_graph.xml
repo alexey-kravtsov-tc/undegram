@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/messages_destination"
         android:name="krafts.alex.backupgram.ui.chatList.ChatListFragment"
-        android:label="Backupgram" >
+        android:label="Undegram" >
         <action
             android:id="@+id/action_chat_details"
             app:destination="@id/chat_details_destination"
@@ -44,7 +44,7 @@
             app:destination="@id/chat_details_destination"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@+id/messages_destination" />
+            app:popUpTo="@+id/destination_users" />
     </fragment>
     <fragment
         android:id="@+id/settings_destination"
