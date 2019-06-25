@@ -7,17 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login.*
-import krafts.alex.tg.*
-import androidx.core.content.ContextCompat.getSystemService
-import android.app.Activity
+import krafts.alex.tg.AuthOk
+import krafts.alex.tg.EnterCode
+import krafts.alex.tg.EnterPassword
+import krafts.alex.tg.EnterPhone
+import krafts.alex.tg.TgEvent
 
 class LoginFragment : Fragment() {
 
@@ -31,6 +31,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val snackbar = Snackbar.make(view, "Logged in!", Snackbar.LENGTH_LONG)
         phone_enter_form.visibility = View.VISIBLE
         code_enter_form.visibility = View.GONE
         password_enter_form.visibility = View.GONE
@@ -50,7 +51,7 @@ class LoginFragment : Fragment() {
             goBack?.visibility = View.GONE
         }
         TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            Snackbar.make(view, "Logged in!", Snackbar.LENGTH_LONG).setAction("Action", null).show()
+            snackbar.show()
             hideKeyboard(view)
             controller.popBackStack(R.id.messages_destination, false)
             activity?.bottom_nav?.visibility = View.VISIBLE
