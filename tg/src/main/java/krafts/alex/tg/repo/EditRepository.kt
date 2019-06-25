@@ -16,13 +16,13 @@ class EditRepository(context: Context) {
     fun addExampleEdits() {
         add(Edit(
             id = 0,
-            messageId = 3,
+            messageId = 2,
             date = now() - 4 * 60,
             text = "and what has been edited with edit history"
         ))
         add(Edit(
             id = 0,
-            messageId = 3,
+            messageId = 2,
             date = now() - 5 * 60,
             text = "and what has been edited with its timeline"
         ))

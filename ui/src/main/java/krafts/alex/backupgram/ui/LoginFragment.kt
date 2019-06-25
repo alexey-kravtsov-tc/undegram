@@ -42,10 +42,12 @@ class LoginFragment : Fragment() {
         TgEvent.listen<EnterPassword>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             progress?.visibility = View.GONE
             password_enter_form?.visibility = View.VISIBLE
+            goBack?.visibility = View.GONE
         }
         TgEvent.listen<EnterCode>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             progress?.visibility = View.GONE
             code_enter_form?.visibility = View.VISIBLE
+            goBack?.visibility = View.GONE
         }
         TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             Snackbar.make(view, "Logged in!", Snackbar.LENGTH_LONG).setAction("Action", null).show()
@@ -81,11 +83,11 @@ class LoginFragment : Fragment() {
         activity?.bottom_nav?.visibility = View.GONE
     }
 
-    private fun hideKeyboard(view:View) {
-            this.activity?.currentFocus?.let {
-                val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as?
-                    InputMethodManager
-                imm?.hideSoftInputFromWindow(view.windowToken, 0)
+    private fun hideKeyboard(view: View) {
+        this.activity?.currentFocus?.let {
+            val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as?
+                InputMethodManager
+            imm?.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 

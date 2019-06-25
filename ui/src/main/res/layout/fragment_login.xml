@@ -47,7 +47,6 @@
                         android:layout_height="wrap_content"
                         android:hint="+7XXXXXXXXXX"
                         android:imeActionId="6"
-                        android:text="+79992195486"
                         android:imeActionLabel="@string/send_phone"
                         android:imeOptions="actionUnspecified"
                         android:inputType="text|number"

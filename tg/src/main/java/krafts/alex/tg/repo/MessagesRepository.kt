@@ -62,11 +62,12 @@ class MessagesRepository(context: Context) {
     private fun now() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()
 
     fun addExampleMessages() {
-        msgs.insert(stub(2, "you can track what messages was removed from the chat", true))
-        msgs.insert(stub(3, "and what has been edited", false, true))
+        msgs.insert(stub(1, "you can track what messages are removed from Telegram chat", true))
+        msgs.insert(stub(2, "and what has been edited", false, true))
         edits.addExampleEdits()
-        msgs.insert(stub(4, "you can delete permanently those messages by swipe left", true))
-        msgs.insert(stub(5, "you can see user online activity at the chart above", true))
+        msgs.insert(stub(3, "you can see user online activity at the chart above", true))
+        msgs.insert(stub(4, "double tap on chart to zoom in", true))
+        msgs.insert(stub(5, "swipe left to permanently delete message", true))
         msgs.insert(stub(6, "chat demo is here", true))
     }
 
