@@ -38,5 +38,6 @@ class SettingsFragment : PreferenceFragmentCompat(),
     companion object {
         const val DARK_KEY = "dark_theme"
         const val HIDE_EDIT = "hide_edits"
+        const val REVERSE_SCROLL = "reverse_scrolling"
     }
 }

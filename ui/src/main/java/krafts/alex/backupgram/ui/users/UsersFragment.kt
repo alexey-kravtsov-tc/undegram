@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_users.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
@@ -33,10 +34,19 @@ class UsersFragment : Fragment() {
                 placeholder.visibility = if (it.count() > 3) View.GONE else View.VISIBLE
             }
         })
+        val reverse = PreferenceManager
+            .getDefaultSharedPreferences(activity)
+            .getBoolean(SettingsFragment.REVERSE_SCROLL, false)
+
 
         // Set the adapter
         with(list) {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = if (reverse) {
+                LinearLayoutManager(context, RecyclerView.VERTICAL, true)
+            } else {
+                LinearLayoutManager(context)
+            }
+
             adapter = adapt
         }
     }

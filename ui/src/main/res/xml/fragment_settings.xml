@@ -6,6 +6,10 @@
         app:title="Dark Theme" />
 
     <SwitchPreferenceCompat
+        app:key="reverse_scrolling"
+        app:title="Scroll items down" />
+
+    <SwitchPreferenceCompat
         app:key="hide_edits"
         app:title="Hide message edits history" />
 
