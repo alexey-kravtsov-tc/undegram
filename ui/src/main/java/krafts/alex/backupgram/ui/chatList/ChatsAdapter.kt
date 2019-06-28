@@ -3,15 +3,15 @@ package krafts.alex.backupgram.ui.chatList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.tg.entity.Message
 import java.io.File
 
-class ChatsAdapter: RecyclerView.Adapter<ChatViewHolder>() {
+class ChatsAdapter : RecyclerView.Adapter<ChatViewHolder>() {
 
     private var values: MutableList<Message> = mutableListOf()
 
@@ -31,11 +31,10 @@ class ChatsAdapter: RecyclerView.Adapter<ChatViewHolder>() {
 
 
         if (item.chat == null) {
-//            BackApp.loginClient.getChatInfo(item.chatId)
+            //            BackApp.loginClient.getChatInfo(item.chatId)
         }
 
-        holder.name.text = item?.chat?.title ?:
-            item.user?.let { it.firstName + " " + it.lastName }
+        holder.name.text = item?.chat?.title ?: item.user?.let { it.firstName + " " + it.lastName }
 
         (item.chat?.photoBig ?: item.user?.photoBig)?.let {
             if (it.downloaded)
@@ -48,16 +47,18 @@ class ChatsAdapter: RecyclerView.Adapter<ChatViewHolder>() {
         }
 
         holder.message.text = item.text
+        holder.avatar.transitionName = "avatar${item.id}"
 
         with(holder.view) {
             tag = item
             setOnClickListener { v ->
-                val item = v.tag as Message
-                val action =
-                    ChatListFragmentDirections.actionChatDetails(
-                        item.chatId
-                    )
-                Navigation.findNavController(v).navigate(action)
+                val message = v.tag as Message
+                val action = ChatListFragmentDirections.actionChatDetails(message.chatId)
+                val extras = FragmentNavigator.Extras.Builder()
+                extras.addSharedElement(
+                    holder.avatar, context.getString(R.string.avatar_transition)
+                )
+                Navigation.findNavController(v).navigate(action, extras.build())
             }
         }
     }

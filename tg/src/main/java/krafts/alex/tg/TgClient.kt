@@ -30,7 +30,8 @@ class TgClient(context: Context) {
 
     private val notificationManager = NotificationManagerCompat.from(context)
 
-    private val prefereneces = PreferenceManager.getDefaultSharedPreferences(context)
+    private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+
     private fun onAuthorizationStateUpdated(authorizationState: TdApi.AuthorizationState?) {
         if (authorizationState != null) {
             this.authorizationState = authorizationState
@@ -40,13 +41,13 @@ class TgClient(context: Context) {
             TdApi.AuthorizationStateWaitTdlibParameters.CONSTRUCTOR -> {
                 val parameters = TdApi.TdlibParameters().apply {
                     databaseDirectory = "/data/user/0/krafts.alex.backupgram.app/files/tdlib"
-                    useMessageDatabase = true
-                    useSecretChats = true
+                    useMessageDatabase = false
+                    useSecretChats = false
                     apiId = 327719
                     apiHash = "5a80c8bd8c05ffe941897a3faffe154a"
                     systemLanguageCode = "en"
                     deviceModel = "Desktop"
-                    systemVersion = "Unknown"
+                    systemVersion = "Undegram"
                     applicationVersion = "1.0"
                     enableStorageOptimizer = true
                 }
@@ -149,7 +150,7 @@ class TgClient(context: Context) {
                         messages.delete(id)
                         val user = users.get(message?.senderId ?: 0)
                         if (message?.isPersonal() == true && (user?.notifyDelete == true
-                                || prefereneces.getBoolean("notify_private", false))
+                                || preferences.getBoolean("notify_private", false))
                         ) {
                             val not = notificationCompat
                                 .setSmallIcon(R.drawable.ic_delete)

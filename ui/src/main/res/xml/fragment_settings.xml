@@ -6,8 +6,12 @@
         app:title="Dark Theme" />
 
     <SwitchPreferenceCompat
+        app:key="animations"
+        app:title="Transition animations" />
+
+    <SwitchPreferenceCompat
         app:key="reverse_scrolling"
-        app:title="Scroll items down" />
+        app:title="Reverse scrolling" />
 
     <SwitchPreferenceCompat
         app:key="hide_edits"

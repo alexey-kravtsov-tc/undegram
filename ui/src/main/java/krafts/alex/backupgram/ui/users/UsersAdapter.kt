@@ -3,6 +3,7 @@ package krafts.alex.backupgram.ui.users
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import krafts.alex.backupgram.ui.R
@@ -40,14 +41,17 @@ class UsersAdapter(
                     .into(holder.avatar)
         }
 
+        holder.avatar.transitionName = "avatar${item.id}"
+
         with(holder.view) {
             tag = item
             setOnClickListener { v ->
                 (v.tag as? User)?.let {
                     Navigation.findNavController(v).navigate(
-                        ChatListFragmentDirections.actionChatDetails(
-                            it.id.toLong()
-                        )
+                        ChatListFragmentDirections.actionChatDetails(it.id.toLong()),
+                        FragmentNavigator.Extras.Builder().addSharedElement(
+                            holder.avatar, context.getString(R.string.avatar_transition)
+                        ).build()
                     )
                 }
             }

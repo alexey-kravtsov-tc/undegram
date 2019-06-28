@@ -1,4 +1,4 @@
-package krafts.alex.backupgram.ui.settings
+package krafts.alex.backupgram.ui.utils
 
 import android.content.Context
 import android.graphics.Canvas

@@ -14,6 +14,7 @@
         android:layout_height="0dp"
         android:maxHeight="70dp"
         android:paddingEnd="@dimen/text_margin"
+        android:layout_marginStart="@dimen/text_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"

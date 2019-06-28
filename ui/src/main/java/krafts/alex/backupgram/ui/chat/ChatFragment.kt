@@ -12,18 +12,18 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionInflater
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_chat.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsFragment
-import krafts.alex.backupgram.ui.settings.SwipeToDeleteCallback
+import krafts.alex.backupgram.ui.utils.SwipeToDeleteCallback
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.backupgram.ui.utils.MinuteDataFormatter
 import java.io.File
@@ -31,10 +31,22 @@ import java.io.File
 class ChatFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_chat, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (PreferenceManager
+                .getDefaultSharedPreferences(activity)
+                .getBoolean(SettingsFragment.ANIMATIONS, false)
+        ) {
+            sharedElementEnterTransition = TransitionInflater.from(context)
+                .inflateTransition(android.R.transition.move)?.apply { duration = 200 }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,6 +63,7 @@ class ChatFragment : Fragment() {
         })
 
         with(list) {
+            itemAnimator = null
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = adapt
             itemTouchHelper.attachToRecyclerView(list)
@@ -65,7 +78,6 @@ class ChatFragment : Fragment() {
 
             axisLeft.apply {
                 legend.isEnabled = false
-                valueFormatter = DefaultValueFormatter(1)
                 setDrawGridLines(false)
                 axisMaximum = 1F
                 axisMinimum = 0.1F

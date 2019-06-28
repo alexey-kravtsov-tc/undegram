@@ -64,6 +64,7 @@ class MessagesAdapter(
             editsAdapter.setAll(it)
         })
         holder.editList.adapter = editsAdapter
+        holder.editList.itemAnimator = null
         holder.editList.visibility = if (item.edited) View.VISIBLE else View.GONE
         holder.separator.visibility = if (item.edited) View.VISIBLE else View.GONE
 
