@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.preference.PreferenceManager
@@ -19,18 +20,13 @@ import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_chat.*
-import kotlinx.android.synthetic.main.fragment_chat.list
-import kotlinx.android.synthetic.main.fragment_chat.placeholder
-import kotlinx.android.synthetic.main.fragment_users.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsFragment
 import krafts.alex.backupgram.ui.settings.SwipeToDeleteCallback
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.backupgram.ui.utils.MinuteDataFormatter
-import krafts.alex.backupgram.ui.utils.display
 import java.io.File
-import java.lang.StringBuilder
 
 class ChatFragment : Fragment() {
 
@@ -84,7 +80,12 @@ class ChatFragment : Fragment() {
                 valueFormatter = MinuteDataFormatter()
                 position = XAxis.XAxisPosition.BOTTOM
                 setDrawGridLines(false)
-                textColor = activity?.resources?.getColor(R.color.colorAccent) ?: Color.BLACK
+                setVisibleXRange(60F, 60 * 12f)
+                labelCount = 6
+
+                isGranularityEnabled = true
+                granularity = 60F
+
                 textColor = ContextCompat.getColor(context, R.color.colorAccent)
             }
 
@@ -176,10 +177,6 @@ class ChatFragment : Fragment() {
 
                 chart.invalidate()
 
-                val builder = StringBuilder()
-                it?.forEach {
-                    builder.appendln("${it.start.display()} - ${it.expires.display()}")
-                }
             })
         }
     }
