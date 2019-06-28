@@ -85,6 +85,7 @@ class ChatFragment : Fragment() {
                 position = XAxis.XAxisPosition.BOTTOM
                 setDrawGridLines(false)
                 textColor = activity?.resources?.getColor(R.color.colorAccent) ?: Color.BLACK
+                textColor = ContextCompat.getColor(context, R.color.colorAccent)
             }
 
         }
