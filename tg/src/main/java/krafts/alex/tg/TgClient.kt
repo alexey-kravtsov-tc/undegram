@@ -11,7 +11,7 @@ import krafts.alex.tg.entity.User
 import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.EditRepository
 import krafts.alex.tg.repo.MessagesRepository
-import krafts.alex.tg.repo.SessionRepository
+import krafts.alex.tg.repo.SessionRepositoryImpl
 import krafts.alex.tg.repo.UsersRepository
 import org.drinkless.td.libcore.telegram.Client
 import org.drinkless.td.libcore.telegram.TdApi
@@ -117,7 +117,10 @@ class TgClient(context: Context) {
     private val messages = MessagesRepository(context)
     private val users = UsersRepository(context)
     private val chats = ChatRepository(context)
-    private val sessions = SessionRepository(context)
+    private val sessions = SessionRepositoryImpl(
+        TgDataBase.getInstance(context).sessions(),
+        TgDataBase.getInstance(context).users()
+    )
     private val messageEdits = EditRepository(context)
 
     private fun createClient(): Client = Client.create(Client.ResultHandler {

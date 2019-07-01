@@ -26,9 +26,17 @@ import krafts.alex.backupgram.ui.settings.SettingsFragment
 import krafts.alex.backupgram.ui.utils.SwipeToDeleteCallback
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.backupgram.ui.utils.MinuteDataFormatter
+import krafts.alex.tg.repo.SessionRepository
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 import java.io.File
 
-class ChatFragment : Fragment() {
+class ChatFragment : Fragment(), KodeinAware {
+
+    override val kodein by closestKodein()
+
+    private val sessionRepository : SessionRepository by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -127,8 +135,8 @@ class ChatFragment : Fragment() {
 
 
             user?.let {
-                val timeYesterday = BackApp.sessions.getYesterdayTotal(user.id)
-                val timeToday = BackApp.sessions.getTodayTotal(user.id)
+                val timeYesterday = sessionRepository.getYesterdayTotal(user.id)
+                val timeToday = sessionRepository.getTodayTotal(user.id)
 
                 //TODO: use proper time formatting
                 if (timeYesterday + timeToday > 60) {
@@ -160,7 +168,7 @@ class ChatFragment : Fragment() {
                 }
 
             })
-            BackApp.sessions.getSessionsForUser(args.chatId.toInt()).observe(this, Observer {
+            sessionRepository.getSessionsForUser(args.chatId.toInt()).observe(this, Observer {
 
                 val values = ArrayList<Entry>()
 

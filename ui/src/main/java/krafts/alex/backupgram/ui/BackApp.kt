@@ -1,22 +1,34 @@
 package krafts.alex.backupgram.ui
 
 import android.app.Application
+import android.content.Context
+import androidx.preference.PreferenceManager
 import krafts.alex.tg.TgClient
+import krafts.alex.tg.TgModule
 import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.MessagesRepository
 import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.UsersRepository
-import android.content.Context
-import androidx.preference.PreferenceManager
+import org.kodein.di.Kodein.Companion.lazy
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.androidXModule
+import org.kodein.di.generic.instance
 import services.DumbService
 
-class BackApp : Application() {
+class BackApp : Application(), KodeinAware {
+
+    private val sessionRepository : SessionRepository by instance()
+
+    override val kodein = lazy {
+        import(androidXModule(this@BackApp))
+        import(TgModule.resolve(applicationContext))
+        import(ViewModelFactory.viewModelModule)
+    }
 
     override fun onCreate() {
         messages = MessagesRepository(applicationContext)
         users = UsersRepository(applicationContext)
         chats = ChatRepository(applicationContext)
-        sessions = SessionRepository(applicationContext)
         loginClient = TgClient(applicationContext)
 
 
@@ -34,7 +46,7 @@ class BackApp : Application() {
 
         users.addExampleUser()
         messages.addExampleMessages()
-        sessions.addExampleSessions()
+        sessionRepository.addExampleSessions()
         chats.addExampleChat()
 
         PreferenceManager
@@ -55,7 +67,6 @@ class BackApp : Application() {
         lateinit var messages: MessagesRepository
         lateinit var users: UsersRepository
         lateinit var chats: ChatRepository
-        lateinit var sessions: SessionRepository
     }
 }
 

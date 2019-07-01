@@ -10,45 +10,46 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_users.*
-import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsFragment
+import krafts.alex.backupgram.ui.viewModel
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
 
-class UsersFragment : Fragment() {
+class UsersFragment : Fragment(), KodeinAware {
+
+    override val kodein by closestKodein()
+
+    private val viewModel : UsersViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_users, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.fragment_users, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val adapt = UsersAdapter(emptyList())
 
-        BackApp.sessions.getUsersBySessionCount().observe(this, Observer {
+        viewModel.usersBySessionCount?.observe(this, Observer {
             it?.let {
                 adapt.setAll(it)
                 placeholder.visibility = if (it.count() > 3) View.GONE else View.VISIBLE
             }
         })
+
         val reverse = PreferenceManager
             .getDefaultSharedPreferences(activity)
             .getBoolean(SettingsFragment.REVERSE_SCROLL, false)
 
-
-        // Set the adapter
         with(list) {
-            layoutManager = if (reverse) {
-                LinearLayoutManager(context, RecyclerView.VERTICAL, true)
-            } else {
-                LinearLayoutManager(context)
-            }
-
+            layoutManager = LinearLayoutManager(
+                context,
+                RecyclerView.VERTICAL,
+                reverse
+            )
             adapter = adapt
         }
     }
 }
-
