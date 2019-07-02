@@ -10,46 +10,43 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_chat_list.*
-import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsFragment
+import krafts.alex.backupgram.ui.settings.SettingsRepo
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import krafts.alex.backupgram.ui.viewModel
+import org.kodein.di.generic.instance
 
-class ChatListFragment : Fragment() {
+class ChatListFragment : Fragment(), KodeinAware {
+
+    override val kodein: Kodein by closestKodein()
+
+    private val viewModel: ChatListViewModel by viewModel()
+
+    private val settings: SettingsRepo by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_chat_list, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.fragment_chat_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val adapt = ChatsAdapter()
 
-        val hideEdited = PreferenceManager
-            .getDefaultSharedPreferences(activity)
-            .getBoolean(SettingsFragment.HIDE_EDIT, false)
-
-        BackApp.messages.getAllRemoved(hideEdited).observe(this, Observer {
+        viewModel.lastMessagesPerChat.observe(this, Observer {
             it?.let {
                 adapt.setAll(it)
                 placeholder.visibility = if (it.count() > 2) View.GONE else View.VISIBLE
             }
         })
-        val reverse = PreferenceManager
-            .getDefaultSharedPreferences(activity)
-            .getBoolean(SettingsFragment.REVERSE_SCROLL, false)
+        list?.adapter = adapt
 
-        // Set the adapter
-        list?.let {
-            it.layoutManager = if (reverse) {
-                LinearLayoutManager(context, RecyclerView.VERTICAL, true)
-            } else {
-                LinearLayoutManager(context)
-            }
-            it.adapter = adapt
-        }
+        settings.reverseSroll.observe(this, Observer { reverse ->
+            list?.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, reverse)
+        })
     }
 }

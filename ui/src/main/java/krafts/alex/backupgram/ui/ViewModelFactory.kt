@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import krafts.alex.backupgram.ui.chatList.ChatListViewModel
 import krafts.alex.backupgram.ui.users.UsersViewModel
 import org.kodein.di.DKodein
 import org.kodein.di.Kodein
@@ -27,6 +28,7 @@ class ViewModelFactory(private val injector: DKodein) :
         val viewModelModule = Kodein.Module(name = "viewModelModule") {
             bind<ViewModelProvider.Factory>() with singleton { ViewModelFactory(kodein.direct) }
             bindViewModel<UsersViewModel>() with provider { UsersViewModel(instance()) }
+            bindViewModel<ChatListViewModel>() with provider { ChatListViewModel(instance(), instance()) }
         }
 
         private inline fun <reified T : ViewModel> Kodein.Builder.bindViewModel(

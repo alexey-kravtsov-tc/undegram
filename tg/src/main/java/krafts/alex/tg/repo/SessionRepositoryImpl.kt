@@ -8,10 +8,10 @@ import krafts.alex.tg.entity.Session
 import org.drinkless.td.libcore.telegram.TdApi
 import java.util.concurrent.TimeUnit
 
-class SessionRepository(
+class SessionRepositoryImpl(
     private val sessionsDao: SessionsDao,
     private val usersDao: UsersDao
-) : ISessionRepository {
+) : SessionRepository {
 
     override fun updateSession(userStatus: TdApi.UpdateUserStatus) {
         (userStatus.status as? TdApi.UserStatusOnline)?.let { status ->

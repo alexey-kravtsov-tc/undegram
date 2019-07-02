@@ -3,6 +3,7 @@ package krafts.alex.backupgram.ui
 import android.app.Application
 import android.content.Context
 import androidx.preference.PreferenceManager
+import krafts.alex.backupgram.ui.settings.SettingsRepo
 import krafts.alex.tg.TgClient
 import krafts.alex.tg.TgModule
 import krafts.alex.tg.repo.ChatRepository
@@ -12,7 +13,9 @@ import krafts.alex.tg.repo.UsersRepository
 import org.kodein.di.Kodein.Companion.lazy
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
+import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.singleton
 import services.DumbService
 
 class BackApp : Application(), KodeinAware {
@@ -21,6 +24,7 @@ class BackApp : Application(), KodeinAware {
 
     override val kodein = lazy {
         import(androidXModule(this@BackApp))
+        bind() from singleton { SettingsRepo(applicationContext) }
         import(TgModule.resolve(applicationContext))
         import(ViewModelFactory.viewModelModule)
     }
