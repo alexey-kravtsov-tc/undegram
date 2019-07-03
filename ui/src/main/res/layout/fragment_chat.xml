@@ -74,7 +74,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.github.mikephil.charting.charts.LineChart
+    <krafts.alex.backupgram.ui.chat.UserTimelineChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="70dp"

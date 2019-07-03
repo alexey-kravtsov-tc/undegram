@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_chat_list.*
 import krafts.alex.backupgram.ui.R
-import krafts.alex.backupgram.ui.settings.SettingsFragment
-import krafts.alex.backupgram.ui.settings.SettingsRepo
+import krafts.alex.backupgram.ui.settings.SettingsRepository
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -25,7 +23,7 @@ class ChatListFragment : Fragment(), KodeinAware {
 
     private val viewModel: ChatListViewModel by viewModel()
 
-    private val settings: SettingsRepo by instance()
+    private val settings: SettingsRepository by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +43,7 @@ class ChatListFragment : Fragment(), KodeinAware {
         })
         list?.adapter = adapt
 
-        settings.reverseSroll.observe(this, Observer { reverse ->
+        settings.reverseScroll.observe(this, Observer { reverse ->
             list?.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, reverse)
         })
     }

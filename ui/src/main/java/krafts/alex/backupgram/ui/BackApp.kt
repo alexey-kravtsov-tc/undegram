@@ -3,7 +3,7 @@ package krafts.alex.backupgram.ui
 import android.app.Application
 import android.content.Context
 import androidx.preference.PreferenceManager
-import krafts.alex.backupgram.ui.settings.SettingsRepo
+import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.tg.TgClient
 import krafts.alex.tg.TgModule
 import krafts.alex.tg.repo.ChatRepository
@@ -24,7 +24,7 @@ class BackApp : Application(), KodeinAware {
 
     override val kodein = lazy {
         import(androidXModule(this@BackApp))
-        bind() from singleton { SettingsRepo(applicationContext) }
+        bind() from singleton { SettingsRepository(applicationContext) }
         import(TgModule.resolve(applicationContext))
         import(ViewModelFactory.viewModelModule)
     }
