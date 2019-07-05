@@ -1,13 +1,12 @@
 package krafts.alex.backupgram.ui
 
+import android.content.Context
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.preference.PreferenceManager
@@ -41,6 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            nav_host_fragment.view?.let { hideKeyboard(it) }
+        }
+
         (bottom_nav)?.let {
             NavigationUI.setupWithNavController(it, navController)
             NavigationUI.setupActionBarWithNavController(this, navController)
@@ -69,22 +72,15 @@ class MainActivity : AppCompatActivity() {
         Fabric.with(this, Crashlytics())
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-
-        if (id == R.id.settings_destination) {
-            return true
+    private fun hideKeyboard(view: View) {
+        currentFocus?.let {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as?
+                InputMethodManager
+            imm?.hideSoftInputFromWindow(view.windowToken, 0)
         }
-
-        return super.onOptionsItemSelected(item)
     }
+
+    override fun onSupportNavigateUp(): Boolean = NavigationUI.navigateUp(
+        Navigation.findNavController(this, R.id.nav_host_fragment), null
+    )
 }

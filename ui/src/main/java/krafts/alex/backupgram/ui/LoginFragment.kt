@@ -52,7 +52,6 @@ class LoginFragment : Fragment() {
         }
         TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             snackbar.show()
-            hideKeyboard(view)
             controller.popBackStack(R.id.messages_destination, false)
             activity?.bottom_nav?.visibility = View.VISIBLE
         }
@@ -73,7 +72,6 @@ class LoginFragment : Fragment() {
             progress.visibility = View.VISIBLE
         }
         goBack?.setOnClickListener {
-            hideKeyboard(view)
             controller.popBackStack(R.id.messages_destination, false)
         }
     }
@@ -84,13 +82,6 @@ class LoginFragment : Fragment() {
         activity?.bottom_nav?.visibility = View.GONE
     }
 
-    private fun hideKeyboard(view: View) {
-        this.activity?.currentFocus?.let {
-            val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as?
-                InputMethodManager
-            imm?.hideSoftInputFromWindow(view.windowToken, 0)
-        }
-    }
 
     override fun onDetach() {
         super.onDetach()
