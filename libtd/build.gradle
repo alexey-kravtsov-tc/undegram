@@ -36,17 +36,12 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            minifyEnabled false
         }
     }
 
-    lintOptions {
-        // use this line to check all rules except those listed
-        disable 'InvalidPackage'
-    }
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.0.2'
+    implementation 'androidx.annotation:annotation:1.1.0'
 }

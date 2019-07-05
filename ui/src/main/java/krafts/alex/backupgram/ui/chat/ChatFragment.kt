@@ -21,6 +21,7 @@ import krafts.alex.backupgram.ui.settings.SettingsFragment
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.backupgram.ui.utils.SwipeToDeleteCallback
+import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.User
 import krafts.alex.tg.repo.SessionRepository
 import org.kodein.di.KodeinAware
@@ -44,7 +45,6 @@ class ChatFragment : Fragment(), KodeinAware {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        postponeEnterTransition()
         settings.animations.observe(this, Observer { animate ->
             sharedElementEnterTransition = TransitionInflater.from(context)
                 .inflateTransition(android.R.transition.move)?.apply { duration = 200 }
@@ -72,6 +72,9 @@ class ChatFragment : Fragment(), KodeinAware {
                         .into(avatar)
             }
 
+            postponeEnterTransition()
+
+            chat?.let { setChatInfo(chat)}
             user?.let { setTimeTable(user) }
 
             showMessages(view, args.chatId)
@@ -133,11 +136,14 @@ class ChatFragment : Fragment(), KodeinAware {
         })
     }
 
-    private fun setTimeTable(user: User) {
-        total.text = "Some info about chat"
+    private fun setChatInfo(chat: Chat) {
+        total.text = getString(R.string.chat_total_stub)
         yesterday.text = ""
         today.text = ""
         chart.visibility = View.GONE
+    }
+
+    private fun setTimeTable(user: User) {
 
         val timeYesterday = sessionRepository.getYesterdayTotal(user.id)
         val timeToday = sessionRepository.getTodayTotal(user.id)
@@ -154,6 +160,8 @@ class ChatFragment : Fragment(), KodeinAware {
             chart.visibility = View.VISIBLE
         } else {
             total.text = getString(R.string.collecting_data)
+            yesterday.text = ""
+            today.text = ""
         }
     }
 

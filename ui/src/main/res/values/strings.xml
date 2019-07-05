@@ -29,5 +29,6 @@
     <string name="collecting_data">Collecting data...</string>
     <string name="avatar_transition">avatar_transition</string>
     <string name="view_transition">view_transition</string>
+    <string name="chat_total_stub">Some info about chat</string>
 
 </resources>
