@@ -48,7 +48,6 @@ dependencies {
     implementation project(':ui')
     implementation project(':base')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.firebase:firebase-core:17.0.0'
 }
 repositories {
     mavenCentral()

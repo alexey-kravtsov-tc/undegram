@@ -6,20 +6,27 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import androidx.preference.PreferenceManager
-import com.google.android.material.snackbar.Snackbar
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import krafts.alex.backupgram.ui.settings.SettingsFragment
 import krafts.alex.tg.AuthOk
 import krafts.alex.tg.TgEvent
 import com.crashlytics.android.Crashlytics
 import io.fabric.sdk.android.Fabric
+import krafts.alex.backupgram.ui.settings.SettingsRepository
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.closestKodein
+import org.kodein.di.generic.instance
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), KodeinAware {
+
+    override val kodein: Kodein by closestKodein()
+
+    private val settings: SettingsRepository by instance()
 
     private lateinit var navController: NavController
 
@@ -27,14 +34,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        delegate.localNightMode = if (PreferenceManager
-                .getDefaultSharedPreferences(this)
-                .getBoolean(SettingsFragment.DARK_KEY, false)
-        ) {
-            AppCompatDelegate.MODE_NIGHT_YES
-        } else {
-            AppCompatDelegate.MODE_NIGHT_NO
-        }
+        settings.darkMode.observe(this, Observer { dark ->
+            delegate.localNightMode = if (dark) {
+                AppCompatDelegate.MODE_NIGHT_YES
+            } else {
+                AppCompatDelegate.MODE_NIGHT_NO
+            }
+        })
 
         setSupportActionBar(toolbar)
 
@@ -48,18 +54,6 @@ class MainActivity : AppCompatActivity() {
             NavigationUI.setupWithNavController(it, navController)
             NavigationUI.setupActionBarWithNavController(this, navController)
         }
-        if (BackApp.loginClient?.haveAuthorization == false) {
-            navController.navigate(R.id.login_destination)
-            button_login.visibility = View.VISIBLE
-        } else {
-            BackApp.startService(applicationContext)
-            button_login.visibility = View.GONE
-        }
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
 
         button_login.setOnClickListener {
             navController.navigate(R.id.login_destination)
@@ -67,9 +61,20 @@ class MainActivity : AppCompatActivity() {
 
         TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
             BackApp.startService(applicationContext)
-            button_login.visibility = View.GONE
+            button_login?.visibility = View.GONE
         }
         Fabric.with(this, Crashlytics())
+    }
+
+    override fun onStart() {
+        if (BackApp.loginClient?.haveAuthorization == false) {
+            navController.navigate(R.id.login_destination)
+            button_login.visibility = View.VISIBLE
+        } else {
+            BackApp.startService(applicationContext)
+            button_login.visibility = View.GONE
+        }
+        super.onStart()
     }
 
     private fun hideKeyboard(view: View) {

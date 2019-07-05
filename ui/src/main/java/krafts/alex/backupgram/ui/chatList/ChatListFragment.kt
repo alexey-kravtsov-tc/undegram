@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.crashlytics.android.Crashlytics
 import kotlinx.android.synthetic.main.fragment_chat_list.*
+import krafts.alex.backupgram.ui.FragmentBase
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import org.kodein.di.Kodein
@@ -17,13 +19,9 @@ import org.kodein.di.android.x.closestKodein
 import krafts.alex.backupgram.ui.viewModel
 import org.kodein.di.generic.instance
 
-class ChatListFragment : Fragment(), KodeinAware {
-
-    override val kodein: Kodein by closestKodein()
+class ChatListFragment : FragmentBase() {
 
     private val viewModel: ChatListViewModel by viewModel()
-
-    private val settings: SettingsRepository by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +37,7 @@ class ChatListFragment : Fragment(), KodeinAware {
             it?.let {
                 adapt.setAll(it)
                 placeholder.visibility = if (it.count() > 2) View.GONE else View.VISIBLE
+                Crashlytics.setInt("chats_count", it.count())
             }
         })
         list?.adapter = adapt

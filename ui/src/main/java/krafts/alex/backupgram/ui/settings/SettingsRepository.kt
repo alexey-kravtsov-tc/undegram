@@ -15,6 +15,8 @@ class SettingsRepository(context: Context) {
 
     val animations = bool(SettingsFragment.ANIMATIONS)
 
+    val darkMode = bool(SettingsFragment.DARK_KEY)
+
     private fun bool(key: String) = LivePref.Bool(sharedPrefs, key)
 
 }

@@ -2,6 +2,7 @@ package krafts.alex.backupgram.ui.settings
 
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
+import com.crashlytics.android.Crashlytics
 
 sealed class LivePref<T>(
     private val sharedPrefs: SharedPreferences,
@@ -28,7 +29,11 @@ sealed class LivePref<T>(
     }
 
     class Bool(sharedPrefs: SharedPreferences, key: String) :
-        LivePref<Boolean>(sharedPrefs, key, { getBoolean(key, false) })
+        LivePref<Boolean>(sharedPrefs, key, {
+            val value = getBoolean(key, false)
+            Crashlytics.setBool(key, value)
+            value
+        })
 
     class Text(sharedPrefs: SharedPreferences, key: String) :
         LivePref<String>(sharedPrefs, key, { getString(key, "") ?: "" })

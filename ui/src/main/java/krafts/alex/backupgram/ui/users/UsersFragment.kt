@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.crashlytics.android.Crashlytics
 import kotlinx.android.synthetic.main.fragment_users.list
 import kotlinx.android.synthetic.main.fragment_users.placeholder
+import krafts.alex.backupgram.ui.FragmentBase
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.backupgram.ui.viewModel
@@ -17,13 +19,9 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class UsersFragment : Fragment(), KodeinAware {
-
-    override val kodein by closestKodein()
+class UsersFragment : FragmentBase() {
 
     private val viewModel : UsersViewModel by viewModel()
-
-    private val settings: SettingsRepository by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +37,7 @@ class UsersFragment : Fragment(), KodeinAware {
             it?.let {
                 adapt.setAll(it)
                 placeholder.visibility = if (it.count() > 3) View.GONE else View.VISIBLE
+                Crashlytics.setInt("users_count", it.count())
             }
         })
 

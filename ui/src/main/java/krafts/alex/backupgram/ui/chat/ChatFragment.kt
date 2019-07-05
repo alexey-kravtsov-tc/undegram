@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_chat.*
 import krafts.alex.backupgram.ui.BackApp
+import krafts.alex.backupgram.ui.FragmentBase
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.settings.SettingsFragment
 import krafts.alex.backupgram.ui.settings.SettingsRepository
@@ -29,13 +30,9 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import java.io.File
 
-class ChatFragment : Fragment(), KodeinAware {
-
-    override val kodein by closestKodein()
+class ChatFragment : FragmentBase() {
 
     private val sessionRepository: SessionRepository by instance()
-
-    private val settings: SettingsRepository by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -137,6 +134,9 @@ class ChatFragment : Fragment(), KodeinAware {
     }
 
     private fun setChatInfo(chat: Chat) {
+        if (chat.id == 1L) {
+            analytics.logEvent("demo_user", null)
+        }
         total.text = getString(R.string.chat_total_stub)
         yesterday.text = ""
         today.text = ""

@@ -3,6 +3,7 @@ package krafts.alex.backupgram.ui
 import android.app.Application
 import android.content.Context
 import androidx.preference.PreferenceManager
+import com.google.firebase.analytics.FirebaseAnalytics
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.tg.TgClient
 import krafts.alex.tg.TgModule
@@ -24,6 +25,7 @@ class BackApp : Application(), KodeinAware {
 
     override val kodein = lazy {
         import(androidXModule(this@BackApp))
+        bind() from singleton { FirebaseAnalytics.getInstance(applicationContext) }
         bind() from singleton { SettingsRepository(applicationContext) }
         import(TgModule.resolve(applicationContext))
         import(ViewModelFactory.viewModelModule)
