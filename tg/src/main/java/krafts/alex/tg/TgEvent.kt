@@ -5,7 +5,7 @@ import io.reactivex.subjects.PublishSubject
 
 object EnterPhone
 object EnterCode
-object EnterPassword
+data class EnterPassword(val hint: String)
 object AuthOk
 
 object TgEvent {

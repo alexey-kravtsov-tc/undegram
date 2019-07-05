@@ -37,8 +37,8 @@ class TgClient(context: Context) {
             this.authorizationState = authorizationState
         }
         Log.e("--------state updated", authorizationState.toString())
-        when (authorizationState?.constructor) {
-            TdApi.AuthorizationStateWaitTdlibParameters.CONSTRUCTOR -> {
+        when (authorizationState) {
+            is TdApi.AuthorizationStateWaitTdlibParameters-> {
                 val parameters = TdApi.TdlibParameters().apply {
                     databaseDirectory = "/data/user/0/krafts.alex.backupgram.app/files/tdlib"
                     useMessageDatabase = false
@@ -54,36 +54,36 @@ class TgClient(context: Context) {
                 sendClient(TdApi.SetTdlibParameters(parameters))
             }
 
-            TdApi.AuthorizationStateWaitEncryptionKey.CONSTRUCTOR -> sendClient(TdApi.CheckDatabaseEncryptionKey())
+            is TdApi.AuthorizationStateWaitEncryptionKey -> sendClient(TdApi.CheckDatabaseEncryptionKey())
 
-            TdApi.AuthorizationStateWaitPhoneNumber.CONSTRUCTOR -> {
+            is TdApi.AuthorizationStateWaitPhoneNumber -> {
                 TgEvent.publish(EnterPhone)
             }
 
-            TdApi.AuthorizationStateWaitCode.CONSTRUCTOR -> {
+            is TdApi.AuthorizationStateWaitCode -> {
                 TgEvent.publish(EnterCode)
             }
 
-            TdApi.AuthorizationStateWaitPassword.CONSTRUCTOR -> {
-                TgEvent.publish(EnterPassword)
+            is TdApi.AuthorizationStateWaitPassword -> {
+                TgEvent.publish(EnterPassword(authorizationState.passwordHint))
             }
 
-            TdApi.AuthorizationStateReady.CONSTRUCTOR -> {
+            is TdApi.AuthorizationStateReady -> {
                 TgEvent.publish(AuthOk)
                 haveAuthorization = true
             }
 
-            TdApi.AuthorizationStateLoggingOut.CONSTRUCTOR -> {
+            is TdApi.AuthorizationStateLoggingOut -> {
                 haveAuthorization = false
                 print("Logging out")
             }
 
-            TdApi.AuthorizationStateClosing.CONSTRUCTOR -> {
+            is TdApi.AuthorizationStateClosing -> {
                 haveAuthorization = false
                 print("Closing")
             }
 
-            TdApi.AuthorizationStateClosed.CONSTRUCTOR -> {
+            is TdApi.AuthorizationStateClosed -> {
                 print("Closed")
                 if (!quiting) {
                     client = createClient() // recreate client after previous has closed

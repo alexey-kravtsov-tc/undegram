@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
     compileSdkVersion 28
@@ -12,8 +13,8 @@ android {
         applicationId "krafts.alex.backupgram.app"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.0-alpha4"
+        versionCode 5
+        versionName "1.0-alpha5"
 
         multiDexEnabled true
 

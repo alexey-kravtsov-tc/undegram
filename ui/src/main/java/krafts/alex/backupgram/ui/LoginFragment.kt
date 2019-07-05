@@ -41,6 +41,7 @@ class LoginFragment : FragmentBase() {
             progress?.visibility = View.GONE
             password_enter_form?.visibility = View.VISIBLE
             goBack?.visibility = View.GONE
+            password?.hint = "${getString(R.string.prompt_password)} (${it.hint})"
             log("Enter password step")
         }
         TgEvent.listen<EnterCode>().observeOn(AndroidSchedulers.mainThread()).subscribe {
@@ -93,5 +94,4 @@ class LoginFragment : FragmentBase() {
             activity?.button_login?.visibility = View.VISIBLE
         }
     }
-
 }
