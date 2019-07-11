@@ -32,6 +32,19 @@ class TgClient(context: Context) {
 
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
 
+    init {
+        sendClient(
+            with(TgConfig.Vpn) {
+                TdApi.AddProxy(
+                    ip,
+                    port,
+                    true,
+                    TdApi.ProxyTypeSocks5(username, password)
+                )
+            }
+        )
+    }
+
     private fun onAuthorizationStateUpdated(authorizationState: TdApi.AuthorizationState?) {
         if (authorizationState != null) {
             this.authorizationState = authorizationState
@@ -43,8 +56,8 @@ class TgClient(context: Context) {
                     databaseDirectory = "/data/user/0/krafts.alex.backupgram.app/files/tdlib"
                     useMessageDatabase = false
                     useSecretChats = false
-                    apiId = 000000
-                    apiHash = "hash"
+                    apiId = TgConfig.apiId
+                    apiHash = TgConfig.apiHash
                     systemLanguageCode = "en"
                     deviceModel = "Desktop"
                     systemVersion = "Undegram"
