@@ -43,8 +43,8 @@ class TgClient(context: Context) {
                     databaseDirectory = "/data/user/0/krafts.alex.backupgram.app/files/tdlib"
                     useMessageDatabase = false
                     useSecretChats = false
-                    apiId = 327719
-                    apiHash = "5a80c8bd8c05ffe941897a3faffe154a"
+                    apiId = 000000
+                    apiHash = "hash"
                     systemLanguageCode = "en"
                     deviceModel = "Desktop"
                     systemVersion = "Undegram"
@@ -104,6 +104,14 @@ class TgClient(context: Context) {
 
     fun sendPassword(password: String) {
         sendClient(TdApi.CheckAuthenticationPassword(password))
+    }
+
+    fun registerFirebaseNotifications(token: String) {
+        sendClient(
+            TdApi.RegisterDevice(
+                TdApi.DeviceTokenFirebaseCloudMessaging(token, false), null
+            )
+        )
     }
 
     fun getChatInfo(chatId: Long) {

@@ -38,5 +38,4 @@ class KeepAliveService : Service() {
         //...
         return START_NOT_STICKY
     }
-
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.preference.PreferenceManager
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.iid.FirebaseInstanceId
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.tg.TgClient
 import krafts.alex.tg.TgModule
@@ -40,6 +41,9 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
         users = UsersRepository(applicationContext)
         chats = ChatRepository(applicationContext)
 
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
+            it.token.let { token -> client?.registerFirebaseNotifications(token) }
+        }
 
         if (!PreferenceManager
                 .getDefaultSharedPreferences(applicationContext)
