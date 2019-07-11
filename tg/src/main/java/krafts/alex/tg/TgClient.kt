@@ -242,13 +242,12 @@ class TgClient(context: Context) {
     private fun sendClient(query: TdApi.Function) {
         client.send(query) {
             when (it) {
-                is TdApi.Error-> {
+                is TdApi.Error -> {
                     Log.e(this.toString(), it.message)
                     this.onAuthorizationStateUpdated(null) // repeat last action
                 }
 
                 is TdApi.Ok -> {
-
                     //TODO HANDLE OK RESPONSE FOR AuthorizationStateWaitEncryptionKey
                 }
 

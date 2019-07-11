@@ -1,11 +1,13 @@
 package krafts.alex.backupgram.ui
 
 import android.app.Application
+import android.content.Intent
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.preference.PreferenceManager
+import com.crashlytics.android.Crashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.iid.FirebaseInstanceId
 import krafts.alex.backupgram.ui.settings.SettingsRepository
@@ -36,6 +38,7 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
     }
 
     override fun onCreate() {
+        client = TgClient(applicationContext)
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         messages = MessagesRepository(applicationContext)
         users = UsersRepository(applicationContext)
@@ -55,19 +58,6 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
         super.onCreate()
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun stopForegroundService() {
-        client = TgClient(applicationContext)
-        KeepAliveService.stop(applicationContext)
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun startForegroundService() {
-        if (client?.haveAuthorization == true) {
-            KeepAliveService.start(applicationContext)
-        }
-    }
-
     private fun populateOnFirstStart() {
 
         users.addExampleUser()
@@ -82,9 +72,36 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
             .apply()
     }
 
-    companion object {
 
-        var client: TgClient? = null
+
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun stopForegroundService() {
+        val serviceIntent = Intent(applicationContext, KeepAliveService::class.java)
+
+        if (KeepAliveService.isServiceRunning(this)) {
+            stopService(serviceIntent)
+        } else {
+            Crashlytics.log("Service already stopped.")
+        }
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun startForegroundService() {
+        if (client.haveAuthorization) {
+            val serviceClass = KeepAliveService::class.java
+            val serviceIntent = Intent(applicationContext, serviceClass)
+
+            if (!KeepAliveService.isServiceRunning(this)) {
+                startService(serviceIntent)
+            } else {
+                Crashlytics.log("Service already running.")
+            }
+        }
+    }
+
+    companion object {
+        lateinit var client: TgClient
         lateinit var messages: MessagesRepository
         lateinit var users: UsersRepository
         lateinit var chats: ChatRepository

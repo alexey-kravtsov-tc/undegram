@@ -13,8 +13,8 @@ android {
         applicationId "krafts.alex.backupgram.app"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 5
-        versionName "1.0-alpha5"
+        versionCode 6
+        versionName "1.0-alpha6"
 
         multiDexEnabled true
 
