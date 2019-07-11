@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.recyclerview.widget.RecyclerView
+import com.crashlytics.android.Crashlytics
 import com.squareup.picasso.Picasso
+import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.chatList.ChatListFragmentDirections
 import krafts.alex.backupgram.ui.utils.CircleTransform
@@ -33,12 +35,15 @@ class UsersAdapter(
         holder.name.text = item.firstName + " " + item.lastName
 
         item.photoBig?.let {
-            if (it.downloaded)
+            if (it.downloaded) {
                 Picasso.get()
                     .load(File(it.localPath))
                     .placeholder(R.drawable.ic_users)
                     .transform(CircleTransform())
                     .into(holder.avatar)
+            } else {
+                BackApp.client?.loadImage(it.fileId)
+            }
         }
 
         holder.avatar.transitionName = "avatar${item.id}"

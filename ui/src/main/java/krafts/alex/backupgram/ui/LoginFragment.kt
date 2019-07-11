@@ -59,19 +59,19 @@ class LoginFragment : FragmentBase() {
         }
 
         button_send_phone.setOnClickListener {
-            BackApp.loginClient?.sendPhone(phone.text.toString())
+            BackApp.client?.sendPhone(phone.text.toString())
             phone_enter_form.visibility = View.GONE
             progress.visibility = View.VISIBLE
             log("Find phone")
         }
         button_send_code.setOnClickListener {
-            BackApp.loginClient?.sendCode(code.text.toString())
+            BackApp.client?.sendCode(code.text.toString())
             code_enter_form.visibility = View.GONE
             progress.visibility = View.VISIBLE
             log("Send code")
         }
         button_send_password.setOnClickListener {
-            BackApp.loginClient?.sendPassword(password.text.toString())
+            BackApp.client?.sendPassword(password.text.toString())
             password_enter_form.visibility = View.GONE
             progress.visibility = View.VISIBLE
             log("Send password")
@@ -90,7 +90,7 @@ class LoginFragment : FragmentBase() {
     override fun onDetach() {
         super.onDetach()
         activity?.bottom_nav?.visibility = View.VISIBLE
-        if (BackApp.loginClient?.haveAuthorization == false) {
+        if (BackApp.client?.haveAuthorization == false) {
             activity?.button_login?.visibility = View.VISIBLE
         }
     }

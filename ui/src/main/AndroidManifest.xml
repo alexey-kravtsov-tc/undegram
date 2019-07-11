@@ -31,7 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="services.DumbService" />
+        <service android:name="services.KeepAliveService" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="dcddb58b1acaaa6bd37f9622f38f4c0912ea3099" />

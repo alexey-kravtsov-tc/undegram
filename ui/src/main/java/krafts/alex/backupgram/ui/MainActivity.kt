@@ -46,6 +46,11 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
+        button_login.visibility = if (BackApp.client?.haveAuthorization == false) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
         navController.addOnDestinationChangedListener { _, _, _ ->
             nav_host_fragment.view?.let { hideKeyboard(it) }
         }
@@ -60,19 +65,14 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         }
 
         TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            BackApp.startService(applicationContext)
             button_login?.visibility = View.GONE
         }
         Fabric.with(this, Crashlytics())
     }
 
     override fun onStart() {
-        if (BackApp.loginClient?.haveAuthorization == false) {
+        if (BackApp.client?.haveAuthorization == false) {
             navController.navigate(R.id.login_destination)
-            button_login.visibility = View.VISIBLE
-        } else {
-            BackApp.startService(applicationContext)
-            button_login.visibility = View.GONE
         }
         super.onStart()
     }

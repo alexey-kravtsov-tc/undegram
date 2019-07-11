@@ -5,9 +5,8 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import krafts.alex.tg.TgClient
 
-class DumbService : Service() {
+class KeepAliveService : Service() {
 
     override fun onBind(p0: Intent?): IBinder? {
         return null
@@ -15,7 +14,7 @@ class DumbService : Service() {
 
     companion object {
         private val LAUNCHER =
-            ForegroundServiceLauncher(DumbService::class.java)
+            ForegroundServiceLauncher(KeepAliveService::class.java)
 
         private val NOTIFICATION_ID = 10
 
@@ -35,12 +34,9 @@ class DumbService : Service() {
         LAUNCHER.onServiceCreated(this)
     }
 
-
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         //...
-        val client = TgClient(this)
-
         return START_NOT_STICKY
     }
+
 }

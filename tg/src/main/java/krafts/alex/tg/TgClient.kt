@@ -38,7 +38,7 @@ class TgClient(context: Context) {
         }
         Log.e("--------state updated", authorizationState.toString())
         when (authorizationState) {
-            is TdApi.AuthorizationStateWaitTdlibParameters-> {
+            is TdApi.AuthorizationStateWaitTdlibParameters -> {
                 val parameters = TdApi.TdlibParameters().apply {
                     databaseDirectory = "/data/user/0/krafts.alex.backupgram.app/files/tdlib"
                     useMessageDatabase = false
@@ -108,6 +108,10 @@ class TgClient(context: Context) {
 
     fun getChatInfo(chatId: Long) {
         sendClient(TdApi.GetChat(chatId))
+    }
+
+    fun loadImage(id: Int) {
+        sendClient(TdApi.DownloadFile(id, 32, 0, 0, false))
     }
 
     private fun print(msg: String) {
@@ -216,15 +220,22 @@ class TgClient(context: Context) {
 
     private fun sendClient(query: TdApi.Function) {
         client.send(query) {
-            when (it.constructor) {
-                TdApi.Error.CONSTRUCTOR -> {
-                    Log.e(this.toString(), (it as TdApi.Error).message)
+            when (it) {
+                is TdApi.Error-> {
+                    Log.e(this.toString(), it.message)
                     this.onAuthorizationStateUpdated(null) // repeat last action
                 }
 
-                TdApi.Ok.CONSTRUCTOR -> {
+                is TdApi.Ok -> {
 
                     //TODO HANDLE OK RESPONSE FOR AuthorizationStateWaitEncryptionKey
+                }
+
+                is TdApi.File -> {
+                    if (it.local.isDownloadingCompleted) {
+                        users.updateImage(it)
+                        chats.updateImage(it)
+                    }
                 }
 
                 else -> print("Receive wrong response from TDLib")

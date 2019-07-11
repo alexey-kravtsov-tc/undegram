@@ -1,7 +1,10 @@
 package krafts.alex.backupgram.ui
 
 import android.app.Application
-import android.content.Context
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.preference.PreferenceManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import krafts.alex.backupgram.ui.settings.SettingsRepository
@@ -17,11 +20,11 @@ import org.kodein.di.android.x.androidXModule
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
-import services.DumbService
+import services.KeepAliveService
 
-class BackApp : Application(), KodeinAware {
+class BackApp : Application(), KodeinAware, LifecycleObserver {
 
-    private val sessionRepository : SessionRepository by instance()
+    private val sessionRepository: SessionRepository by instance()
 
     override val kodein = lazy {
         import(androidXModule(this@BackApp))
@@ -32,10 +35,10 @@ class BackApp : Application(), KodeinAware {
     }
 
     override fun onCreate() {
+        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         messages = MessagesRepository(applicationContext)
         users = UsersRepository(applicationContext)
         chats = ChatRepository(applicationContext)
-        loginClient = TgClient(applicationContext)
 
 
         if (!PreferenceManager
@@ -46,6 +49,19 @@ class BackApp : Application(), KodeinAware {
         }
 
         super.onCreate()
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun stopForegroundService() {
+        client = TgClient(applicationContext)
+        KeepAliveService.stop(applicationContext)
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun startForegroundService() {
+        if (client?.haveAuthorization == true) {
+            KeepAliveService.start(applicationContext)
+        }
     }
 
     private fun populateOnFirstStart() {
@@ -64,12 +80,7 @@ class BackApp : Application(), KodeinAware {
 
     companion object {
 
-        fun startService(context: Context) {
-            loginClient = null
-            DumbService.start(context)
-        }
-
-        var loginClient: TgClient? = null
+        var client: TgClient? = null
         lateinit var messages: MessagesRepository
         lateinit var users: UsersRepository
         lateinit var chats: ChatRepository

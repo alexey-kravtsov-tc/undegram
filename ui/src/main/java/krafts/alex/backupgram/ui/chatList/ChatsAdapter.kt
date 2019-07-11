@@ -6,6 +6,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.tg.entity.Message
@@ -31,7 +32,7 @@ class ChatsAdapter : RecyclerView.Adapter<ChatViewHolder>() {
 
 
         if (item.chat == null) {
-            //            BackApp.loginClient.getChatInfo(item.chatId)
+            BackApp.client?.getChatInfo(item.chatId)
         }
 
         holder.name.text = item?.chat?.title ?: item.user?.let { it.firstName + " " + it.lastName }
@@ -44,6 +45,9 @@ class ChatsAdapter : RecyclerView.Adapter<ChatViewHolder>() {
                     .placeholder(R.drawable.ic_users)
                     .transform(CircleTransform())
                     .into(holder.avatar)
+            else {
+                BackApp.client?.loadImage(it.fileId)
+            }
         }
 
         holder.message.text = item.text
