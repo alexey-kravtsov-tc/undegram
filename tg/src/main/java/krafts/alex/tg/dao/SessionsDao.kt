@@ -16,7 +16,7 @@ interface SessionsDao {
     fun getLastByUserId(id: Int): Session?
 
     @Query("SELECT distinct userId from session group by userId order by count(userId) desc")
-    fun getUsersIdsByEditsCount() : LiveData<List<Int>>
+    suspend fun getUsersIdsByEditsCount() : List<Int>
 
     @Query("SELECT * from session where userId = :id ORDER BY start ASC")
     fun getByUserId(id: Int): LiveData<List<Session>>

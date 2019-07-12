@@ -9,7 +9,7 @@ interface SessionRepository {
     fun updateSession(userStatus: TdApi.UpdateUserStatus)
     fun endSession(userId: Int)
     fun getSessionsForUser(userId: Int): LiveData<List<Session>>
-    fun getUsersBySessionCount(): LiveData<List<User>>?
+    suspend fun getUsersBySessionCount(): List<User>
     fun getYesterdayTotal(userId: Int): Int
     fun getTodayTotal(userId: Int): Int
     fun addExampleSessions()

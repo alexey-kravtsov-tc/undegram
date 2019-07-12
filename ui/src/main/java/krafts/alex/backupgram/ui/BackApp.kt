@@ -72,9 +72,6 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
             .apply()
     }
 
-
-
-
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun stopForegroundService() {
         val serviceIntent = Intent(applicationContext, KeepAliveService::class.java)
@@ -89,8 +86,7 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun startForegroundService() {
         if (client.haveAuthorization) {
-            val serviceClass = KeepAliveService::class.java
-            val serviceIntent = Intent(applicationContext, serviceClass)
+            val serviceIntent = Intent(applicationContext, KeepAliveService::class.java)
 
             if (!KeepAliveService.isServiceRunning(this)) {
                 startService(serviceIntent)
