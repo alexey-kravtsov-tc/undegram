@@ -35,8 +35,8 @@ class ChatListFragment : FragmentBase() {
 
         viewModel.lastMessagesPerChat.observe(this, Observer {
             it?.let {
-                adapt.setAll(it)
                 placeholder.visibility = if (it.count() > 2) View.GONE else View.VISIBLE
+                adapt.setAll(it)
                 Crashlytics.setInt("chats_count", it.count())
             }
         })

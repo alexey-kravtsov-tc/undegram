@@ -35,8 +35,8 @@ class UsersFragment : FragmentBase() {
 
         viewModel.usersBySessionCount?.observe(this, Observer {
             it?.let {
-                adapt.setAll(it)
                 placeholder.visibility = if (it.count() > 3) View.GONE else View.VISIBLE
+                adapt.setAll(it)
                 Crashlytics.setInt("users_count", it.count())
             }
         })

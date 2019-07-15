@@ -56,6 +56,7 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha02"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha02"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 //    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
@@ -63,6 +64,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:17.0.0'
     implementation 'com.google.firebase:firebase-messaging:19.0.1'
+    implementation 'com.google.firebase:firebase-perf:18.0.1'
     implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
         transitive = true
     }

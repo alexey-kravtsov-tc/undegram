@@ -18,19 +18,19 @@ class MessagesRepository(context: Context) {
 
     private val edits = EditRepository(context)
 
-    fun getAllRemoved(hideEdit: Boolean): LiveData<List<Message>> {
+    suspend fun getAllRemoved(hideEdit: Boolean): List<Message> {
         val messages = if (hideEdit) {
             msgs.getAllDeletedPerChat()
         } else {
             msgs.getAllDeletedAndEditedPerChat()
         }
-        return Transformations.map(messages) { msg ->
-            msg.forEach {
-                it.user = users.get(it.senderId)
-                it.chat = chats.get(it)
-            }
-            return@map msg
+
+        messages.forEach {
+            it.user = users.get(it.senderId)
+            it.chat = chats.get(it)
         }
+
+        return messages
     }
 
     fun getRemovedForChat(chatId: Long, hideEdit: Boolean): LiveData<List<Message>> {
