@@ -31,12 +31,12 @@ class UsersFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapt = UsersAdapter(emptyList())
+        val adapt = UsersAdapter()
 
         viewModel.usersBySessionCount?.observe(this, Observer {
             it?.let {
                 placeholder.visibility = if (it.count() > 3) View.GONE else View.VISIBLE
-                adapt.setAll(it)
+                adapt.submitList(it)
                 Crashlytics.setInt("users_count", it.count())
             }
         })

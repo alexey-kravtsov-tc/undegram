@@ -1,10 +1,12 @@
 package krafts.alex.tg.dao
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import krafts.alex.tg.entity.Session
+import krafts.alex.tg.entity.UserWithSessions
 
 @Dao
 interface SessionsDao {
@@ -15,8 +17,8 @@ interface SessionsDao {
     @Query("SELECT * from session where userId = :id ORDER BY start DESC LIMIT 1")
     fun getLastByUserId(id: Int): Session?
 
-    @Query("SELECT distinct userId from session group by userId order by count(userId) desc")
-    suspend fun getUsersIdsByEditsCount() : List<Int>
+    @Query("SELECT User.*, sum(expires - start) as sessionsTime from session left join user on User.id == Session.userId group by userId order by sum(expires - start) desc")
+    fun getUsersIdsByEditsCount() : DataSource.Factory<Int, UserWithSessions>
 
     @Query("SELECT * from session where userId = :id ORDER BY start ASC")
     fun getByUserId(id: Int): LiveData<List<Session>>

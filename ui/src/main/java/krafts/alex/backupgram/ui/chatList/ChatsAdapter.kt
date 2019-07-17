@@ -10,12 +10,13 @@ import krafts.alex.tg.entity.ChatWithLastMessage
 class ChatsAdapter : PagedListAdapter<ChatWithLastMessage, ChatViewHolder>(ChatsDiffCallback()) {
 
     class ChatsDiffCallback : DiffUtil.ItemCallback<ChatWithLastMessage>() {
-        override fun areItemsTheSame(oldItem: ChatWithLastMessage, newItem: ChatWithLastMessage)
-            : Boolean = oldItem.chatId == newItem.chatId
+        override fun areItemsTheSame(
+            oldItem: ChatWithLastMessage, newItem: ChatWithLastMessage
+        ): Boolean = oldItem.chatId == newItem.chatId
 
         override fun areContentsTheSame(
             oldItem: ChatWithLastMessage, newItem: ChatWithLastMessage
-        ): Boolean = oldItem.text.equals(newItem.text)
+        ): Boolean = oldItem.text == newItem.text
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
@@ -24,9 +25,6 @@ class ChatsAdapter : PagedListAdapter<ChatWithLastMessage, ChatViewHolder>(Chats
     }
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
-        val item = getItem(position)
-
-        item?.let { holder.bind(it) } ?: holder.clear()
-
+        getItem(position)?.let { holder.bind(it) } ?: holder.clear()
     }
 }

@@ -3,6 +3,8 @@ package krafts.alex.backupgram.ui.chatList
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_message.view.*
@@ -41,11 +43,11 @@ class ChatViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             setOnClickListener { v ->
                 val message = v.tag as ChatWithLastMessage
                 val action = ChatListFragmentDirections.actionChatDetails(message.chatId)
-                val extras = androidx.navigation.fragment.FragmentNavigator.Extras.Builder()
+                val extras = FragmentNavigator.Extras.Builder()
                 extras.addSharedElement(
                     avatar, context.getString(R.string.avatar_transition)
                 )
-                androidx.navigation.Navigation.findNavController(v).navigate(action, extras.build())
+                Navigation.findNavController(v).navigate(action, extras.build())
             }
         }
     }

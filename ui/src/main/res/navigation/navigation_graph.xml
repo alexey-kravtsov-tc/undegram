@@ -38,7 +38,7 @@
     <fragment
         android:id="@+id/destination_users"
         android:name="krafts.alex.backupgram.ui.users.UsersFragment"
-        android:label="Users" >
+        android:label="Users online activity" >
         <action
             android:id="@+id/action_chat_details"
             app:destination="@id/chat_details_destination"

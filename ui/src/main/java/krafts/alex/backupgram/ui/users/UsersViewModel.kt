@@ -1,19 +1,15 @@
 package krafts.alex.backupgram.ui.users
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
-import krafts.alex.tg.entity.User
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import krafts.alex.tg.entity.UserWithSessions
 import krafts.alex.tg.repo.SessionRepository
 
 class UsersViewModel(sessionRepository: SessionRepository) : ViewModel() {
 
-    val usersBySessionCount: MutableLiveData<List<User>> = MutableLiveData()
+    val usersBySessionCount: LiveData<PagedList<UserWithSessions>> =
+        LivePagedListBuilder(sessionRepository.getUsersBySessionCount(), 20).build()
 
-    init {
-        viewModelScope.launch {
-            usersBySessionCount.value = sessionRepository.getUsersBySessionCount()
-        }
-    }
 }
