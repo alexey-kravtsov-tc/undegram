@@ -1,9 +1,11 @@
 package krafts.alex.tg.repo
 
 import android.content.Context
+import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import krafts.alex.tg.TgDataBase
+import krafts.alex.tg.entity.ChatWithLastMessage
 import krafts.alex.tg.entity.Message
 import org.drinkless.td.libcore.telegram.TdApi
 import java.util.concurrent.TimeUnit
@@ -18,20 +20,12 @@ class MessagesRepository(context: Context) {
 
     private val edits = EditRepository(context)
 
-    suspend fun getAllRemoved(hideEdit: Boolean): List<Message> {
-        val messages = if (hideEdit) {
+    fun getAllRemoved(hideEdit: Boolean): LiveData<List<ChatWithLastMessage>> =
+        if (hideEdit) {
             msgs.getAllDeletedPerChat()
         } else {
             msgs.getAllDeletedAndEditedPerChat()
         }
-
-        messages.forEach {
-            it.user = users.get(it.senderId)
-            it.chat = chats.get(it)
-        }
-
-        return messages
-    }
 
     fun getRemovedForChat(chatId: Long, hideEdit: Boolean): LiveData<List<Message>> {
         val messages = if (hideEdit) {

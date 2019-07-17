@@ -11,12 +11,19 @@ import krafts.alex.tg.entity.User
 import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.EditRepository
 import krafts.alex.tg.repo.MessagesRepository
+import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.SessionRepositoryImpl
 import krafts.alex.tg.repo.UsersRepository
 import org.drinkless.td.libcore.telegram.Client
 import org.drinkless.td.libcore.telegram.TdApi
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.closestKodein
+import org.kodein.di.generic.instance
 
-class TgClient(context: Context) {
+class TgClient(context: Context) : KodeinAware{
+
+    override val kodein: Kodein by closestKodein(context)
 
     var client = createClient()
 
@@ -142,10 +149,7 @@ class TgClient(context: Context) {
     private val messages = MessagesRepository(context)
     private val users = UsersRepository(context)
     private val chats = ChatRepository(context)
-    private val sessions = SessionRepositoryImpl(
-        TgDataBase.getInstance(context).sessions(),
-        TgDataBase.getInstance(context).users()
-    )
+    private val sessions : SessionRepository by instance()
     private val messageEdits = EditRepository(context)
 
     private fun createClient(): Client = Client.create(Client.ResultHandler {

@@ -71,7 +71,7 @@ class ChatFragment : FragmentBase() {
 
             postponeEnterTransition()
 
-            chat?.let { setChatInfo(chat)}
+            chat?.let { setChatInfo(chat) }
             user?.let { setTimeTable(user) }
 
             showMessages(view, args.chatId)

@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import krafts.alex.tg.entity.ChatWithLastMessage
 import krafts.alex.tg.entity.Message
 
 @Dao
@@ -19,11 +20,11 @@ interface MessagesDao {
     @Query("SELECT * from message ORDER BY id DESC LIMIT 25")
     fun getAll(): LiveData<List<Message>>
 
-    @Query("SELECT * from message where deleted GROUP BY chatId ORDER BY date DESC")
-    suspend fun getAllDeletedPerChat(): List<Message>
+    @Query("SELECT Message.text, Chat.* from message left join chat on Chat.id == Message.chatId where deleted GROUP BY chatId ORDER BY date DESC")
+    fun getAllDeletedPerChat(): LiveData<List<ChatWithLastMessage>>
 
-    @Query("SELECT * from message where (deleted or edited) GROUP BY chatId ORDER BY date DESC")
-    suspend fun getAllDeletedAndEditedPerChat(): List<Message>
+    @Query("SELECT Message.text, Chat.* from message left join chat on Chat.id == Message.chatId where (deleted or edited) GROUP BY chatId ORDER BY date DESC")
+    fun getAllDeletedAndEditedPerChat(): LiveData<List<ChatWithLastMessage>>
 
     @Query("SELECT * from message where deleted AND chatId = :chatId ORDER BY date DESC")
     fun getAllDeletedForChat(chatId: Long): LiveData<List<Message>>

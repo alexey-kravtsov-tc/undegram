@@ -9,14 +9,14 @@ import com.squareup.picasso.Picasso
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.utils.CircleTransform
-import krafts.alex.tg.entity.Message
+import krafts.alex.tg.entity.ChatWithLastMessage
 import java.io.File
 
 class ChatsAdapter : RecyclerView.Adapter<ChatViewHolder>() {
 
-    private var values: MutableList<Message> = mutableListOf()
+    private var values: MutableList<ChatWithLastMessage> = mutableListOf()
 
-    fun setAll(items: List<Message>) {
+    fun setAll(items: List<ChatWithLastMessage>) {
         values = items.toMutableList()
         notifyDataSetChanged()
     }
@@ -31,13 +31,9 @@ class ChatsAdapter : RecyclerView.Adapter<ChatViewHolder>() {
         val item = values[position]
 
 
-        if (item.chat == null) {
-            BackApp.client?.getChatInfo(item.chatId)
-        }
+        holder.name.text = item.title
 
-        holder.name.text = item?.chat?.title ?: item.user?.let { it.firstName + " " + it.lastName }
-
-        (item.chat?.photoBig ?: item.user?.photoBig)?.let {
+        (item.photoBig)?.let {
             if (it.downloaded)
                 Picasso
                     .get()
@@ -48,15 +44,15 @@ class ChatsAdapter : RecyclerView.Adapter<ChatViewHolder>() {
             else {
                 BackApp.client?.loadImage(it.fileId)
             }
-        }
+        } ?: BackApp.client.getChatInfo(item.chatId)
 
         holder.message.text = item.text
-        holder.avatar.transitionName = "avatar${item.id}"
+        holder.avatar.transitionName = "avatar${item.chatId}"
 
         with(holder.view) {
             tag = item
             setOnClickListener { v ->
-                val message = v.tag as Message
+                val message = v.tag as ChatWithLastMessage
                 val action = ChatListFragmentDirections.actionChatDetails(message.chatId)
                 val extras = FragmentNavigator.Extras.Builder()
                 extras.addSharedElement(
@@ -69,4 +65,3 @@ class ChatsAdapter : RecyclerView.Adapter<ChatViewHolder>() {
 
     override fun getItemCount(): Int = values.size
 }
-

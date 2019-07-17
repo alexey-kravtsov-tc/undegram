@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,12 +11,7 @@ import com.crashlytics.android.Crashlytics
 import kotlinx.android.synthetic.main.fragment_chat_list.*
 import krafts.alex.backupgram.ui.FragmentBase
 import krafts.alex.backupgram.ui.R
-import krafts.alex.backupgram.ui.settings.SettingsRepository
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
 import krafts.alex.backupgram.ui.viewModel
-import org.kodein.di.generic.instance
 
 class ChatListFragment : FragmentBase() {
 
