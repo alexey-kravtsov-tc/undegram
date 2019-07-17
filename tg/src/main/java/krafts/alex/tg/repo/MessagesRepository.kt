@@ -5,19 +5,17 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.DataSource
+import androidx.room.Transaction
 import krafts.alex.tg.TgDataBase
 import krafts.alex.tg.entity.ChatWithLastMessage
 import krafts.alex.tg.entity.Message
+import krafts.alex.tg.entity.MessageFromUserWithEdits
 import org.drinkless.td.libcore.telegram.TdApi
 import java.util.concurrent.TimeUnit
 
 class MessagesRepository(context: Context) {
 
     private val msgs = TgDataBase.getInstance(context).messages()
-
-    private val users = UsersRepository(context)
-
-    private val chats = ChatRepository(context)
 
     private val edits = EditRepository(context)
 
@@ -28,19 +26,14 @@ class MessagesRepository(context: Context) {
             msgs.getAllDeletedAndEditedPerChat()
         }
 
-    fun getRemovedForChat(chatId: Long, hideEdit: Boolean): LiveData<List<Message>> {
-        val messages = if (hideEdit) {
+    @Transaction
+    fun getRemovedForChat(
+        chatId: Long, hideEdit: Boolean
+    ): DataSource.Factory<Int, MessageFromUserWithEdits> {
+        return if (hideEdit) {
             msgs.getAllDeletedForChat(chatId)
         } else {
             msgs.getAllDeletedAndEditedForChat(chatId)
-        }
-        return Transformations.map(messages) { msg ->
-            msg.forEach {
-                it.user = users.get(it.senderId)
-                it.chat = chats.get(it)
-                it.edits = edits.getForMessage(it.id)
-            }
-            return@map msg
         }
     }
 
@@ -50,7 +43,7 @@ class MessagesRepository(context: Context) {
 
     fun delete(id: Long) = msgs.markDeleted(id)
 
-    fun deletePermanently(message: Message) = msgs.delete(message)
+    fun deletePermanently(id: Long) = msgs.delete(id)
 
     fun edit(id: Long, text: String) = msgs.edit(id, text, now())
 

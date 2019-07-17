@@ -1,13 +1,13 @@
 package krafts.alex.tg.dao
 
-import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import krafts.alex.tg.entity.ChatWithLastMessage
 import krafts.alex.tg.entity.Message
+import krafts.alex.tg.entity.MessageFromUserWithEdits
 
 @Dao
 interface MessagesDao {
@@ -18,8 +18,13 @@ interface MessagesDao {
     @Query("SELECT * from message where id = :id LIMIT 1")
     fun getById(id: Long): Message?
 
-    @Query("SELECT * from message ORDER BY id DESC LIMIT 25")
-    fun getAll(): LiveData<List<Message>>
+    @Query("UPDATE message SET deleted = :deleted where id = :id")
+    fun markDeleted(id: Long, deleted: Boolean = true)
+
+    @Query("UPDATE message SET edited = :edited, date = :date, text = :text where id = :id")
+    fun edit(id: Long, text: String, date: Int, edited: Boolean = true)
+
+    //Chat list page
 
     @Query("SELECT Message.text, Chat.* from message left join chat on Chat.id == Message.chatId where deleted GROUP BY chatId ORDER BY date DESC")
     fun getAllDeletedPerChat(): DataSource.Factory<Int, ChatWithLastMessage>
@@ -27,19 +32,16 @@ interface MessagesDao {
     @Query("SELECT Message.text, Chat.* from message left join chat on Chat.id == Message.chatId where (deleted or edited) GROUP BY chatId ORDER BY date DESC")
     fun getAllDeletedAndEditedPerChat(): DataSource.Factory<Int, ChatWithLastMessage>
 
-    @Query("SELECT * from message where deleted AND chatId = :chatId ORDER BY date DESC")
-    fun getAllDeletedForChat(chatId: Long): LiveData<List<Message>>
+    //Chat page
 
-    @Query("SELECT * from message where (deleted or edited) AND chatId = :chatId ORDER BY date DESC")
-    fun getAllDeletedAndEditedForChat(chatId: Long): LiveData<List<Message>>
+    @Transaction
+    @Query("SELECT distinct Message.id as messageId, Message.text, Message.senderId, Message.date, Message.edited, User.* from message left join user on User.id == Message.senderId where deleted AND chatId = :chatId ORDER BY date DESC")
+    fun getAllDeletedForChat(chatId: Long): DataSource.Factory<Int, MessageFromUserWithEdits>
 
-    @Query("UPDATE message SET deleted = :deleted where id = :id")
-    fun markDeleted(id: Long, deleted: Boolean = true)
+    @Transaction
+    @Query("SELECT distinct Message.id as messageId, Message.text, Message.senderId, Message.date, Message.edited, User.* from message left join user on User.id == Message.senderId where (deleted or edited) AND chatId = :chatId ORDER BY date DESC")
+    fun getAllDeletedAndEditedForChat(chatId: Long): DataSource.Factory<Int, MessageFromUserWithEdits>
 
-    @Delete
-    fun delete(message: Message)
-
-    @Query("UPDATE message SET edited = :edited, date = :date, text = :text where id = :id")
-    fun edit(id: Long, text: String, date: Int, edited: Boolean = true)
-
+    @Query("DELETE FROM message WHERE id = :id")
+    fun delete(id: Long)
 }

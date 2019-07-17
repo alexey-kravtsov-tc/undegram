@@ -19,6 +19,7 @@ import java.io.File
 class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     val name: TextView = view.name
     private val avatar: ImageView = view.avatar
+    private val time: TextView = view.time
 
     fun bind(item: UserWithSessions) {
         name.text = item.user.firstName + " " + item.user.lastName
@@ -36,6 +37,8 @@ class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         }
 
         avatar.transitionName = "avatar${item.user.id}"
+
+        time.text = item.sessionsTime.toString()
 
         with(view) {
             tag = item

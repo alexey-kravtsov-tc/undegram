@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,21 +16,20 @@ import kotlinx.android.synthetic.main.fragment_chat.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.FragmentBase
 import krafts.alex.backupgram.ui.R
-import krafts.alex.backupgram.ui.settings.SettingsFragment
-import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.backupgram.ui.utils.SwipeToDeleteCallback
+import krafts.alex.backupgram.ui.viewModel
 import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.User
 import krafts.alex.tg.repo.SessionRepository
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import java.io.File
 
 class ChatFragment : FragmentBase() {
 
     private val sessionRepository: SessionRepository by instance()
+
+    private val viewModel: ChatViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -103,34 +100,28 @@ class ChatFragment : FragmentBase() {
     private fun showMessages(
         view: View, chatId: Long
     ) {
-        val adapt = MessagesAdapter(this).apply { setHasStableIds(true) }
+        val adapt = MessagesAdapter(this)
 
         val itemTouchHelper = ItemTouchHelper(object : SwipeToDeleteCallback(view.context) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 adapt.removeAt(viewHolder.adapterPosition) {
-                    BackApp.messages.deletePermanently(this)
+                    viewModel.deleteMessagePermanently(this)
                 }
+            }
+        })
+        itemTouchHelper.attachToRecyclerView(list)
+
+        viewModel.pagedListForChat(chatId).observe(this, Observer {
+            it?.let {
+                adapt.submitList(it)
+                placeholder.visibility = if (it.count() > 0) View.GONE else View.VISIBLE
             }
         })
 
         with(list) {
-            itemAnimator = null
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = adapt
-            itemTouchHelper.attachToRecyclerView(list)
         }
-
-        val hideEdited = PreferenceManager
-            .getDefaultSharedPreferences(activity)
-            .getBoolean(SettingsFragment.HIDE_EDIT, false)
-
-        BackApp.messages.getRemovedForChat(chatId, hideEdited).observe(this, Observer {
-            it?.let {
-                adapt.setAll(it)
-                placeholder.visibility = if (it.count() > 0) View.GONE else View.VISIBLE
-            }
-
-        })
     }
 
     private fun setChatInfo(chat: Chat) {
@@ -164,5 +155,4 @@ class ChatFragment : FragmentBase() {
             today.text = ""
         }
     }
-
 }
