@@ -3,6 +3,8 @@ package krafts.alex.backupgram.ui.chatList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.tg.entity.ChatWithLastMessage
 import krafts.alex.tg.repo.MessagesRepository
@@ -12,8 +14,9 @@ class ChatListViewModel(
     settings: SettingsRepository
 ) : ViewModel() {
 
-    val lastMessagesPerChat: LiveData<List<ChatWithLastMessage>> = Transformations
+    val lastMessagesPerChat: LiveData<PagedList<ChatWithLastMessage>> = Transformations
         .switchMap(settings.hideEdited) { edited ->
-            messagesRepository.getAllRemoved(edited)
+            LivePagedListBuilder(messagesRepository.getAllRemoved(edited), 10).build()
         }
+
 }

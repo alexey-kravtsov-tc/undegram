@@ -60,6 +60,9 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 //    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
+    implementation 'androidx.paging:paging-runtime-ktx:2.1.0'
+    implementation 'androidx.paging:paging-common:2.1.0'
+
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
 
     implementation 'com.google.firebase:firebase-core:17.0.0'

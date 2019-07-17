@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import androidx.paging.DataSource
 import krafts.alex.tg.TgDataBase
 import krafts.alex.tg.entity.ChatWithLastMessage
 import krafts.alex.tg.entity.Message
@@ -20,7 +21,7 @@ class MessagesRepository(context: Context) {
 
     private val edits = EditRepository(context)
 
-    fun getAllRemoved(hideEdit: Boolean): LiveData<List<ChatWithLastMessage>> =
+    fun getAllRemoved(hideEdit: Boolean): DataSource.Factory<Int, ChatWithLastMessage> =
         if (hideEdit) {
             msgs.getAllDeletedPerChat()
         } else {
