@@ -12,7 +12,7 @@ interface SessionRepository {
     fun endSession(userId: Int)
     fun getSessionsForUser(userId: Int): LiveData<List<Session>>
     fun getUsersBySessionCount(): DataSource.Factory<Int, UserWithSessions>
-    fun getYesterdayTotal(userId: Int): Int
-    fun getTodayTotal(userId: Int): Int
+    suspend fun getYesterdayTotal(userId: Int): Int
+    suspend fun getTodayTotal(userId: Int): Int
     fun addExampleSessions()
 }

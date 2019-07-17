@@ -14,7 +14,7 @@ import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.utils.MinuteDataFormatter
 
 class UserTimelineChart(context: Context, attrs: AttributeSet) : LineChart(context, attrs) {
-    fun showValues(values: ArrayList<Entry>) {
+    fun showValues(values: List<Entry>) {
         val set = LineDataSet(values, "online")
         set.apply {
             color = Color.GREEN

@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import krafts.alex.backupgram.ui.chat.TimelineViewModel
 import krafts.alex.backupgram.ui.chat.ChatViewModel
 import krafts.alex.backupgram.ui.chatList.ChatListViewModel
 import krafts.alex.backupgram.ui.users.UsersViewModel
@@ -35,7 +36,9 @@ class ViewModelFactory(private val injector: DKodein) :
             bindViewModel<ChatViewModel>() with provider {
                 ChatViewModel(instance(), instance())
             }
-
+            bindViewModel<TimelineViewModel>() with provider {
+                TimelineViewModel(instance())
+            }
         }
 
         private inline fun <reified T : ViewModel> Kodein.Builder.bindViewModel(

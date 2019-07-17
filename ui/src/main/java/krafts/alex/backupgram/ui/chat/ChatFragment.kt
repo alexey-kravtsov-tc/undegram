@@ -9,11 +9,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
-import com.github.mikephil.charting.data.Entry
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_chat.*
-import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.FragmentBase
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.utils.CircleTransform
@@ -21,19 +19,21 @@ import krafts.alex.backupgram.ui.utils.SwipeToDeleteCallback
 import krafts.alex.backupgram.ui.viewModel
 import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.User
-import krafts.alex.tg.repo.SessionRepository
+import krafts.alex.tg.repo.ChatRepository
+import krafts.alex.tg.repo.UsersRepository
 import org.kodein.di.generic.instance
 import java.io.File
 
 class ChatFragment : FragmentBase() {
 
-    private val sessionRepository: SessionRepository by instance()
-
     private val viewModel: ChatViewModel by viewModel()
+    private val timelineViewModel: TimelineViewModel by viewModel()
+
+    private val userRepository : UsersRepository by instance()
+    private val chatRepository : ChatRepository by instance()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_chat, container, false)
 
@@ -52,8 +52,8 @@ class ChatFragment : FragmentBase() {
         arguments?.let {
 
             val args = ChatFragmentArgs.fromBundle(it)
-            val user = BackApp.users.get(args.chatId.toInt())
-            val chat = BackApp.chats.get(args.chatId)
+            val user = userRepository.get(args.chatId.toInt())
+            val chat = chatRepository.get(args.chatId)
 
             activity?.toolbar?.title = chat?.title ?: "${user?.firstName} ${user?.lastName}"
 
@@ -73,21 +73,11 @@ class ChatFragment : FragmentBase() {
 
             showMessages(view, args.chatId)
 
-            sessionRepository.getSessionsForUser(args.chatId.toInt()).observe(this, Observer {
-
-                val values = ArrayList<Entry>()
-
-                it?.forEach {
-                    values.add(Entry(it.start.toInterval().toFloat(), 0F))
-                    for (x in it.start.toInterval() + 1 until it.expires.toInterval()) {
-                        values.add(Entry(x.toFloat(), 1F))
-                    }
-                    values.add(Entry(it.expires.toInterval().toFloat(), 0F))
-                }
-
-                chart.showValues(values)
-
+            timelineViewModel.calculateEntries(args.chatId.toInt()).observe(this, Observer {
+                chart.showValues(it)
             })
+
+
             //            notifyDeleted.setOnClickListener {
             //                BackApp.users.updateNotificationsSettings(args.chatId.toInt(), true)
             //            }
@@ -95,11 +85,7 @@ class ChatFragment : FragmentBase() {
         startPostponedEnterTransition()
     }
 
-    private fun Int.toInterval() = this.toLong()
-
-    private fun showMessages(
-        view: View, chatId: Long
-    ) {
+    private fun showMessages(view: View, chatId: Long) {
         val adapt = MessagesAdapter(this)
 
         val itemTouchHelper = ItemTouchHelper(object : SwipeToDeleteCallback(view.context) {
@@ -136,23 +122,19 @@ class ChatFragment : FragmentBase() {
 
     private fun setTimeTable(user: User) {
 
-        val timeYesterday = sessionRepository.getYesterdayTotal(user.id)
-        val timeToday = sessionRepository.getTodayTotal(user.id)
-
-        //TODO: use proper time formatting
-        if (timeYesterday + timeToday > 60) {
-            total.text = getString(R.string.recorded_time_online)
-            yesterday.text = timeYesterday.let {
-                "yesterday: ${it / 3600} h ${it % 3600 / 60} m "
+        total.text = getString(R.string.collecting_data)
+        yesterday.text = ""
+        today.text = ""
+        timelineViewModel.totalTime.observe(this, Observer {
+            //TODO: use proper time formatting
+            if (it.yesterday + it.today > 60) {
+                total.text = getString(R.string.recorded_time_online)
+                yesterday.text = "yesterday: ${it.yesterday.display()}"
+                today.text = "today: ${it.today.display()} "
+                chart.visibility = View.VISIBLE
             }
-            today.text = timeToday.let {
-                "today: ${it / 3600} h ${it % 3600 / 60} m "
-            }
-            chart.visibility = View.VISIBLE
-        } else {
-            total.text = getString(R.string.collecting_data)
-            yesterday.text = ""
-            today.text = ""
-        }
+        })
     }
+
+    private fun Int.display() = "${this / 3600} h ${this % 3600 / 60} m"
 }

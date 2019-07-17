@@ -1,13 +1,10 @@
 package krafts.alex.tg.repo
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.paging.DataSource
 import com.kizitonwose.time.days
 import krafts.alex.tg.dao.SessionsDao
 import krafts.alex.tg.dao.UsersDao
 import krafts.alex.tg.entity.Session
-import krafts.alex.tg.entity.User
 import krafts.alex.tg.entity.UserWithSessions
 import org.drinkless.td.libcore.telegram.TdApi
 import java.util.concurrent.TimeUnit
@@ -48,14 +45,14 @@ class SessionRepositoryImpl(
     override fun getUsersBySessionCount(): DataSource.Factory<Int, UserWithSessions> =
         sessionsDao.getUsersIdsByEditsCount()
 
-    override fun getYesterdayTotal(userId: Int): Int =
+    override suspend fun getYesterdayTotal(userId: Int): Int =
         sessionsDao.getSumByUserIdForPeriod(
             id = userId,
             start = now() - 2.days.inSeconds.longValue.toInt(),
             end = now() - 1.days.inSeconds.longValue.toInt()
         )
 
-    override fun getTodayTotal(userId: Int): Int =
+    override suspend fun getTodayTotal(userId: Int): Int =
         sessionsDao.getSumByUserIdForPeriod(
             id = userId,
             start = now() - 1.days.inSeconds.longValue.toInt(),
