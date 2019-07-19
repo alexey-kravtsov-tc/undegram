@@ -17,13 +17,17 @@ class ChatViewModel(
     private lateinit var messages: LiveData<PagedList<MessageFromUserWithEdits>>
     private var lastChatId = -1L
 
-    fun pagedListForChat(id: Long): LiveData<PagedList<MessageFromUserWithEdits>> {
+    fun getDataForChat(id: Long) {
         if (id != lastChatId) {
+
             messages = Transformations.switchMap(settings.hideEdited) { edited ->
                 LivePagedListBuilder(messagesRepository.getRemovedForChat(id, edited), 10).build()
             }
             lastChatId = id
         }
+    }
+
+    fun pagedListForChat(): LiveData<PagedList<MessageFromUserWithEdits>> {
         return messages
     }
 

@@ -9,6 +9,6 @@ data class MessageFromUserWithEdits(
     val senderId: Int,
     val date: Int,
     var edited: Boolean,
-    @Embedded val user: User,
+    @Embedded val user: User?,
     @Relation(parentColumn = "messageId", entityColumn = "messageId") val edits: List<Edit>
 )

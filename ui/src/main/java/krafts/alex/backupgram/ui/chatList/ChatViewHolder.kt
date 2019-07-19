@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_message.view.*
 import krafts.alex.backupgram.ui.BackApp
+import krafts.alex.backupgram.ui.ChatArgument
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.tg.entity.ChatWithLastMessage
@@ -42,7 +43,9 @@ class ChatViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             tag = item
             setOnClickListener { v ->
                 val message = v.tag as ChatWithLastMessage
-                val action = ChatListFragmentDirections.actionChatDetails(message.chatId)
+                val action = ChatListFragmentDirections.actionChatDetails(
+                    ChatArgument(message.chatId, message.title, message.photoBig?.localPath)
+                )
                 val extras = FragmentNavigator.Extras.Builder()
                 extras.addSharedElement(
                     avatar, context.getString(R.string.avatar_transition)

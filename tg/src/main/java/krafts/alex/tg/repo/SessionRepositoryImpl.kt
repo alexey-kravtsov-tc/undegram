@@ -50,14 +50,14 @@ class SessionRepositoryImpl(
             id = userId,
             start = now() - 2.days.inSeconds.longValue.toInt(),
             end = now() - 1.days.inSeconds.longValue.toInt()
-        )
+        ) ?: 0
 
     override suspend fun getTodayTotal(userId: Int): Int =
         sessionsDao.getSumByUserIdForPeriod(
             id = userId,
             start = now() - 1.days.inSeconds.longValue.toInt(),
             end = now()
-        )
+        ) ?: 0
 
     override fun addExampleSessions() {
         addExample(2000)

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_user.view.*
 import krafts.alex.backupgram.ui.BackApp
+import krafts.alex.backupgram.ui.ChatArgument
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.chatList.ChatListFragmentDirections
 import krafts.alex.backupgram.ui.utils.CircleTransform
@@ -22,7 +23,7 @@ class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     private val time: TextView = view.time
 
     fun bind(item: UserWithSessions) {
-        name.text = item.user.firstName + " " + item.user.lastName
+        name.text = title(item)
 
         item.user.photoBig?.let {
             if (it.downloaded) {
@@ -45,7 +46,13 @@ class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             setOnClickListener { v ->
                 (v.tag as? UserWithSessions)?.let {
                     Navigation.findNavController(v).navigate(
-                        ChatListFragmentDirections.actionChatDetails(it.user.id.toLong()),
+                        ChatListFragmentDirections.actionChatDetails(
+                            ChatArgument(
+                                it.user.id.toLong(),
+                                title(it),
+                                it.user.photoBig?.localPath
+                            )
+                        ),
                         FragmentNavigator.Extras.Builder().addSharedElement(
                             avatar, context.getString(R.string.avatar_transition)
                         ).build()
@@ -55,6 +62,9 @@ class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         }
     }
+
+    private fun title(item: UserWithSessions) =
+        item.user.firstName + " " + item.user.lastName
 
     fun clear() {
         name.text = null

@@ -32,8 +32,8 @@
         android:name="krafts.alex.backupgram.ui.chat.ChatFragment"
         android:label="ChatDetailsFragment">
         <argument
-            android:name="chatId"
-            app:argType="long" />
+            android:name="data"
+            app:argType="krafts.alex.backupgram.ui.ChatArgument" />
     </fragment>
     <fragment
         android:id="@+id/users_destination"

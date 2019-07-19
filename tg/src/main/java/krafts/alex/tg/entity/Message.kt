@@ -37,6 +37,5 @@ data class Message @JvmOverloads constructor(
             user = null,
             chat = null
         )
-
     }
 }

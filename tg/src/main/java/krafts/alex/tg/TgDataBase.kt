@@ -87,7 +87,6 @@ abstract class TgDataBase : RoomDatabase() {
                         notify_user_migration,
                         edit_message_migration
                     )
-                    .allowMainThreadQueries()
                     .build()
             }
             return sInstance!!
