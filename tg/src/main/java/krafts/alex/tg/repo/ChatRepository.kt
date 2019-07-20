@@ -19,12 +19,6 @@ class ChatRepository(context: Context) {
 
     fun get(id: Long) = chats.getById(id)
 
-    fun get(message: Message) = if (message.senderId.toLong() == message.chatId) {
-        message.user?.let { usr -> Chat.fromUser(usr) } ?: get(message.chatId)
-    } else get(message.chatId)
-
-    fun getAll() = chats.getList()
-
     fun updateImage(file: TdApi.File) {
         chats.getList()?.find { it?.photoBig?.fileId == file.id }?.let {
             chats.updatePhoto(it.id, File.fromTg(file).localPath)

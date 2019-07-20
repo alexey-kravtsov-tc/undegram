@@ -72,9 +72,6 @@ class MessagesRepository(context: Context) {
         date = now() - id.toInt() * 60,
         editDate = 0,
         deleted = deleted,
-        edited = edited,
-        user = null,
-        chat = null,
-        edits = null
+        edited = edited
     )
 }

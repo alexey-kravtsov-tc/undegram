@@ -1,13 +1,11 @@
 package krafts.alex.tg.entity
 
-import androidx.lifecycle.LiveData
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import org.drinkless.td.libcore.telegram.TdApi
 
 @Entity
-data class Message @JvmOverloads constructor(
+data class Message(
     @PrimaryKey val id: Long,
     val senderId: Int,
     val chatId: Long,
@@ -15,10 +13,7 @@ data class Message @JvmOverloads constructor(
     val date: Int,
     var editDate: Int,
     var deleted: Boolean,
-    var edited: Boolean,
-    @Ignore var user: User? = null,
-    @Ignore var chat: Chat? = null,
-    @Ignore var edits: LiveData<List<Edit>>? = null
+    var edited: Boolean
 ) {
 
     fun isPersonal() = senderId.toLong() == chatId
@@ -33,9 +28,7 @@ data class Message @JvmOverloads constructor(
             date = msg.date,
             editDate = msg.editDate,
             deleted = false,
-            edited = false,
-            user = null,
-            chat = null
+            edited = false
         )
     }
 }

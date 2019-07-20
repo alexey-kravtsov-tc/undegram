@@ -16,8 +16,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
-    <string name="action_users">Users</string>
-    <string name="action_chats">Chats</string>
+    <string name="action_users">Online activity</string>
+    <string name="action_chats">Lost and Found</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="users_list_placeholder_text">Users will appear here order by recent
         online activity. It will take some time.</string>
