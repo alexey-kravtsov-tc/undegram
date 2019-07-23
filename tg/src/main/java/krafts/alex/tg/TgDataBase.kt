@@ -19,7 +19,7 @@ import krafts.alex.tg.entity.Session
 
 @Database(
     entities = [Message::class, User::class, Chat::class, Session::class, Edit::class],
-    version = 7,
+    version = 8,
     exportSchema = false
 )
 abstract class TgDataBase : RoomDatabase() {
@@ -63,10 +63,16 @@ abstract class TgDataBase : RoomDatabase() {
             }
         }
 
-        private val edit_message_migration: Migration = object : Migration(6,7) {
+        private val edit_message_migration: Migration = object : Migration(6, 7) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("alter table Message add column `edited` INTEGER DEFAULT 0 NOT NULL")
                 database.execSQL("CREATE TABLE IF NOT EXISTS `Edit` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `messageId` INTEGER NOT NULL, `date` INTEGER NOT NULL, `text` TEXT NOT NULL)")
+            }
+        }
+
+        private val user_username_migration: Migration = object : Migration(7, 8) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("alter table User add column `userName` TEXT DEFAULT '' NOT NULL")
             }
         }
 
@@ -85,7 +91,8 @@ abstract class TgDataBase : RoomDatabase() {
                         chat_migration,
                         session_migration,
                         notify_user_migration,
-                        edit_message_migration
+                        edit_message_migration,
+                        user_username_migration
                     )
                     .build()
             }

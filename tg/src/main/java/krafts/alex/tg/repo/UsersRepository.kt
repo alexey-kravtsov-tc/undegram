@@ -14,6 +14,8 @@ class UsersRepository(context: Context) {
 
     fun get(id: Int) = users.getById(id)
 
+    suspend fun getAsync(id: Int) = users.getByIdAsync(id)
+
     fun updateImage(file: TdApi.File) {
         users.getList().find { it.photoBig?.fileId == file.id }?.let {
             users.updatePhoto(it.id, File.fromTg(file).localPath)
@@ -33,7 +35,7 @@ class UsersRepository(context: Context) {
     fun addExampleUser() {
         users.insert(
             User(
-                1, "Demo", "User", "", null, null,
+                1, "Demo", "User", "", "", null, null,
                 File(
                     fileId = 1,
                     localPath = "file:///android_asset/ic_demo.png", //TODO: make it rain

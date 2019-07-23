@@ -1,5 +1,7 @@
 package krafts.alex.backupgram.ui.chat
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -68,10 +70,15 @@ class ChatFragment : FragmentBase() {
                 chart.showValues(it)
             })
 
-            //            notifyDeleted.setOnClickListener {
-            //                BackApp.users.updateNotificationsSettings(args.chatId.toInt(), true)
-            //            }
             startPostponedEnterTransition()
+            viewModel.getUserUrl(chatId.toInt()).observe(this, Observer {
+                it?.let { url ->
+                    avatar.setOnClickListener {
+                        val intent = Intent(Intent.ACTION_VIEW).also { it.data = Uri.parse(url) }
+                        startActivity(intent)
+                    }
+                }
+            })
         }
     }
 

@@ -17,6 +17,9 @@ interface UsersDao {
     @Query("SELECT * from user where id = :id LIMIT 1")
     fun getById(id: Int): User?
 
+    @Query("SELECT * from user where id = :id LIMIT 1")
+    suspend fun getByIdAsync(id: Int): User?
+
     @Query("SELECT * from user")
     fun getList(): List<User>
 

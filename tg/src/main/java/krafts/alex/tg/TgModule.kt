@@ -4,6 +4,7 @@ import android.content.Context
 import krafts.alex.tg.repo.MessagesRepository
 import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.SessionRepositoryImpl
+import krafts.alex.tg.repo.UsersRepository
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.eagerSingleton
@@ -19,5 +20,6 @@ object TgModule {
             SessionRepositoryImpl(instance(), instance())
         }
         bind() from singleton { MessagesRepository(context) }
+        bind() from singleton { UsersRepository(context) }
     }
 }

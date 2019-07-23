@@ -34,7 +34,7 @@ class ViewModelFactory(private val injector: DKodein) :
                 ChatListViewModel(instance(), instance())
             }
             bindViewModel<ChatViewModel>() with provider {
-                ChatViewModel(instance(), instance())
+                ChatViewModel(instance(), instance(), instance())
             }
             bindViewModel<TimelineViewModel>() with provider {
                 TimelineViewModel(instance())
