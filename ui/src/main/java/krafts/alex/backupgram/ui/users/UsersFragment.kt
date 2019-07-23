@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionInflater
 import com.crashlytics.android.Crashlytics
+import kotlinx.android.synthetic.main.fragment_chat_list.*
 import kotlinx.android.synthetic.main.fragment_users.list
 import kotlinx.android.synthetic.main.fragment_users.placeholder
 import krafts.alex.backupgram.ui.FragmentBase
@@ -28,9 +30,20 @@ class UsersFragment : FragmentBase() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_users, container, false)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        settings.animations.observe(this, Observer { animate ->
+            sharedElementReturnTransition = TransitionInflater.from(context)
+                .inflateTransition(android.R.transition.move)?.apply { duration = 200 }
+                ?.takeIf { animate == true }
+        })
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        postponeEnterTransition()
         val adapt = UsersAdapter()
 
         viewModel.usersBySessionCount?.observe(this, Observer {
@@ -43,8 +56,12 @@ class UsersFragment : FragmentBase() {
 
         list?.adapter = adapt
 
+        list?.viewTreeObserver?.addOnDrawListener {
+            startPostponedEnterTransition()
+        }
+
         settings.reverseScroll.observe(this, Observer { reverse ->
-            list?.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, reverse)
+            (list?.layoutManager as? LinearLayoutManager)?.reverseLayout = reverse
         })
     }
 }
