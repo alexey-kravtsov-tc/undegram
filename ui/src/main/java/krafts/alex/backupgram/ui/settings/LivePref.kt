@@ -5,15 +5,15 @@ import androidx.lifecycle.LiveData
 import com.crashlytics.android.Crashlytics
 
 sealed class LivePref<T>(
-    private val sharedPrefs: SharedPreferences,
-    private val key: String,
+    protected val sharedPrefs: SharedPreferences,
+    protected val key: String,
     private val getValueFromPreferences: SharedPreferences.() -> T
 ) : LiveData<T>() {
 
     private val preferenceChangeListener =
-        SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        SharedPreferences.OnSharedPreferenceChangeListener { pref, key ->
             if (key == this.key) {
-                value = getValueFromPreferences(sharedPrefs)
+                value = getValueFromPreferences(pref)
             }
         }
 
@@ -33,7 +33,14 @@ sealed class LivePref<T>(
             val value = getBoolean(key, false)
             Crashlytics.setBool(key, value)
             value
-        })
+        }) {
+
+        fun switch() {
+            value?.let {
+                sharedPrefs.edit().putBoolean(key, !it).apply()
+            }
+        }
+    }
 
     class Text(sharedPrefs: SharedPreferences, key: String) :
         LivePref<String>(sharedPrefs, key, { getString(key, "") ?: "" })

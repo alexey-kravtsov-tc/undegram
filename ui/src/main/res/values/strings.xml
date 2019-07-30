@@ -31,4 +31,7 @@
     <string name="view_transition">view_transition</string>
     <string name="chat_total_stub">Some info about chat</string>
 
+    <string name="edits_shown">show edits</string>
+    <string name="edits_hidden">hide edits</string>
+
 </resources>

@@ -10,7 +10,7 @@
     <fragment
         android:id="@+id/login_destination"
         android:name="krafts.alex.backupgram.ui.LoginFragment"
-        android:label="Login" >
+        android:label="Login">
         <action
             android:id="@+id/action_messages"
             app:destination="@id/messages_destination"
@@ -19,13 +19,12 @@
     <fragment
         android:id="@+id/messages_destination"
         android:name="krafts.alex.backupgram.ui.chatList.ChatListFragment"
-        android:label="Undegram" >
+        android:label="Undegram">
         <action
             android:id="@+id/action_chat_details"
             app:destination="@id/chat_details_destination"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@+id/messages_destination" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/chat_details_destination"
@@ -38,13 +37,12 @@
     <fragment
         android:id="@+id/users_destination"
         android:name="krafts.alex.backupgram.ui.users.UsersFragment"
-        android:label="Users online activity" >
+        android:label="Users online activity">
         <action
             android:id="@+id/action_chat_details"
             app:destination="@id/chat_details_destination"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@+id/users_destination" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/settings_destination"

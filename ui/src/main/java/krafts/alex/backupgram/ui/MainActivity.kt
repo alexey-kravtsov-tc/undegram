@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
@@ -60,8 +61,16 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
         (bottom_nav)?.let {
             NavigationUI.setupWithNavController(it, navController)
-            NavigationUI.setupActionBarWithNavController(this, navController)
         }
+
+        val barConf = AppBarConfiguration.Builder(
+            setOf(
+                R.id.messages_destination,
+                R.id.users_destination,
+                R.id.settings_destination
+            )
+        ).build()
+        NavigationUI.setupActionBarWithNavController(this, navController, barConf)
 
         button_login.setOnClickListener {
             navController.navigate(R.id.login_destination)

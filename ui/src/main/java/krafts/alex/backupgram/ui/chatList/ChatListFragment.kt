@@ -1,11 +1,14 @@
 package krafts.alex.backupgram.ui.chatList
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.crashlytics.android.Crashlytics
 import kotlinx.android.synthetic.main.fragment_chat_list.*
@@ -47,6 +50,8 @@ class ChatListFragment : FragmentBase() {
         })
         list?.adapter = adapt
 
+        setupFloating()
+
         list?.viewTreeObserver?.addOnDrawListener {
             startPostponedEnterTransition()
         }
@@ -54,5 +59,35 @@ class ChatListFragment : FragmentBase() {
         settings.reverseScroll.observe(this, Observer { reverse ->
             (list?.layoutManager as? LinearLayoutManager)?.reverseLayout = reverse
         })
+    }
+
+    private fun setupFloating() {
+        settings.hideEdited.observe(this, Observer { editsHidden ->
+            editsButton?.setImageResource(
+                if (editsHidden) R.drawable.ic_edits_hidden else R.drawable.ic_edits_show
+            )
+        })
+
+        list?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && editsButton?.isShown == false)
+                    editsButton?.show()
+                else
+                    editsButton?.hide()
+            }
+        })
+
+        editsButton?.setOnClickListener {
+            Toast.makeText(
+                context, getText(
+                if (settings.hideEdited.value == false)
+                    R.string.edits_hidden
+                else
+                    R.string.edits_shown
+            ), Toast.LENGTH_SHORT
+            ).apply { setGravity(Gravity.END or Gravity.BOTTOM, 75, 75) }.show()
+            settings.hideEdited.switch()
+        }
     }
 }
