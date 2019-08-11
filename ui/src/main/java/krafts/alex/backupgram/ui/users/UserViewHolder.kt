@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.item_user.view.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.ChatArgument
 import krafts.alex.backupgram.ui.R
+import krafts.alex.backupgram.ui.chat.UserTimeLine
 import krafts.alex.backupgram.ui.chatList.ChatListFragmentDirections
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.tg.entity.User
@@ -21,12 +22,12 @@ class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     val name: TextView = view.name
     private val avatar: ImageView = view.avatar
     private val time: TextView = view.time
+    private val timeLine: UserTimeLine = view.timeline
 
     fun bind(item: UserWithSessions) {
         name.text = title(item)
 
         item.user.photoBig?.let {
-            if (it.downloaded) {
                 Picasso.get()
                     .load(File(it.localPath))
                     .placeholder(R.drawable.ic_users)
@@ -40,6 +41,8 @@ class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         avatar.transitionName = "avatar${item.user.id}"
 
         time.text = item.sessionsTime.toString()
+
+        timeLine.showTimeline(item.sessions)
 
         with(view) {
             tag = item

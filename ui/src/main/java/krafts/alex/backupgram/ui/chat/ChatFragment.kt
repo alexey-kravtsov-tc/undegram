@@ -19,9 +19,6 @@ import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.backupgram.ui.utils.SwipeToDeleteCallback
 import krafts.alex.backupgram.ui.viewModel
-import krafts.alex.tg.repo.ChatRepository
-import krafts.alex.tg.repo.UsersRepository
-import org.kodein.di.generic.instance
 import java.io.File
 
 class ChatFragment : FragmentBase() {

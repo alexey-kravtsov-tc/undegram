@@ -1,6 +1,9 @@
 package krafts.alex.tg.repo
 
 import androidx.paging.DataSource
+import com.kizitonwose.time.Day
+import com.kizitonwose.time.Interval
+import com.kizitonwose.time.Second
 import com.kizitonwose.time.days
 import krafts.alex.tg.dao.SessionsDao
 import krafts.alex.tg.dao.UsersDao
@@ -10,8 +13,7 @@ import org.drinkless.td.libcore.telegram.TdApi
 import java.util.concurrent.TimeUnit
 
 class SessionRepositoryImpl(
-    private val sessionsDao: SessionsDao,
-    private val usersDao: UsersDao
+    private val sessionsDao: SessionsDao
 ) : SessionRepository {
 
     override fun updateSession(userStatus: TdApi.UpdateUserStatus) {
@@ -43,19 +45,22 @@ class SessionRepositoryImpl(
     override fun getSessionsForUser(userId: Int) = sessionsDao.getByUserId(userId)
 
     override fun getUsersBySessionCount(): DataSource.Factory<Int, UserWithSessions> =
-        sessionsDao.getUsersIdsByEditsCount()
+        sessionsDao.getUsersIdsByEditsCount(
+            start = now() - 1.days.inSeconds.toInt(),
+            end = now()
+        )
 
     override suspend fun getYesterdayTotal(userId: Int): Int =
         sessionsDao.getSumByUserIdForPeriod(
             id = userId,
-            start = now() - 2.days.inSeconds.longValue.toInt(),
-            end = now() - 1.days.inSeconds.longValue.toInt()
+            start = now() - 2.days.inSeconds.toInt(),
+            end = now() - 1.days.inSeconds.toInt()
         ) ?: 0
 
     override suspend fun getTodayTotal(userId: Int): Int =
         sessionsDao.getSumByUserIdForPeriod(
             id = userId,
-            start = now() - 1.days.inSeconds.longValue.toInt(),
+            start = now() - 1.days.inSeconds.toInt(),
             end = now()
         ) ?: 0
 
@@ -86,3 +91,5 @@ class SessionRepositoryImpl(
         )
     }
 }
+
+fun Interval<Second>.toInt() = Math.round(this.value).toInt()

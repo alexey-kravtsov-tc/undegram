@@ -17,7 +17,7 @@ object TgModule {
         bind() from singleton { instance<TgDataBase>().sessions() }
         bind() from singleton { instance<TgDataBase>().users() }
         bind<SessionRepository>() with singleton {
-            SessionRepositoryImpl(instance(), instance())
+            SessionRepositoryImpl(instance())
         }
         bind() from singleton { MessagesRepository(context) }
         bind() from singleton { UsersRepository(context) }

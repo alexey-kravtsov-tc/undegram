@@ -26,21 +26,35 @@ interface MessagesDao {
 
     //Chat list page
 
-    @Query("SELECT Message.text, Chat.* from message left join chat on Chat.id == Message.chatId where deleted GROUP BY chatId ORDER BY date DESC")
+    @Query(
+        """SELECT Message.text, Chat.* from message left join chat on Chat.id == Message.chatId
+        where deleted GROUP BY chatId ORDER BY date DESC"""
+    )
     fun getAllDeletedPerChat(): DataSource.Factory<Int, ChatWithLastMessage>
 
-    @Query("SELECT Message.text, Chat.* from message left join chat on Chat.id == Message.chatId where (deleted or edited) GROUP BY chatId ORDER BY date DESC")
+    @Query("""SELECT Message.text, Chat.* from message left join chat on Chat.id == Message.chatId
+        where (deleted or edited) GROUP BY chatId ORDER BY date DESC""")
     fun getAllDeletedAndEditedPerChat(): DataSource.Factory<Int, ChatWithLastMessage>
 
     //Chat page
 
     @Transaction
-    @Query("SELECT distinct Message.id as messageId, Message.text, Message.senderId, Message.date, Message.edited, User.* from message left join user on User.id == Message.senderId where deleted AND chatId = :chatId ORDER BY date DESC")
+    @Query("""SELECT distinct Message.id as messageId,
+        Message.text, Message.senderId, Message.date, Message.edited, User.*
+        from message left join user on User.id == Message.senderId
+        where deleted AND chatId = :chatId ORDER BY date DESC""")
     fun getAllDeletedForChat(chatId: Long): DataSource.Factory<Int, MessageFromUserWithEdits>
 
     @Transaction
-    @Query("SELECT distinct Message.id as messageId, Message.text, Message.senderId, Message.date, Message.edited, User.* from message left join user on User.id == Message.senderId where (deleted or edited) AND chatId = :chatId ORDER BY date DESC")
-    fun getAllDeletedAndEditedForChat(chatId: Long): DataSource.Factory<Int, MessageFromUserWithEdits>
+    @Query(
+        """SELECT distinct Message.id as messageId,
+        Message.text, Message.senderId, Message.date, Message.edited, User.*
+        from message left join user on User.id == Message.senderId
+        where (deleted or edited) AND chatId = :chatId ORDER BY date DESC"""
+    )
+    fun getAllDeletedAndEditedForChat(
+        chatId: Long
+    ): DataSource.Factory<Int, MessageFromUserWithEdits>
 
     @Query("DELETE FROM message WHERE id = :id")
     fun delete(id: Long)

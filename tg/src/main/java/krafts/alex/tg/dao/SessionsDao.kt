@@ -17,14 +17,21 @@ interface SessionsDao {
     @Query("SELECT * from session where userId = :id ORDER BY start DESC LIMIT 1")
     fun getLastByUserId(id: Int): Session?
 
-    @Query("SELECT User.*, sum(expires - start) as sessionsTime from session left join user on User.id == Session.userId group by userId order by sum(expires - start) desc")
-    fun getUsersIdsByEditsCount() : DataSource.Factory<Int, UserWithSessions>
+    @Query(
+        """
+        select User.*, User.id as userId, sum(expires - start) as sessionsTime
+        from session left join user on User.id == Session.userId
+        where start > :start and expires < :end
+        group by userId order by sum(expires - start) desc
+        """
+    )
+    fun getUsersIdsByEditsCount(start: Int, end: Int): DataSource.Factory<Int, UserWithSessions>
 
     @Query("SELECT * from session where userId = :id ORDER BY start ASC")
     fun getByUserId(id: Int): LiveData<List<Session>>
 
     @Query("SELECT sum(expires - start) from session where userId = :id and start > :start and expires < :end")
-    suspend fun getSumByUserIdForPeriod(id: Int, start: Int, end: Int) : Int?
+    suspend fun getSumByUserIdForPeriod(id: Int, start: Int, end: Int): Int?
 
     @Query("UPDATE session SET expires = :end where id = :id")
     fun update(id: Int, end: Int)
