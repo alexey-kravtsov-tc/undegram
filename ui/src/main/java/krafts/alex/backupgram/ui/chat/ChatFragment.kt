@@ -52,7 +52,7 @@ class ChatFragment : FragmentBase() {
             activity?.toolbar?.title = data.title
 
             Picasso.get()
-                .load(File(data.imagePath))
+                .load(File(data.imagePath ?: ""))
                 .placeholder(R.drawable.ic_users)
                 .transform(CircleTransform())
                 .into(avatar)

@@ -27,7 +27,7 @@ class UsersAdapter : PagedListAdapter<UserWithSessions, UserViewHolder>(UserDiff
 
         override fun areContentsTheSame(
             oldItem: UserWithSessions, newItem: UserWithSessions
-        ): Boolean = oldItem.user == newItem.user
+        ): Boolean = oldItem.sessionsTime == newItem.sessionsTime
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {

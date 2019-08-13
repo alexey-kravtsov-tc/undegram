@@ -10,4 +10,8 @@
     <dimen name="user_margin">@dimen/message_margin</dimen>
     <dimen name="avatar_width">70dp</dimen>
 
+
+    <dimen name="spinner_height">56dp</dimen>
+    <dimen name="font_medium">14sp</dimen>
+
 </resources>

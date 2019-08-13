@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TimeLineSpinner">
+        <item name="spinner_height">@dimen/spinner_height</item>
+        <item name="frame_color">@color/spinner_frame_color_night</item>
+        <item name="foreground_color">@color/spinner_foreground_color_night</item>
+        <item name="axis_text_color">@color/spinner_text_color_night</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
+</resources>

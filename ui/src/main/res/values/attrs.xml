@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TimeLineSpinner">
+        <attr name="spinner_height" format="dimension"/>
+        <attr name="foreground_color" format="color"/>
+        <attr name="frame_color" format="color"/>
+        <attr name="axis_text_color" format="color"/>
+        <attr name="chartSpinnerStyle" format="reference" />
+        <attr name="android:textSize" format="dimension"/>
+    </declare-styleable>
+
+</resources>

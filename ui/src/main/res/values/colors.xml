@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="spinner_frame_color">#B3DBE7F0</color>
+    <color name="spinner_frame_color_night">#2E3032</color>
+    <color name="spinner_foreground_color">#80F0F0F0</color>
+    <color name="spinner_foreground_color_night">#b3212121</color>
+    <color name="spinner_text_color_night">#707D84</color>
 </resources>

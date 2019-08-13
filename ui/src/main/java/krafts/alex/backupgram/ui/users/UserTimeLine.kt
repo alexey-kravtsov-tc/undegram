@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 class UserTimeLine(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     private var source: List<Session> = emptyList()
-    private val visibleRange = 60 * 60  // 1 hour
+    private var visibleRange = 60 * 60  // 1 hour
 
     private var minTime = 0
     private var scale = 180F
@@ -30,7 +30,8 @@ class UserTimeLine(context: Context, attrs: AttributeSet) : View(context, attrs)
 
     private fun now() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()
 
-    fun showTimeline(list: List<Session>) {
+    fun showTimeline(list: List<Session>, range : Int ) {
+        visibleRange = range
         minTime = now() - visibleRange
         source = list.filter { it.expires > minTime }
     }

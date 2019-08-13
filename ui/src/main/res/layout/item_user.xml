@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <krafts.alex.backupgram.ui.chat.UserTimeLine
+    <krafts.alex.backupgram.ui.users.UserTimeLine
         android:id="@+id/timeline"
         android:layout_width="0dp"
         android:layout_height="0dp"
