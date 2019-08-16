@@ -14,6 +14,7 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
+            <nav-graph android:value="@navigation/navigation_graph" />
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -34,7 +35,7 @@
         </activity>
         <service android:name="services.KeepAliveService" />
         <service
-            android:name="services.FirebaseNotificationService"
+            android:name="krafts.alex.tg.services.FirebaseNotificationService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

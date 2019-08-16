@@ -11,10 +11,11 @@ import krafts.alex.tg.repo.SessionRepository
 
 class UsersViewModel(sessionRepository: SessionRepository) : ViewModel() {
 
-    val period = MutableLiveData<Period>(Period(-2, 0))
+    val period = MutableLiveData<Period>(Period(2, 0))
 
     val usersBySessionCount: LiveData<PagedList<UserWithSessions>> =
         period.switchMap {
+
             LivePagedListBuilder(
                 sessionRepository.getUsersBySessionCount(it.startOffset, it.endOffset),
                 20

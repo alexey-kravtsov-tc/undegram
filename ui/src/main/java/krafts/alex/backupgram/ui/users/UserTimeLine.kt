@@ -6,8 +6,9 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import krafts.alex.backupgram.ui.R
 import krafts.alex.tg.entity.Session
-import java.util.concurrent.TimeUnit
+import krafts.alex.tg.repo.TgTime.nowInSeconds
 
 class UserTimeLine(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
@@ -20,6 +21,8 @@ class UserTimeLine(context: Context, attrs: AttributeSet) : View(context, attrs)
     private val paint = Paint()
     private val paintBorder = Paint()
 
+    private val timelineHeight = context.resources.getDimension(R.dimen.timeline_height)
+
     init {
         paint.color = Color.GREEN
         paint.style = Paint.Style.FILL
@@ -28,25 +31,25 @@ class UserTimeLine(context: Context, attrs: AttributeSet) : View(context, attrs)
         paintBorder.style = Paint.Style.FILL_AND_STROKE
     }
 
-    private fun now() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()
 
     fun showTimeline(list: List<Session>, range : Int ) {
         visibleRange = range
-        minTime = now() - visibleRange
+        minTime = nowInSeconds() - visibleRange
         source = list.filter { it.expires > minTime }
+        requestLayout()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         setMeasuredDimension(
             MeasureSpec.getSize(widthMeasureSpec), //342
             MeasureSpec.getSize(heightMeasureSpec)
         )
         scale = visibleRange.toFloat() / MeasureSpec.getSize(widthMeasureSpec)
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 
     override fun onDraw(canvas: Canvas?) {
-        canvas?.drawRect(0F, 10F, visibleRange / scale, 0F, paintBorder)
+        canvas?.drawRect(0F, timelineHeight, visibleRange / scale, 0F, paintBorder)
         source.forEach {
             canvas?.drawRect(
                 (it.start).toX(),

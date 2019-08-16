@@ -8,6 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import com.crashlytics.android.Crashlytics
+import com.kizitonwose.time.hours
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_users.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
@@ -17,10 +19,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import krafts.alex.backupgram.ui.FragmentBase
 import krafts.alex.backupgram.ui.R
+import krafts.alex.backupgram.ui.utils.display
 import krafts.alex.backupgram.ui.viewModel
+import krafts.alex.tg.repo.TgTime
+import java.util.concurrent.TimeUnit
 
 class UsersFragment : FragmentBase(), TimeLineSpinnerListener {
-
 
     private val viewModel: UsersViewModel by viewModel()
 
@@ -45,14 +49,29 @@ class UsersFragment : FragmentBase(), TimeLineSpinnerListener {
         postponeEnterTransition()
         val adapt = UsersAdapter()
 
-        spinner?.setupData(ArrayList((24L downTo 0L).toList()))
+        viewModel.period.value?.let {
+            spinner?.setupData(ArrayList((24L downTo 0L).toList()), it.startOffset, it.endOffset)
+        }
+
         spinner?.setChartListener(this)
 
-        viewModel.usersBySessionCount?.observe(this, Observer {
+        viewModel.usersBySessionCount.observe(this, Observer {
             it?.let {
                 placeholder.visibility = if (it.count() > 3) View.GONE else View.VISIBLE
                 adapt.submitList(it)
                 Crashlytics.setInt("users_count", it.count())
+            }
+        })
+
+        viewModel.period.observe(this, Observer {
+            it?.let {
+                activity?.toolbar?.title = "Online activity" +
+                    " from ${displayOffset(it.startOffset)}" +
+                    if (it.endOffset == 0) {
+                        " until now"
+                    } else {
+                        " to ${displayOffset(it.endOffset)}"
+                    }
             }
         })
 
@@ -67,6 +86,8 @@ class UsersFragment : FragmentBase(), TimeLineSpinnerListener {
         })
     }
 
+    private fun displayOffset(offset: Int) = (TgTime.nowInSeconds() - offset * 3600).display()
+
     private var job = Job()
 
     override fun onRangeChanged(
@@ -75,12 +96,20 @@ class UsersFragment : FragmentBase(), TimeLineSpinnerListener {
         job.cancel()
         job = GlobalScope.launch {
             delay(200)
-            viewModel.period.postValue(
-                UsersViewModel.Period(
-                    hoursAfterFrame + hoursInFrame,
-                    hoursAfterFrame
+            while (job.isActive) {
+                viewModel.period.postValue(
+                    UsersViewModel.Period(
+                        hoursAfterFrame + hoursInFrame,
+                        hoursAfterFrame
+                    )
                 )
-            )
+                delay(1000 * 60)
+            }
         }
+    }
+
+    override fun onDestroy() {
+        job.cancel()
+        super.onDestroy()
     }
 }

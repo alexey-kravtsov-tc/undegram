@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        button_login.visibility = if (BackApp.client?.haveAuthorization == false) {
+        button_login.visibility = if (!BackApp.client.haveAuthorization) {
             View.VISIBLE
         } else {
             View.GONE
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     }
 
     override fun onStart() {
-        if (BackApp.client?.haveAuthorization == false) {
+        if (!BackApp.client.haveAuthorization) {
             navController.navigate(R.id.login_destination)
         }
         super.onStart()

@@ -1,17 +1,14 @@
 package krafts.alex.tg.repo
 
 import android.content.Context
-import androidx.annotation.WorkerThread
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.paging.DataSource
 import androidx.room.Transaction
 import krafts.alex.tg.TgDataBase
 import krafts.alex.tg.entity.ChatWithLastMessage
 import krafts.alex.tg.entity.Message
 import krafts.alex.tg.entity.MessageFromUserWithEdits
+import krafts.alex.tg.repo.TgTime.nowInSeconds
 import org.drinkless.td.libcore.telegram.TdApi
-import java.util.concurrent.TimeUnit
 
 class MessagesRepository(context: Context) {
 
@@ -45,9 +42,7 @@ class MessagesRepository(context: Context) {
 
     fun deletePermanently(id: Long) = msgs.delete(id)
 
-    fun edit(id: Long, text: String) = msgs.edit(id, text, now())
-
-    private fun now() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()
+    fun edit(id: Long, text: String) = msgs.edit(id, text, nowInSeconds())
 
     fun addExampleMessages() {
         msgs.insert(stub(1, "you can track what messages are removed from Telegram chat", true))
@@ -69,7 +64,7 @@ class MessagesRepository(context: Context) {
         senderId = 1,
         chatId = 1,
         text = text,
-        date = now() - id.toInt() * 60,
+        date = nowInSeconds() - id.toInt() * 60,
         editDate = 0,
         deleted = deleted,
         edited = edited

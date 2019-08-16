@@ -18,6 +18,7 @@ import krafts.alex.backupgram.ui.FragmentBase
 import krafts.alex.backupgram.ui.R
 import krafts.alex.backupgram.ui.utils.CircleTransform
 import krafts.alex.backupgram.ui.utils.SwipeToDeleteCallback
+import krafts.alex.backupgram.ui.utils.toPeriodString
 import krafts.alex.backupgram.ui.viewModel
 import java.io.File
 
@@ -123,12 +124,11 @@ class ChatFragment : FragmentBase() {
             //TODO: use proper time formatting
             if (it.yesterday + it.today > 60) {
                 total.text = getString(R.string.recorded_time_online)
-                yesterday.text = "yesterday: ${it.yesterday.display()}"
-                today.text = "today: ${it.today.display()} "
+                yesterday.text = "yesterday: ${it.yesterday.toLong().toPeriodString()}"
+                today.text = "today: ${it.today.toLong().toPeriodString()} "
                 chart.visibility = View.VISIBLE
             }
         })
     }
 
-    private fun Int.display() = "${this / 3600} h ${this % 3600 / 60} m"
 }

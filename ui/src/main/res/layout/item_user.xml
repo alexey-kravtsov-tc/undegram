@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingTop="@dimen/user_margin"
+    android:paddingEnd="@dimen/text_margin"
     android:paddingBottom="@dimen/user_margin"
     >
 
@@ -36,7 +37,7 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/avatar"
-        app:layout_constraintRight_toLeftOf="@id/time"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name"
         />
 

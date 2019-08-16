@@ -61,6 +61,9 @@ class TimeLineSpinner @JvmOverloads constructor(
     var moveLeftBorder = false
     var moveRightBorder = false
 
+    private var startOffset = 2
+    private var endOffset = 0
+
     init {
         setLayerType(LAYER_TYPE_SOFTWARE, null)
         attrs?.let { retrieveAttributes(attrs) }
@@ -124,7 +127,7 @@ class TimeLineSpinner @JvmOverloads constructor(
         for (index in 0 until xAxis.count()) {
             var hour = now - xAxis[index]
             if (hour < 0) hour += 24
-            val title = String.format("%02d", hour)
+            val title = if (hour % 3 == 0L) String.format("%02d", hour) else "-"
             val xOffset = index * textStep
             val textWidth = textPaint.measureText(title)
             val textStartX = (textStep - textWidth) / 2f
@@ -139,14 +142,19 @@ class TimeLineSpinner @JvmOverloads constructor(
     }
 
     private fun calculateFrameSize() {
-        minFrameWidth = 2 * (width / xAxis.size)
+        minFrameWidth = (startOffset - endOffset) * (width / xAxis.size)
         frameSideSize = minFrameWidth / 4
         if (currentFrameWidth == 0) currentFrameWidth = minFrameWidth
         updateFrameSize()
     }
 
     private fun updateFrameSize() {
-        frameOuterRect.set(width - currentFrameWidth, 0, width, height)
+        frameOuterRect.set(
+            width - currentFrameWidth - startOffset * (width / xAxis.size),
+            0,
+            width - endOffset * (width / xAxis.size),
+            height
+        )
         frameInnerRect.set(
             frameOuterRect.left + (frameSideSize * 1.5).toInt(),
             frameOuterRect.top + frameSideSize / 2,
@@ -266,13 +274,16 @@ class TimeLineSpinner @JvmOverloads constructor(
         this.listener = listener
     }
 
-    fun setupData(xAxis: ArrayList<Long>) {
+    fun setupData(xAxis: ArrayList<Long>, start: Int, end: Int) {
+        startOffset = start
+        endOffset = end
         this.xAxis.clear()
         this.xAxis.addAll(xAxis)
         invalidate()
+        calculateFrameSize()
     }
 }
 
 interface TimeLineSpinnerListener {
-    fun onRangeChanged(hoursBeforeFrame: Int, hoursAfterFrame: Int, hoursInFrame: Int, dx: Float)
+    fun onRangeChanged(hoursBeforeFrame: Int,  hoursAfterFrame: Int, hoursInFrame: Int, dx: Float)
 }

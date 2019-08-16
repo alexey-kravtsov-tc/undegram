@@ -8,6 +8,7 @@ import com.kizitonwose.time.hours
 import krafts.alex.tg.dao.SessionsDao
 import krafts.alex.tg.entity.Session
 import krafts.alex.tg.entity.UserWithSessions
+import krafts.alex.tg.repo.TgTime.nowInSeconds
 import org.drinkless.td.libcore.telegram.TdApi
 import java.util.concurrent.TimeUnit
 
@@ -18,7 +19,7 @@ class SessionRepositoryImpl(
     override fun updateSession(userStatus: TdApi.UpdateUserStatus) {
         (userStatus.status as? TdApi.UserStatusOnline)?.let { status ->
             sessionsDao.getLastByUserId(userStatus.userId)?.let { last ->
-                if (last.expires > now()) {
+                if (last.expires > nowInSeconds()) {
                     sessionsDao.update(last.id, status.expires)
                 } else {
                     addSession(userStatus.userId, status.expires)
@@ -27,16 +28,15 @@ class SessionRepositoryImpl(
         }
     }
 
-    private fun now() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()
 
     private fun addSession(userId: Int, expires: Int) {
-        sessionsDao.add(Session.fromTg(userId, now(), expires))
+        sessionsDao.add(Session.fromTg(userId, nowInSeconds(), expires))
     }
 
     override fun endSession(userId: Int) {
         sessionsDao.getLastByUserId(userId)?.let {
-            if (it.expires > now()) {
-                sessionsDao.update(it.id, now())
+            if (it.expires > nowInSeconds()) {
+                sessionsDao.update(it.id, nowInSeconds())
             }
         }
     }
@@ -46,22 +46,22 @@ class SessionRepositoryImpl(
     override fun getUsersBySessionCount(start: Int, end: Int)
         : DataSource.Factory<Int, UserWithSessions> =
         sessionsDao.getUsersIdsByEditsCount(
-            start = now() - start.hours.inSeconds.toInt(),
-            end = now() - end.hours.inSeconds.toInt()
+            start = nowInSeconds() - start.hours.inSeconds.toInt(),
+            end = nowInSeconds() - end.hours.inSeconds.toInt()
         )
 
     override suspend fun getYesterdayTotal(userId: Int): Int =
         sessionsDao.getSumByUserIdForPeriod(
             id = userId,
-            start = now() - 2.days.inSeconds.toInt(),
-            end = now() - 1.days.inSeconds.toInt()
+            start = nowInSeconds() - 2.days.inSeconds.toInt(),
+            end = nowInSeconds() - 1.days.inSeconds.toInt()
         ) ?: 0
 
     override suspend fun getTodayTotal(userId: Int): Int =
         sessionsDao.getSumByUserIdForPeriod(
             id = userId,
-            start = now() - 1.days.inSeconds.toInt(),
-            end = now()
+            start = nowInSeconds() - 1.days.inSeconds.toInt(),
+            end = nowInSeconds()
         ) ?: 0
 
     override fun addExampleSessions() {
@@ -85,11 +85,16 @@ class SessionRepositoryImpl(
             Session(
                 id = 0,
                 userId = 1,
-                start = now() - (minutesOffsetFromNow + 1) * 60,
-                expires = now() - minutesOffsetFromNow * 60
+                start = nowInSeconds() - (minutesOffsetFromNow + 1) * 60,
+                expires = nowInSeconds() - minutesOffsetFromNow * 60
             )
         )
     }
+
+}
+
+object TgTime {
+    fun nowInSeconds() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()
 }
 
 fun Interval<Second>.toInt() = Math.round(this.value).toInt()

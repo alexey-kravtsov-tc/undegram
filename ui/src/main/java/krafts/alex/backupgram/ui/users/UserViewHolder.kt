@@ -6,15 +6,15 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_user.view.*
 import krafts.alex.backupgram.ui.BackApp
 import krafts.alex.backupgram.ui.ChatArgument
 import krafts.alex.backupgram.ui.R
-import krafts.alex.backupgram.ui.chat.UserTimeLine
 import krafts.alex.backupgram.ui.chatList.ChatListFragmentDirections
 import krafts.alex.backupgram.ui.utils.CircleTransform
-import krafts.alex.tg.entity.User
+import krafts.alex.backupgram.ui.utils.toPeriodString
 import krafts.alex.tg.entity.UserWithSessions
 import java.io.File
 
@@ -28,21 +28,24 @@ class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         name.text = title(item)
 
         item.user.photoBig?.let {
+            if (it.downloaded && File(it.localPath).exists()) {
                 Picasso.get()
                     .load(File(it.localPath))
                     .placeholder(R.drawable.ic_users)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                     .transform(CircleTransform())
+                    .error(R.drawable.ic_settings)
                     .into(avatar)
             } else {
-                BackApp.client?.loadImage(it.fileId)
+                BackApp.client.loadImage(it.fileId)
             }
-        }
+        } ?: BackApp.client.getChatInfo(item.user.id.toLong())
 
         avatar.transitionName = "avatar${item.user.id}"
 
-        time.text = item.sessionsTime.toString()
+        time.text = item.sessionsTime.toPeriodString()
 
-        timeLine.showTimeline(item.sessions, item.period)
+        timeLine.showTimeline(item.sessions, item.finish - item.start)
 
         with(view) {
             tag = item

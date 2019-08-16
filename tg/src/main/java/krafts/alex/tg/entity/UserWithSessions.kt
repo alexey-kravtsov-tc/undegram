@@ -6,6 +6,7 @@ import androidx.room.Relation
 data class UserWithSessions(
     @Embedded val user: User,
     val sessionsTime: Long,
-    val period: Int,
+    val start: Int,
+    val finish: Int,
     @Relation(parentColumn = "id", entityColumn = "userId") val sessions: List<Session>
 )
