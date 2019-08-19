@@ -12,6 +12,7 @@
 
 
     <dimen name="timeline_height">10dp</dimen>
+    <dimen name="hour_line_height">5dp</dimen>
     <dimen name="spinner_height">56dp</dimen>
     <dimen name="font_medium">14sp</dimen>
 

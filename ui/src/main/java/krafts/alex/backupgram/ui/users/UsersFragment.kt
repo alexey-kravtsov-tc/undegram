@@ -50,7 +50,7 @@ class UsersFragment : FragmentBase(), TimeLineSpinnerListener {
         val adapt = UsersAdapter()
 
         viewModel.period.value?.let {
-            spinner?.setupData(ArrayList((24L downTo 0L).toList()), it.startOffset, it.endOffset)
+            spinner?.setupData(ArrayList((23L downTo 0L).toList()), it.startOffset, it.endOffset)
         }
 
         spinner?.setChartListener(this)
@@ -59,6 +59,7 @@ class UsersFragment : FragmentBase(), TimeLineSpinnerListener {
             it?.let {
                 placeholder.visibility = if (it.count() > 3) View.GONE else View.VISIBLE
                 adapt.submitList(it)
+                list.scrollToPosition(0)
                 Crashlytics.setInt("users_count", it.count())
             }
         })
@@ -66,11 +67,11 @@ class UsersFragment : FragmentBase(), TimeLineSpinnerListener {
         viewModel.period.observe(this, Observer {
             it?.let {
                 activity?.toolbar?.title = "Online activity" +
-                    " from ${displayOffset(it.startOffset)}" +
                     if (it.endOffset == 0) {
-                        " until now"
+                        " last ${it.startOffset} hours"
                     } else {
-                        " to ${displayOffset(it.endOffset)}"
+                        " from ${displayOffset(it.startOffset)}" +
+                            " to ${displayOffset(it.endOffset)}"
                     }
             }
         })

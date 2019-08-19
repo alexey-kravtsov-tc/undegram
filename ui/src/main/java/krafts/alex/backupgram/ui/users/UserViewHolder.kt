@@ -45,7 +45,7 @@ class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         time.text = item.sessionsTime.toPeriodString()
 
-        timeLine.showTimeline(item.sessions, item.finish - item.start)
+        timeLine.showTimeline(item.sessions, item.start, item.finish)
 
         with(view) {
             tag = item

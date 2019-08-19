@@ -6,9 +6,9 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat
 import krafts.alex.backupgram.ui.R
 import krafts.alex.tg.entity.Session
-import krafts.alex.tg.repo.TgTime.nowInSeconds
 
 class UserTimeLine(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
@@ -20,21 +20,25 @@ class UserTimeLine(context: Context, attrs: AttributeSet) : View(context, attrs)
 
     private val paint = Paint()
     private val paintBorder = Paint()
+    private val paintHour = Paint()
 
     private val timelineHeight = context.resources.getDimension(R.dimen.timeline_height)
+    private val hourlineHeight = context.resources.getDimension(R.dimen.hour_line_height)
 
     init {
-        paint.color = Color.GREEN
+        paint.color = ContextCompat.getColor(context, R.color.colorOnlineTimeLine)
         paint.style = Paint.Style.FILL
 
-        paintBorder.color = Color.GRAY
+        paintBorder.color = ContextCompat.getColor(context, R.color.colorForegroundTimeLine)
         paintBorder.style = Paint.Style.FILL_AND_STROKE
+
+        paintHour.color = Color.BLACK
+        paintHour.style = Paint.Style.FILL_AND_STROKE
     }
 
-
-    fun showTimeline(list: List<Session>, range : Int ) {
-        visibleRange = range
-        minTime = nowInSeconds() - visibleRange
+    fun showTimeline(list: List<Session>, start: Int, finish: Int) {
+        visibleRange = finish - start
+        minTime = start
         source = list.filter { it.expires > minTime }
         requestLayout()
     }
@@ -49,24 +53,37 @@ class UserTimeLine(context: Context, attrs: AttributeSet) : View(context, attrs)
     }
 
     override fun onDraw(canvas: Canvas?) {
-        canvas?.drawRect(0F, timelineHeight, visibleRange / scale, 0F, paintBorder)
-        source.forEach {
-            canvas?.drawRect(
-                (it.start).toX(),
-                10F,
-                (if (it.expires-it.start > scale) {
-                    it.expires
-                } else {
-                    it.start + scale.toInt()
-                }).toX(),
-                0F,
-                paint
-            )
+        canvas?.apply {
+            drawRect(0F, timelineHeight, visibleRange / scale, 0F, paintBorder)
+            source.forEach {
+                drawRect(
+                    (it.start).toX(),
+                    timelineHeight,
+                    (if (it.expires - it.start > scale) {
+                        it.expires
+                    } else {
+                        it.start + scale.toInt()
+                    }).toX(),
+                    0F,
+                    paint
+                )
+            }
+            drawTimeline(hourlineHeight, 3600)
+            drawTimeline(timelineHeight, 3600 * 24, 3600 * 21) //TODO: GMT OFFSET
         }
         super.onDraw(canvas)
     }
 
+    private fun Canvas?.drawTimeline(height: Float, step: Int, min: Int = step) {
+        var timeLineX = min - minTime % step
+        while (timeLineX < visibleRange) {
+            this?.drawRect(
+                timeLineX / scale, 0F, timeLineX / scale + 1F, height,
+                paintHour
+            )
+            timeLineX += step
+        }
+    }
+
     private fun Int.toX() = (this - minTime) / scale
-
-
 }

@@ -280,7 +280,6 @@ class TimeLineSpinner @JvmOverloads constructor(
         this.xAxis.clear()
         this.xAxis.addAll(xAxis)
         invalidate()
-        calculateFrameSize()
     }
 }
 
