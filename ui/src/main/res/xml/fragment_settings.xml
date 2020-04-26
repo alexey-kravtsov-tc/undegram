@@ -2,6 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <SwitchPreferenceCompat
+        app:key="service_active"
+        app:summary="Allow Undegram to collect data while in background "
+        app:title="Background Service Active" />
+
+    <SwitchPreferenceCompat
         app:key="dark_theme"
         app:title="Dark Theme" />
 

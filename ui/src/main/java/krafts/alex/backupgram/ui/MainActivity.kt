@@ -77,10 +77,12 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         }
 
 
-        authListener = TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            button_login?.visibility = View.GONE
-        }
+        authListener =
+            TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
+                button_login?.visibility = View.GONE
+            }
         Fabric.with(this, Crashlytics())
+
     }
 
     override fun onStart() {

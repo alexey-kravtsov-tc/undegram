@@ -1,6 +1,7 @@
 package services
 
 import android.app.ActivityManager
+import android.app.IntentService
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -10,6 +11,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
+import android.os.HandlerThread
 import android.os.IBinder
 import com.crashlytics.android.Crashlytics
 import krafts.alex.backupgram.ui.MainActivity
@@ -78,19 +80,22 @@ class KeepAliveService : Service() {
 
     private fun createChannel(context: Context) {
 
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             val notificationManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             val importance = NotificationManager.IMPORTANCE_HIGH
-            val notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance)
-            notificationChannel.enableVibration(true)
-            notificationChannel.setShowBadge(true)
-            notificationChannel.enableLights(true)
-            notificationChannel.lightColor = Color.parseColor("#e8334a")
-            notificationChannel.description = CHANNEL_NAME
-            notificationChannel.lockscreenVisibility = Notification.VISIBILITY_SECRET
+            val notificationChannel =
+                NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
+                    enableVibration(true)
+                    setShowBadge(true)
+                    enableLights(true)
+                    lightColor = Color.parseColor("#e8334a")
+                    description = CHANNEL_NAME
+                    lockscreenVisibility = Notification.VISIBILITY_SECRET
+                }
             notificationManager.createNotificationChannel(notificationChannel)
         }
     }

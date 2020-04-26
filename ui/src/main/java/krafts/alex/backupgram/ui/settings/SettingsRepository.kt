@@ -17,6 +17,8 @@ class SettingsRepository(context: Context) {
 
     val darkMode = bool(SettingsFragment.DARK_KEY)
 
+    val serviceActive = bool(SettingsFragment.SERVICE_ENABLED)
+
     private fun bool(key: String) = LivePref.Bool(sharedPrefs, key)
 
 }

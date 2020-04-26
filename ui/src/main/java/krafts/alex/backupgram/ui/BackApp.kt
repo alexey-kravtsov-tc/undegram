@@ -85,7 +85,11 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun startForegroundService() {
-        if (client.haveAuthorization) {
+        val serviceActive = PreferenceManager
+            .getDefaultSharedPreferences(applicationContext)
+            .getBoolean("service_active", false) //TODO: use repo
+
+        if (client.haveAuthorization && serviceActive) {
             val serviceIntent = Intent(applicationContext, KeepAliveService::class.java)
 
             if (!KeepAliveService.isServiceRunning(this)) {
