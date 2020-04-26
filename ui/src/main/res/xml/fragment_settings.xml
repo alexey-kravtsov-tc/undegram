@@ -33,6 +33,12 @@
     </PreferenceCategory>
 
     <Preference
+        app:key="vpn"
+        app:title="VPN settings"
+        app:summary="Setup VPN if Telegram is blocked in your region"
+        app:fragment="krafts.alex.backupgram.ui.settings.VpnFragment"/>
+
+    <Preference
         app:key="feedback"
         app:summary="Report technical issues or suggest new features"
         app:title="Send feedback">

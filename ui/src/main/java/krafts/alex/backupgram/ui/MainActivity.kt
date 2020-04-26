@@ -11,20 +11,23 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.activity_main.*
-import krafts.alex.tg.AuthOk
-import krafts.alex.tg.TgEvent
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import com.crashlytics.android.Crashlytics
 import io.fabric.sdk.android.Fabric
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.activity_main.*
 import krafts.alex.backupgram.ui.settings.SettingsRepository
+import krafts.alex.tg.AuthOk
+import krafts.alex.tg.TgEvent
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
 
-class MainActivity : AppCompatActivity(), KodeinAware {
+class MainActivity : AppCompatActivity(), KodeinAware,
+    PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     override val kodein: Kodein by closestKodein()
 
@@ -82,7 +85,6 @@ class MainActivity : AppCompatActivity(), KodeinAware {
                 button_login?.visibility = View.GONE
             }
         Fabric.with(this, Crashlytics())
-
     }
 
     override fun onStart() {
@@ -98,6 +100,15 @@ class MainActivity : AppCompatActivity(), KodeinAware {
                 InputMethodManager
             imm?.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    override fun onPreferenceStartFragment(
+        caller: PreferenceFragmentCompat,
+        pref: Preference
+    ): Boolean {
+        if (pref.key == "vpn")
+            navController.navigate(R.id.vpn_destination)
+        return true
     }
 
     override fun onSupportNavigateUp(): Boolean = NavigationUI.navigateUp(

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreferenceCompat
+        app:key="vpn_enabled"
+        app:title="Use proxy" />
+    <EditTextPreference
+        app:key="vpn_ip"
+        app:title="Server"
+        android:inputType="textWebEditText"
+        app:useSimpleSummaryProvider="true"/>
+    <EditTextPreference
+        app:key="vpn_port"
+        app:title="Port"
+        android:inputType="numberDecimal"
+        android:digits="0123456789"
+        app:useSimpleSummaryProvider="true"/>
+    <EditTextPreference
+        app:key="vpn_user"
+        app:title="Username"
+        android:inputType="textEmailAddress"
+        app:useSimpleSummaryProvider="true"/>
+    <EditTextPreference
+        app:key="vpn_password"
+        app:title="Password"
+        android:inputType="textWebPassword"
+        />
+</PreferenceScreen>

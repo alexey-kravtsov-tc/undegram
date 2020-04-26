@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
     app:startDestination="@id/messages_destination">
     <activity
         android:id="@+id/main_destination"
         android:name="krafts.alex.backupgram.ui.MainActivity"
-        android:label="MainActivity" />
+        android:label="MainActivity"
+        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/login_destination"
         android:name="krafts.alex.backupgram.ui.LoginFragment"
-        android:label="Login">
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_messages"
             app:destination="@id/messages_destination"
@@ -19,7 +22,8 @@
     <fragment
         android:id="@+id/messages_destination"
         android:name="krafts.alex.backupgram.ui.chatList.ChatListFragment"
-        android:label="Undegram">
+        android:label="Undegram"
+        tools:layout="@layout/fragment_chat_list">
         <action
             android:id="@+id/action_chat_details"
             app:destination="@id/chat_details_destination"
@@ -29,7 +33,8 @@
     <fragment
         android:id="@+id/chat_details_destination"
         android:name="krafts.alex.backupgram.ui.chat.ChatFragment"
-        android:label="ChatDetailsFragment">
+        android:label="ChatDetailsFragment"
+        tools:layout="@layout/fragment_chat">
         <argument
             android:name="data"
             app:argType="krafts.alex.backupgram.ui.ChatArgument" />
@@ -37,7 +42,8 @@
     <fragment
         android:id="@+id/users_destination"
         android:name="krafts.alex.backupgram.ui.users.UsersFragment"
-        android:label="Users online activity">
+        android:label="Users online activity"
+        tools:layout="@layout/fragment_users">
         <action
             android:id="@+id/action_chat_details"
             app:destination="@id/chat_details_destination"
@@ -48,4 +54,8 @@
         android:id="@+id/settings_destination"
         android:name="krafts.alex.backupgram.ui.settings.SettingsFragment"
         android:label="Settings" />
+    <fragment
+        android:id="@+id/vpn_destination"
+        android:name="krafts.alex.backupgram.ui.settings.VpnFragment"
+        android:label="VPN Settings" />
 </navigation>

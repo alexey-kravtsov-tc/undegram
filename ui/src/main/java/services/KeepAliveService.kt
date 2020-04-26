@@ -42,7 +42,7 @@ class KeepAliveService : Service() {
     }
 
     private fun buildNotification(): Notification {
-        val title = "Working background"
+        val title = "Working in background"
         val message = CHANNEL_NAME
 
         val notifyIntent = Intent(this, this::class.java)
@@ -80,7 +80,7 @@ class KeepAliveService : Service() {
         val stopPendingIntent = PendingIntent.getService(this, 0, stopIntent, 0)
         return Notification.Action.Builder(
             R.drawable.ic_edits_hidden,
-            "Stop",
+            "Stop collecting data",
             stopPendingIntent
         ).build()
     }
@@ -125,7 +125,7 @@ class KeepAliveService : Service() {
         const val NOTIFICATION_ID = 716
         const val ACTION_DISMISS = "com.akrafts.undegram.notification.DISMISS"
         const val CHANNEL_ID = "com.akrafts.undegram.notification.CHANNEL_ID"
-        const val CHANNEL_NAME = "Collecting info so you don't miss anything"
+        const val CHANNEL_NAME = "Tracing Telegram data so you don't miss anything"
 
         fun isServiceRunning(context: Context): Boolean {
             val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as
