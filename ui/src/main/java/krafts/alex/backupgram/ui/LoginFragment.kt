@@ -6,17 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login.*
 import krafts.alex.tg.AuthOk
 import krafts.alex.tg.EnterCode
 import krafts.alex.tg.EnterPassword
 import krafts.alex.tg.EnterPhone
-import krafts.alex.tg.TgEvent
 
 class LoginFragment : FragmentBase() {
 
@@ -34,29 +33,41 @@ class LoginFragment : FragmentBase() {
         password_enter_form.visibility = View.GONE
         val controller = findNavController(view)
 
-        TgEvent.listen<EnterPhone>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            phone_enter_form?.visibility = View.VISIBLE
-        }
-        TgEvent.listen<EnterPassword>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            progress?.visibility = View.GONE
-            password_enter_form?.visibility = View.VISIBLE
-            goBack?.visibility = View.GONE
-            password?.hint = "${getString(R.string.prompt_password)} (${it.hint})"
-            log("Enter password step")
-        }
-        TgEvent.listen<EnterCode>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            progress?.visibility = View.GONE
-            code_enter_form?.visibility = View.VISIBLE
-            goBack?.visibility = View.GONE
-            log("Enter code step")
-        }
-        TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-            snackbar.show()
-            controller.popBackStack(R.id.messages_destination, false)
-            activity?.bottom_nav?.visibility = View.VISIBLE
-            analytics.logEvent(FirebaseAnalytics.Event.LOGIN, null)
-            log("Auth ok step")
-        }
+        BackApp.client.authState.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                EnterPhone -> phone_enter_form?.visibility = View.VISIBLE
+
+                is EnterPassword -> {
+                    progress?.visibility = View.GONE
+                    password_enter_form?.visibility = View.VISIBLE
+                    goBack?.visibility = View.GONE
+                    password?.hint =
+                        "${getString(R.string.prompt_password)} (${it.hint})"
+                    log("Enter password step")
+                }
+
+                EnterCode -> {
+                    progress?.visibility = View.GONE
+                    code_enter_form?.visibility = View.VISIBLE
+                    goBack?.visibility = View.GONE
+                    log("Enter code step")
+                }
+
+                AuthOk -> {
+                    snackbar.show()
+                    controller.popBackStack(
+                        R.id.messages_destination,
+                        false
+                    )
+                    activity?.bottom_nav?.visibility = View.VISIBLE
+                    analytics.logEvent(
+                        FirebaseAnalytics.Event.LOGIN,
+                        null
+                    )
+                    log("Auth ok step")
+                }
+            }
+        })
 
         button_send_phone.setOnClickListener {
             BackApp.client?.sendPhone(phone.text.toString())
@@ -90,7 +101,7 @@ class LoginFragment : FragmentBase() {
     override fun onDetach() {
         super.onDetach()
         activity?.bottom_nav?.visibility = View.VISIBLE
-        if (BackApp.client?.haveAuthorization == false) {
+        if (!BackApp.client?.haveAuthorization) {
             activity?.button_login?.visibility = View.VISIBLE
         }
     }

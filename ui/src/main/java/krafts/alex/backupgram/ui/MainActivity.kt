@@ -15,12 +15,9 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.crashlytics.android.Crashlytics
 import io.fabric.sdk.android.Fabric
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.tg.AuthOk
-import krafts.alex.tg.TgEvent
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
@@ -34,8 +31,6 @@ class MainActivity : AppCompatActivity(), KodeinAware,
     private val settings: SettingsRepository by instance()
 
     private lateinit var navController: NavController
-
-    private lateinit var authListener: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,11 +74,10 @@ class MainActivity : AppCompatActivity(), KodeinAware,
             navController.navigate(R.id.login_destination)
         }
 
+        BackApp.client.authState.observe(this, Observer {
+            if (it is AuthOk) button_login?.visibility = View.GONE
+        })
 
-        authListener =
-            TgEvent.listen<AuthOk>().observeOn(AndroidSchedulers.mainThread()).subscribe {
-                button_login?.visibility = View.GONE
-            }
         Fabric.with(this, Crashlytics())
     }
 
@@ -114,9 +108,4 @@ class MainActivity : AppCompatActivity(), KodeinAware,
     override fun onSupportNavigateUp(): Boolean = NavigationUI.navigateUp(
         Navigation.findNavController(this, R.id.nav_host_fragment), null
     )
-
-    override fun onDestroy() {
-        authListener.dispose()
-        super.onDestroy()
-    }
 }

@@ -52,6 +52,8 @@ class TgClient(context: Context) : KodeinAware{
         )
     }
 
+    val authState = MutableLiveData<AuthState>()
+
     private fun onAuthorizationStateUpdated(authorizationState: TdApi.AuthorizationState?) {
         if (authorizationState != null) {
             this.authorizationState = authorizationState
@@ -77,19 +79,19 @@ class TgClient(context: Context) : KodeinAware{
             is TdApi.AuthorizationStateWaitEncryptionKey -> sendClient(TdApi.CheckDatabaseEncryptionKey())
 
             is TdApi.AuthorizationStateWaitPhoneNumber -> {
-                TgEvent.publish(EnterPhone)
+                authState.postValue(EnterPhone)
             }
 
             is TdApi.AuthorizationStateWaitCode -> {
-                TgEvent.publish(EnterCode)
+                authState.postValue(EnterCode)
             }
 
             is TdApi.AuthorizationStateWaitPassword -> {
-                TgEvent.publish(EnterPassword(authorizationState.passwordHint))
+                authState.postValue(EnterPassword(authorizationState.passwordHint))
             }
 
             is TdApi.AuthorizationStateReady -> {
-                TgEvent.publish(AuthOk)
+                authState.postValue(AuthOk)
                 haveAuthorization = true
             }
 

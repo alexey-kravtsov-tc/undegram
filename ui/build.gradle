@@ -32,8 +32,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
 
@@ -46,7 +44,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-runtime:2.0.0'
     implementation "androidx.lifecycle:lifecycle-livedata:2.0.0"
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.preference:preference:1.0.0'
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'com.takisoft.preferencex:preferencex:1.1.0'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation "com.github.kizitonwose:time:1.0.3"
