@@ -12,6 +12,13 @@
     tools:context=".LoginFragment"
     >
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_title"
+        android:tint="@color/colorPrimary"
+        />
+
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/progress"
