@@ -44,9 +44,9 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
         users = UsersRepository(applicationContext)
         chats = ChatRepository(applicationContext)
 
-        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
-            it.token.let { token -> client?.registerFirebaseNotifications(token) }
-        }
+//        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
+//            it.token.let { token -> client?.registerFirebaseNotifications(token) }
+//        }
 
         if (!PreferenceManager
                 .getDefaultSharedPreferences(applicationContext)
