@@ -1,7 +1,6 @@
 package services
 
 import android.app.ActivityManager
-import android.app.IntentService
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,12 +8,13 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
-import android.os.HandlerThread
 import android.os.IBinder
+import androidx.core.app.NotificationManagerCompat
 import com.crashlytics.android.Crashlytics
-import krafts.alex.backupgram.ui.MainActivity
+import krafts.alex.backupgram.ui.R
 
 class KeepAliveService : Service() {
 
@@ -23,48 +23,66 @@ class KeepAliveService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        val context = applicationContext
-        createChannel(context)
 
-        val notifyIntent = Intent(context, MainActivity::class.java)
+        val action = intent.action
+        if (ACTION_DISMISS == action) {
+            stopForeground(true)
+            Crashlytics.log("KeepAliveService dismissed")
+        } else {
+            createChannel()
 
-        val title = "Undegram service"
+            startForeground(
+                NOTIFICATION_ID,
+                buildNotification()
+            )
+            Crashlytics.log("KeepAliveService started")
+        }
+
+        return START_STICKY
+    }
+
+    private fun buildNotification(): Notification {
+        val title = "Working background"
         val message = CHANNEL_NAME
 
-        notifyIntent.putExtra("title", title)
-        notifyIntent.putExtra("message", message)
-        notifyIntent.putExtra("notification", true)
-
-        notifyIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        val notifyIntent = Intent(this, this::class.java)
+        notifyIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
         val pendingIntent =
-            PendingIntent.getActivity(context, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getActivity(this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        startForeground(
-            716,
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                Notification.Builder(context, CHANNEL_ID)
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true)
-                    .setContentTitle(title)
-                    .setStyle(
-                        Notification.BigTextStyle().bigText(message)
-                    )
-                    .setContentText(message).build()
-            } else {
-                Notification.Builder(context)
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true)
-                    .setContentTitle(title)
-                    .setStyle(
-                        Notification.BigTextStyle().bigText(message)
-                    )
-                    .setContentText(message).build()
-            }
-        )
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Notification.Builder(applicationContext, CHANNEL_ID)
+        } else {
+            Notification.Builder(applicationContext)
+        }.setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .setContentTitle(title)
+            .setSmallIcon(R.drawable.ic_edits_show)
+            .setLargeIcon(
+                BitmapFactory.decodeResource(
+                    resources,
+                    R.drawable.ic_edits_show
+                )
+            )
+            .addAction(createStopAction())
+            .setStyle(
+                Notification.BigTextStyle().bigText(message)
+            )
+            .setContentText(message)
+            .build()
+    }
 
-        Crashlytics.log("KeepAliveService started")
-        return START_STICKY
+    private fun createStopAction(): Notification.Action? {
+        val stopIntent = Intent(this, KeepAliveService::class.java)
+        stopIntent.action = ACTION_DISMISS
+
+        val stopPendingIntent = PendingIntent.getService(this, 0, stopIntent, 0)
+        return Notification.Action.Builder(
+            R.drawable.ic_edits_hidden,
+            "Stop",
+            stopPendingIntent
+        ).build()
     }
 
     override fun onDestroy() {
@@ -78,15 +96,14 @@ class KeepAliveService : Service() {
         stopSelf()
     }
 
-    private fun createChannel(context: Context) {
-
+    private fun createChannel() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             val notificationManager =
-                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                NotificationManagerCompat.from(applicationContext)
 
-            val importance = NotificationManager.IMPORTANCE_HIGH
+            val importance = NotificationManager.IMPORTANCE_LOW
             val notificationChannel =
                 NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
                     enableVibration(true)
@@ -100,9 +117,15 @@ class KeepAliveService : Service() {
         }
     }
 
+    private fun handleActionDismiss() {
+        NotificationManagerCompat.from(applicationContext).cancel(NOTIFICATION_ID)
+    }
+
     companion object {
+        const val NOTIFICATION_ID = 716
+        const val ACTION_DISMISS = "com.akrafts.undegram.notification.DISMISS"
         const val CHANNEL_ID = "com.akrafts.undegram.notification.CHANNEL_ID"
-        const val CHANNEL_NAME = "collecting info so you don't miss anything"
+        const val CHANNEL_NAME = "Collecting info so you don't miss anything"
 
         fun isServiceRunning(context: Context): Boolean {
             val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as
