@@ -33,6 +33,7 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
         import(androidXModule(this@BackApp))
         bind() from singleton { FirebaseAnalytics.getInstance(applicationContext) }
         bind() from singleton { SettingsRepository(applicationContext) }
+        bind() from singleton { client }
         import(TgModule.resolve(applicationContext))
         import(ViewModelFactory.viewModelModule)
     }

@@ -5,6 +5,7 @@ import android.preference.PreferenceManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.lifecycle.MutableLiveData
 import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.Edit
 import krafts.alex.tg.entity.User
@@ -12,7 +13,6 @@ import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.EditRepository
 import krafts.alex.tg.repo.MessagesRepository
 import krafts.alex.tg.repo.SessionRepository
-import krafts.alex.tg.repo.SessionRepositoryImpl
 import krafts.alex.tg.repo.UsersRepository
 import org.drinkless.td.libcore.telegram.Client
 import org.drinkless.td.libcore.telegram.TdApi
@@ -20,8 +20,12 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
+import java.lang.Exception
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
-class TgClient(context: Context) : KodeinAware{
+class TgClient(context: Context) : KodeinAware {
 
     override val kodein: Kodein by closestKodein(context)
 
@@ -39,9 +43,17 @@ class TgClient(context: Context) : KodeinAware{
 
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-    init {
+    data class Vpn(
+        val ip: String,
+        val port: Int,
+        val username: String,
+        val password: String
+    )
+
+    fun addProxy(vpn: Vpn) {
+        //TODO: use vpn if needed
         sendClient(
-            with(TgConfig.Vpn) {
+            with(vpn) {
                 TdApi.AddProxy(
                     ip,
                     port,
@@ -67,6 +79,7 @@ class TgClient(context: Context) : KodeinAware{
                     useSecretChats = false
                     apiId = TgConfig.apiId
                     apiHash = TgConfig.apiHash
+                    useFileDatabase = true
                     systemLanguageCode = "en"
                     deviceModel = "Desktop"
                     systemVersion = "Undegram"
@@ -116,17 +129,31 @@ class TgClient(context: Context) : KodeinAware{
         }
     }
 
-    fun sendPhone(phone: String) {
-        sendClient(TdApi.SetAuthenticationPhoneNumber(phone, false, false))
-    }
+    private suspend inline fun <reified ExpectedResult : TdApi.Object> sendClientAsync(
+        query: TdApi.Function,
+        resultFunc: (ExpectedResult) -> Unit = {}
+    ) = resultFunc(
+        suspendCoroutine { cont ->
+            client.send(query) {
+                when (it) {
+                    is ExpectedResult -> cont.resume(it)
+                    is TdApi.Error -> cont.resumeWithException(Exception(it.message))
+                    else -> cont.resumeWithException(Exception("unexpected result $it"))
+                }
+            }}
+    )
 
-    fun sendCode(code: String) {
-        sendClient(TdApi.CheckAuthenticationCode(code, "", ""))
-    }
+    suspend fun sendAuthPhone(phone: String) = sendClientAsync<TdApi.Ok>(
+        TdApi.SetAuthenticationPhoneNumber(phone, false, false)
+    )
 
-    fun sendPassword(password: String) {
-        sendClient(TdApi.CheckAuthenticationPassword(password))
-    }
+    suspend fun sendAuthCode(code: String) = sendClientAsync<TdApi.Ok>(
+        TdApi.CheckAuthenticationCode(code, "", "")
+    )
+
+    suspend fun sendAuthPassword(password: String) = sendClientAsync<TdApi.Ok>(
+        TdApi.CheckAuthenticationPassword(password)
+    )
 
     fun registerFirebaseNotifications(token: String) {
         sendClient(
@@ -140,6 +167,10 @@ class TgClient(context: Context) : KodeinAware{
         sendClient(TdApi.GetChat(chatId))
     }
 
+    fun getUserInfo(userId: Int) {
+        sendClient(TdApi.GetUser(userId))
+    }
+
     fun loadImage(id: Int) {
         sendClient(TdApi.DownloadFile(id, 32, 0, 0, false))
     }
@@ -151,7 +182,7 @@ class TgClient(context: Context) : KodeinAware{
     private val messages = MessagesRepository(context)
     private val users = UsersRepository(context)
     private val chats = ChatRepository(context)
-    private val sessions : SessionRepository by instance()
+    private val sessions: SessionRepository by instance()
     private val messageEdits = EditRepository(context)
 
     private fun createClient(): Client = Client.create(Client.ResultHandler {
@@ -220,6 +251,10 @@ class TgClient(context: Context) : KodeinAware{
                 }
             }
 
+            is TdApi.UpdateUserChatAction -> {
+                Log.e("-action", it.action.javaClass.simpleName)
+            }
+
             is TdApi.UpdateFile -> {
                 users.updateImage(it.file)
                 chats.updateImage(it.file)
@@ -262,6 +297,13 @@ class TgClient(context: Context) : KodeinAware{
                         users.updateImage(it)
                         chats.updateImage(it)
                     }
+                }
+
+                is TdApi.User -> {
+                    val user = User.fromTg(it)
+                    users.add(user)
+                    if (user.photoBig?.downloaded == false)
+                        sendClient(TdApi.DownloadFile(user.photoBig.fileId, 32, 0, 0, true))
                 }
 
                 else -> print("Receive wrong response from TDLib")

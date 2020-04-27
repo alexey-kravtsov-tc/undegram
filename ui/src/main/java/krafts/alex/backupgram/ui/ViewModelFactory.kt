@@ -39,6 +39,9 @@ class ViewModelFactory(private val injector: DKodein) :
             bindViewModel<TimelineViewModel>() with provider {
                 TimelineViewModel(instance())
             }
+            bindViewModel<LoginViewModel>() with provider {
+                LoginViewModel(instance())
+            }
         }
 
         private inline fun <reified T : ViewModel> Kodein.Builder.bindViewModel(
