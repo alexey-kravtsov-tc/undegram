@@ -9,7 +9,9 @@ android {
 
     def keysPropertiesFile = rootProject.file("undegram.properties")
     def keysProperties = new Properties()
-    keysProperties.load(new FileInputStream(keysPropertiesFile))
+    if (keysPropertiesFile.exists()) {
+        keysProperties.load(new FileInputStream(keysPropertiesFile))
+    }
 
     def releaseStorePassword = keysProperties["RELEASE_STORE_PASSWORD"] ?: RELEASE_STORE_PASSWORD
     def releaseKeyAlias = keysProperties["RELEASE_KEY_ALIAS"] ?: RELEASE_KEY_ALIAS

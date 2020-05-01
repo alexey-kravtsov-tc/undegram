@@ -7,7 +7,9 @@ android {
 
     def keysPropertiesFile = rootProject.file("undegram.properties")
     def keysProperties = new Properties()
-    keysProperties.load(new FileInputStream(keysPropertiesFile))
+    if (keysPropertiesFile.exists()) {
+        keysProperties.load(new FileInputStream(keysPropertiesFile))
+    }
 
     compileSdkVersion 28
 
