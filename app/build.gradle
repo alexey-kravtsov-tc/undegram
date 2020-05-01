@@ -13,9 +13,12 @@ android {
         keysProperties.load(new FileInputStream(keysPropertiesFile))
     }
 
-    def releaseStorePassword = keysProperties["RELEASE_STORE_PASSWORD"] ?: RELEASE_STORE_PASSWORD
-    def releaseKeyAlias = keysProperties["RELEASE_KEY_ALIAS"] ?: RELEASE_KEY_ALIAS
-    def releaseKeyPassword = keysProperties["RELEASE_KEY_PASSWORD"] ?: RELEASE_KEY_PASSWORD
+    def releaseStorePassword = keysProperties["RELEASE_STORE_PASSWORD"]
+            ?: System.getenv("RELEASE_STORE_PASSWORD")
+    def releaseKeyAlias = keysProperties["RELEASE_KEY_ALIAS"]
+            ?: System.getenv("RELEASE_KEY_ALIAS")
+    def releaseKeyPassword = keysProperties["RELEASE_KEY_PASSWORD"]
+            ?: System.getenv("RELEASE_KEY_PASSWORD")
 
     defaultConfig {
         applicationId "krafts.alex.backupgram.app"

@@ -26,12 +26,17 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', "apiHash", keysProperties['TG_API_HASH'] ?: TG_API_HASH
-            buildConfigField 'int', "apiId", keysProperties['TG_API_ID'] ?: TG_API_HASH
+            buildConfigField 'String', "apiHash", keysProperties['TG_API_HASH']
+                    ?: System.getenv("TG_API_HASH")
+
+            buildConfigField 'int', "apiId", keysProperties['TG_API_ID']
+                    ?: System.getenv("TG_API_ID").toInteger()
         }
         release {
-            buildConfigField 'String', "apiHash", keysProperties['TG_API_HASH'] ?: TG_API_HASH
-            buildConfigField 'int', "apiId", keysProperties['TG_API_ID'] ?: TG_API_HASH
+            buildConfigField 'String', "apiHash", keysProperties['TG_API_HASH']
+                    ?: System.getenv("TG_API_HASH")
+            buildConfigField 'int', "apiId", keysProperties['TG_API_ID']
+                    ?: System.getenv("TG_API_ID").toInteger()
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
