@@ -42,6 +42,11 @@ sealed class LivePref<T>(
         }
     }
 
+    class Integer(sharedPrefs: SharedPreferences, key: String, defaultValue: Int = 0) :
+        LivePref<Int>(sharedPrefs, key, {
+            getInt(key, defaultValue)
+        })
+
     class Text(sharedPrefs: SharedPreferences, key: String) :
         LivePref<String>(sharedPrefs, key, { getString(key, "") ?: "" })
 }

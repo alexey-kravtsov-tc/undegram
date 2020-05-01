@@ -58,8 +58,8 @@ class TimeLineSpinner @JvmOverloads constructor(
     var currentOuterLeft = 0
     var currentOuterRight = 0
 
-    var moveLeftBorder = false
-    var moveRightBorder = false
+    private var moveLeftBorder = false
+    private var moveRightBorder = false
 
     private var startOffset = 2
     private var endOffset = 0
@@ -275,8 +275,8 @@ class TimeLineSpinner @JvmOverloads constructor(
     }
 
     fun setupData(xAxis: ArrayList<Long>, start: Int, end: Int) {
-        startOffset = start
-        endOffset = end
+//        startOffset = start
+//        endOffset = end
         this.xAxis.clear()
         this.xAxis.addAll(xAxis)
         invalidate()

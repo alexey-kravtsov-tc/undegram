@@ -19,7 +19,7 @@ interface SessionsDao {
 
     @Query(
         """
-        select User.*, User.id as userId, sum(expires - start) as sessionsTime,
+        select User.*, User.id as userId, abs(sum(expires - start)) as sessionsTime,
         :end as finish, :start as start
         from session left join user on User.id == Session.userId
         where start > :start and expires < :end
