@@ -10,7 +10,8 @@ android {
     if (keysPropertiesFile.exists()) {
         keysProperties.load(new FileInputStream(keysPropertiesFile))
     }
-
+    def apiHash = keysProperties['TG_API_HASH'] ?: System.getenv('TG_API_HASH')
+    def apiId = keysProperties['TG_API_ID'] ?: System.getenv("TG_API_ID").toInteger()
     compileSdkVersion 28
 
 
@@ -26,17 +27,13 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', "apiHash", keysProperties['TG_API_HASH']
-                    ?: System.getenv("TG_API_HASH")
+            buildConfigField 'String', "apiHash", apiHash
 
-            buildConfigField 'int', "apiId", keysProperties['TG_API_ID']
-                    ?: System.getenv("TG_API_ID").toInteger()
+            buildConfigField 'int', "apiId", apiId
         }
         release {
-            buildConfigField 'String', "apiHash", keysProperties['TG_API_HASH']
-                    ?: System.getenv("TG_API_HASH")
-            buildConfigField 'int', "apiId", keysProperties['TG_API_ID']
-                    ?: System.getenv("TG_API_ID").toInteger()
+            buildConfigField 'String', "apiHash", apiHash
+            buildConfigField 'int', "apiId", apiId
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
