@@ -6,8 +6,14 @@ apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
     compileSdkVersion 28
-    
 
+    def keysPropertiesFile = rootProject.file("undegram.properties")
+    def keysProperties = new Properties()
+    keysProperties.load(new FileInputStream(keysPropertiesFile))
+
+    def releaseStorePassword = keysProperties["RELEASE_STORE_PASSWORD"] ?: RELEASE_STORE_PASSWORD
+    def releaseKeyAlias = keysProperties["RELEASE_KEY_ALIAS"] ?: RELEASE_KEY_ALIAS
+    def releaseKeyPassword = keysProperties["RELEASE_KEY_PASSWORD"] ?: RELEASE_KEY_PASSWORD
 
     defaultConfig {
         applicationId "krafts.alex.backupgram.app"
@@ -23,9 +29,9 @@ android {
     signingConfigs {
         release {
             storeFile file('../release.keystore')
-            storePassword RELEASE_STORE_PASSWORD
-            keyAlias RELEASE_KEY_ALIAS
-            keyPassword RELEASE_KEY_PASSWORD
+            storePassword releaseStorePassword
+            keyAlias releaseKeyAlias
+            keyPassword releaseKeyPassword
         }
     }
 

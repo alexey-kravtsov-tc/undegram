@@ -77,8 +77,8 @@ class TgClient(context: Context) : KodeinAware {
                     databaseDirectory = "/data/user/0/krafts.alex.backupgram.app/files/tdlib"
                     useMessageDatabase = false
                     useSecretChats = false
-                    apiId = TgConfig.apiId
-                    apiHash = TgConfig.apiHash
+                    apiId = BuildConfig.apiId
+                    apiHash = BuildConfig.apiHash
                     useFileDatabase = true
                     systemLanguageCode = "en"
                     deviceModel = "Desktop"
