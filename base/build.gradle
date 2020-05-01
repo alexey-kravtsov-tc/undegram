@@ -27,6 +27,9 @@ dependencies {
     application project(':app')
     feature project(':ui')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'com.google.firebase:firebase-messaging:19.0.1'
+    implementation 'com.google.firebase:firebase-perf:18.0.1'
 }
 repositories {
     mavenCentral()
