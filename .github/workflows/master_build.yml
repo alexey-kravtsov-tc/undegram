@@ -15,10 +15,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - run: echo "${{ secrets.RELEASE_KEYSTORE }}" > release.keystore.asc
-          gpd --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" --batch release.keystore.asc > app/release.keystore
-          echo "${{ secrets.UNDEGRAM_PROPERTIES }}" > undegram.properties.asc
-          gpd --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" --batch undegram.properties.asc > undegram.properties
+      - name: keystore decode
+        run: |
+             echo "${{ secrets.RELEASE_KEYSTORE }}" > release.keystore.asc
+             gpd --quiet --yes --decrypt --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" --batch release.keystore.asc > app/release.keystore
+      - name: properties decode
+        run: |
+             echo "${{ secrets.UNDEGRAM_PROPERTIES }}" > undegram.properties.asc
+             gpd --quiet --yes --decrypt --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}" --batch undegram.properties.asc > undegram.properties
       - name: set up JDK 1.8
         uses: actions/setup-java@v1
         with:
