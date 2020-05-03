@@ -10,6 +10,10 @@ import androidx.preference.PreferenceManager
 import com.crashlytics.android.Crashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.iid.FirebaseInstanceId
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.tg.TgClient
 import krafts.alex.tg.TgModule
@@ -61,10 +65,17 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
 
     private fun populateOnFirstStart() {
 
-        users.addExampleUser()
-        messages.addExampleMessages()
-        sessionRepository.addExampleSessions()
-        chats.addExampleChat()
+        //TODO: launch from a proper scope
+        GlobalScope.launch {
+            withContext(Dispatchers.IO onError {
+
+            }) {
+                users.addExampleUser()
+                messages.addExampleMessages()
+                sessionRepository.addExampleSessions()
+                chats.addExampleChat()
+            }
+        }
 
         PreferenceManager
             .getDefaultSharedPreferences(applicationContext)

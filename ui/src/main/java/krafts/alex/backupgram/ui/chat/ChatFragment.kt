@@ -64,12 +64,12 @@ class ChatFragment : FragmentBase() {
             setTimeTable()
             showMessages(view)
 
-            timelineViewModel.calculateEntries(chatId.toInt()).observe(this, Observer {
+            timelineViewModel.calculateEntries(chatId.toInt()).observe(viewLifecycleOwner, Observer {
                 chart.showValues(it)
             })
 
             startPostponedEnterTransition()
-            viewModel.getUserUrl(chatId.toInt()).observe(this, Observer {
+            viewModel.getUserUrl(chatId.toInt()).observe(viewLifecycleOwner, Observer {
                 it?.let { url ->
                     avatar.setOnClickListener {
                         val intent = Intent(Intent.ACTION_VIEW).also { it.data = Uri.parse(url) }
