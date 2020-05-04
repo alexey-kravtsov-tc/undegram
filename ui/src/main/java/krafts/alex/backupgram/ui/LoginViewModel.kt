@@ -17,8 +17,10 @@ class LoginViewModel(private val client: TgClient) : ViewModel() {
 
     val authState = MediatorLiveData<LoginProgressState>().also { mediator ->
         mediator.addSource(client.loginState) {
-            lastAuthState = it
-            mediator.postValue(LoginProgressState.Idle(it))
+            it?.let {
+                lastAuthState = it
+                mediator.postValue(LoginProgressState.Idle(it))
+            }
         }
         mediator.addSource(state) {
             mediator.postValue(it)
