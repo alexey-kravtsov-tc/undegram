@@ -9,7 +9,6 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.preference.PreferenceManager
 import com.crashlytics.android.Crashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -17,7 +16,6 @@ import kotlinx.coroutines.withContext
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.tg.TgClient
 import krafts.alex.tg.TgModule
-import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.MessagesRepository
 import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.UsersRepository
@@ -47,7 +45,6 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         messages = MessagesRepository(applicationContext)
         users = UsersRepository(applicationContext)
-        chats = ChatRepository(applicationContext)
 
 //        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
 //            it.token.let { token -> client?.registerFirebaseNotifications(token) }
@@ -73,7 +70,6 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
                 users.addExampleUser()
                 messages.addExampleMessages()
                 sessionRepository.addExampleSessions()
-                chats.addExampleChat()
             }
         }
 
@@ -116,7 +112,6 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
         lateinit var client: TgClient
         lateinit var messages: MessagesRepository
         lateinit var users: UsersRepository
-        lateinit var chats: ChatRepository
     }
 }
 

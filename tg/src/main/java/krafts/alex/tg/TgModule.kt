@@ -1,6 +1,7 @@
 package krafts.alex.tg
 
 import android.content.Context
+import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.MessagesRepository
 import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.SessionRepositoryImpl
@@ -16,10 +17,12 @@ object TgModule {
         bind() from eagerSingleton { TgDataBase.getInstance(context) }
         bind() from singleton { instance<TgDataBase>().sessions() }
         bind() from singleton { instance<TgDataBase>().users() }
+        bind() from singleton { instance<TgDataBase>().chats() }
         bind<SessionRepository>() with singleton {
-            SessionRepositoryImpl(instance())
+            SessionRepositoryImpl(instance(), instance())
         }
         bind() from singleton { MessagesRepository(context) }
         bind() from singleton { UsersRepository(context) }
+        bind() from singleton { ChatRepository(context, instance()) }
     }
 }

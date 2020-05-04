@@ -5,16 +5,36 @@ import com.kizitonwose.time.Interval
 import com.kizitonwose.time.Second
 import com.kizitonwose.time.days
 import com.kizitonwose.time.hours
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import krafts.alex.tg.TgClient
 import krafts.alex.tg.dao.SessionsDao
 import krafts.alex.tg.entity.Session
 import krafts.alex.tg.entity.UserWithSessions
+import krafts.alex.tg.log
 import krafts.alex.tg.repo.TgTime.nowInSeconds
 import org.drinkless.td.libcore.telegram.TdApi
 import java.util.concurrent.TimeUnit
 
 class SessionRepositoryImpl(
-    private val sessionsDao: SessionsDao
+    private val sessionsDao: SessionsDao,
+    private val tgClient: TgClient
 ) : SessionRepository {
+
+    init {
+        tgClient.userStatusFlow.onEach {
+            "collect status $it".log()
+            if (it.status is TdApi.UserStatusOnline) {
+                updateSession(it)
+            } else {
+                endSession(it.userId)
+            }
+        }.launchIn(GlobalScope)
+    }
 
     override fun updateSession(userStatus: TdApi.UpdateUserStatus) {
         (userStatus.status as? TdApi.UserStatusOnline)?.let { status ->

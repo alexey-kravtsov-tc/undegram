@@ -8,27 +8,20 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.buffer
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.filterIsInstance
-import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.Edit
 import krafts.alex.tg.entity.User
-import krafts.alex.tg.repo.ChatRepository
 import krafts.alex.tg.repo.EditRepository
 import krafts.alex.tg.repo.MessagesRepository
-import krafts.alex.tg.repo.SessionRepository
 import krafts.alex.tg.repo.UsersRepository
 import org.drinkless.td.libcore.telegram.Client
 import org.drinkless.td.libcore.telegram.TdApi
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
-import org.kodein.di.generic.instance
 
 @ExperimentalCoroutinesApi
 class TgClient(context: Context) : TelegramFlow(), KodeinAware {
@@ -41,48 +34,33 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
 
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-    private val authorizationState = TdApi.UpdateAuthorizationState().map { it.authorizationState }
 
-    val loginState: LiveData<AuthState?> by lazy {
-        authorizationState.asLiveData().map {
+    private val authorizationState = TdApi.UpdateAuthorizationState()
+        .map { it.authorizationState }
+        .onEach {
             when (it) {
-                is TdApi.AuthorizationStateWaitPhoneNumber -> EnterPhone
-                is TdApi.AuthorizationStateReady -> AuthOk
-                is TdApi.AuthorizationStateWaitCode -> EnterCode
-                is TdApi.AuthorizationStateWaitPassword -> EnterPassword(it.passwordHint)
-
-
-
-                // TODO: have a different flow for the parameters logic
                 is TdApi.AuthorizationStateWaitTdlibParameters -> {
-                    val parameters = TdApi.TdlibParameters().apply {
-                        databaseDirectory = "/data/user/0/krafts.alex.backupgram.app/files/tdlib"
-                        useMessageDatabase = false
-                        useSecretChats = false
-                        apiId = BuildConfig.apiId
-                        apiHash = BuildConfig.apiHash
-                        useFileDatabase = true
-                        systemLanguageCode = "en"
-                        deviceModel = "Desktop"
-                        systemVersion = "Undegram"
-                        applicationVersion = "1.0"
-                        enableStorageOptimizer = true
-                    }
-                    launch{ TdApi.SetTdlibParameters(parameters).launch() }
-                    null
+                    launch { TdApi.SetTdlibParameters(parameters).launch() }
                 }
+
                 is TdApi.AuthorizationStateWaitEncryptionKey -> {
                     launch { TdApi.CheckDatabaseEncryptionKey().launch() }
-                    null
                 }
-
-                else -> null
             }
+        }
+
+    val loginState: LiveData<AuthState?> = authorizationState.asLiveData().map {
+        when (it) {
+            is TdApi.AuthorizationStateWaitPhoneNumber -> EnterPhone
+            is TdApi.AuthorizationStateReady -> AuthOk
+            is TdApi.AuthorizationStateWaitCode -> EnterCode
+            is TdApi.AuthorizationStateWaitPassword -> EnterPassword(it.passwordHint)
+
+            else -> null
         }
     }
 
-
-    var haveAuthorization: Boolean = loginState.value == AuthOk
+    val haveAuthorization: Boolean get() = loginState.value == AuthOk
 
     suspend fun sendAuthPhone(phone: String) =
         TdApi.SetAuthenticationPhoneNumber(phone, false, false).expect<TdApi.Ok>()
@@ -92,6 +70,16 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
 
     suspend fun sendAuthPassword(password: String) =
         TdApi.CheckAuthenticationPassword(password).expect<TdApi.Ok>()
+
+    val userStatusFlow = TdApi.UpdateUserStatus().flow()
+
+    val updateNewChatFlow = TdApi.UpdateNewChat().flow()
+        .mapNotNull {
+            Chat.fromTg(it.chat)
+        }.onEach {
+            if (it.photoBig?.downloaded == false)
+                TdApi.DownloadFile(it.photoBig.fileId, 32, 0, 0, true).launch()
+        }
 
     fun registerFirebaseNotifications(token: String) {
         sendClient(
@@ -115,8 +103,6 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
 
     private val messages = MessagesRepository(context)
     private val users = UsersRepository(context)
-    private val chats = ChatRepository(context)
-    private val sessions: SessionRepository by instance()
     private val messageEdits = EditRepository(context)
 
     private fun createClient(): Client = Client.create(Client.ResultHandler {
@@ -168,28 +154,13 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
                     sendClient(TdApi.DownloadFile(user.photoBig.fileId, 32, 0, 0, true))
             }
 
-            is TdApi.UpdateNewChat -> {
-                val chat = Chat.fromTg(it.chat)
-                chats.add(chat)
-                if (chat.photoBig?.downloaded == false)
-                    sendClient(TdApi.DownloadFile(chat.photoBig.fileId, 32, 0, 0, true))
-            }
-
-            is TdApi.UpdateUserStatus -> {
-                if (it.status is TdApi.UserStatusOnline) {
-                    sessions.updateSession(it)
-                } else {
-                    sessions.endSession(it.userId)
-                }
-            }
-
             is TdApi.UpdateUserChatAction -> {
                 Log.e("-action", it.action.javaClass.simpleName)
             }
 
             is TdApi.UpdateFile -> {
                 users.updateImage(it.file)
-                chats.updateImage(it.file)
+//                chats.updateImage(it.file)
             }
         }
     }, Client.ExceptionHandler {
@@ -226,7 +197,7 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
                 is TdApi.File -> {
                     if (it.local.isDownloadingCompleted) {
                         users.updateImage(it)
-                        chats.updateImage(it)
+//                        chats.updateImage(it)
                     }
                 }
 
@@ -241,7 +212,6 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
             }
         }
     }
-
 
     data class Vpn(
         val ip: String,
@@ -264,4 +234,20 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
         )
     }
 
+    companion object {
+        private val parameters = TdApi.TdlibParameters().apply {
+            databaseDirectory = "/data/user/0/krafts.alex.backupgram.app/files/tdlib"
+            useMessageDatabase = false
+            useSecretChats = false
+            apiId = BuildConfig.apiId
+            apiHash = BuildConfig.apiHash
+            useFileDatabase = true
+            systemLanguageCode = "en"
+            deviceModel = "Desktop"
+            systemVersion = "Undegram"
+            applicationVersion = "1.0"
+            enableStorageOptimizer = true
+        }
+
+    }
 }
