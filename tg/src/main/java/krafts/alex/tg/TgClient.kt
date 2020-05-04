@@ -5,7 +5,16 @@ import android.preference.PreferenceManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.buffer
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.Edit
 import krafts.alex.tg.entity.User
@@ -20,22 +29,11 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
-import java.lang.Exception
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
-class TgClient(context: Context) : KodeinAware {
+@ExperimentalCoroutinesApi
+class TgClient(context: Context) : TelegramFlow(), KodeinAware {
 
     override val kodein: Kodein by closestKodein(context)
-
-    var client = createClient()
-
-    var authorizationState: TdApi.AuthorizationState? = null
-
-    var haveAuthorization: Boolean = false
-
-    private var quiting: Boolean = false
 
     private val notificationCompat = NotificationCompat.Builder(context, "tg")
 
@@ -43,117 +41,57 @@ class TgClient(context: Context) : KodeinAware {
 
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-    data class Vpn(
-        val ip: String,
-        val port: Int,
-        val username: String,
-        val password: String
-    )
+    private val authorizationState = TdApi.UpdateAuthorizationState().map { it.authorizationState }
 
-    fun addProxy(vpn: Vpn) {
-        //TODO: use vpn if needed
-        sendClient(
-            with(vpn) {
-                TdApi.AddProxy(
-                    ip,
-                    port,
-                    true,
-                    TdApi.ProxyTypeSocks5(username, password)
-                )
-            }
-        )
-    }
+    val loginState: LiveData<AuthState?> by lazy {
+        authorizationState.asLiveData().map {
+            when (it) {
+                is TdApi.AuthorizationStateWaitPhoneNumber -> EnterPhone
+                is TdApi.AuthorizationStateReady -> AuthOk
+                is TdApi.AuthorizationStateWaitCode -> EnterCode
+                is TdApi.AuthorizationStateWaitPassword -> EnterPassword(it.passwordHint)
 
-    val authState = MutableLiveData<AuthState>()
 
-    private fun onAuthorizationStateUpdated(authorizationState: TdApi.AuthorizationState?) {
-        if (authorizationState != null) {
-            this.authorizationState = authorizationState
-        }
-        Log.e("--------state updated", authorizationState.toString())
-        when (authorizationState) {
-            is TdApi.AuthorizationStateWaitTdlibParameters -> {
-                val parameters = TdApi.TdlibParameters().apply {
-                    databaseDirectory = "/data/user/0/krafts.alex.backupgram.app/files/tdlib"
-                    useMessageDatabase = false
-                    useSecretChats = false
-                    apiId = BuildConfig.apiId
-                    apiHash = BuildConfig.apiHash
-                    useFileDatabase = true
-                    systemLanguageCode = "en"
-                    deviceModel = "Desktop"
-                    systemVersion = "Undegram"
-                    applicationVersion = "1.0"
-                    enableStorageOptimizer = true
+
+                // TODO: have a different flow for the parameters logic
+                is TdApi.AuthorizationStateWaitTdlibParameters -> {
+                    val parameters = TdApi.TdlibParameters().apply {
+                        databaseDirectory = "/data/user/0/krafts.alex.backupgram.app/files/tdlib"
+                        useMessageDatabase = false
+                        useSecretChats = false
+                        apiId = BuildConfig.apiId
+                        apiHash = BuildConfig.apiHash
+                        useFileDatabase = true
+                        systemLanguageCode = "en"
+                        deviceModel = "Desktop"
+                        systemVersion = "Undegram"
+                        applicationVersion = "1.0"
+                        enableStorageOptimizer = true
+                    }
+                    launch{ TdApi.SetTdlibParameters(parameters).launch() }
+                    null
                 }
-                sendClient(TdApi.SetTdlibParameters(parameters))
-            }
-
-            is TdApi.AuthorizationStateWaitEncryptionKey -> sendClient(TdApi.CheckDatabaseEncryptionKey())
-
-            is TdApi.AuthorizationStateWaitPhoneNumber -> {
-                authState.postValue(EnterPhone)
-            }
-
-            is TdApi.AuthorizationStateWaitCode -> {
-                authState.postValue(EnterCode)
-            }
-
-            is TdApi.AuthorizationStateWaitPassword -> {
-                authState.postValue(EnterPassword(authorizationState.passwordHint))
-            }
-
-            is TdApi.AuthorizationStateReady -> {
-                authState.postValue(AuthOk)
-                haveAuthorization = true
-            }
-
-            is TdApi.AuthorizationStateLoggingOut -> {
-                haveAuthorization = false
-                print("Logging out")
-            }
-
-            is TdApi.AuthorizationStateClosing -> {
-                haveAuthorization = false
-                print("Closing")
-            }
-
-            is TdApi.AuthorizationStateClosed -> {
-                print("Closed")
-                if (!quiting) {
-                    client = createClient() // recreate client after previous has closed
+                is TdApi.AuthorizationStateWaitEncryptionKey -> {
+                    launch { TdApi.CheckDatabaseEncryptionKey().launch() }
+                    null
                 }
-            }
 
-            else -> Log.e(this.toString(), "Unsupported authorization state: $authorizationState")
+                else -> null
+            }
         }
     }
 
-    private suspend inline fun <reified ExpectedResult : TdApi.Object> sendClientAsync(
-        query: TdApi.Function,
-        resultFunc: (ExpectedResult) -> Unit = {}
-    ) = resultFunc(
-        suspendCoroutine { cont ->
-            client.send(query) {
-                when (it) {
-                    is ExpectedResult -> cont.resume(it)
-                    is TdApi.Error -> cont.resumeWithException(Exception(it.message))
-                    else -> cont.resumeWithException(Exception("unexpected result $it"))
-                }
-            }}
-    )
 
-    suspend fun sendAuthPhone(phone: String) = sendClientAsync<TdApi.Ok>(
-        TdApi.SetAuthenticationPhoneNumber(phone, false, false)
-    )
+    var haveAuthorization: Boolean = loginState.value == AuthOk
 
-    suspend fun sendAuthCode(code: String) = sendClientAsync<TdApi.Ok>(
-        TdApi.CheckAuthenticationCode(code, "", "")
-    )
+    suspend fun sendAuthPhone(phone: String) =
+        TdApi.SetAuthenticationPhoneNumber(phone, false, false).expect<TdApi.Ok>()
 
-    suspend fun sendAuthPassword(password: String) = sendClientAsync<TdApi.Ok>(
-        TdApi.CheckAuthenticationPassword(password)
-    )
+    suspend fun sendAuthCode(code: String) =
+        TdApi.CheckAuthenticationCode(code, "", "").expect<TdApi.Ok>()
+
+    suspend fun sendAuthPassword(password: String) =
+        TdApi.CheckAuthenticationPassword(password).expect<TdApi.Ok>()
 
     fun registerFirebaseNotifications(token: String) {
         sendClient(
@@ -175,10 +113,6 @@ class TgClient(context: Context) : KodeinAware {
         sendClient(TdApi.DownloadFile(id, 32, 0, 0, false))
     }
 
-    private fun print(msg: String) {
-        Log.i("print", msg)
-    }
-
     private val messages = MessagesRepository(context)
     private val users = UsersRepository(context)
     private val chats = ChatRepository(context)
@@ -189,8 +123,6 @@ class TgClient(context: Context) : KodeinAware {
         //Log.e("--------result handled", it.toString())
 
         when (it) {
-            is TdApi.UpdateAuthorizationState ->
-                onAuthorizationStateUpdated(it.authorizationState)
             is TdApi.UpdateNewMessage ->
                 messages.add(it.message, it.message.content.text())
 
@@ -285,7 +217,6 @@ class TgClient(context: Context) : KodeinAware {
             when (it) {
                 is TdApi.Error -> {
                     Log.e(this.toString(), it.message)
-                    this.onAuthorizationStateUpdated(null) // repeat last action
                 }
 
                 is TdApi.Ok -> {
@@ -310,4 +241,27 @@ class TgClient(context: Context) : KodeinAware {
             }
         }
     }
+
+
+    data class Vpn(
+        val ip: String,
+        val port: Int,
+        val username: String,
+        val password: String
+    )
+
+    fun addProxy(vpn: Vpn) {
+        //TODO: use vpn if needed
+        sendClient(
+            with(vpn) {
+                TdApi.AddProxy(
+                    ip,
+                    port,
+                    true,
+                    TdApi.ProxyTypeSocks5(username, password)
+                )
+            }
+        )
+    }
+
 }

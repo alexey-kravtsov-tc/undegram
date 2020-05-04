@@ -12,6 +12,7 @@ import com.kizitonwose.time.hours
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_users.*
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.coroutineScope
@@ -55,7 +56,7 @@ class UsersFragment : FragmentBase(), TimeLineSpinnerListener {
 
         spinner?.setChartListener(this)
 
-        viewModel.usersBySessionCount.observe(this, Observer {
+        viewModel.usersBySessionCount.observe(viewLifecycleOwner, Observer {
             it?.let {
                 placeholder.visibility = if (it.count() > 3) View.GONE else View.VISIBLE
                 adapt.submitList(it)
@@ -64,7 +65,7 @@ class UsersFragment : FragmentBase(), TimeLineSpinnerListener {
             }
         })
 
-        viewModel.period.observe(this, Observer {
+        viewModel.period.observe(viewLifecycleOwner, Observer {
             it?.let {
                 activity?.toolbar?.title = "Online activity" +
                     if (it.endOffset == 0) {
@@ -82,14 +83,14 @@ class UsersFragment : FragmentBase(), TimeLineSpinnerListener {
             startPostponedEnterTransition()
         }
 
-        settings.reverseScroll.observe(this, Observer { reverse ->
+        settings.reverseScroll.observe(viewLifecycleOwner, Observer { reverse ->
             (list?.layoutManager as? LinearLayoutManager)?.reverseLayout = reverse
         })
     }
 
     private fun displayOffset(offset: Int) = (TgTime.nowInSeconds() - offset * 3600).display()
 
-    private var job = Job()
+    private var job: Job = Job()
 
     override fun onRangeChanged(
         hoursBeforeFrame: Int, hoursAfterFrame: Int, hoursInFrame: Int, dx: Float

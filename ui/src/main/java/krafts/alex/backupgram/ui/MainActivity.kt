@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity(), KodeinAware,
             navController.navigate(R.id.login_destination)
         }
 
-        BackApp.client.authState.observe(this, Observer {
+        BackApp.client.loginState.observe(this, Observer {
             if (it is AuthOk) button_login?.visibility = View.GONE
         })
 
