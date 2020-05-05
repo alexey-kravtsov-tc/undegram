@@ -63,10 +63,10 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
     val haveAuthorization: Boolean get() = loginState.value == AuthOk
 
     suspend fun sendAuthPhone(phone: String) =
-        TdApi.SetAuthenticationPhoneNumber(phone, false, false).expect<TdApi.Ok>()
+        TdApi.SetAuthenticationPhoneNumber(phone, null).expect<TdApi.Ok>()
 
     suspend fun sendAuthCode(code: String) =
-        TdApi.CheckAuthenticationCode(code, "", "").expect<TdApi.Ok>()
+        TdApi.CheckAuthenticationCode(code).expect<TdApi.Ok>()
 
     suspend fun sendAuthPassword(password: String) =
         TdApi.CheckAuthenticationPassword(password).expect<TdApi.Ok>()

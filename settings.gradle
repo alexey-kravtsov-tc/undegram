@@ -1,1 +1,1 @@
-include ':ui', ':app', ':base', ':instantapp', ':tg', ":libtd"
+include ':ui', ':app', ':base', ':instantapp', ':tg'
