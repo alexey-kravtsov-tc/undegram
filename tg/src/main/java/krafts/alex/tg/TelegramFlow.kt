@@ -6,44 +6,49 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filterIsInstance
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.transform
-import org.drinkless.td.libcore.telegram.Client
 import org.drinkless.td.libcore.telegram.TdApi
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
+interface FlowProvider {
+    fun getFlow(): Flow<TdApi.Object>
+    fun send(function: TdApi.Function, resultHandler: (TdApi.Object) -> Unit)
+}
+
 @ExperimentalCoroutinesApi
 open class TelegramFlow(
+    val flowProvider: FlowProvider = ClientFlowProvider(),
     dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : CoroutineScope by CoroutineScope(SupervisorJob() + dispatcher) {
 
-    private val channel = Channel<TdApi.Object>(Channel.Factory.UNLIMITED)
+    val mainFlow: Flow<TdApi.Object> by lazy { flowProvider.getFlow() }
 
-    lateinit var client: Client
+    // transform
 
-    @OptIn(FlowPreview::class)
-    val mainFlow: Flow<TdApi.Object> by lazy {
-        client = Client.create(Client.ResultHandler {
+    inline fun <reified UpdateType : TdApi.Update> UpdateType.flow(): Flow<UpdateType> =
+        mainFlow.filterIsInstance()
 
-            it.toString().log()
+    inline fun <reified UpdateType : TdApi.Update, ResultType>
+        UpdateType.map(crossinline block: suspend (UpdateType) -> ResultType): Flow<ResultType> =
+        mainFlow.transform { value: TdApi.Object ->
+            if (value is UpdateType) emit(block(value))
+        }
 
-            if (!channel.isClosedForSend)
-                channel.offer(it)
+    @Deprecated("why even need one?",ReplaceWith("flow().collect {}"))
+    suspend inline fun
+        <reified T : TdApi.Update>
+        T.collect(crossinline action: suspend (value: T) -> Unit) =
+        mainFlow.transform { value: TdApi.Object ->
+            if (value is T) emit(value as T)
+        }.collect { action(it) }
 
-        }, Client.ExceptionHandler {
-            throw Exception(it)
-        }, null
-        )
-        channel.receiveAsFlow()
-    }
+    //live data
 
     inline fun <reified UpdateType : TdApi.Update, LiveDataType : TdApi.Object>
         UpdateType.mapLiveData(crossinline block: (UpdateType) -> LiveDataType) =
@@ -57,17 +62,17 @@ open class TelegramFlow(
 
     fun <LiveDataType : TdApi.Object> Flow<LiveDataType>.asLiveData() =
         liveData {
-            collect {
-                emit(it)
-            }
+            collect { emit(it) }
         }
+
+    //launchers
 
     suspend inline fun <reified ExpectedResult : TdApi.Object>
         TdApi.Function.expect(
         resultFunc: (ExpectedResult) -> Unit = {}
     ) = resultFunc(
         suspendCoroutine { cont ->
-            client.send(this) {
+            flowProvider.send(this) {
                 when (it) {
                     is ExpectedResult -> cont.resume(it)
                     is Error -> cont.resumeWithException(Exception(it.message))
@@ -77,10 +82,9 @@ open class TelegramFlow(
         }
     )
 
-    suspend inline fun TdApi.Function.launch(
-    ) = suspendCoroutine<Boolean> { cont ->
+    suspend inline fun TdApi.Function.launch() = suspendCoroutine<Boolean> { cont ->
         "send client $this".log()
-        client.send(this) {
+        flowProvider.send(this) {
             when (it) {
                 is TdApi.Ok -> {
                     "$this returns true".log()
@@ -92,22 +96,6 @@ open class TelegramFlow(
             }
         }
     }
-
-    suspend inline fun
-        <reified T : TdApi.Update>
-        T.collect(crossinline action: suspend (value: T) -> Unit) =
-        mainFlow.transform { value: TdApi.Object ->
-            if (value is T) emit(value as T)
-        }.collect { action(it) }
-
-    inline fun <reified UpdateType : TdApi.Update, ResultType>
-        UpdateType.map(crossinline block: suspend (UpdateType) -> ResultType): Flow<ResultType> =
-        mainFlow.transform { value: TdApi.Object ->
-            if (value is UpdateType) emit(block(value))
-        }
-
-    inline fun <reified UpdateType : TdApi.Update> UpdateType.flow(): Flow<UpdateType> =
-        mainFlow.filterIsInstance()
 }
 
 fun String.log() {

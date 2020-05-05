@@ -82,23 +82,21 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
         }
 
     fun registerFirebaseNotifications(token: String) {
-        sendClient(
             TdApi.RegisterDevice(
                 TdApi.DeviceTokenFirebaseCloudMessaging(token, false), null
             )
-        )
     }
 
     fun getChatInfo(chatId: Long) {
-        sendClient(TdApi.GetChat(chatId))
+//        sendClient(TdApi.GetChat(chatId))
     }
 
     fun getUserInfo(userId: Int) {
-        sendClient(TdApi.GetUser(userId))
+//        sendClient(TdApi.GetUser(userId))
     }
 
     fun loadImage(id: Int) {
-        sendClient(TdApi.DownloadFile(id, 32, 0, 0, false))
+//        sendClient(TdApi.DownloadFile(id, 32, 0, 0, false))
     }
 
     private val messages = MessagesRepository(context)
@@ -151,7 +149,7 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
                 val user = User.fromTg(it.user)
                 users.add(user)
                 if (user.photoBig?.downloaded == false)
-                    sendClient(TdApi.DownloadFile(user.photoBig.fileId, 32, 0, 0, true))
+                    TdApi.DownloadFile(user.photoBig.fileId, 32, 0, 0, true)
             }
 
             is TdApi.UpdateUserChatAction -> {
@@ -183,6 +181,7 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
         }
     }
 
+/*
     private fun sendClient(query: TdApi.Function) {
         client.send(query) {
             when (it) {
@@ -212,6 +211,7 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
             }
         }
     }
+*/
 
     data class Vpn(
         val ip: String,
@@ -220,18 +220,14 @@ class TgClient(context: Context) : TelegramFlow(), KodeinAware {
         val password: String
     )
 
-    fun addProxy(vpn: Vpn) {
+    suspend fun addProxy(vpn: Vpn) {
         //TODO: use vpn if needed
-        sendClient(
-            with(vpn) {
-                TdApi.AddProxy(
-                    ip,
-                    port,
-                    true,
-                    TdApi.ProxyTypeSocks5(username, password)
-                )
-            }
-        )
+        TdApi.AddProxy(
+            vpn.ip,
+            vpn.port,
+            true,
+            TdApi.ProxyTypeSocks5(vpn.username, vpn.password)
+        ).launch()
     }
 
     companion object {
