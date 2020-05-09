@@ -18,6 +18,7 @@ import io.fabric.sdk.android.Fabric
 import kotlinx.android.synthetic.main.activity_main.*
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.tg.AuthOk
+import krafts.alex.tg.TgClient
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity(), KodeinAware,
     override val kodein: Kodein by closestKodein()
 
     private val settings: SettingsRepository by instance()
+
+    private val client: TgClient by instance()
 
     private lateinit var navController: NavController
 
@@ -48,7 +51,7 @@ class MainActivity : AppCompatActivity(), KodeinAware,
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        button_login.visibility = if (!BackApp.client.haveAuthorization) {
+        button_login.visibility = if (!client.haveAuthorization) {
             View.VISIBLE
         } else {
             View.GONE
@@ -74,7 +77,7 @@ class MainActivity : AppCompatActivity(), KodeinAware,
             navController.navigate(R.id.login_destination)
         }
 
-        BackApp.client.loginState.observe(this, Observer {
+        client.loginState.observe(this, Observer {
             if (it is AuthOk) button_login?.visibility = View.GONE
         })
 
@@ -82,7 +85,7 @@ class MainActivity : AppCompatActivity(), KodeinAware,
     }
 
     override fun onStart() {
-        if (!BackApp.client.haveAuthorization) {
+        if (!client.haveAuthorization) {
             navController.navigate(R.id.login_destination)
         }
         super.onStart()

@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 data class ChatArgument(
     val chatId: Long,
-    val title: String,
+    val title: String?,
     val imagePath: String?
 ) : Parcelable {
 

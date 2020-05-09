@@ -16,14 +16,13 @@ import org.junit.Test
 
 class TelegramFlowTest {
 
-    inner class TestFlow : TelegramFlow(flowProvider, testDispatcher) {
+    inner class TestFlow : TelegramFlow(flowProvider) {
 
-        inline fun <reified T : TdApi.Update> getUpdateFlow(update: T) = update.flow()
+        inline fun <reified T : TdApi.Update> getUpdateFlow(update: T) = update.asFlow()
 
         inline fun <reified UpdateType : TdApi.Update, ResultType> getMapFlow(
             update: UpdateType, crossinline block: suspend (UpdateType) -> ResultType
-        ) = update.map(block)
-
+        ) = update.mapAsFlow(block)
     }
 
     private val testDispatcher = TestCoroutineDispatcher()
@@ -91,6 +90,14 @@ class TelegramFlowTest {
                 assertNotNull(it)
                 assertEquals(it, test)
             }
+        }
+    }
+
+    @Test
+    fun `collection from one not blocking another flow collection`() {
+        testFlow {
+            emit(TdApi.UpdateChatLastMessage())
+            emit(TdApi.UpdateDeleteMessages())
         }
     }
 

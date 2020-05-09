@@ -1,34 +1,47 @@
 package krafts.alex.tg
 
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.buffer
 import org.drinkless.td.libcore.telegram.Client
 import org.drinkless.td.libcore.telegram.TdApi
 
-class ClientFlowProvider : FlowProvider {
+class ClientFlowProvider(
+    private val clientInstance: Client? = null
+) : FlowProvider {
 
-    val channel = Channel<TdApi.Object>(Channel.UNLIMITED)
+    val resultHandler = ResultHandlerFlow()
+    
+    private val client: Client = clientInstance
+            ?.also { it.setUpdatesHandler { resultHandler } }
+            ?: Client.create(resultHandler, null, null)
 
-    lateinit var client: Client
-
-    val resultHandler = Client.ResultHandler {
-
-        if (!channel.isClosedForSend)
-            channel.offer(it)
-
-    }
 
     override fun getFlow(): Flow<TdApi.Object> {
-        client = Client.create(
-            resultHandler,
-            Client.ExceptionHandler { throw Exception(it)},
-            null
-        )
-        return channel.receiveAsFlow()
+        return resultHandler.buffer(64)
     }
 
     override fun send(function: TdApi.Function, resultHandler: (TdApi.Object) -> Unit) {
         client.send(function, resultHandler)
     }
+
+}
+
+/**
+ * Start a telegram flow for given [Client] to access it's functionality
+ * For example:
+ * ```
+ * client.withFlow {
+ *    TdApi.UpdateNewMessage().asFlow()
+ *        .map { it.message }
+ *        .onEach {
+ *            TdApi.DeleteChatMessagesFromUser(it.chatId, it.senderUserId).launch()
+ *        }.launchIn(scope)
+ * }
+ * ```
+ * will delete all the incoming messages
+ */
+fun Client.withFlow(function: TelegramFlow.() -> Unit) {
+    val provider = ClientFlowProvider(this)
+    val telegramFlow = TelegramFlow(provider)
+    function(telegramFlow)
 }

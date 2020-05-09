@@ -1,19 +1,17 @@
 package krafts.alex.tg.repo
 
-import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import krafts.alex.tg.TgClient
-import krafts.alex.tg.TgDataBase
+import krafts.alex.tg.dao.ChatDao
 import krafts.alex.tg.entity.Chat
 import krafts.alex.tg.entity.File
 import org.drinkless.td.libcore.telegram.TdApi
 
-class ChatRepository constructor(context: Context, tgClient: TgClient) {
+class ChatRepository(private val chats: ChatDao, tgClient: TgClient) {
 
     init {
         tgClient.updateNewChatFlow.onEach {
@@ -21,7 +19,6 @@ class ChatRepository constructor(context: Context, tgClient: TgClient) {
         }.launchIn(CoroutineScope(SupervisorJob() + Dispatchers.IO))
     }
 
-    private val chats = TgDataBase.getInstance(context).chats()
 
     fun add(chat: Chat) = chats.insert(chat)
 

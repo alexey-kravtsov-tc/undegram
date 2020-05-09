@@ -1,13 +1,10 @@
 package krafts.alex.tg.repo
 
-import android.content.Context
-import krafts.alex.tg.TgDataBase
+import krafts.alex.tg.dao.EditsDao
 import krafts.alex.tg.entity.Edit
 import krafts.alex.tg.repo.TgTime.nowInSeconds
 
-class EditRepository(context: Context) {
-
-    private val messageEdits = TgDataBase.getInstance(context).edits()
+class EditRepository(val messageEdits: EditsDao) {
 
     fun add(edit: Edit) = messageEdits.add(edit)
 

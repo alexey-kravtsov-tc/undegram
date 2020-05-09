@@ -7,7 +7,7 @@ import krafts.alex.backupgram.ui.BackApp
 class FirebaseNotificationService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String?) {
-        token?.let { BackApp.client?.registerFirebaseNotifications(it) }
+//        token?.let { BackApp.client?.registerFirebaseNotifications(it) }
     }
 
     override fun onMessageReceived(message: RemoteMessage?) {

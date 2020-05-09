@@ -32,9 +32,10 @@ class ChatViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
                     .transform(CircleTransform())
                     .into(avatar)
             else {
-                BackApp.client?.loadImage(it.fileId)
+//                BackApp.client?.loadImage(it.fileId)
             }
-        } ?: BackApp.client.getChatInfo(item.chatId)
+        }
+//            ?: BackApp.client.getChatInfo(item.chatId)
 
         message.text = item.text
         avatar.transitionName = "avatar${item.chatId}"

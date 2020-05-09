@@ -1,14 +1,31 @@
 package krafts.alex.tg.repo
 
-import android.content.Context
-import krafts.alex.tg.TgDataBase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import krafts.alex.tg.TgClient
+import krafts.alex.tg.dao.UsersDao
 import krafts.alex.tg.entity.File
 import krafts.alex.tg.entity.User
 import org.drinkless.td.libcore.telegram.TdApi
 
-class UsersRepository(context: Context) {
+class UsersRepository(private val users: UsersDao, tgClient: TgClient ) {
 
-    private val users = TgDataBase.getInstance(context).users()
+    init {
+        CoroutineScope(SupervisorJob()).launch {
+            tgClient.userFlow.collect {
+                val user = User.fromTg(it.user)
+                add(user)
+                if (user.photoBig?.downloaded == false) {
+                    val photo = tgClient.downloadFile(user.photoBig.fileId)
+                    if (photo.local.isDownloadingCompleted) {
+                        updateImage(photo)
+                    }
+                }
+            }
+        }
+    }
 
     fun add(user: User) = users.insert(user)
 
@@ -30,7 +47,6 @@ class UsersRepository(context: Context) {
 
     private val ANDROID_RESOURCE = "android.resource://"
     private val FORWARD_SLASH = "/"
-    val packageName = context.packageName
 
     fun addExampleUser() {
         users.insert(

@@ -37,9 +37,10 @@ class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
                     .error(R.drawable.ic_settings)
                     .into(avatar)
             } else {
-                BackApp.client.loadImage(it.fileId)
+//                BackApp.client.loadImage(it.fileId)
             }
-        } ?: BackApp.client.getChatInfo(item.user.id.toLong())
+        }
+//            ?: BackApp.client.getChatInfo(item.user.id.toLong())
 
         avatar.transitionName = "avatar${item.user.id}"
 

@@ -16,9 +16,6 @@ import kotlinx.coroutines.withContext
 import krafts.alex.backupgram.ui.settings.SettingsRepository
 import krafts.alex.tg.TgClient
 import krafts.alex.tg.TgModule
-import krafts.alex.tg.repo.MessagesRepository
-import krafts.alex.tg.repo.SessionRepository
-import krafts.alex.tg.repo.UsersRepository
 import org.kodein.di.Kodein.Companion.lazy
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -29,26 +26,24 @@ import services.KeepAliveService
 
 class BackApp : Application(), KodeinAware, LifecycleObserver {
 
-    private val sessionRepository: SessionRepository by instance()
+    private val addExamplesUseCase: AddExamplesUseCase by instance()
 
     override val kodein = lazy {
         import(androidXModule(this@BackApp))
         bind() from singleton { FirebaseAnalytics.getInstance(applicationContext) }
         bind() from singleton { SettingsRepository(applicationContext) }
-        bind() from singleton { client }
+        bind() from singleton { TgClient() }
         import(TgModule.resolve(applicationContext))
+        bind() from singleton { AddExamplesUseCase(instance(), instance(), instance()) }
         import(ViewModelFactory.viewModelModule)
     }
 
     override fun onCreate() {
-        client = TgClient(applicationContext)
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
-        messages = MessagesRepository(applicationContext)
-        users = UsersRepository(applicationContext)
 
-//        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
-//            it.token.let { token -> client?.registerFirebaseNotifications(token) }
-//        }
+        //        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
+        //            it.token.let { token -> client?.registerFirebaseNotifications(token) }
+        //        }
 
         if (!PreferenceManager
                 .getDefaultSharedPreferences(applicationContext)
@@ -67,9 +62,7 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
             withContext(Dispatchers.IO onError {
 
             }) {
-                users.addExampleUser()
-                messages.addExampleMessages()
-                sessionRepository.addExampleSessions()
+                addExamplesUseCase.addExamples()
             }
         }
 
@@ -97,6 +90,8 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
             .getDefaultSharedPreferences(applicationContext)
             .getBoolean("service_active", false) //TODO: use repo
 
+        val client : TgClient by instance()
+
         if (client.haveAuthorization && serviceActive) {
             val serviceIntent = Intent(applicationContext, KeepAliveService::class.java)
 
@@ -106,12 +101,6 @@ class BackApp : Application(), KodeinAware, LifecycleObserver {
                 Crashlytics.log("Service already running.")
             }
         }
-    }
-
-    companion object {
-        lateinit var client: TgClient
-        lateinit var messages: MessagesRepository
-        lateinit var users: UsersRepository
     }
 }
 
